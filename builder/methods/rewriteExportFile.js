@@ -17,7 +17,7 @@ const rewrite = (path) => {
 
   let txt = ''
   files.sort(compare).forEach((dirent) => {
-    txt += `export { default as ${dirent.name} } from "./${dirent.name}";\n`
+    txt += `export { default as ${dirent.name} } from './${dirent.name}';\n`
   })
   return txt
 }

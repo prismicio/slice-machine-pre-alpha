@@ -12,7 +12,7 @@ example using SliceZone //
         :is="camelize(slice.slice_type)"
         v-if="sliceNames.includes(camelize(slice.slice_type))"
         :key="slice.id"
-        v-bind="slice.primary"
+        v-bind="slice"
       />
       <unknown-slice
         v-else-if="NODE_ENV !== 'production'"

@@ -84,7 +84,7 @@ const questions = [
 
     const files = [
       {
-        txt: createIndex({ tagName }),
+        txt: createIndex({ name, tagName }),
         path: '/index.vue'
       },
       {

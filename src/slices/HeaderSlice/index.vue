@@ -1,10 +1,16 @@
 <template>
   <section class="container">
     <slot name="title">
-      <h1>{{ title }} lalala</h1>
+      <prismic-rich-text v-if="isRichText(title)" :field="title" />
+      <h1 v-else>
+        {{ title }}
+      </h1>
     </slot>
     <slot name="paragraph">
-      <p>{{ paragraph }}</p>
+      <prismic-rich-text v-if="isRichText(paragraph)" :field="paragraph" />
+      <p v-else>
+        {{ paragraph }}
+      </p>
     </slot>
   </section>
 </template>
@@ -21,8 +27,8 @@ export default {
       validator: maybeRichTextValidator
     },
     title: {
-      type: String,
-      default: 'title'
+      type: [String, Array],
+      required: true
     }
   },
   data() {
@@ -38,9 +44,12 @@ export default {
 
 .container {
   max-width: $section-container;
+  height: 50vh;
+  border-bottom: 4px solid #111;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  background-color: tomato;
   &__center {
     width: 100%;
   }
@@ -52,8 +61,3 @@ export default {
   }
 }
 </style>
-
-/* export default { name: "hello-hello", props: { paragraph: { type: [String,
-Array], validator: maybeRichTextValidator }, title: String, mock: Boolean },
-data: function() { console.log(this, "HELLL"); return { isRichText,
-...(this.mock ? mockData : {}) }; } }; */

@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'html-closing-bracket-newline': 'off',
-    'valid-v-for': 'off' // breaks in my TextEditor
+    'valid-v-for': 'off', // breaks in my TextEditor
+    'html-self-closing': 'off'
   }
 }

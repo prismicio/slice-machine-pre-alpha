@@ -5,7 +5,6 @@
         Slices
       </h1>
       <ul>
-        <!-- eslint-disable-next-line -->
         <li v-for="elem in lst" :key="elem.name">
           -
           <a :href="`/components/${elem.key}`"> {{ elem.key }} </a>, then:
@@ -21,25 +20,21 @@
           GitHub
         </a>
       </div>
-      <p>slice zone:</p>
-      <slice-zone />
     </div>
   </div>
 </template>
 
 <script>
-import Slices, { SliceZone } from '@/vueSlices'
+import Slices from '@/../src'
 import { createSlice } from '~/utils'
 
-console.log('SliceZone', SliceZone)
 const lst = Object.keys(Slices)
   .map(createSlice)
   .filter((e) => e) // eslint-disable-line
 
 export default {
   components: {
-    ...Slices,
-    SliceZone
+    ...Slices
   },
   data: () => ({
     lst

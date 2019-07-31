@@ -1,4 +1,4 @@
-const template = ({ name, tagName }) => `<template>
+<template>
   <section>
     <slot name="paragraph">
       <p>
@@ -9,32 +9,27 @@ const template = ({ name, tagName }) => `<template>
 </template>
 
 <script>
-import { isRichText, maybeRichTextValidator } from "../../utils";
+import { isRichText, maybeRichTextValidator } from '../../utils'
 
 export default {
-  // Will match slice_type '${tagName.replace('-', '_')}' in your Prismic API
-  name: "${name}",
   props: {
     // Example prop
     paragraph: {
       type: [String, Array],
-      default: null,
-      validator: maybeRichTextValidator
+      validator: maybeRichTextValidator,
+      default: null
     }
   },
-  data: function() {
+  data() {
     return {
       isRichText
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
+@import '../../styles/variables';
 
 /* Your SCSS style here */
 </style>
-`
-
-module.exports = template
