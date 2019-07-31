@@ -1,0 +1,11 @@
+{
+  "title": "My component!",
+  "description": "I am super cool!",
+  "imageUrl": "https://google.com",
+  "contributors": ["hyperVillain"],
+  "sandboxUrl": "",
+  "components": ["Button", "Avatar"],
+  "tags": ["Landing Page"],
+  "collection": "starter-pack",
+  "dependencies": []
+}
