@@ -10,7 +10,9 @@ example using SliceZone //
     <template v-for="slice in slices">
       <Component
         :is="camelize(slice.slice_type)"
-        v-if="sliceNames.includes(camelize(slice.slice_type))"
+        v-if="
+          ignoreNameCheck || sliceNames.includes(camelize(slice.slice_type))
+        "
         :key="slice.id"
         v-bind="slice"
       />
@@ -41,7 +43,15 @@ export default {
   props: {
     slices: {
       type: Array,
-      required: true
+      required: true,
+      description:
+        'The array of slices you get from a Prismic request (data.body)'
+    },
+    ignoreNameCheck: {
+      type: Boolean,
+      required: false,
+      default: false,
+      description: 'Check for existence of slice before trying to render it'
     }
   },
   data() {

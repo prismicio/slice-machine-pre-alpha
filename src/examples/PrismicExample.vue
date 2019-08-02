@@ -1,6 +1,6 @@
 // Add this file to your `/pages` folder and navigate to `/prismicexample` //
 Depending on the slices you downloaded, some Prismic slices will not be matched
-by your SliceZone. Add components to `vueSlices/slices` to keep going!
+by your SliceZone. Try adding components to `vueSlices/slices` to match them!
 
 <template>
   <slice-zone :slices="document.body" />
@@ -19,7 +19,8 @@ export default {
   },
   async asyncData({ error, req }) {
     try {
-      // Replace this with your own endPoint
+      // Replace this with your own endPoint,
+      // once you're done playing around
       const apiEndpoint = 'https://vue-slices.prismic.io/api/v2'
       const api = await Prismic.getApi(apiEndpoint, {
         req
