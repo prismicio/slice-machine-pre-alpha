@@ -9,7 +9,6 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:fix": "yarn lint --fix",
-    "precommit": "yarn lint:fix && yarn lint && yarn stylelint --fix && yarn stylelint",
     "stylelint": "stylelint */**/*.scss",
     "create-slice": "node builder/createSlice.js",
     "dev": "nuxt",
@@ -70,5 +69,10 @@
       "npm run lint",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:fix && yarn lint && yarn stylelint --fix && yarn stylelint"
+    }
   }
 }
