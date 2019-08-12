@@ -1,9 +1,13 @@
-// Add this file to your `/pages` folder and navigate to `/prismicexample` //
+// Add this file to your `/pages` folder and navigate to `/prismic-example` //
 Depending on the slices you downloaded, some Prismic slices will not be matched
 by your SliceZone. Try adding components to `vueSlices/slices` to match them!
 
 <template>
-  <slice-zone :slices="document.body" />
+  <slice-zone :slices="document.body">
+    <template v-slot:HeaderSlice.title="{ title }">
+      <p>{title}</p>
+    </template>
+  </slice-zone>
 </template>
 
 <script>
@@ -26,12 +30,10 @@ export default {
         req
       })
 
-      let document = {}
       const result = await api.getSingle('example-request')
-      document = result.data
 
       return {
-        document,
+        document: result.data,
         documentId: result.id
       }
     } catch (e) {

@@ -1,32 +1,37 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 style="margin-bottom: 2em">
-        Slices
-      </h1>
-      <ul>
-        <li v-for="elem in lst" :key="elem.name">
-          -
-          <a :href="`/components/${elem.key}`"> {{ elem.key }} </a>, then:
-          {{ elem.meta.description }}
-        </li>
-      </ul>
-      <div class="links">
-        <a
-          href="https://github.com/hypervillain/community"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <main>
+    <Header
+      justify="space-between"
+      :style="{ backgroundImage: `url('${image}')` }"
+    >
+      <div style="max-width: 450px">
+        <Title content="Slices" />
+        <Paragraph content="Built with and for Nuxt.js" />
+        <Paragraph
+          style="margin-top: 18px"
+          content="Slices is a library of nuxt component that helps you build your nuxt website faster."
+        />
+        <Button variant="success">
+          Content here
+        </Button>
       </div>
-    </div>
-  </div>
+    </Header>
+    <Body>
+      <p>Hello body</p>
+    </Body>
+  </main>
 </template>
 
 <script>
 import Slices from '@/../src'
 import { createSlice } from '~/utils'
+
+import Header from '@/components/Header'
+import Body from '@/components/Body'
+import Title from '@/components/Text/Title'
+import Paragraph from '@/components/Text/Paragraph'
+import Button from '@/components/Button'
+import headerImg from '@/static/head.svg'
 
 const lst = Object.keys(Slices)
   .map(createSlice)
@@ -34,24 +39,21 @@ const lst = Object.keys(Slices)
 
 export default {
   components: {
-    ...Slices
+    ...Slices,
+    Header,
+    Title,
+    Paragraph,
+    Button,
+    Body
   },
   data: () => ({
-    lst
+    lst,
+    image: headerImg
   })
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

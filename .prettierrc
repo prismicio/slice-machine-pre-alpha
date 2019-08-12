@@ -1,6 +1,6 @@
 {
   "semi": false,
-  "arrowParens": "always",
+  "arrowParens": false,
   "singleQuote": true,
   "v-bind-style": false
 }

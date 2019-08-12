@@ -1,9 +1,32 @@
 <template>
-  <h1>Hello 2</h1>
+  <div class="header">
+    <Container :justify="justify" :align="align">
+      <slot />
+    </Container>
+  </div>
 </template>
 
 <script>
+import Container from '@/components/Container'
+
 export default {
-  name: 'HeaderSlice'
+  name: 'Header',
+  components: {
+    Container
+  },
+  props: {
+    ...Container.props
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../style/_variables';
+
+.header {
+  background: $bg-green;
+  background-position: bottom right;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+</style>

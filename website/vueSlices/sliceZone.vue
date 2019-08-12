@@ -4,25 +4,6 @@ section after section. After creating a slice on Prismic, create the
 corresponding component inside `vueSlices/slices` and export it from
 `vueSlices/slices/index.js` See `examples/PrismicExample.vue` to see a page
 example using SliceZone //
-
-<template>
-  <div>
-    <template v-for="slice in slices">
-      <Component
-        :is="camelize(slice.slice_type)"
-        v-if="sliceNames.includes(camelize(slice.slice_type))"
-        :key="slice.id"
-        v-bind="slice.primary"
-      />
-      <unknown-slice
-        v-else-if="NODE_ENV !== 'production'"
-        :key="slice.id"
-        :slice="slice"
-      />
-    </template>
-  </div>
-</template>
-
 <script>
 import * as Slices from './slices'
 import UnknownSlice from './UnknownSlice'
@@ -50,6 +31,26 @@ export default {
       sliceNames: Object.entries(Slices).map(([, { name }]) => name),
       NODE_ENV: process.env.NODE_ENV
     }
+  },
+
+  render(h) {
+    return h(
+      'div',
+      {},
+      this.slices.map((elem) => {
+        const name = camelize(elem.slice_type)
+        const component = () =>
+          import(`./slices/${name}/index.vue`).catch((e) => {
+            console.error(e)
+            return UnknownSlice
+          })
+        return h(
+          component,
+          { attrs: { ...elem.primary, primary: undefined }, key: elem.id },
+          []
+        )
+      })
+    )
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <slot name="title">
+    <slot name="title" v-bind="$props">
       <prismic-rich-text v-if="isRichText(title)" :field="title" />
       <h1 v-else>
         {{ title }}
