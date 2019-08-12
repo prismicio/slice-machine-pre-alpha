@@ -25,7 +25,7 @@
           No example yet, that'd make for a great PR!
         </h2>
       </div>
-      <div v-if="Object.keys(slice.examples).some((e) => e)">
+      <div v-if="Object.keys(slice.examples).some(e => e)">
         <h2 class="subtitle">
           Examples
         </h2>

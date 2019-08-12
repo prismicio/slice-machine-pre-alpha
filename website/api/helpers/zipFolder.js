@@ -20,7 +20,7 @@ function getFilePathsRecursiveSync(dir) {
 
 function main(zip, dir) {
   const results = getFilePathsRecursiveSync(dir)
-  results.forEach((r) => {
+  results.forEach(r => {
     const split = r.split('/src/')
     zip.file(split[1], fs.readFileSync(r, 'utf8'))
   })

@@ -8,7 +8,7 @@ const createExamples = (slice, exampleFiles) =>
     return acc
   }, {})
 
-const requireExamples = (key) => {
+const requireExamples = key => {
   let exampleFiles
   try {
     exampleFiles = require(`~/../src/slices/${key}/examples`)
@@ -20,7 +20,7 @@ const requireExamples = (key) => {
   return createExamples(key, exampleFiles)
 }
 
-export const createSlice = (key) => {
+export const createSlice = key => {
   try {
     const code = require(`!!raw-loader!~/../src/slices/${key}/index.vue`)
       .default

@@ -77,7 +77,7 @@ app.use((req, res) => {
     const slicesFolder = zip.folder('slices')
     //
     let index = ''
-    sliceNames.forEach((sliceName) => {
+    sliceNames.forEach(sliceName => {
       zipFolder(zip, `${slicesUrl}/${sliceName}`)
       index += `export { default as ${sliceName} } from "./${sliceName}";\n`
     })
@@ -95,7 +95,7 @@ app.use((req, res) => {
     writeSliceZone(zip, sliceNames)
     zipFile(zip, path.join(srcUrl, '/utils.js'), 'utils.js')
     zipFolder(zip, path.join(srcUrl, '/styles'))
-    zip.generateAsync({ type: 'base64' }).then((base64) => {
+    zip.generateAsync({ type: 'base64' }).then(base64 => {
       res.send({
         base64: 'data:application/zip;base64,' + base64,
         wroomObject

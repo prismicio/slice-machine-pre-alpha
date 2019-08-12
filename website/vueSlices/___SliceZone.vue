@@ -6,7 +6,7 @@
 import Slices from '../vueSlices'
 
 const camelizeRE = /-(\w)/g
-const camelize = (str) => {
+const camelize = str => {
   str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
     return c ? c.toUpperCase() : ''
   })

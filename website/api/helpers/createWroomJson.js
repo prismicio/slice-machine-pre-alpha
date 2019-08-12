@@ -14,7 +14,7 @@ function format(object, hasSlicesAlready) {
 const createJson = (sliceNames, createPath, hasSlicesAlready = true) => {
   const wroom = {}
 
-  sliceNames.forEach((sliceName) => {
+  sliceNames.forEach(sliceName => {
     try {
       const component = parse(
         path.join(process.cwd(), `src/slices/${sliceName}/index.vue`)

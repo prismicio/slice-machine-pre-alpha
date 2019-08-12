@@ -33,8 +33,8 @@ export default {
   },
 
   computed: {
-    isTextRich: (vm) => isRichText(vm.title),
-    isParagraphRich: (vm) => isRichText(vm.paragraph)
+    isTextRich: vm => isRichText(vm.title),
+    isParagraphRich: vm => isRichText(vm.paragraph)
   }
 }
 </script>

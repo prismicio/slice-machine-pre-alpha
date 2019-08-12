@@ -14,7 +14,7 @@ const hyphenateRE = /\B([A-Z])/g
 // eslint-disable-next-line
 const hyphenate = (str) => str.replace(hyphenateRE, '-$1').toLowerCase()
 
-process.on('exit', (code) => {
+process.on('exit', code => {
   if (code === 0) {
     // eslint-disable-next-line
     console.log(
@@ -40,7 +40,7 @@ const questions = [
     name: 'name',
     message: 'Enter the name of your slice (2 words, PascalCased)',
     initial: 'eg. LargeHeader',
-    validate: (value) => {
+    validate: value => {
       if (fs.existsSync(`${slicesFolder}/${value}`)) {
         return 'Slice exists already, pick another name'
       }
@@ -105,7 +105,7 @@ const questions = [
       }
     ]
 
-    files.forEach((file) => {
+    files.forEach(file => {
       fileSave(path.join(slicesFolder, name.concat(file.path)))
         .write(file.txt, 'utf8')
         .end('\n')

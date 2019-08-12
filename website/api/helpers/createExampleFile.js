@@ -1,4 +1,4 @@
-const isJsProp = (prop) => {
+const isJsProp = prop => {
   if (typeof prop !== 'string') {
     return true
   }

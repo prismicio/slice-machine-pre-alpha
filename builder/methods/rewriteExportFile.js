@@ -10,13 +10,13 @@ function compare(a, b) {
   return 0
 }
 
-const rewrite = (path) => {
+const rewrite = path => {
   const files = fs
     .readdirSync(path, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory()) // eslint-disable-line
 
   let txt = ''
-  files.sort(compare).forEach((dirent) => {
+  files.sort(compare).forEach(dirent => {
     txt += `export { default as ${dirent.name} } from './${dirent.name}';\n`
   })
   return txt

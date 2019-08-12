@@ -20,6 +20,7 @@ module.exports = {
     'no-console': 'off',
     'html-closing-bracket-newline': 'off',
     'valid-v-for': 'off', // breaks in my TextEditor
-    'html-self-closing': 'off'
+    'html-self-closing': 'off',
+    'arrow-parens': ["error", "as-needed"]
   }
 }

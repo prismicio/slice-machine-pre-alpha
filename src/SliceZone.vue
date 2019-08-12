@@ -28,7 +28,7 @@ import * as Slices from './slices'
 import UnknownSlice from './UnknownSlice'
 
 const camelizeRE = /-(\w)/g
-const camelize = (str) => {
+const camelize = str => {
   str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
     return c ? c.toUpperCase() : ''
   })

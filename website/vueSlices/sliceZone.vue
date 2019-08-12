@@ -9,7 +9,7 @@ import * as Slices from './slices'
 import UnknownSlice from './UnknownSlice'
 
 const camelizeRE = /-(\w)/g
-const camelize = (str) => {
+const camelize = str => {
   str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
     return c ? c.toUpperCase() : ''
   })
@@ -37,16 +37,26 @@ export default {
     return h(
       'div',
       {},
-      this.slices.map((elem) => {
+      this.slices.map(elem => {
         const name = camelize(elem.slice_type)
         const component = () =>
-          import(`./slices/${name}/index.vue`).catch((e) => {
+          import(`./slices/${name}/index.vue`).catch(e => {
             console.error(e)
             return UnknownSlice
           })
         return h(
           component,
-          { attrs: { ...elem.primary, primary: undefined }, key: elem.id },
+          {
+            attrs: { ...elem.primary, primary: undefined },
+            key: elem.id
+            // scopedSlots: this.$scopedSlots.reduce((acc, curr) => {
+            //
+            //
+            //
+            //   // {
+            //   // title: this.$scopedSlots[`${name}.title`]}
+            // }, {})
+          },
           []
         )
       })

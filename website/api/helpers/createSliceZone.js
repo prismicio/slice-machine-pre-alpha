@@ -12,7 +12,7 @@ const vElse = `\n\t\t<template v-else-if="process.env.NODE_ENV !== 'production'"
       </p>
     </template>`
 
-const spreadSliceZone = (slices) => {
+const spreadSliceZone = slices => {
   let txt = ''
   Object.entries(slices).map(([, value], index) => {
     const tagName = value.displayName
@@ -24,7 +24,7 @@ const spreadSliceZone = (slices) => {
   return txt
 }
 
-const createSliceZone = (slices) => {
+const createSliceZone = slices => {
   const template = `<template>
   <main>${spreadSliceZone(slices)}${vElse}
   </main>

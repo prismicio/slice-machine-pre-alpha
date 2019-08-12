@@ -48,7 +48,7 @@ export default {
         body: JSON.stringify({ slices: this.$store.state.slices.list })
       })
         .then((data) => data.json()) // eslint-disable-line
-        .then((data) => {
+        .then(data => {
           const downloadLink = document.createElement('a')
           const fileName = 'vueSlices.zip'
 
