@@ -1,11 +1,11 @@
 /* Paste this file in `pages` folder and go to /example */
 <template>
   <main>
-    <header-slice
+    <HeaderSlice
       paragraph="this paragraph is mocked"
       title="Oh hello how are you?"
     />
-    <quote-slice />
+    <QuoteSlice />
   </main>
 </template>
 
@@ -13,7 +13,7 @@
 import Slices from '../vueSlices'
 
 export default {
-  name: 'SlicezoneExample',
-  components: { ...Slices }
+  components: { ...Slices },
+  name: 'SlicezoneExample'
 }
 </script>

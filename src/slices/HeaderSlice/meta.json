@@ -1,7 +1,7 @@
 {
-  "title": "My component!",
-  "description": "I am super cool!",
-  "imageUrl": "https://google.com",
+  "title": "Full-height Header",
+  "description": "A bold Header with text and description to be used at the the top of your page 🙌",
+  "imageUrl": "/header.png",
   "contributors": ["hyperVillain"],
   "sandboxUrl": "",
   "components": ["Button", "Avatar"],

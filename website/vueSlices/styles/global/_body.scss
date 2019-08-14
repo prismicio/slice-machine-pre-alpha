@@ -3,7 +3,7 @@ body {
   font-family: $body-font-family-primary;
   font-weight: $body-font-weight-primary;
   color: $c-dark-primary;
-  @media ( max-width: $mobile-max ) {
+  @media (max-width: $mobile-max) {
     font-size: $body-font-size-mobile;
   }
 }

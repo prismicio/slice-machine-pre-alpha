@@ -10,13 +10,7 @@ const createExampleFile = require('./helpers/createExampleFile')
 const createSliceZone = require('./helpers/createSliceZone')
 const createWroomJson = require('./helpers/createWroomJson')
 
-const srcUrl = path.join(process.cwd(), 'src')
-const slicesUrl = path.join(process.cwd(), 'src/slices')
-
-// const { createExampleFile } = sliceZone;
-// const { requireExamples } = examplesFolder;
-
-const prod = () => process.env.NODE_ENV === 'production'
+const { srcUrl, slicesUrl, prod } = require('./utils')
 
 app.use(bodyParser.json())
 
@@ -85,7 +79,7 @@ app.use((req, res) => {
 
     const wroomObject = createWroomJson(
       sliceNames,
-      (sliceName) => `${slicesUrl}/${sliceName}/model.json`, // eslint-disable-line
+      sliceName => `${slicesUrl}/${sliceName}/model.json`, // eslint-disable-line
       true
     )
 

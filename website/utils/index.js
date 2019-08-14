@@ -33,7 +33,7 @@ export const createSlice = key => {
 
     return {
       code,
-      key,
+      displayName: key,
       meta,
       model,
       readme,
@@ -52,4 +52,4 @@ export const createSlice = key => {
 const githubUrl = 'https://github.com/hypervillain/community'
 const slicesUrl = `${githubUrl}/tree/master/src/slices`
 
-export const sliceRoute = (key) => `${slicesUrl}/${key}` // eslint-disable-line
+export const sliceRoute = key => `${slicesUrl}/${key}` // eslint-disable-line

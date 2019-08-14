@@ -26,4 +26,10 @@ export default {
   padding: 0 24px;
   flex-wrap: wrap;
 }
+
+@media screen and (max-width: 790px) {
+  .container {
+    padding: 0 16px;
+  }
+}
 </style>

@@ -1,80 +1,95 @@
 <template>
-  <div class="container grid">
-    <div>
-      <a href="/">Back</a>
-      <h1 class="title">
-        {{ this.$route.params.slug }}
-      </h1>
-      <h2>Contributors</h2>
-      <ul>
-        <li
-          v-for="(elem, index) in slice.meta.contributors"
-          :key="'slice' + index"
-        >
-          -
-          <a target="_blank" :href="`https://twitter.com/@${elem}`">{{
-            elem
-          }}</a>
-        </li>
-      </ul>
-      <div
-        v-if="Object.keys(slice.examples).length === 0"
-        style="border: 4px solid #111;"
+  <main>
+    <Header
+      justify="space-between"
+      :style="{ backgroundImage: `url('${slice.meta.imageUrl}')` }"
+    >
+      <div style="max-width: 450px">
+        <BackButton />
+        <Title :content="slice.meta.title" size="sm" />
+        <Paragraph style="margin-top: 18px" :content="slice.meta.description" />
+      </div>
+    </Header>
+    <Body variant="white">
+      <MarkDownBox
+        id="markdown-box"
+        :edit-url="createEditUrl()"
+        style="min-height: 80vh; margin-top: 4em"
       >
-        <h2 class="subtitle">
-          No example yet, that'd make for a great PR!
-        </h2>
-      </div>
-      <div v-if="Object.keys(slice.examples).some(e => e)">
-        <h2 class="subtitle">
-          Examples
-        </h2>
-        <ul>
-          <li
-            v-for="(key, index) in Object.keys(slice.examples)"
-            :key="'example-slice-' + (index + 1)"
-          >
-            <div style="border: 4px solid #111; margin-top: 2em">
-              -
-              <a
-                target="_blank"
-                :href="`${exampleFolder.concat(`${key}.vue`)}`"
-              >
-                {{ key }}.vue
-              </a>
-              <component :is="slice.examples[key].component" />
-              <h3>Code</h3>
-              <code>
-                {{ slice.examples[key].content }}
-              </code>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <h2 class="subtitle">
-        README:
-      </h2>
-      <vue-markdown>
         {{ slice.readme }}
-      </vue-markdown>
-    </div>
-  </div>
+      </MarkDownBox>
+      <Row>
+        <div
+          v-if="Object.keys(slice.examples).length === 0"
+          style="border: 4px solid #111;"
+        >
+          <h2 class="subtitle">
+            No example yet, that'd make for a great PR!
+          </h2>
+        </div>
+        <div v-if="Object.keys(slice.examples).some(e => e)">
+          <Title content="Examples" size="xs" variant="black" />
+          <ul>
+            <li
+              v-for="(key, index) in Object.keys(slice.examples)"
+              :key="'example-slice-' + (index + 1)"
+            >
+              <div style="border: 4px solid #111; margin-top: 2em">
+                -
+                <a
+                  target="_blank"
+                  :href="`${exampleFolder.concat(`${key}.vue`)}`"
+                >
+                  {{ key }}.vue
+                </a>
+                <component :is="slice.examples[key].component" />
+                <h3>Code</h3>
+                <code style="white-space: pre">
+                  {{ slice.examples[key].content }}
+                </code>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </Row>
+    </Body>
+  </main>
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
 import * as Slices from '~/../src/slices'
 import { createSlice, sliceRoute } from '~/utils'
+
+import Header from '@/components/Header'
+import Body from '@/components/Body'
+import Row from '@/components/Row'
+import Title from '@/components/Text/Title'
+import Paragraph from '@/components/Text/Paragraph'
+import MarkDownBox from '@/components/MarkDownBox'
+import BackButton from '@/components/BackButton'
 
 export default {
   components: {
     ...Slices,
-    VueMarkdown
+    BackButton,
+    MarkDownBox,
+    Header,
+    Body,
+    Row,
+    Title,
+    Paragraph
   },
   data() {
     return {
       slice: createSlice(this.$route.params.slug),
       exampleFolder: `${sliceRoute(this.$route.params.slug)}/examples/`
+    }
+  },
+  methods: {
+    createEditUrl() {
+      const base =
+        'https://github.com/hypervillain/community/blob/master/src/slices/'
+      return `${base}${this.slice.displayName}/README.md`
     }
   },
   validate: ({ params: { slug } }) =>
@@ -83,30 +98,6 @@ export default {
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
 .subtitle {
   font-weight: 300;
   font-size: 42px;

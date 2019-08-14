@@ -6,18 +6,20 @@
     >
       <div style="max-width: 450px">
         <Title content="Slices" />
-        <Paragraph content="Built with and for Nuxt.js" />
+        <Paragraph bold content="Built with and for Nuxt.js" />
         <Paragraph
           style="margin-top: 18px"
-          content="Slices is a library of nuxt component that helps you build your nuxt website faster."
+          content="Slices is a library of Nuxt components that helps you build your website faster."
         />
-        <Button variant="success">
-          Content here
+        <Button style="margin-top: 30px" variant="success">
+          Add it to my project
         </Button>
       </div>
     </Header>
     <Body>
-      <p>Hello body</p>
+      <Row>
+        <Card v-for="card in lst" :key="card.displayName" v-bind="card" />
+      </Row>
     </Body>
   </main>
 </template>
@@ -33,9 +35,12 @@ import Paragraph from '@/components/Text/Paragraph'
 import Button from '@/components/Button'
 import headerImg from '@/static/head.svg'
 
+import Card from '@/components/Card'
+import Row from '@/components/Row'
+
 const lst = Object.keys(Slices)
   .map(createSlice)
-  .filter((e) => e) // eslint-disable-line
+  .filter(e => e) // eslint-disable-line
 
 export default {
   components: {
@@ -44,7 +49,9 @@ export default {
     Title,
     Paragraph,
     Button,
-    Body
+    Body,
+    Card,
+    Row
   },
   data: () => ({
     lst,

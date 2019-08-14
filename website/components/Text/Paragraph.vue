@@ -1,5 +1,5 @@
 <template>
-  <p :class="`paragraph paragraph--${variant}`">
+  <p :class="`paragraph paragraph--${variant} ${bold && 'paragraph--bold'}`">
     {{ content }}
   </p>
 </template>
@@ -16,6 +16,11 @@ export default {
       type: String,
       required: false,
       default: 'main'
+    },
+    bold: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   }
 }
@@ -25,11 +30,13 @@ export default {
 @import '../../style/_variables.scss';
 
 .paragraph {
-  font-family: SF Pro Display;
   font-size: 18px;
   line-height: 38px;
   &--main {
     color: $color-paragraph-main;
+  }
+  &--bold {
+    font-weight: 500;
   }
 }
 </style>

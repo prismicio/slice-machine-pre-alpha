@@ -1,13 +1,13 @@
 <template>
   <section class="container">
-    <slot name="title" v-bind="$props">
-      <prismic-rich-text v-if="isRichText(title)" :field="title" />
+    <slot name="title">
+      <prismic-rich-text v-if="isTextRich" :field="title" />
       <h1 v-else>
         {{ title }}
       </h1>
     </slot>
     <slot name="paragraph">
-      <prismic-rich-text v-if="isRichText(paragraph)" :field="paragraph" />
+      <prismic-rich-text v-if="isParagraphRich" :field="paragraph" />
       <p v-else>
         {{ paragraph }}
       </p>
@@ -31,10 +31,10 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      isRichText
-    }
+
+  computed: {
+    isTextRich: vm => isRichText(vm.title),
+    isParagraphRich: vm => isRichText(vm.paragraph)
   }
 }
 </script>

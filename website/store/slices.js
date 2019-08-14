@@ -1,5 +1,16 @@
 export const state = () => ({
-  list: ['HeaderSlice', 'QuoteSlice']
+  list: (() => {
+    const maybeLS = process.browser && localStorage.getItem('my-slices-list')
+    try {
+      const ls = JSON.parse(maybeLS)
+      if (ls && Array.isArray(ls)) {
+        return ls
+      }
+      return ['HeaderSlice']
+    } catch {
+      return ['HeaderSlice']
+    }
+  })()
 })
 
 export const mutations = {
@@ -10,6 +21,6 @@ export const mutations = {
     state.list.push(slice)
   },
   remove(state, sliceName) {
-    state.list.splice(state.list.indexOf(sliceName), 1)
+    state.list.filter(e => e.displayName !== sliceName)
   }
 }

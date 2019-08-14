@@ -1,5 +1,5 @@
 <template>
-  <h1 :class="`title title--${variant}`">
+  <h1 :class="`title title--${variant} title--${size}`">
     {{ content }}
   </h1>
 </template>
@@ -16,6 +16,11 @@ export default {
       type: String,
       required: false,
       default: 'main'
+    },
+    size: {
+      type: String,
+      required: false,
+      default: 'md'
     }
   }
 }
@@ -25,10 +30,21 @@ export default {
 @import '../../style/_variables.scss';
 
 .title {
-  font-family: SF Pro Display;
-  font-size: 128px;
+  font-weight: 600;
   &--main {
     color: $color-main;
+  }
+  &--black {
+    color: $text-darker;
+  }
+  &--xs {
+    font-size: 44px;
+  }
+  &--sm {
+    font-size: 78px;
+  }
+  &--md {
+    font-size: 128px;
   }
 }
 </style>

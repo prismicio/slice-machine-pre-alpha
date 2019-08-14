@@ -17,7 +17,9 @@ export default {
   flex-wrap: wrap;
   flex-grow: 1;
   width: 100%;
-  margin-bottom: 32px;
+  > div {
+    margin-top: 32px;
+  }
   &:last-child {
     margin-bottom: 0;
   }

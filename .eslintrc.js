@@ -21,6 +21,6 @@ module.exports = {
     'html-closing-bracket-newline': 'off',
     'valid-v-for': 'off', // breaks in my TextEditor
     'html-self-closing': 'off',
-    'arrow-parens': ["error", "as-needed"]
+    'arrow-parens': ['error', 'as-needed']
   }
 }

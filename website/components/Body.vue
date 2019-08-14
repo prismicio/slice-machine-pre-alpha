@@ -1,36 +1,18 @@
 <template>
   <section :class="`body body--${variant}`">
     <Container justify="space-between" align="start">
-      <Row>
-        <Card v-for="value in Array.from('12')" :key="value">
-          {{ value }}
-        </Card>
-      </Row>
-      <Row>
-        <Card v-for="value in Array.from('34')" :key="value">
-          {{ value }}
-        </Card>
-      </Row>
-      <Row>
-        <Card v-for="value in Array.from('56')" :key="value">
-          {{ value }}
-        </Card>
-      </Row>
+      <slot />
     </Container>
   </section>
 </template>
 
 <script>
 import Container from '@/components/Container'
-import Card from '@/components/Card'
-import Row from '@/components/Row'
 
 export default {
   name: 'Body',
   components: {
-    Card,
-    Container,
-    Row
+    Container
   },
   props: {
     variant: {
