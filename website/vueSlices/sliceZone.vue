@@ -22,8 +22,8 @@
 import * as Slices from './slices'
 
 export default {
-  components: { ...Slices },
   name: 'SliceZone',
+  components: { ...Slices },
   props: {
     slice: Object
   }

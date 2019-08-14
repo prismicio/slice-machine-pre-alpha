@@ -13,7 +13,7 @@
 import Slices from '../vueSlices'
 
 export default {
-  components: { ...Slices },
-  name: 'SlicezoneExample'
+  name: 'SlicezoneExample',
+  components: { ...Slices }
 }
 </script>
