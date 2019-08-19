@@ -18,40 +18,11 @@
       >
         {{ slice.readme }}
       </MarkDownBox>
-      <Row>
-        <div
-          v-if="Object.keys(slice.examples).length === 0"
-          style="border: 4px solid #111;"
-        >
-          <h2 class="subtitle">
-            No example yet, that'd make for a great PR!
-          </h2>
-        </div>
-        <div v-if="Object.keys(slice.examples).some(e => e)">
-          <Title content="Examples" size="xs" variant="black" />
-          <ul>
-            <li
-              v-for="(key, index) in Object.keys(slice.examples)"
-              :key="'example-slice-' + (index + 1)"
-            >
-              <div style="border: 4px solid #111; margin-top: 2em">
-                -
-                <a
-                  target="_blank"
-                  :href="`${exampleFolder.concat(`${key}.vue`)}`"
-                >
-                  {{ key }}.vue
-                </a>
-                <component :is="slice.examples[key].component" />
-                <h3>Code</h3>
-                <code style="white-space: pre">
-                  {{ slice.examples[key].content }}
-                </code>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </Row>
+      <div
+        v-if="hasSandbox"
+        style="margin: 3em 0; width: 100%;"
+        v-html="sandbox"
+      />
     </Body>
   </main>
 </template>
@@ -62,7 +33,6 @@ import { createSlice, sliceRoute } from '~/utils'
 
 import Header from '@/components/Header'
 import Body from '@/components/Body'
-import Row from '@/components/Row'
 import Title from '@/components/Text/Title'
 import Paragraph from '@/components/Text/Paragraph'
 import MarkDownBox from '@/components/MarkDownBox'
@@ -75,15 +45,24 @@ export default {
     MarkDownBox,
     Header,
     Body,
-    Row,
     Title,
     Paragraph
   },
   data() {
+    // console.log(this.$router)
+
+    console.log(this.$router.resolve({ name: 'examples-Toto' }))
+    console.log(this.$router.resolve({ name: 'examples-HeaderSlice' }))
     return {
       slice: createSlice(this.$route.params.slug),
       exampleFolder: `${sliceRoute(this.$route.params.slug)}/examples/`
     }
+  },
+  computed: {
+    hasSandbox: ({ $router }) =>
+      $router.resolve({ name: 'examples-HeaderSlice' }).href !== '/',
+    sandbox: ({ slice: { displayName } }) =>
+      `<iframe src="https://codesandbox.io/embed/github/hypervillain/community/tree/master/?autoresize=1&fontsize=14&initialpath=%2Fexamples%2F${displayName}&module=%2Fwebsite%2Fpages%2Fexamples%2F${displayName}.vue&moduleview=1" title="community" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>`
   },
   methods: {
     createEditUrl() {

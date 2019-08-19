@@ -64,7 +64,6 @@ export default {
   },
   computed: {
     isInMyList() {
-      console.log(this.$store.state)
       // Move this to parent asp
       return this.$store.state.slices.list.some(
         e => e.displayName === this.displayName
