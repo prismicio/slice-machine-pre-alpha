@@ -36,10 +36,7 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
 import Button from '@/components/Button'
-
-const { mapActions } = createNamespacedHelpers('slices')
 
 export default {
   name: 'Card',
@@ -77,20 +74,14 @@ export default {
     mouseleave() {
       this.hover = false
     },
-    // add() {
-    //   console.log('add')
-    // },
-    // remove() {
-    //   console.log('remove')
-    // },
     addOrRemove() {
-      console.log(this.remove, this.add, 'HERE')
       if (this.isInMyList) {
-        this.remove(this.displayName)
+        return this.$store.commit('slices/remove', {
+          displayName: this.displayName
+        })
       }
-      this.add({ displayName: this.displayName })
-    },
-    ...mapActions(['remove', 'add'])
+      this.$store.commit('slices/add', { displayName: this.displayName })
+    }
   }
 }
 </script>

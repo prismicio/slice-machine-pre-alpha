@@ -10,7 +10,7 @@
         <Paragraph style="margin-top: 18px" :content="slice.meta.description" />
       </div>
     </Header>
-    <Body variant="white">
+    <Body variant="white" style="margin: 3em 0;">
       <MarkDownBox
         id="markdown-box"
         :edit-url="createEditUrl()"
@@ -20,7 +20,7 @@
       </MarkDownBox>
       <div
         v-if="hasSandbox"
-        style="margin: 3em 0; width: 100%;"
+        style="width: 100%; margin-top: 3em;"
         v-html="sandbox"
       />
     </Body>
@@ -49,20 +49,19 @@ export default {
     Paragraph
   },
   data() {
-    // console.log(this.$router)
-
-    console.log(this.$router.resolve({ name: 'examples-Toto' }))
-    console.log(this.$router.resolve({ name: 'examples-HeaderSlice' }))
     return {
       slice: createSlice(this.$route.params.slug),
       exampleFolder: `${sliceRoute(this.$route.params.slug)}/examples/`
     }
   },
   computed: {
-    hasSandbox: ({ $router }) =>
-      $router.resolve({ name: 'examples-HeaderSlice' }).href !== '/',
+    hasSandbox: ({ slice, $router }) =>
+      $router.resolve({ name: `examples-${slice.displayName}` }).href !== '/',
     sandbox: ({ slice: { displayName } }) =>
-      `<iframe src="https://codesandbox.io/embed/github/hypervillain/community/tree/master/?autoresize=1&fontsize=14&initialpath=%2Fexamples%2F${displayName}&module=%2Fwebsite%2Fpages%2Fexamples%2F${displayName}.vue&moduleview=1" title="community" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>`
+      `<iframe src="https://codesandbox.io/embed/github/hypervillain/community/tree/master/?autoresize=1&fontsize=14&initialpath=%2Fexamples%2F${displayName}&module=%2Fwebsite%2Fpages%2Fexamples%2F${displayName}.vue&moduleview=0" title="community" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>`
+  },
+  async fetch({ store }) {
+    await store.dispatch('slices/init')
   },
   methods: {
     createEditUrl() {

@@ -42,7 +42,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     //  '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    'cookie-universal-nuxt'
   ],
   serverMiddleware: [{ path: '/api/download', handler: '~/api/download.js' }],
   /*

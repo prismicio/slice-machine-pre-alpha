@@ -9,7 +9,6 @@ export default {
     }
   },
   render(h) {
-    console.log('this', this.componentName)
     const component = () =>
       import(`@/../src/slices/HeaderSlice/example.vue`)
         .then(m => m.default)

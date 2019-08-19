@@ -1,26 +1,44 @@
+const LS_NAMESPACE = 'slices-list'
+
+const onSave = (state, cookies) => {
+  cookies.set(LS_NAMESPACE, JSON.stringify(state))
+}
+
 export const state = () => ({
-  list: (() => {
-    const maybeLS = process.browser && localStorage.getItem('my-slices-list')
-    try {
-      const ls = JSON.parse(maybeLS)
-      if (ls && Array.isArray(ls)) {
-        return ls
-      }
-      return ['HeaderSlice']
-    } catch {
-      return ['HeaderSlice']
-    }
-  })()
+  list: []
 })
 
+export const actions = {
+  init({ commit }) {
+    try {
+      const maybeLS = this.$cookies && this.$cookies.get(LS_NAMESPACE)
+      if (maybeLS && maybeLS.list && Array.isArray(maybeLS.list)) {
+        return commit('init', maybeLS.list)
+      }
+      return commit('init', [])
+    } catch {
+      return commit('init', [])
+    }
+  },
+  async nuxtServerInit({ dispatch, commit }) {
+    console.log('commit is set -> ', commit)
+    await dispatch('init')
+  }
+}
+
 export const mutations = {
-  reset(state) {
-    state.list = []
+  init(state, list) {
+    state.list = list
   },
   add(state, slice) {
     state.list.push(slice)
+    onSave(state, this.$cookies)
   },
-  remove(state, sliceName) {
-    state.list.filter(e => e.displayName !== sliceName)
+  remove(state, slice) {
+    state.list.splice(
+      state.list.findIndex(e => e.displayName === slice.displayName),
+      1
+    )
+    onSave(state, this.$cookies)
   }
 }
