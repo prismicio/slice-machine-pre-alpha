@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello!</h1>
+    <h1>Welcome to examples! Switch to module view etc.</h1>
   </div>
 </template>
 

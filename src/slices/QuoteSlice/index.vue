@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>Hello</h1>
-    <p-button>content</p-button>
+    <p-button>QUOTE SLICE</p-button>
   </main>
 </template>
 

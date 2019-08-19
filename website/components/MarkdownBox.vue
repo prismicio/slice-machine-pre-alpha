@@ -20,7 +20,7 @@ import VueMarkdown from 'vue-markdown'
 import Button from '@/components/Button'
 
 export default {
-  name: 'MarkDown',
+  name: 'MarkDownBox',
   components: {
     Button,
     VueMarkdown
