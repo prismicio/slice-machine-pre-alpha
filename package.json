@@ -15,7 +15,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "heroku-postbuild": "yarn build"
+    "heroku-postbuild": "npm run build"
   },
   "main": "index.js",
   "dependencies": {
