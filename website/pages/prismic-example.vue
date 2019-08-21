@@ -3,11 +3,7 @@ Depending on the slices you downloaded, some Prismic slices will not be matched
 by your SliceZone. Try adding components to `vueSlices/slices` to match them!
 
 <template>
-  <slice-zone :slices="document.body">
-    <template v-slot:HeaderSlice.title="{ title }">
-      <p>{title}</p>
-    </template>
-  </slice-zone>
+  <slice-zone :slices="document.body" />
 </template>
 
 <script>

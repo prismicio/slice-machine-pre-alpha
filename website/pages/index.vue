@@ -11,7 +11,11 @@
           style="margin-top: 18px"
           content="Slices is a library of Nuxt components that helps you build your website faster."
         />
-        <Button style="margin-top: 30px" variant="success">
+        <Button
+          style="margin-top: 30px"
+          variant="success"
+          @click="$router.push('/prismic-example')"
+        >
           Add it to my project
         </Button>
       </div>

@@ -44,7 +44,7 @@ function writeSliceZone(zip, sliceNames) {
     }, {})
 
     const txt = createSliceZone(components)
-    zip.file('sliceZone.vue', txt)
+    zip.file('sliceZone.js', txt)
   } catch (e) {
     console.error(e)
   }
@@ -63,13 +63,13 @@ function zipFile(zip, pathFrom, pathTo) {
 
 app.use((req, res) => {
   try {
-    const sliceNames = req.body.slices
+    const sliceNames = req.body.slices.map(e => e.displayName)
     if (!sliceNames || !sliceNames.length) {
       throw new Error('No slices passed to request')
     }
     const zip = new JSZip()
     const slicesFolder = zip.folder('slices')
-    //
+
     let index = ''
     sliceNames.forEach(sliceName => {
       zipFolder(zip, `${slicesUrl}/${sliceName}`)
@@ -79,8 +79,8 @@ app.use((req, res) => {
 
     const wroomObject = createWroomJson(
       sliceNames,
-      sliceName => `${slicesUrl}/${sliceName}/model.json`, // eslint-disable-line
-      true
+      sliceName => `${slicesUrl}/${sliceName}/model.json`,
+      false
     )
 
     zipFile(zip, `${__dirname}/helpers/importerWithoutPrismic.txt`, 'index.js')
@@ -89,6 +89,7 @@ app.use((req, res) => {
     writeSliceZone(zip, sliceNames)
     zipFile(zip, path.join(srcUrl, '/utils.js'), 'utils.js')
     zipFolder(zip, path.join(srcUrl, '/styles'))
+    // TODO: APPEND `@import '~/slices.scss';` to variables.scss file
     zip.generateAsync({ type: 'base64' }).then(base64 => {
       res.send({
         base64: 'data:application/zip;base64,' + base64,

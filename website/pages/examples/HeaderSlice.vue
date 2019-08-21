@@ -5,9 +5,10 @@
     </div>
     <header-slice title="hello">
       <template v-slot:paragraph>
-        <p>
-          Salut les frèèères
-        </p>
+        <div>
+          <p>hello</p>
+          Salut Sadek
+        </div>
       </template>
     </header-slice>
   </div>

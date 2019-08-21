@@ -12,6 +12,7 @@
 import { isRichText, maybeRichTextValidator } from '../../utils'
 
 export default {
+  name: 'PascalCase',
   props: {
     // Example prop
     paragraph: {

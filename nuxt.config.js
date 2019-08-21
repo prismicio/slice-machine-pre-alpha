@@ -25,26 +25,20 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['element-ui/lib/theme-chalk/index.css'],
+  css: ['element-ui/lib/theme-chalk/index.css', '@/plugins/variables.css'],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/prismicVue.js',
-    '@/plugins/htmlSerializer.js',
+    '@/plugins/htmlSerializer',
+    '@/plugins/prismicVue',
     '@/plugins/PrismicSlice'
   ],
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    //  '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    '@nuxtjs/eslint-module',
-    'cookie-universal-nuxt'
-  ],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/eslint-module', 'cookie-universal-nuxt'],
   serverMiddleware: [{ path: '/api/download', handler: '~/api/download.js' }],
   /*
    ** Build configuration
