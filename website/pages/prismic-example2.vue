@@ -35,6 +35,11 @@ export default {
     } catch (e) {
       error({ statusCode: 404, message: 'Document not found' })
     }
+  },
+  methods: {
+    changeSlices() {
+      this.document.body = [...this.document.body.splice(1)]
+    }
   }
 }
 </script>

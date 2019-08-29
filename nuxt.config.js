@@ -32,14 +32,17 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/htmlSerializer',
-    '@/plugins/prismicVue',
-    '@/plugins/PrismicSlice'
+    '@/plugins/prismicVue'
   ],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/eslint-module', 'cookie-universal-nuxt'],
-  serverMiddleware: [{ path: '/api/download', handler: '~/api/download.js' }],
+  modules: ['@nuxtjs/eslint-module', 'cookie-universal-nuxt'],
+  serverMiddleware: [
+    { path: '/api/download', handler: '~/api/download.js' },
+    { path: '/api/all', handler: '~/api/all.js' },
+    { path: '/api/slices', handler: '~/api/slices.js' }
+  ],
   /*
    ** Build configuration
    */

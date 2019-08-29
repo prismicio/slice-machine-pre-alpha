@@ -3,7 +3,7 @@
     <slot name="title">
       <prismic-rich-text v-if="isTextRich" :field="slice.primary.title" />
       <h1 v-else>
-        {{ slice.primarytitle }}
+        {{ slice.primary.title }}
       </h1>
     </slot>
     <slot name="paragraph">
@@ -12,7 +12,7 @@
         :field="slice.primary.paragraph"
       />
       <p v-else>
-        {{ slice.primaryparagraph }}
+        {{ slice.primary.paragraph }}
       </p>
     </slot>
   </section>
@@ -25,6 +25,7 @@ export default {
   name: 'HeaderSlice',
   props: {
     slice: {
+      type: Object,
       required: true
     }
   },

@@ -30,19 +30,13 @@ const camelize = str => {
 export default {
   name: 'UnknownSlice',
   props: {
-    slice: {
-      type: Object,
-      required: false,
-      default: () => ({
-        createdForDebug: true,
-        slice_type: 'Unknown'
-      })
+    sliceType: {
+      type: String,
+      required: true
     }
   },
   data() {
-    console.log('Slice data received:', this.slice)
     return {
-      sliceType: this.slice ? this.slice.slice_type : "'Unkown'",
       camelize
     }
   }

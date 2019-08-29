@@ -40,7 +40,7 @@ export default {
     }
   },
   data() {
-    console.log('Slice data received:', this.slice)
+    console.log('UnknownSlice, data received:', this.slice)
     return {
       sliceType: this.slice ? this.slice.slice_type : "'Unkown'",
       camelize

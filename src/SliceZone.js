@@ -1,14 +1,13 @@
-/*
-  The SliceZone component is used to match Prismic slices with client-side
-  components. Pass it down an array of slices, it will render your content,
-  section after section. After creating a slice on Prismic, create the
-  corresponding component inside `vueSlices/slices` and export it from
-  `vueSlices/slices/index.js` See `examples/PrismicExample.vue` to see a page
-  example using SliceZone
+/* The SliceZone component is used to match Prismic slices with client-side
+components. Pass it down an array of slices, it will render your content,
+section after section. After creating a slice on Prismic, create the
+corresponding component inside `vueSlices/slices` and export it from
+`vueSlices/slices/index.js` See `examples/PrismicExample.vue` to see a page
+example using SliceZone
 */
 
-import * as Slices from './slices'
 import UnknownSlice from './UnknownSlice'
+
 const camelizeRE = /-(\w)/g
 const camelize = str => {
   str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
@@ -16,19 +15,45 @@ const camelize = str => {
   })
   return str[0].toUpperCase() + str.slice(1)
 }
+
 export default {
   name: 'SliceZone',
-  components: { ...Slices, UnknownSlice },
   props: {
+    components: {
+      required: false
+    },
     slices: {
-      type: Array,
       required: true
+    },
+    path: {
+      required: false,
+      type: [String, Array],
+      default: './slices',
+      description: 'Path(s) to your slices components'
     }
   },
-  data() {
-    return {
-      camelize,
-      NODE_ENV: process.env.NODE_ENV
+  components: {
+    UnknownSlice
+  },
+  computed: {
+    computedImports: ({ path, slices }) => {
+      const names = slices.map(e => camelize(e.slice_type))
+      return (slices || []).map((slice, i) => () => {
+        return import(`${path}/${names[i]}/index.vue`).catch(e => {
+          console.error(e)
+          return UnknownSlice
+        })
+      })
+    },
+    computedSlices: ({ slices, computedImports }) => {
+      return (slices || []).map((slice, i) => ({
+        import: computedImports[i],
+        data: {
+          props: { slice },
+          key: slice.id
+        },
+        name: camelize(slice.slice_type)
+      }))
     }
   },
   render(h) {
@@ -43,18 +68,15 @@ export default {
       scopedSlots[sliceName][sliceSlot || 'default'] = this.$scopedSlots[name]
     }
 
-    const a = { ...Slices }
     return h(
-      'section',
+      'div',
       {},
-      (this.slices || []).map(elem => {
-        const name = camelize(elem.slice_type)
+      this.computedSlices.map(e => {
         return h(
-          a[name],
+          e.import,
           {
-            attrs: { ...elem.primary, primary: undefined },
-            key: elem.id,
-            scopedSlots: scopedSlots[name]
+            ...e.data,
+            scopedSlots: scopedSlots[e.name]
           },
           []
         )
