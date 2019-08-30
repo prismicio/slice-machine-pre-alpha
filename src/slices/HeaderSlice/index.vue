@@ -1,37 +1,32 @@
 <template>
   <section class="container">
     <slot name="title">
-      <prismic-rich-text v-if="isTextRich" :field="slice.primary.title" />
-      <h1 v-else>
-        {{ slice.primarytitle }}
-      </h1>
+      <prismic-rich-text
+        v-if="slice.primary && slice.primary.title"
+        :field="slice.primary.title"
+      />
     </slot>
     <slot name="paragraph">
       <prismic-rich-text
-        v-if="isParagraphRich"
+        v-if="slice.primary && slice.primary.paragraph"
         :field="slice.primary.paragraph"
       />
-      <p v-else>
-        {{ slice.primaryparagraph }}
-      </p>
     </slot>
   </section>
 </template>
 
 <script>
-import { isRichText } from '../../utils'
-
 export default {
   name: 'HeaderSlice',
   props: {
     slice: {
+      type: Object,
+      validator: function(slice) {
+        return slice && slice.primary && typeof slice.primary === 'object'
+      },
+      description: '',
       required: true
     }
-  },
-
-  computed: {
-    isTextRich: vm => isRichText(vm.slice.primary.title),
-    isParagraphRich: vm => isRichText(vm.slice.primary.paragraph)
   }
 }
 </script>
@@ -54,16 +49,7 @@ export default {
 
 @media only screen and (min-width: $desktop-min) {
   .container {
-    background: $c-green-primary;
+    background: var(--c-green-primary, $c-green-primary);
   }
 }
 </style>
-
-<Headerslice>
-  <template v-slot:title>
-    <div>
-      <img />
-      <h1>Mon titre</h1>
-    </div>
-  </template>
-</Headerslice>
