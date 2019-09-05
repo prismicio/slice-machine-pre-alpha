@@ -7,14 +7,7 @@ example using SliceZone
 */
 
 import UnknownSlice from './UnknownSlice'
-
-const camelizeRE = /-(\w)/g
-const camelize = str => {
-  str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
-    return c ? c.toUpperCase() : ''
-  })
-  return str[0].toUpperCase() + str.slice(1)
-}
+import { camelize } from './utils'
 
 export default {
   name: 'SliceZone',

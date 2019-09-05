@@ -5,7 +5,7 @@
 <script>
 // We assume you already installed prismic-javascript
 import Prismic from 'prismic-javascript'
-import { SliceZone } from '@/vueSlices'
+import { SliceZone } from '@/sliceMachine'
 
 export default {
   name: 'PrismicExample',

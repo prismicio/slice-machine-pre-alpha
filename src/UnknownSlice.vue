@@ -19,13 +19,7 @@
 </template>
 
 <script>
-const camelizeRE = /-(\w)/g
-const camelize = str => {
-  str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
-    return c ? c.toUpperCase() : ''
-  })
-  return str[0].toUpperCase() + str.slice(1)
-}
+import { camelize } from './utils'
 
 export default {
   name: 'UnknownSlice',
@@ -40,6 +34,7 @@ export default {
     }
   },
   data() {
+    // eslint-disable-next-line
     console.log('UnknownSlice, data received:', this.slice)
     return {
       sliceType: this.slice ? this.slice.slice_type : "'Unkown'",

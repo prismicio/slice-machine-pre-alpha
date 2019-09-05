@@ -7,7 +7,13 @@ const bodyParser = require('body-parser')
 
 const zipFolder = require('./helpers/zipFolder')
 
-const { srcUrl, slicesUrl, prod, getDirectories } = require('./utils')
+const {
+  srcUrl,
+  slicesUrl,
+  prod,
+  getDirectories,
+  readCustomTypes
+} = require('./utils')
 
 app.use(bodyParser.json())
 
@@ -44,7 +50,7 @@ function zipFile(zip, pathFrom, pathTo) {
   }
 }
 
-// Change this when you allow users to select their slices
+// Change this when you allow users to select the slices they want
 const getSliceNames = slicesParams => {
   const allSlices = getDirectories(slicesUrl)
   return allSlices.map(path => {
@@ -69,6 +75,12 @@ app.use((req, res) => {
       Object.assign(choices, getModelFromSliceName(sliceName))
       index += `export { default as ${sliceName} } from './${sliceName}';\n`
     })
+    // append choices to custom_types here
+
+    const t = 'nuxt'
+    const types = readCustomTypes(`./custom_types/${t}`)
+
+    console.error(types, 'HI')
     slicesFolder.file('index.js', index)
 
     zipFile(zip, `${__dirname}/helpers/importerWithoutPrismic.txt`, 'index.js')

@@ -1,0 +1,31 @@
+{
+  "Main" : {
+    "headline" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Headline",
+        "placeholder" : "Page title"
+      }
+    },
+    "description" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "heading2",
+        "label" : "Description",
+        "placeholder" : "Sub-title"
+      }
+    },
+    "image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 140,
+          "height" : 140
+        },
+        "thumbnails" : [ ],
+        "label" : "Background Image"
+      }
+    }
+  }
+}

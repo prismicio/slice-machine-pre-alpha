@@ -41,7 +41,8 @@ export default {
   serverMiddleware: [
     { path: '/api/download', handler: '~/api/download.js' },
     { path: '/api/all', handler: '~/api/all.js' },
-    { path: '/api/slices', handler: '~/api/slices.js' }
+    { path: '/api/slices', handler: '~/api/slices.js' },
+    { path: '/api/rework', handler: '~/api/re.js' }
   ],
   /*
    ** Build configuration
