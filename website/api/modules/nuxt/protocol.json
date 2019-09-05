@@ -5,7 +5,7 @@
   "prismicConfig": "prismic.config.js",
   "examplesFolder": "pages",
   "firstCommand": "npm run dev",
-  "additionalDisplay": "Before running your project, make sure you added\n`plugins: ['~/plugins/link-resolver.js','~/plugins/prismic-vue.js',]`\nto your Nuxt config file",
+  "additionalDisplay": "Before running your project, make sure you added\n`plugins: ['~/plugins/link-resolver.js', '~/plugins/prismic-vue.js'],`\nto your Nuxt config file",
   "projectTests": [
     {
       "arg": "-f",
@@ -34,6 +34,15 @@
       "overwrite": false
     },
     {
+      "zipPath": "pages/pages/_uid.vue",
+      "overwrite": false
+    },
+    {
+      "zipPath": "pages/index.vue",
+      "overwrite": false,
+      "bootstrapped": true
+    },
+    {
       "zipPath": "custom_types/",
       "overwrite": false,
       "bootstrapped": true
@@ -45,6 +54,10 @@
     {
       "type": "delete",
       "zipPath": "custom_types/"
+    },
+    {
+      "type": "delete",
+      "zipPath": "pages/"
     },
     {
       "type": "delete",

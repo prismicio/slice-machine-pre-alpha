@@ -1,103 +1,138 @@
-const fs = require('fs')
+const { lstatSync, readdirSync, readFileSync } = require('fs')
 const path = require('path')
 const JSZip = require('jszip')
 const app = require('express')()
-const { parse } = require('vue-docgen-api')
 const bodyParser = require('body-parser')
-
 const zipFolder = require('./helpers/zipFolder')
 
-const {
-  srcUrl,
-  slicesUrl,
-  prod,
-  getDirectories,
-  readCustomTypes
-} = require('./utils')
+const { slicesUrl, getModelFromSliceName, getSliceNames } = require('./utils')
 
 app.use(bodyParser.json())
 
-const hyphenateRE = /\B([A-Z])/g
-const hyphenate = str => str.replace(hyphenateRE, '-$1').toLowerCase()
+const validFrameworks = ['nuxt', 'react']
 
-function getModelFromSliceName(sliceName) {
-  try {
-    const component = parse(
-      path.join(process.cwd(), `src/slices/${sliceName}/index.vue`)
-    )
-    const model = JSON.parse(
-      fs.readFileSync(
-        path.join(process.cwd(), `src/slices/${sliceName}/model.json`),
-        'utf8'
-      )
-    )
-    const key = hyphenate(component.displayName).replace(/-/g, '_')
-    console.log({ [key]: model })
-    return { [key]: model }
-  } catch (e) {
-    console.error(e) // eslint-disable-line
+/**
+ * Validates request parameters for query `api/slices`
+ * @param  {String} params req.params asked (could be 'all' or a list, etc.)
+ * @return {String} return error message, if any
+ */
+const failParams = ({ framework, ids, all }) => {
+  if (!framework) {
+    return `No \`framework\` param was passed. Valid values are one of:\n
+    ${validFrameworks.map(f => '- ' + f)}
+    `
+  }
+  if (validFrameworks.includes(framework) === false) {
+    return `Invalid framework passed. Valid values are :\n
+    ${validFrameworks.map(f => '- ' + f)}
+    `
+  }
+  if (all !== 'true' && ids) {
+    // validate ids here
   }
 }
 
-function zipFile(zip, pathFrom, pathTo) {
-  try {
-    const f = fs.readFileSync(pathFrom, 'utf8')
-    zip.file(pathTo, f)
-  } catch (e) {
-    if (!prod()) {
-      console.error('error: ', e) // eslint-disable-line
-    }
-  }
-}
-
-// Change this when you allow users to select the slices they want
-const getSliceNames = slicesParams => {
-  const allSlices = getDirectories(slicesUrl)
-  return allSlices.map(path => {
-    const spl = path.split('/')
-    return spl[spl.length - 1]
+/**
+ * Get slices by name, append them to a zip instance,
+ * then return their merged JSON definitions
+ * @param  {Zip} zip        Your zip instance
+ * @param  {Array} sliceNames Array of slice names
+ * @return {Object}            Merged representation
+ */
+const handleSlices = (zip, sliceNames) => {
+  let index = ''
+  const choices = {}
+  const slicesFolder = zip.folder('slices')
+  sliceNames.forEach(sliceName => {
+    zipFolder(zip, `${slicesUrl}/${sliceName}`, 'src')
+    Object.assign(choices, getModelFromSliceName(sliceName))
+    index += `export { default as ${sliceName} } from './${sliceName}';\n`
   })
+  slicesFolder.file('index.js', index)
+  return choices
+}
+
+/**
+ * Get styles folder and copy everything.
+ * Also, add an import to `slices.scss`, an empty file that will contain variable overrides
+ * @param  {Zip} zip a zip instance to copy to
+ * @param  {String} src path to slices src folder
+ * @return {Boolean}     Success ?
+ */
+const handleStyle = (zip, src) => {
+  const p = path.join(src, 'styles')
+  if (lstatSync(p).isDirectory()) {
+    const maybeFiles = readdirSync(p)
+    if (maybeFiles && maybeFiles instanceof Error === false) {
+      maybeFiles.forEach(filePath => {
+        const f = path.join(p, filePath)
+        const pathToFile = path.join('styles', path.basename(f))
+        if (f.includes('_variables.scss')) {
+          const variables = readFileSync(f, 'utf8')
+          zip.file(pathToFile, `${variables}\n@import '~/slices.scss';\n`)
+          zip.file('slices.scss', '')
+        } else if (lstatSync(f).isFile()) {
+          zip.file(pathToFile, readFileSync(f, 'utf8'))
+        } else {
+          zipFolder(zip, f, 'src')
+        }
+        return true
+      })
+    }
+    return false
+  }
+  return false
 }
 
 app.use((req, res) => {
   try {
+    const maybeErr = failParams(req.query)
+    if (maybeErr) {
+      throw new Error(maybeErr)
+    }
+
     const sliceNames = getSliceNames(req.params.slices)
     if (!sliceNames || !sliceNames.length) {
       throw new Error('No slices passed to request')
     }
+
     const zip = new JSZip()
-    const slicesFolder = zip.folder('slices')
+    // handleSlices should take scaffolder.srcUrl as argument
+    // Do this after holidays :)
+    const model = handleSlices(zip, sliceNames)
 
-    let index = ''
-    const choices = {}
-    sliceNames.forEach(sliceName => {
-      zipFolder(zip, `${slicesUrl}/${sliceName}`)
-      Object.assign(choices, getModelFromSliceName(sliceName))
-      index += `export { default as ${sliceName} } from './${sliceName}';\n`
+    const Scaffolder = require(`./modules/${req.query.framework}`).default
+
+    const scaffolder = Scaffolder()
+
+    const { srcUrl } = scaffolder
+    const maybeFiles = readdirSync(srcUrl)
+    if (maybeFiles instanceof Error) {
+      throw new Error(`Could not parse directory '${srcUrl}'.
+        This is probably a problem from our side. Contact us!`)
+    }
+    maybeFiles.forEach(function(maybeFile) {
+      const p = path.join(srcUrl, maybeFile)
+      if (lstatSync(p).isFile()) {
+        zip.file(maybeFile, readFileSync(p, 'utf8'))
+      }
     })
-    // append choices to custom_types here
 
-    const t = 'nuxt'
-    const types = readCustomTypes(`./custom_types/${t}`)
+    // styles folder,
+    // adds an import to user's slices.scss file
+    // to handle SASS variables
+    handleStyle(zip, srcUrl)
 
-    console.error(types, 'HI')
-    slicesFolder.file('index.js', index)
-
-    zipFile(zip, `${__dirname}/helpers/importerWithoutPrismic.txt`, 'index.js')
-
-    zipFile(zip, path.join(srcUrl, '/SliceZone.js'), 'SliceZone.js')
-    zipFile(zip, path.join(srcUrl, '/UnknownSlice.vue'), 'UnknownSlice.vue')
-    zipFile(zip, path.join(srcUrl, '/utils.js'), 'utils.js')
-    zipFile(zip, path.join(srcUrl, '/index.js'), 'index.js')
-    zipFile(
-      zip,
-      path.join(srcUrl, '/examples/vue-slices-example.vue'),
-      'example.vue'
+    zip.file('protocol.json', JSON.stringify(scaffolder.protocol, null, 4))
+    zip.file(
+      'slices.json', // ambiguous file name
+      JSON.stringify(scaffolder.mergeSlices(model), null, 4)
     )
 
-    zip.file('model.json', JSON.stringify(choices))
-    // TODO: APPEND `@import '~/slices.scss';` to variables.scss file
-    zipFolder(zip, path.join(srcUrl, '/styles'))
+    // zip custom_types folder
+    zipFolder(zip, scaffolder.customTypesFolder, req.query.framework)
+
+    scaffolder.createFiles(req.query, ({ name, f }) => zip.file(name, f))
 
     res.statusCode = 200
     res.setHeader('Content-disposition', 'attachment; filename=slices.zip')

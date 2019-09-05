@@ -7,7 +7,9 @@ const { readCustomTypes, getSliceNames } = require('../../utils')
 const {
   createPrismicConfigurationFile,
   createPrismicVuePluginFile,
-  linkResolverPluginFile
+  linkResolverPluginFile,
+  createUidPage,
+  createIndexPage
 } = require('./helpers')
 
 const protocol = require('./protocol.json')
@@ -15,11 +17,9 @@ const protocol = require('./protocol.json')
 export default ({ sliceNames } = { sliceNames: getSliceNames() }) => {
   // Returns stored custom_types for a given framework
   const customTypes = readCustomTypes(path.join(__dirname, 'custom_types'))
-
-  // functions could return both file name and data
-  // So, make it an array of functions instead
   const files = [
     {
+      // This is a CONST
       name: 'prismic.config.js',
       f: createPrismicConfigurationFile()
     },
@@ -30,6 +30,22 @@ export default ({ sliceNames } = { sliceNames: getSliceNames() }) => {
     {
       name: 'plugins/prismic-vue.js',
       f: createPrismicVuePluginFile()
+    },
+    {
+      name: 'pages/index.vue',
+      f: createIndexPage({
+        configPath: '@/prismic.config.js',
+        customType: 'page'
+      })
+    },
+    {
+      name: 'pages/pages/_uid.vue',
+      f: createUidPage({
+        configPath: '@/prismic.config.js',
+        customType: 'page',
+        // This should be passed by argument to every module
+        sliceMachinePath: '@/sliceMachine'
+      })
     }
   ]
   return {
