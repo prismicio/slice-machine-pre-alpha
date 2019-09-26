@@ -3,12 +3,13 @@ const { lstatSync, readdirSync } = require('fs')
 const path = require('path')
 const { parse } = require('vue-docgen-api')
 
-export const srcUrl = path.join(process.cwd(), 'src')
-export const slicesUrl = path.join(process.cwd(), 'src/slices')
-
 export const prod = () => process.env.NODE_ENV === 'production'
 
 const isDirectory = source => lstatSync(source).isDirectory()
+
+export const sliceFolders = {
+  nuxt: path.join(process.cwd(), 'src/slices')
+}
 
 export const getDirectories = source =>
   readdirSync(source)
@@ -38,22 +39,32 @@ const hyphenate = str => str.replace(hyphenateRE, '-$1').toLowerCase()
  * @param  {String} sliceName name of your slice
  * @return {Object}           An object with snake cased `sliceName`
  */
-export const getModelFromSliceName = sliceName => {
+export const getModelFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
+  console.log('getModelFromSliceName', url, sliceFolders.nuxt)
   try {
-    const component = parse(
-      path.join(process.cwd(), `src/slices/${sliceName}/index.vue`)
-    )
+    const component = parse(path.join(`${url}/${sliceName}/index.vue`))
     const model = JSON.parse(
-      fs.readFileSync(
-        path.join(process.cwd(), `src/slices/${sliceName}/model.json`),
-        'utf8'
-      )
+      fs.readFileSync(path.join(`${url}/${sliceName}/model.json`), 'utf8')
     )
+
     const key = hyphenate(component.displayName).replace(/-/g, '_')
-    return { [key]: model }
-  } catch (e) {
-    console.error(e) // eslint-disable-line
-  }
+    return [key, model]
+  } catch (e) {}
+}
+
+export const getAllFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
+  console.log('getAllFromSliceName', url, sliceFolders.nuxt)
+  try {
+    const [key, model] = getModelFromSliceName(sliceName, url)
+    const meta = JSON.parse(
+      fs.readFileSync(`${url}/${sliceName}/meta.json`, 'utf8')
+    )
+    return {
+      key,
+      model,
+      meta
+    }
+  } catch (e) {}
 }
 
 export const zipFile = (zip, pathFrom, pathTo) => {
@@ -62,14 +73,14 @@ export const zipFile = (zip, pathFrom, pathTo) => {
     zip.file(pathTo, f)
   } catch (e) {
     if (!prod()) {
-      console.error('error in api/utils.js[38]: ', e)
+      console.error('error in api/utils.js[87]: ', e)
     }
   }
 }
 
 // Change this when you allow users to select the slices they want
-export const getSliceNames = slicesParams => {
-  const allSlices = getDirectories(slicesUrl)
+export const getSliceNames = (slicesParams, url = sliceFolders.nuxt) => {
+  const allSlices = getDirectories(url)
   return allSlices.map(path => {
     const spl = path.split('/')
     return spl[spl.length - 1]

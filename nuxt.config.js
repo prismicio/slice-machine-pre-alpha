@@ -38,7 +38,10 @@ export default {
    ** Nuxt.js modules
    */
   modules: ['@nuxtjs/eslint-module', 'cookie-universal-nuxt'],
-  serverMiddleware: [{ path: '/api/slices', handler: '~/api/slices.js' }],
+  serverMiddleware: [
+    { path: '/api/models', handler: '~/api/models.js' },
+    { path: '/api/slices', handler: '~/api/slices.js' }
+  ],
   /*
    ** Build configuration
    */

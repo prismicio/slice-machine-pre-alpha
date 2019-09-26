@@ -5,7 +5,7 @@ const app = require('express')()
 const bodyParser = require('body-parser')
 const zipFolder = require('./helpers/zipFolder')
 
-const { slicesUrl, getModelFromSliceName, getSliceNames } = require('./utils')
+const { getModelFromSliceName, getSliceNames } = require('./utils')
 
 app.use(bodyParser.json())
 
@@ -37,15 +37,17 @@ const failParams = ({ framework, ids, all }) => {
  * then return their merged JSON definitions
  * @param  {Zip} zip        Your zip instance
  * @param  {Array} sliceNames Array of slice names
+ * @param  {String} slicesUrl path to slices
  * @return {Object}            Merged representation
  */
-const handleSlices = (zip, sliceNames) => {
+const handleSlices = (zip, sliceNames, slicesUrl) => {
   let index = ''
   const choices = {}
   const slicesFolder = zip.folder('slices')
   sliceNames.forEach(sliceName => {
     zipFolder(zip, `${slicesUrl}/${sliceName}`, 'src')
-    Object.assign(choices, getModelFromSliceName(sliceName))
+    const [key, value] = getModelFromSliceName(sliceName, slicesUrl)
+    choices[key] = value
     index += `export { default as ${sliceName} } from './${sliceName}';\n`
   })
   slicesFolder.file('index.js', index)
@@ -97,15 +99,14 @@ app.use((req, res) => {
     }
 
     const zip = new JSZip()
-    // handleSlices should take scaffolder.srcUrl as argument
-    // Do this after holidays :)
-    const model = handleSlices(zip, sliceNames)
 
     const Scaffolder = require(`./modules/${req.query.framework}`).default
 
     const scaffolder = Scaffolder()
 
     const { srcUrl } = scaffolder
+    const model = handleSlices(zip, sliceNames, path.join(srcUrl, 'slices'))
+
     const maybeFiles = readdirSync(srcUrl)
     if (maybeFiles instanceof Error) {
       throw new Error(`Could not parse directory '${srcUrl}'.
