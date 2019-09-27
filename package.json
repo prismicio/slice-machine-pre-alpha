@@ -15,7 +15,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build && node bundleApi.js"
   },
   "main": "index.js",
   "dependencies": {
@@ -77,7 +77,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:fix && yarn stylelint --fix; node bundleApi.js"
+      "pre-commit": "yarn lint:fix && yarn stylelint --fix"
     }
   }
 }
