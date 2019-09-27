@@ -3,20 +3,20 @@ const { lstatSync, readdirSync } = require('fs')
 const path = require('path')
 const { parse } = require('vue-docgen-api')
 
-export const prod = () => process.env.NODE_ENV === 'production'
+const prod = () => process.env.NODE_ENV === 'production'
 
 const isDirectory = source => lstatSync(source).isDirectory()
 
-export const sliceFolders = {
+const sliceFolders = {
   nuxt: path.join(process.cwd(), 'src/slices')
 }
 
-export const getDirectories = source =>
+const getDirectories = source =>
   readdirSync(source)
     .map(name => path.join(source, name))
     .filter(isDirectory)
 
-export const readCustomTypes = folder => {
+const readCustomTypes = folder => {
   if (folder) {
     const customTypesPath = path.join(folder, 'index.json')
     // test path maybe?
@@ -39,8 +39,7 @@ const hyphenate = str => str.replace(hyphenateRE, '-$1').toLowerCase()
  * @param  {String} sliceName name of your slice
  * @return {Object}           An object with snake cased `sliceName`
  */
-export const getModelFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
-  console.log('getModelFromSliceName', url, sliceFolders.nuxt)
+const getModelFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
   try {
     const component = parse(path.join(`${url}/${sliceName}/index.vue`))
     const model = JSON.parse(
@@ -52,8 +51,7 @@ export const getModelFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
   } catch (e) {}
 }
 
-export const getAllFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
-  console.log('getAllFromSliceName', url, sliceFolders.nuxt)
+const getAllFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
   try {
     const [key, model] = getModelFromSliceName(sliceName, url)
     const meta = JSON.parse(
@@ -67,7 +65,7 @@ export const getAllFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
   } catch (e) {}
 }
 
-export const zipFile = (zip, pathFrom, pathTo) => {
+const zipFile = (zip, pathFrom, pathTo) => {
   try {
     const f = fs.readFileSync(pathFrom, 'utf8')
     zip.file(pathTo, f)
@@ -79,10 +77,21 @@ export const zipFile = (zip, pathFrom, pathTo) => {
 }
 
 // Change this when you allow users to select the slices they want
-export const getSliceNames = (slicesParams, url = sliceFolders.nuxt) => {
+const getSliceNames = (slicesParams, url = sliceFolders.nuxt) => {
   const allSlices = getDirectories(url)
   return allSlices.map(path => {
     const spl = path.split('/')
     return spl[spl.length - 1]
   })
+}
+
+module.exports = {
+  prod,
+  sliceFolders,
+  getDirectories,
+  readCustomTypes,
+  getModelFromSliceName,
+  getAllFromSliceName,
+  zipFile,
+  getSliceNames
 }

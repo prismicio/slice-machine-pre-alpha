@@ -77,7 +77,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:fix && yarn stylelint --fix"
+      "pre-commit": "yarn lint:fix && yarn stylelint --fix; node bundleApi.js"
     }
   }
 }
