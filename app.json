@@ -1,6 +1,5 @@
 {
   "name": "slice-machine",
-  "scripts": {},
   "env": {
     "HOST": {
       "required": true
@@ -17,11 +16,7 @@
       "quantity": 1
     }
   },
-  "addons": [],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    }
-  ],
+  "scripts": {
+  },
   "stack": "heroku-18"
 }
