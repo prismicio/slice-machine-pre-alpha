@@ -1,0 +1,24 @@
+{
+  "name": "slice-machine",
+  "env": {
+    "HOST": {
+      "required": true,
+      "value": "0.0.0.0"
+    },
+    "NODE_ENV": {
+      "required": true,
+      "value": "production"
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true,
+      "value": "false"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "scripts": {},
+  "stack": "heroku-18"
+}

@@ -1,19 +1,25 @@
+import fs from 'fs'
+import path from 'path'
+
 const app = require('express')()
 const bodyParser = require('body-parser')
-
-const { sliceFolders, getAllFromSliceName, getSliceNames } = require('./utils')
 
 app.use(bodyParser.json())
 
 app.use((req, res) => {
   try {
-    if (!sliceFolders[req.query.framework]) {
-      throw new Error('Framework not found')
+    if (!req.query.framework) {
+      throw new Error(
+        'Expected a query string parameter `framework` but none was reeceived'
+      )
     }
-    const sliceNames = getSliceNames(null, sliceFolders[req.query.framework])
-    const response = sliceNames.map(sliceName => getAllFromSliceName(sliceName))
-
-    res.json(response)
+    const file = JSON.parse(
+      fs.readFileSync(
+        path.join(__dirname, 'files', req.query.framework, 'slices.json'),
+        'utf8'
+      )
+    )
+    res.json(file)
   } catch (e) {
     console.error(e)
     res.sendStatus(500)
