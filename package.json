@@ -13,9 +13,10 @@
     "create-slice": "node builder/createSlice.js",
     "dev": "nuxt",
     "build": "nuxt build",
+    "build:files": "node ./bundleApi.js",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "heroku-postbuild": "npm run build && node bundleApi.js"
+    "heroku-postbuild": "npm run build"
   },
   "main": "index.js",
   "dependencies": {
