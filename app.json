@@ -11,7 +11,7 @@
     },
     "NPM_CONFIG_PRODUCTION": {
       "required": true,
-      "value": false
+      "value": "false"
     }
   },
   "formation": {
@@ -19,7 +19,6 @@
       "quantity": 1
     }
   },
-  "scripts": {
-  },
+  "scripts": {},
   "stack": "heroku-18"
 }
