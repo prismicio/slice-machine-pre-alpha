@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - '10'
+deploy:
+  provider: heroku
+  app: community-slices
+  github_token: $GITHUB_TOKEN
+  api_key: '$HEROKU_TOKEN'
+after_deploy:
+  - npm run build:files
