@@ -1,21 +1,17 @@
 {
-  "addons": [
-
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    }
-  ],
+  "name": "slice-machine",
   "env": {
     "HOST": {
-      "required": true
+      "required": true,
+      "value": "0.0.0.0"
     },
     "NODE_ENV": {
-      "required": true
+      "required": true,
+      "value": "production"
     },
     "NPM_CONFIG_PRODUCTION": {
-      "required": true
+      "required": true,
+      "value": "false"
     }
   },
   "formation": {
@@ -23,8 +19,6 @@
       "quantity": 1
     }
   },
-  "name": "slice-machine",
-  "scripts": {
-  },
+  "scripts": {},
   "stack": "heroku-18"
 }
