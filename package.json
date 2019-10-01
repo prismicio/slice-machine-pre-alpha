@@ -8,15 +8,14 @@
   "author": "Hugo & Phil",
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint:fix": "yarn lint --fix",
+    "lint:fix": "npm run lint --fix",
     "stylelint": "stylelint */**/*.scss",
     "create-slice": "node builder/createSlice.js",
-    "dev": "nuxt",
-    "build": "nuxt build",
+    "dev": "npm run build:files; nuxt",
+    "build": "npm run build:files; nuxt build",
     "build:files": "node ./bundleApi",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "heroku-postbuild": "npm run build"
+    "start": "npm run build:files; nuxt start",
+    "generate": "nuxt generate"
   },
   "main": "index.js",
   "dependencies": {
@@ -78,7 +77,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:fix && yarn stylelint --fix"
+      "pre-commit": "npm run lint:fix && npm run stylelint --fix"
     }
   }
 }
