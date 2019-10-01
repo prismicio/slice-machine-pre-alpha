@@ -1,5 +1,8 @@
 dist
 
+api
+website/api/files
+
 # Logs
 logs
 *.log

@@ -2,16 +2,13 @@
   "name": "slice-machine",
   "env": {
     "HOST": {
-      "required": true,
-      "value": "0.0.0.0"
+      "required": true
     },
     "NODE_ENV": {
-      "required": true,
-      "value": "production"
+      "required": true
     },
     "NPM_CONFIG_PRODUCTION": {
-      "required": true,
-      "value": "false"
+      "required": true
     }
   },
   "formation": {
