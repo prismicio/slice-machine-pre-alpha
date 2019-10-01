@@ -23,6 +23,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "adm-zip": "^0.4.13",
     "cookie-universal-nuxt": "^2.0.17",
+    "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "element-ui": "^2.4.11",
     "isomorphic-fetch": "^2.2.1",

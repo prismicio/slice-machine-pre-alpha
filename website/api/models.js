@@ -1,9 +1,11 @@
 import fs from 'fs'
 import path from 'path'
+import cors from 'cors'
 
 const app = require('express')()
 const bodyParser = require('body-parser')
 
+app.use(cors())
 app.use(bodyParser.json())
 
 app.use((req, res) => {
