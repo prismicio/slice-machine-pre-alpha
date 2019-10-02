@@ -5,8 +5,8 @@
       type '{{ sliceType }}'.
     </h1>
     <p>
-      Make sure you created a '{{ camelize(sliceType) }}' component inside
-      `vueSlices/slices`. If not: create one!
+      Make sure you created a '{{ camelize(sliceType || 'hello') }}' component
+      inside `vueSlices/slices`. If not: create one!
     </p>
     <p>
       Check the console to check the payload received
@@ -21,6 +21,7 @@
 <script>
 const camelizeRE = /-(\w)/g
 const camelize = str => {
+  console.log('str', str)
   str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
     return c ? c.toUpperCase() : ''
   })

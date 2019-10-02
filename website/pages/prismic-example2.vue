@@ -33,7 +33,7 @@ export default {
         documentId: result.id
       }
     } catch (e) {
-      error({ statusCode: 404, message: 'Document not found' })
+      error({ statusCode: 404, message: 'Document not found here' })
     }
   },
   methods: {

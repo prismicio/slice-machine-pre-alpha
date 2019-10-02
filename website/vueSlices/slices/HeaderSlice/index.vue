@@ -59,12 +59,3 @@ export default {
   }
 }
 </style>
-
-<Headerslice>
-  <template v-slot:title>
-    <div>
-      <img />
-      <h1>Mon titre</h1>
-    </div>
-  </template>
-</Headerslice>
