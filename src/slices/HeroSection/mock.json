@@ -1,0 +1,28 @@
+{
+  "slice_type": "hero_section",
+  "slice_label": null,
+  "items": [
+    {}
+  ],
+  "primary": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Your super header hero",
+        "spans": []
+      }
+    ],
+    "paragraph": [
+      {
+        "type": "paragraph",
+        "text": "It’s very easy to create stylish and beautiful prototypes for your future projects, both graphical and dynamic.",
+        "spans": []
+      }
+    ],
+    "placeholder": "contact@johndoe.com",
+    "button_link": {
+      "link_type": "Any"
+    },
+    "button_label": "Click here"
+  }
+}

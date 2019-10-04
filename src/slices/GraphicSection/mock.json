@@ -1,0 +1,38 @@
+{
+  "slice_type": "graphic_section",
+  "slice_label": null,
+  "items": [
+    {}
+  ],
+  "primary": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Collector",
+        "spans": []
+      }
+    ],
+    "paragraph": [
+      {
+        "type": "paragraph",
+        "text": "It’s very easy to create stylish and beautiful prototypes for your future projects, both graphical and dynamic.",
+        "spans": []
+      }
+    ],
+    "cta_link": {
+      "link_type": "Web",
+      "url": "https://test.com"
+    },
+    "cta_label": "Click Here",
+    "image_side": "Right",
+    "graphic_image": {
+      "dimensions": {
+        "width": 705,
+        "height": 370
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/2a4e05931346d71afea335122b96b6579fdcf69f_graphic.png"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "slice_type": "testimonials",
+  "slice_label": null,
+  "items": [
+    {
+      "logo_image": {
+        "dimensions": {
+          "width": 112,
+          "height": 38
+        },
+        "alt": "alt text for the image",
+        "copyright": null,
+        "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/201a893bc1d7769124a31f226cc59047ed92610c_logo-placeholder.png"
+      },
+      "paragraph": [
+        {
+          "type": "paragraph",
+          "text": "It’s very easy to create stylish and beautiful prototypes for your future projects, both graphical and dynamic. 1",
+          "spans": [
+            {
+              "start": 0,
+              "end": 113,
+              "type": "strong"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "logo_image": {
+        "dimensions": {
+          "width": 112,
+          "height": 38
+        },
+        "alt": "alt text for the image",
+        "copyright": null,
+        "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/201a893bc1d7769124a31f226cc59047ed92610c_logo-placeholder.png"
+      },
+      "paragraph": [
+        {
+          "type": "paragraph",
+          "text": "It’s very easy to create stylish and beautiful prototypes for your future projects, both graphical and dynamic. 2",
+          "spans": [
+            {
+              "start": 0,
+              "end": 113,
+              "type": "strong"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "logo_image": {
+        "dimensions": {
+          "width": 112,
+          "height": 38
+        },
+        "alt": "alt text for the image",
+        "copyright": null,
+        "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/201a893bc1d7769124a31f226cc59047ed92610c_logo-placeholder.png"
+      },
+      "paragraph": [
+        {
+          "type": "paragraph",
+          "text": "It’s very easy to create stylish and beautiful prototypes for your future projects, both graphical and dynamic.  3",
+          "spans": [
+            {
+              "start": 0,
+              "end": 114,
+              "type": "strong"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "logo_image": {
+        "dimensions": {
+          "width": 112,
+          "height": 38
+        },
+        "alt": "alt text for the image",
+        "copyright": null,
+        "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/201a893bc1d7769124a31f226cc59047ed92610c_logo-placeholder.png"
+      },
+      "paragraph": [
+        {
+          "type": "paragraph",
+          "text": "It’s very easy to create stylish and beautiful prototypes for your future projects, both graphical and dynamic.  4",
+          "spans": [
+            {
+              "start": 0,
+              "end": 114,
+              "type": "strong"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "logo_image": {
+        "dimensions": {
+          "width": 112,
+          "height": 38
+        },
+        "alt": "alt text for the image",
+        "copyright": null,
+        "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/201a893bc1d7769124a31f226cc59047ed92610c_logo-placeholder.png"
+      },
+      "paragraph": [
+        {
+          "type": "paragraph",
+          "text": "It’s very easy to create stylish and beautiful prototypes for your future projects, both graphical and dynamic.  5",
+          "spans": [
+            {
+              "start": 0,
+              "end": 114,
+              "type": "strong"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "primary": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Partners",
+        "spans": []
+      }
+    ],
+    "link_text": [
+      {
+        "type": "paragraph",
+        "text": "View all partners",
+        "spans": []
+      }
+    ],
+    "link": {
+      "link_type": "Any"
+    }
+  }
+}
