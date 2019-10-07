@@ -1,25 +1,46 @@
 <template>
   <section class="canvas">
     <slot name="title" :title="slice.primary.title">
-      <h1> {{ $prismic.richTextAsPlain(slice.primary.title) }} </h1>
+      <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
     </slot>
     <div class="card-carousel-wrapper">
-      <div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>
+      <div
+        class="card-carousel--nav__left"
+        :disabled="atHeadOfList"
+        @click="moveCarousel(-1)"
+      />
       <div class="card-carousel">
         <div class="card-carousel--overflow-container">
-          <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
-            <div class="card-carousel--card" v-for="(item, index) in items" :key="'item-' + index">
+          <div
+            class="card-carousel-cards"
+            :style="{
+              transform: 'translateX' + '(' + currentOffset + 'px' + ')'
+            }"
+          >
+            <div
+              v-for="(item, index) in items"
+              :key="'item-' + index"
+              class="card-carousel--card"
+            >
               <slot :id="index" name="item" :item="item">
-                <prismic-image :field="item.logo_image "/>
-                <p> {{ $prismic.richTextAsPlain(item.paragraph) }} </p>
+                <prismic-image :field="item.logo_image" />
+                <p>{{ $prismic.richTextAsPlain(item.paragraph) }}</p>
               </slot>
             </div>
           </div>
         </div>
       </div>
-      <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+      <div
+        class="card-carousel--nav__right"
+        :disabled="atEndOfList"
+        @click="moveCarousel(1)"
+      />
     </div>
-    <slot name="title" :link="slice.primary.link" :linkText="slice.primary.link_text">
+    <slot
+      name="title"
+      :link="slice.primary.link"
+      :linkText="slice.primary.link_text"
+    >
       <prismic-link class="cta" :field="slice.primary.link">
         {{ $prismic.richTextAsPlain(slice.primary.link_text) }}
       </prismic-link>
@@ -29,33 +50,41 @@
 
 <script>
 export default {
-  props: ['slice'],
-  name: 'testimonials-section',
+  name: 'TestimonialsSection',
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       items: this.slice.items,
       currentOffset: 0,
       windowSize: 3,
-      paginationFactor: 410,
+      paginationFactor: 410
     }
   },
   computed: {
     atEndOfList() {
-      return this.currentOffset <= (this.paginationFactor * -1) * (this.items.length - this.windowSize);
+      return (
+        this.currentOffset <=
+        this.paginationFactor * -1 * (this.items.length - this.windowSize)
+      )
     },
     atHeadOfList() {
-      return this.currentOffset === 0;
-    },
+      return this.currentOffset === 0
+    }
   },
   methods: {
     moveCarousel(direction) {
       // Find a more elegant way to express the :style. consider using props to make it truly generic
       if (direction === 1 && !this.atEndOfList) {
-        this.currentOffset -= this.paginationFactor;
+        this.currentOffset -= this.paginationFactor
       } else if (direction === -1 && !this.atHeadOfList) {
-        this.currentOffset += this.paginationFactor;
+        this.currentOffset += this.paginationFactor
       }
-    },
+    }
   }
 }
 </script>
@@ -68,7 +97,7 @@ $vue-teal-light: #42b983;
 $gray: #666a73;
 $light-gray: #f8f8f8;
 
-.canvas{
+.canvas {
   height: 80vh;
   margin-top: 100px;
   // background-color: #F8FAFB;
@@ -80,10 +109,10 @@ $light-gray: #f8f8f8;
     justify-content: center;
   }
 
-  .cta{
+  .cta {
     display: flex;
     justify-content: center;
-    color: #007AFF;
+    color: #007aff;
     font-weight: 700;
     font-size: 16px;
     line-height: 34px;
@@ -102,12 +131,12 @@ $light-gray: #f8f8f8;
   display: flex;
   justify-content: center;
   width: 77em;
-  
+
   &--overflow-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   &--nav__left,
   &--nav__right {
     display: block;
@@ -120,13 +149,13 @@ $light-gray: #f8f8f8;
       font-family: Arial, Helvetica, sans-serif;
       border-radius: 100%;
       text-align: center;
-      color: #007AFF;
+      color: #007aff;
       box-sizing: border-box;
       transition: transform 150ms linear;
       transform: scaleY(1.5);
       background-color: rgba(0, 123, 255, 0.09);
     }
-    &:hover:after{
+    &:hover:after {
       transform: scaleY(1.5) scale(1.3);
     }
     &[disabled] {
@@ -134,16 +163,16 @@ $light-gray: #f8f8f8;
       border-color: black;
     }
   }
-  
+
   &--nav__left {
     &:after {
-      content: "\00003C";
+      content: '\00003C';
     }
   }
-  
+
   &--nav__right {
     &:after {
-      content: "\00003E";
+      content: '\00003E';
     }
   }
 }
@@ -154,15 +183,15 @@ $light-gray: #f8f8f8;
   margin-bottom: 20px;
   transition: transform 150ms ease-out;
   transform: translatex(0px);
- 
+
   .card-carousel--card {
     background-color: #ffffff;
     margin: 0 10px;
     cursor: pointer;
-    -webkit-box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
-    -moz-box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
-    box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
-    border: 1px solid #F2F2F2;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
+    -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
+    box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
+    border: 1px solid #f2f2f2;
     border-radius: 4px;
     width: 24.375em; /* 390px */
     height: 326px;
@@ -170,12 +199,12 @@ $light-gray: #f8f8f8;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     img {
       padding: 0 0 20px 0;
     }
-    
+
     p {
       width: 70%;
       text-align: center;
@@ -186,41 +215,42 @@ $light-gray: #f8f8f8;
       font-weight: 500;
       color: $vue-navy;
       user-select: none;
-      
+
       &:nth-of-type(2) {
         font-size: 12px;
         font-weight: 300;
         padding: 6px;
-        background: rgba(40,44,53,.06);
+        background: rgba(40, 44, 53, 0.06);
         display: inline-block;
         position: relative;
         margin-left: 4px;
         color: $gray;
-        
+
         &:before {
-          content:"";
-          float:left;
-          position:absolute;
-          top:0;
+          content: '';
+          float: left;
+          position: absolute;
+          top: 0;
           left: -12px;
-          width:0;
-          height:0;
-          border-color:transparent rgba(40,44,53,.06) transparent transparent;
-          border-style:solid;
-          border-width:12px 12px 12px 0;
-      }
-      
+          width: 0;
+          height: 0;
+          border-color: transparent rgba(40, 44, 53, 0.06) transparent
+            transparent;
+          border-style: solid;
+          border-width: 12px 12px 12px 0;
+        }
+
         &:after {
-          content:"";
-          position:absolute;
-          top:10px;
-          left:-1px;
-          float:left;
-          width:4px;
-          height:4px;
+          content: '';
+          position: absolute;
+          top: 10px;
+          left: -1px;
+          float: left;
+          width: 4px;
+          height: 4px;
           border-radius: 2px;
           background: white;
-          box-shadow:-0px -0px 0px #004977;
+          box-shadow: -0px -0px 0px #004977;
         }
       }
     }
@@ -228,7 +258,7 @@ $light-gray: #f8f8f8;
     &:first-child {
       margin-left: 0;
     }
-    
+
     &:last-child {
       margin-right: 0;
     }

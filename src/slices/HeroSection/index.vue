@@ -1,18 +1,19 @@
 <template>
   <section class="canvas">
-    <slot name="header"  :header="slice.primary">
+    <slot name="header" :header="slice.primary">
       <div class="header">
-        <h1> {{ $prismic.richTextAsPlain(slice.primary.title) }} </h1>
-        <p> {{ $prismic.richTextAsPlain(slice.primary.paragraph) }} </p>
+        <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
+        <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
       </div>
     </slot>
     <div class="call-to-action">
-      <slot name="call-to-action"  :callToAction="slice.primary">
-        <input type="text" :placeholder="slice.primary.placeholder"/>
-        <input 
-          type="button" 
-          :value="slice.primary.button_label" 
-          :onclick="`window.location.href='${slice.primary.button_link.url}'`" 
+      <slot name="call-to-action" :callToAction="slice.primary">
+        <!-- eslint-disable-next-line -->
+        <input type="text" :placeholder="slice.primary.placeholder" />
+        <input
+          type="button"
+          :value="slice.primary.button_label"
+          :onclick="`window.location.href='${slice.primary.button_link.url}'`"
         />
       </slot>
     </div>
@@ -21,13 +22,18 @@
 
 <script>
 export default {
-  props: ['slice'],
-  name: 'hero-section'
+  name: 'HeroSection',
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.canvas{
+.canvas {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -59,27 +65,27 @@ export default {
 }
 
 input {
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
-  -moz-box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
-  box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
+  box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
 }
 
-input[type=text] {
+input[type='text'] {
   padding: 0 1em;
   margin-right: 20px;
   margin-bottom: 20px;
   text-decoration: none;
   width: 370px;
   height: 52px;
-  border: 1px solid #F2F2F2;
+  border: 1px solid #f2f2f2;
   border-radius: 3px;
   text-align: left;
   font-size: 14px;
   line-height: 30px;
 }
 
-input[type=button] {
-  background-color: #007AFF;
+input[type='button'] {
+  background-color: #007aff;
   color: white;
   text-decoration: none;
   width: 120px;
@@ -90,17 +96,17 @@ input[type=button] {
   font-size: 14px;
   font-weight: 600;
   line-height: 30px;
-  &:hover{
+  &:hover {
     background-color: rgb(2, 89, 182);
     cursor: pointer;
   }
-  &:active{
+  &:active {
     box-shadow: none;
     top: 5px;
   }
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1200px) {
   .header {
     p {
       width: 80%;
@@ -119,7 +125,7 @@ input[type=button] {
     }
   }
 
-  input[type=text]{
+  input[type='text'] {
     width: 250px;
   }
 }
@@ -139,11 +145,11 @@ input[type=button] {
 }
 
 @media (max-width: 757px) {
-  input[type=text]{
+  input[type='text'] {
     margin-right: 0;
   }
 
-  input[type=button]{
+  input[type='button'] {
     width: 278px;
   }
 }

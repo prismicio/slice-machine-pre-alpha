@@ -1,33 +1,35 @@
-"testimonials" : {
-  "type": "Slice",
-  "fieldset": "Testimonials",
-  "description": "A slice for adding a testimonials section",
-  "icon": "format_quote",
-  "display": "grid",
-  "non-repeat": {
-    "title": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-        "label": "Title"
-      }
-    }
-  },
-  "repeat": {
-    "logo_image": {
-      "type": "Image",
-      "config": {
-        "constraint": {},
-        "thumbnails": [],
-        "label": "Logo Image"
+{
+  "testimonials": {
+    "type": "Slice",
+    "fieldset": "Testimonials",
+    "description": "A slice for adding a testimonials section",
+    "icon": "format_quote",
+    "display": "grid",
+    "non-repeat": {
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+          "label": "Title"
+        }
       }
     },
-    "text": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, list-item, o-list-item, o-list-item",
-        "label": "text"
+    "repeat": {
+      "logo_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Logo Image"
+        }
+      },
+      "text": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, list-item, o-list-item, o-list-item",
+          "label": "text"
+        }
       }
     }
   }
-},
+}

@@ -22,6 +22,7 @@ module.exports = {
     'valid-v-for': 'off', // breaks in my TextEditor
     'html-self-closing': 'off',
     'arrow-parens': ['error', 'as-needed'],
-    'space-before-function-paren': 'off'
+    'space-before-function-paren': 'off',
+    'vue/html-self-closing': 'off'
   }
 }

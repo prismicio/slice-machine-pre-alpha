@@ -1,70 +1,79 @@
 <template>
-  <div class='carousel-view'>
-    <h1> {{ $prismic.richTextAsPlain(slice.primary.title) }} </h1>
-    <p> {{ $prismic.richTextAsPlain(slice.primary.paragraph) }} </p>
-    <transition-group
-      name='carousel'
-      class='carousel'
-      tag="div">
+  <div class="carousel-view">
+    <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
+    <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
+    <transition-group name="carousel" class="carousel" tag="div">
       <div
-        v-for="(slide, index) in slides" 
-        class='slide'
-        :class="{ 'active': activeIndex === index}"
+        v-for="(slide, index) in slides"
         :key="slide.id"
-        ref="slides" 
+        ref="slides"
+        class="slide"
+        :class="{ active: activeIndex === index }"
       >
-        <video 
-          class='slide__video' 
-          :class="{ 'active': activeIndex === index}"
-          :src='slide.video.url' 
+        <video
+          class="slide__video"
+          :class="{ active: activeIndex === index }"
+          :src="slide.video.url"
           controls
           @click="setActive(index, $event)"
         />
       </div>
     </transition-group>
-    <div v-if="slides.length > 3" class='carousel-controls'>
-      <button class='carousel-controls__button' @click="previous">prev</button>
-      <button class='carousel-controls__button' @click="next">next</button>
+    <div v-if="slides.length > 3" class="carousel-controls">
+      <button class="carousel-controls__button" @click="previous">
+        prev
+      </button>
+      <button class="carousel-controls__button" @click="next">
+        next
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['slice'],
-  name: 'videocarousel',
-  data () {
+  name: 'Videocarousel',
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
     return {
-      slides: this.slice.items.map((slide) => ({
+      slides: this.slice.items.map(slide => ({
         ...slide,
-        id: Math.random().toString(36).substring(2) + Date.now().toString(36)
+        id:
+          Math.random()
+            .toString(36)
+            .substring(2) + Date.now().toString(36)
       })),
       activeIndex: undefined
     }
   },
   methods: {
-    next () {
+    next() {
       const first = this.slides.shift()
       this.slides = this.slides.concat(first)
 
-      let mover = document.querySelector(".carousel > div:first-of-type")
-      mover.style.opacity=0
+      const mover = document.querySelector('.carousel > div:first-of-type')
+      mover.style.opacity = 0
       mover.addEventListener('transitionend', () => {
-        mover.style.opacity=1
+        mover.style.opacity = 1
       })
 
       this.$refs.slides.map((slide, index) => {
         slide.firstChild.pause()
       })
     },
-    previous () {
+    previous() {
       const last = this.slides.pop()
       this.slides = [last].concat(this.slides)
 
-      let mover = document.querySelector(".carousel > div:last-of-type")
-      mover.style.opacity=0
+      const mover = document.querySelector('.carousel > div:last-of-type')
+      mover.style.opacity = 0
       mover.addEventListener('transitionend', () => {
-        mover.style.opacity=1
+        mover.style.opacity = 1
       })
 
       this.$refs.slides.map((slide, index) => {
@@ -72,17 +81,19 @@ export default {
       })
     },
     setActive(index, $event) {
-      this.activeIndex = index;
+      this.activeIndex = index
 
-      if($event.target.className.includes("active")) { return } 
-      //Early exit for active video, sets default behaviour, delegates to browsers
+      if ($event.target.className.includes('active')) {
+        return
+      }
+      // Early exit for active video, sets default behaviour, delegates to browsers
 
-      this.$refs.slides.map((slide) => {
-        if (slide.firstChild.className !== "active") {
+      this.$refs.slides.map(slide => {
+        if (slide.firstChild.className !== 'active') {
           slide.firstChild.pause()
         }
       })
-    },
+    }
   }
 }
 </script>
@@ -118,8 +129,8 @@ export default {
   flex: 0 0 20em;
 }
 
-video{
-  object-fit:contain;
+video {
+  object-fit: contain;
 }
 
 .active {

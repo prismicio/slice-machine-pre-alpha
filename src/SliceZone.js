@@ -21,7 +21,7 @@ export default {
     path: {
       required: false,
       type: [String, Array],
-      default: './slices',
+      default: () => 'sliceMachine/slices',
       description: 'Path(s) to your slices components'
     }
   },
@@ -30,12 +30,20 @@ export default {
   },
   computed: {
     computedImports: ({ path, slices }) => {
+      const invert = p =>
+        new Promise((resolve, reject) => p.then(reject, resolve))
+      const firstOf = ps => invert(Promise.all(ps.map(invert)))
       const names = slices.map(e => camelize(e.slice_type))
       return (slices || []).map((slice, i) => () => {
-        return import(`${path}/${names[i]}/index.vue`).catch(e => {
-          console.error(e)
-          return UnknownSlice
-        })
+        const allPaths = typeof path === 'string' ? [path] : path
+        return firstOf(
+          allPaths.reduce((prev, p) => {
+            return prev.concat([
+              import(`@/${p}/${names[i]}/index.vue`),
+              import(`@/${p}/${names[i]}.vue`)
+            ])
+          }, [])
+        ).catch(() => UnknownSlice)
       })
     },
     computedSlices: ({ slices, computedImports }) => {

@@ -1,18 +1,18 @@
 <template>
   <section class="canvas">
-    <slot name="header"  :header="slice.primary">
+    <slot name="header" :header="slice.primary">
       <div class="header">
-        <prismic-image :field="slice.primary.icon_image "/>
-        <h1> {{ $prismic.richTextAsPlain(slice.primary.title) }} </h1>
-        <p> {{ $prismic.richTextAsPlain(slice.primary.paragraph) }} </p>
+        <prismic-image :field="slice.primary.icon_image" />
+        <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
+        <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
       </div>
     </slot>
     <div class="call-to-action">
-      <slot name="call-to-action"  :callToAction="slice.primary">
-        <input 
-          type="button" 
-          :value="slice.primary.button_label" 
-          :onclick="`window.location.href='${slice.primary.button_link.url}'`" 
+      <slot name="call-to-action" :callToAction="slice.primary">
+        <input
+          type="button"
+          :value="slice.primary.button_label"
+          :onclick="`window.location.href='${slice.primary.button_link.url}'`"
         />
       </slot>
     </div>
@@ -21,13 +21,18 @@
 
 <script>
 export default {
-  props: ['slice'],
-  name: 'call-to-action',
+  name: 'CallToAction',
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.canvas{
+.canvas {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -64,13 +69,13 @@ export default {
 }
 
 input {
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
-  -moz-box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
-  box-shadow: 0px 2px 4px 0px rgba(136,136,136,0.24);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
+  box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
 }
 
-input[type=button] {
-  background-color: #007AFF;
+input[type='button'] {
+  background-color: #007aff;
   color: white;
   text-decoration: none;
   width: 134px;
@@ -81,17 +86,17 @@ input[type=button] {
   font-size: 14px;
   font-weight: 600;
   line-height: 30px;
-  &:hover{
+  &:hover {
     background-color: rgb(2, 89, 182);
     cursor: pointer;
   }
-  &:active{
+  &:active {
     box-shadow: none;
     top: 5px;
   }
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1200px) {
   .header {
     p {
       width: 80%;
@@ -114,7 +119,7 @@ input[type=button] {
 }
 
 @media (max-width: 757px) {
-  input[type=button]{
+  input[type='button'] {
     width: 278px;
   }
 }
