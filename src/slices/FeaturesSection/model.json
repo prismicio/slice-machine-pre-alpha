@@ -1,60 +1,58 @@
 {
-  "features_section": {
-    "type": "Slice",
-    "fieldset": "Features Section",
-    "description": "A block for displaying product features",
-    "icon": "view_column",
-    "display": "grid",
-    "non-repeat": {
-      "title": {
-        "type": "StructuredText",
-        "config": {
-          "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-          "label": "Title"
-        }
-      },
-      "paragraph": {
-        "type": "StructuredText",
-        "config": {
-          "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
-          "label": "Paragraph"
-        }
+  "type": "Slice",
+  "fieldset": "Features Section",
+  "description": "A block for displaying product features",
+  "icon": "view_column",
+  "display": "grid",
+  "non-repeat": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Title"
       }
     },
-    "repeat": {
-      "icon_image": {
-        "type": "Image",
-        "config": {
-          "constraint": {},
-          "thumbnails": [],
-          "label": "Icon Image"
-        }
-      },
-      "head": {
-        "type": "StructuredText",
-        "config": {
-          "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-          "label": "Head"
-        }
-      },
-      "desc": {
-        "type": "StructuredText",
-        "config": {
-          "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
-          "label": "Description"
-        }
-      },
-      "button_link": {
-        "type": "Link",
-        "config": {
-          "label": "Button Link"
-        }
-      },
-      "button_label": {
-        "type": "Text",
-        "config": {
-          "label": "Button Label"
-        }
+    "paragraph": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "label": "Paragraph"
+      }
+    }
+  },
+  "repeat": {
+    "icon_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Icon Image"
+      }
+    },
+    "head": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Head"
+      }
+    },
+    "desc": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "label": "Description"
+      }
+    },
+    "button_link": {
+      "type": "Link",
+      "config": {
+        "label": "Button Link"
+      }
+    },
+    "button_label": {
+      "type": "Text",
+      "config": {
+        "label": "Button Label"
       }
     }
   }

@@ -1,36 +1,34 @@
 {
-  "video_carousel_section": {
-    "type": "Slice",
-    "fieldset": "Video Carousel Section",
-    "description": "A section for a video slider",
-    "icon": "play_circle_outline",
-    "display": "list",
-    "non-repeat": {
-      "title": {
-        "type": "StructuredText",
-        "config": {
-          "single": "heading1, heading2, heading3, heading4, heading5, heading6",
-          "label": "Title",
-          "placeholder": "Give your section a title"
-        }
-      },
-      "paragraph": {
-        "type": "StructuredText",
-        "config": {
-          "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
-          "label": "Paragraph",
-          "placeholder": "Add some text to your section"
-        }
+  "type": "Slice",
+  "fieldset": "Video Carousel Section",
+  "description": "A section for a video slider",
+  "icon": "play_circle_outline",
+  "display": "list",
+  "non-repeat": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label": "Title",
+        "placeholder": "Give your section a title"
       }
     },
-    "repeat": {
-      "video": {
-        "type": "Link",
-        "config": {
-          "select": "media",
-          "label": "Video",
-          "placeholder": "Select you video from the Prismic Media Library"
-        }
+    "paragraph": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "label": "Paragraph",
+        "placeholder": "Add some text to your section"
+      }
+    }
+  },
+  "repeat": {
+    "video": {
+      "type": "Link",
+      "config": {
+        "select": "media",
+        "label": "Video",
+        "placeholder": "Select you video from the Prismic Media Library"
       }
     }
   }
