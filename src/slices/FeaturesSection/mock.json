@@ -1,0 +1,109 @@
+{
+  "slice_type": "features_section",
+  "slice_label": null,
+  "items": [
+    {
+      "icon_image": {
+        "dimensions": {
+          "width": 63,
+          "height": 67
+        },
+        "alt": "Icon-one",
+        "copyright": null,
+        "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/98d14132b98426e73547d3ae3556bdd26ba058dc_feature-one.png"
+      },
+      "head": [
+        {
+          "type": "heading1",
+          "text": "Feature One",
+          "spans": []
+        }
+      ],
+      "desc": [
+        {
+          "type": "paragraph",
+          "text": "An exemplary text describing the benefits or services of your site or project An exemplary text describing the benefits or services",
+          "spans": []
+        }
+      ],
+      "button_link": {
+        "link_type": "Any"
+      },
+      "button_label": "Read more"
+    },
+    {
+      "icon_image": {
+        "dimensions": {
+          "width": 63,
+          "height": 66
+        },
+        "alt": "Icon-two",
+        "copyright": null,
+        "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/e86c3197011dc9dc148d70ac189a8b7d7ce03df6_feature-two.png"
+      },
+      "head": [
+        {
+          "type": "heading1",
+          "text": "Feature Two",
+          "spans": []
+        }
+      ],
+      "desc": [
+        {
+          "type": "paragraph",
+          "text": "An exemplary text describing the benefits or services of your site or project An exemplary text describing the benefits or services",
+          "spans": []
+        }
+      ],
+      "button_link": {
+        "link_type": "Any"
+      },
+      "button_label": "Read more"
+    },
+    {
+      "icon_image": {
+        "dimensions": {
+          "width": 63,
+          "height": 67
+        },
+        "alt": "Icon-three",
+        "copyright": null,
+        "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/d4267e8707b687e4429e6ecfae039949dff032bc_feature-three.png"
+      },
+      "head": [
+        {
+          "type": "heading1",
+          "text": "Feature Three",
+          "spans": []
+        }
+      ],
+      "desc": [
+        {
+          "type": "paragraph",
+          "text": "An exemplary text describing the benefits or services of your site or project An exemplary text describing the benefits or services",
+          "spans": []
+        }
+      ],
+      "button_link": {
+        "link_type": "Any"
+      },
+      "button_label": "Read more"
+    }
+  ],
+  "primary": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Collector Wireframe Kit",
+        "spans": []
+      }
+    ],
+    "paragraph": [
+      {
+        "type": "paragraph",
+        "text": "It’s very easy to create stylish and beautiful prototypes for your future projects, both graphical and dynamic.",
+        "spans": []
+      }
+    ]
+  }
+}
