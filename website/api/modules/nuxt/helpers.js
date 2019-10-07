@@ -76,7 +76,7 @@ export const createIndexPage = ({ configPath, customType }) => {
     <h1>Welcome to you under-designed index page</h1>
     <p>We created a page template for you to query your data</p>
     <p>
-      Your todo list: add page documents to {{ pathToDocs }}
+      Your todo list: add page documents to <a target="_blank" :href="pathToDocs">{{ pathToDocs }}</a>
       and navigate to '/${customType}/{your-uid}' to see the magic happening
     </p>
   </main>
