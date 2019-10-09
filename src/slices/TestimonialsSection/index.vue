@@ -1,6 +1,6 @@
 <template>
   <section class="canvas">
-    <slot name="title" :title="slice.primary.title">
+    <slot name="title" v-bind="slice.primary.title">
       <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
     </slot>
     <div class="card-carousel-wrapper">
@@ -22,7 +22,7 @@
               :key="'item-' + index"
               class="card-carousel--card"
             >
-              <slot :id="index" name="item" :item="item">
+              <slot :id="index" name="item" v-bind="item">
                 <prismic-image :field="item.logo_image" />
                 <p>{{ $prismic.richTextAsPlain(item.paragraph) }}</p>
               </slot>

@@ -1,6 +1,6 @@
 <template>
   <section class="canvas">
-    <slot name="header" :header="slice.primary">
+    <slot name="header" v-bind="slice.primary">
       <div class="header">
         <prismic-image :field="slice.primary.icon_image" />
         <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
@@ -8,7 +8,7 @@
       </div>
     </slot>
     <div class="call-to-action">
-      <slot name="call-to-action" :callToAction="slice.primary">
+      <slot name="call-to-action" v-bind="slice.primary">
         <input
           type="button"
           :value="slice.primary.button_label"

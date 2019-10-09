@@ -13,7 +13,7 @@
     "create-slice": "node builder/createSlice.js",
     "dev": "npm run build:files; nuxt",
     "build": "npm run build:files; nuxt build",
-    "build:files": "node ./bundleApi",
+    "build:files": "node ./scripts/bundleApi",
     "start": "npm run build:files; nuxt start",
     "generate": "nuxt generate"
   },
