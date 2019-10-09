@@ -1,42 +1,67 @@
 const fs = require('fs')
 const path = require('path')
-const { exec } = require('child_process')
 
-// Move this elsewhere
 const utils = require('../website/api/utils')
 
-const pathToFiles = path.join(process.cwd(), 'src', 'slices')
-
-const deleteDir = dir => {
-  exec(`test -d ${dir} && rm -rf ${dir}`)
-}
-
-deleteDir(pathToFiles)
+const pathToFiles = path.join(process.cwd(), 'website', 'pages', 'examples')
 
 /**
- * For each framework, we should build endpoints for:
- * - all slice + meta definitions: /slices?framework=nuxt
- * - each slice definition: /single?framework=nuxt&slice=x
+ * For each framework, we should build examples:
+ * - fetch file system and get slice
+ * - get info from slice (mainly its name)
+ * - check if file exists in examples
+ * - if not, create the file
  */
 
+const createFile = ({
+  relativePathToSlice,
+  sliceName,
+  key,
+  title,
+  description
+}) => {
+  return `<template>
+  <${key.replace(/_/g, '-')} :slice="mockData" />
+</template>
+<script>
+import { ${sliceName} } from '@/..${relativePathToSlice}'
+import mockData from '@/..${relativePathToSlice}/${sliceName}/mock.json'
+export default {
+  components: {
+    ${sliceName}
+  },
+  data() {
+    return {
+      mockData
+    }
+  }
+}
+</script>
+`
+}
 async function main() {
   await onBefore()
   Object.entries(utils.sliceFolders).map(([framework, pathToSlices]) => {
-    const sliceNames = utils.getSliceNames()
-    const allSlices = sliceNames.map(sliceName => {
-      const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
-      fs.writeFileSync(
-        path.join(pathToFiles, framework, 'single', `${sliceName}.json`),
-        JSON.stringify(slice),
-        'utf8'
-      )
-      return slice
+    console.log(framework, pathToSlices)
+    const sliceNames = utils.getSliceNames(null, pathToSlices)
+    sliceNames.map(sliceName => {
+      const {
+        key,
+        meta: { title, description }
+      } = utils.getAllFromSliceName(sliceName, pathToSlices)
+      const pToFile = path.join(pathToFiles, framework, `${sliceName}.vue`)
+      const fileExists = fs.existsSync(pToFile)
+      if (!fileExists) {
+        const file = createFile({
+          relativePathToSlice: pathToSlices.split(process.cwd())[1],
+          sliceName,
+          key,
+          title,
+          description
+        })
+        fs.writeFileSync(pToFile, file, 'utf8')
+      }
     })
-    fs.writeFileSync(
-      path.join(pathToFiles, framework, 'slices.json'),
-      JSON.stringify(allSlices),
-      'utf8'
-    )
   })
 }
 
@@ -49,7 +74,7 @@ function onBefore() {
     const p = new Promise(resolve => {
       try {
         fs.promises
-          .mkdir(path.join(pathToFiles, framework, 'single'), {
+          .mkdir(path.join(pathToFiles, framework), {
             recursive: true
           })
           .then(resolve)
