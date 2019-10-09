@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'Videocarousel',
+  name: 'VideoCarousel',
   props: {
     slice: {
       type: Object,
