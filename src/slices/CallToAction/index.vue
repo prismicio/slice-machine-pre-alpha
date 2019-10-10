@@ -1,6 +1,6 @@
 <template>
   <section class="canvas">
-    <slot name="header" :header="slice.primary">
+    <slot name="header" v-bind="slice.primary">
       <div class="header">
         <prismic-image :field="slice.primary.icon_image" />
         <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
@@ -66,13 +66,13 @@ export default {
   margin: 0 auto;
 }
 
-input {
+a {
   -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
   -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
   box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
 }
 
-input[type='button'] {
+a {
   background-color: #007aff;
   color: white;
   text-decoration: none;
@@ -117,7 +117,7 @@ input[type='button'] {
 }
 
 @media (max-width: 757px) {
-  input[type='button'] {
+  a {
     width: 278px;
   }
 }

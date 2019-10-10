@@ -2,6 +2,9 @@
   <div class="carousel-view">
     <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
     <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
+    <div v-if="slides.length > 3" class="carousel-controls">
+      <div class="carousel-controls__button" @click="previous" />
+    </div>
     <transition-group name="carousel" class="carousel" tag="div">
       <div
         v-for="(slide, index) in slides"
@@ -20,19 +23,14 @@
       </div>
     </transition-group>
     <div v-if="slides.length > 3" class="carousel-controls">
-      <button class="carousel-controls__button" @click="previous">
-        prev
-      </button>
-      <button class="carousel-controls__button" @click="next">
-        next
-      </button>
+      <div class="carousel-controls__button" @click="next" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Videocarousel',
+  name: 'VideoCarousel',
   props: {
     slice: {
       type: Object,
@@ -98,13 +96,37 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .carousel-view {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 64px;
+  font-weight: 700;
+  color: #484d52;
+  margin-bottom: 1rem;
+  letter-spacing: 1.14px;
+  font-family: Lato, sans-serif;
+}
+
+p {
+  margin-bottom: 2rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  color: #72767b;
+  line-height: 38px;
+  font-size: 22px;
 }
 
 .carousel {
@@ -150,18 +172,38 @@ video {
 
 .carousel-controls {
   margin: 2em;
-}
 
-.carousel-controls__button:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
+  &__button {
+    display: block;
+    height: 40px;
+    width: 40px;
+    font-size: 25px;
 
-.carousel-controls__button:nth-of-type(1):hover {
-  animation: underlineToDots 0.5s infinite linear;
-}
-.carousel-controls__button:nth-of-type(2):hover {
-  animation: underlineToDots 0.5s infinite linear;
+    &:after {
+      cursor: pointer;
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      border-radius: 100%;
+      text-align: center;
+      color: #007aff;
+      box-sizing: border-box;
+      transition: transform 150ms linear;
+      transform: scaleY(1.5);
+      background-color: rgba(0, 123, 255, 0.09);
+    }
+
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+    &:nth-of-type(1):after {
+      content: '\00003C';
+    }
+    &:after {
+      content: '\00003E';
+    }
+  }
 }
 
 @keyframes underlineToDots {

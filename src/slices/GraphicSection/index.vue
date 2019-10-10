@@ -2,7 +2,7 @@
   <section class="canvas">
     <div class="grid">
       <div class="info">
-        <slot name="info" :info="slice.primary">
+        <slot name="info" v-bind="slice.primary">
           <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
           <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
           <prismic-link class="cta" :field="slice.primary.cta_link">
@@ -11,7 +11,7 @@
         </slot>
       </div>
       <div class="graphic">
-        <slot name="graphic" :graphic="slice.primary">
+        <slot name="graphic" v-bind="slice.primary">
           <prismic-image :field="slice.primary.graphic_image" />
         </slot>
       </div>
