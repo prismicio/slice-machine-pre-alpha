@@ -21,7 +21,7 @@ export default {
     path: {
       required: false,
       type: [String, Array],
-      default: () => 'sliceMachine/slices',
+      default: () => 'vueSlices/slices',
       description: 'Path(s) to your slices components'
     }
   },
