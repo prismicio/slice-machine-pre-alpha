@@ -3,7 +3,7 @@ const path = require('path')
 const { exec } = require('child_process')
 
 // Move this elsewhere
-const utils = require('./website/api/utils')
+const utils = require('../website/api/utils')
 
 const pathToFiles = path.join(process.cwd(), 'website', 'api', 'files')
 

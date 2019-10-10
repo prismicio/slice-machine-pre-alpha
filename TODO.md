@@ -5,6 +5,7 @@ Feel free to pick one of them and open a pull-request [here](https://github.com/
 - [ ] Onboard first-time OSS contributors 💜
 - [ ] Review and accept a first slice-related pull request!
 - [ ] Make a website out of our list of slices
+- [ ] Auto-generate example page from mock data
 
 
 ### SLICES

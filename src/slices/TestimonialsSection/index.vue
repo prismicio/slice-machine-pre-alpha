@@ -1,40 +1,31 @@
 <template>
   <section class="canvas">
-    <slot name="title" :title="slice.primary.title">
+    <slot name="title" v-bind="slice.primary.title">
       <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
     </slot>
     <div class="card-carousel-wrapper">
-      <div
-        class="card-carousel--nav__left"
-        :disabled="atHeadOfList"
-        @click="moveCarousel(-1)"
-      />
+      <div class="card-carousel--nav__left" @click="previous" />
       <div class="card-carousel">
         <div class="card-carousel--overflow-container">
-          <div
+          <transition-group
+            name="carousel"
             class="card-carousel-cards"
-            :style="{
-              transform: 'translateX' + '(' + currentOffset + 'px' + ')'
-            }"
+            tag="div"
           >
             <div
               v-for="(item, index) in items"
-              :key="'item-' + index"
+              :key="item.id"
               class="card-carousel--card"
             >
-              <slot :id="index" name="item" :item="item">
+              <slot :id="index" name="item" v-bind="item">
                 <prismic-image :field="item.logo_image" />
                 <p>{{ $prismic.richTextAsPlain(item.paragraph) }}</p>
               </slot>
             </div>
-          </div>
+          </transition-group>
         </div>
       </div>
-      <div
-        class="card-carousel--nav__right"
-        :disabled="atEndOfList"
-        @click="moveCarousel(1)"
-      />
+      <div class="card-carousel--nav__right" @click="next" />
     </div>
     <slot
       name="title"
@@ -59,31 +50,39 @@ export default {
   },
   data() {
     return {
-      items: this.slice.items,
-      currentOffset: 0,
-      windowSize: 3,
-      paginationFactor: 410
-    }
-  },
-  computed: {
-    atEndOfList() {
-      return (
-        this.currentOffset <=
-        this.paginationFactor * -1 * (this.items.length - this.windowSize)
-      )
-    },
-    atHeadOfList() {
-      return this.currentOffset === 0
+      items: this.slice.items.map(item => ({
+        ...item,
+        id:
+          Math.random()
+            .toString(36)
+            .substring(2) + Date.now().toString(36)
+      }))
     }
   },
   methods: {
-    moveCarousel(direction) {
-      // Find a more elegant way to express the :style. consider using props to make it truly generic
-      if (direction === 1 && !this.atEndOfList) {
-        this.currentOffset -= this.paginationFactor
-      } else if (direction === -1 && !this.atHeadOfList) {
-        this.currentOffset += this.paginationFactor
-      }
+    next() {
+      const first = this.items.shift()
+      this.items = this.items.concat(first)
+
+      const mover = document.querySelector(
+        '.card-carousel-cards > div:first-of-type'
+      )
+      mover.style.opacity = 0
+      mover.addEventListener('transitionend', () => {
+        mover.style.opacity = 1
+      })
+    },
+    previous() {
+      const last = this.items.pop()
+      this.items = [last].concat(this.items)
+
+      const mover = document.querySelector(
+        '.card-carousel-cards > div:last-of-type'
+      )
+      mover.style.opacity = 0
+      mover.addEventListener('transitionend', () => {
+        mover.style.opacity = 1
+      })
     }
   }
 }

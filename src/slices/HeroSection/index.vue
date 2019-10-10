@@ -1,13 +1,13 @@
 <template>
   <section class="canvas">
-    <slot name="header" :header="slice.primary">
+    <slot name="header" v-bind="slice.primary">
       <div class="header">
         <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
         <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
       </div>
     </slot>
     <div class="call-to-action">
-      <slot name="call-to-action" :callToAction="slice.primary">
+      <slot name="call-to-action" v-bind="slice.primary">
         <!-- eslint-disable-next-line -->
         <input type="text" :placeholder="slice.primary.placeholder" />
         <input
