@@ -14,7 +14,7 @@
     "dev": "npm run scripts; nuxt --port 3010",
     "build": "npm run scripts && nuxt build",
     "scripts": "node ./scripts/bundleApi && node ./scripts/buildExamples",
-    "start": "npm run scripts; nuxt start",
+    "start": "npm run build; nuxt start",
     "generate": "nuxt generate"
   },
   "main": "index.js",
