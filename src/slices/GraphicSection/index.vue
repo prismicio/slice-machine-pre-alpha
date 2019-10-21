@@ -3,7 +3,7 @@
     <div class="grid">
       <div class="info">
         <slot name="info" v-bind="slice.primary">
-          <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
+          <h2>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h2>
           <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
           <prismic-link class="cta" :field="slice.primary.cta_link">
             {{ slice.primary.cta_label }}
@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/_slices.scss';
+
 .canvas {
   height: auto;
   margin: 0 auto;
@@ -42,21 +44,26 @@ export default {
 .grid {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
   height: 80vh;
+  @include md {
+    justify-content: space-around;
+    flex-direction: row;
+    padding-top: 0;
+  }
 }
 
 .info {
-  text-align: left;
-  padding-right: 20px;
-
-  h1 {
-    font-size: 48px;
-    line-height: 64px;
+  text-align: center;
+  padding: 20px;
+  @include md {
+    text-align: left;
+    padding-right: 20px;
   }
 
   p {
-    font-size: 16px;
-    line-height: 24px;
+    width: 412px;
   }
 
   a {
@@ -67,7 +74,7 @@ export default {
   .cta {
     &:after {
       content: '\00003E';
-      color: #007aff;
+      color: $blue-primary;
       padding: 4px;
       display: inline-block;
       box-sizing: border-box;
@@ -79,15 +86,12 @@ export default {
     }
   }
 }
-
-@media (max-width: 800px) {
-  .grid {
-    padding-top: 50px;
-    flex-direction: column;
+.graphic {
+  img {
+    width: 100%;
   }
-  .info {
-    text-align: center;
-    padding: 20px;
+  @mixin xl {
+    width: auto;
   }
 }
 </style>

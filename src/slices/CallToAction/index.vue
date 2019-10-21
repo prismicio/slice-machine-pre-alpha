@@ -3,11 +3,11 @@
     <slot name="header" v-bind="slice.primary">
       <div class="header">
         <prismic-image :field="slice.primary.icon_image" />
-        <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
-        <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
+        <h2>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h2>
+        <h4>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</h4>
       </div>
     </slot>
-    <div class="call-to-action">
+    <div class="button">
       <slot name="call-to-action" :callToAction="slice.primary">
         <prismic-link :field="slice.primary.button_link">
           {{ slice.primary.button_label }}
@@ -30,39 +30,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/_slices.scss';
+
 .canvas {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  width: 70%;
+  width: 80%;
   text-align: center;
 }
 
 .header {
   img {
     width: 68px;
-    padding-bottom: 15px;
+    padding-bottom: 16px;
   }
 
-  h1 {
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 64px;
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
-  p {
-    font-size: 22px;
-    line-height: 38px;
-    width: 65%;
+  h4 {
+    padding-bottom: 2rem;
     margin: 0 auto;
-    margin-bottom: 2rem;
   }
 }
 
-.call-to-action {
-  width: 80%;
+.button {
   margin: 0 auto;
 }
 
@@ -70,55 +67,5 @@ a {
   -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
   -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
   box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
-}
-
-a {
-  background-color: #007aff;
-  color: white;
-  text-decoration: none;
-  width: 134px;
-  height: 52px;
-  border: 1px solid rgb(2, 89, 182);
-  border-radius: 3px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 30px;
-  &:hover {
-    background-color: rgb(2, 89, 182);
-    cursor: pointer;
-  }
-  &:active {
-    box-shadow: none;
-    top: 5px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .header {
-    p {
-      width: 80%;
-    }
-  }
-}
-
-@media (max-width: 850px) {
-  .header {
-    h1 {
-      font-size: 45px;
-      line-height: 56px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 30px;
-    }
-  }
-}
-
-@media (max-width: 757px) {
-  a {
-    width: 278px;
-  }
 }
 </style>
