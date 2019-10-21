@@ -14,7 +14,8 @@
     "dev": "npm run scripts; nuxt --port 3010",
     "build": "npm run scripts && nuxt build",
     "scripts": "node ./scripts/bundleApi && node ./scripts/buildExamples",
-    "start": "npm run build; nuxt start",
+    "heroku-postbuild": "npm run build",
+    "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "main": "index.js",
@@ -39,9 +40,7 @@
     "prismic-vue": "git+https://github.com/prismicio/prismic-vue.git#master",
     "raw-loader": "^3.0.0",
     "vue-docgen-api": "^3.16.3",
-    "vue-markdown": "^2.2.4"
-  },
-  "devDependencies": {
+    "vue-markdown": "^2.2.4",
     "@nuxtjs/eslint-config": "^0.0.1",
     "@nuxtjs/eslint-module": "^0.0.1",
     "babel-eslint": "^10.0.1",
