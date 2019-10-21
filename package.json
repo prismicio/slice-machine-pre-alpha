@@ -36,7 +36,7 @@
     "nuxt": "^2.0.0",
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^2.1.1",
-    "prismic-vue": "git+https://github.com/prismicio/prismic-vue.git#master",
+    "prismic-vue": "git+https://github.com/prismicio/prismic-vue#master",
     "raw-loader": "^3.0.0",
     "vue-docgen-api": "^3.16.3",
     "vue-markdown": "^2.2.4"
@@ -62,7 +62,7 @@
     "nodemon": "^1.18.9",
     "prettier": "^1.16.4",
     "prompts": "^2.1.0",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^7.3.1",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0"
   },
