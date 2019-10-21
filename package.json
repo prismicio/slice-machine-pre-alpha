@@ -40,7 +40,9 @@
     "prismic-vue": "git+https://github.com/prismicio/prismic-vue#master",
     "raw-loader": "^3.0.0",
     "vue-docgen-api": "^3.16.3",
-    "vue-markdown": "^2.2.4",
+    "vue-markdown": "^2.2.4"
+  },
+  "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
     "@nuxtjs/eslint-module": "^0.0.1",
     "babel-eslint": "^10.0.1",
