@@ -30,8 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
-
+@import '../../styles/variables.scss';
 .canvas {
   height: 100vh;
   display: flex;

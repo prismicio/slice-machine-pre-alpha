@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
+@import '../../styles/variables.scss';
 
 .canvas {
   height: 80vh;
@@ -123,10 +123,6 @@ export default {
   display: flex;
   justify-content: center;
   width: 85%;
-
-  @include rwd(1350) {
-    width: 77em;
-  }
 
   &--overflow-container {
     overflow-x: auto;
@@ -249,10 +245,6 @@ export default {
     &:before {
       content: '';
       box-sizing: border-box;
-    }
-
-    @include md {
-      display: inline-block;
     }
   }
 
