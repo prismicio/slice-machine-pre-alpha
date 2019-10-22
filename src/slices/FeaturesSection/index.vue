@@ -40,8 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
-
+@import '../../styles/variables.scss';
 .canvas {
   height: auto;
   margin: 0 auto;
@@ -52,9 +51,6 @@ export default {
 .header {
   padding: 75px 50px 0 50px;
   margin: 0 auto;
-  @include md {
-    padding: 75px 50px 50px 50px;
-  }
 
   h2 {
     text-align: center;
@@ -71,11 +67,6 @@ export default {
   grid-auto-flow: row;
   grid-template-rows: 1fr 1fr 1fr;
   padding-bottom: 0;
-  @include md {
-    grid-auto-flow: column;
-    grid-template-rows: 100%;
-    padding-bottom: 100px;
-  }
 }
 
 .grid-item {
@@ -83,11 +74,6 @@ export default {
   border-bottom: 1px solid rgba(151, 151, 151, 0.2);
   border-right: 0;
   &:last-child {
-    border-bottom: 0;
-  }
-  @include md {
-    padding: 0 60px;
-    border-right: 1px solid rgba(151, 151, 151, 0.2);
     border-bottom: 0;
   }
 

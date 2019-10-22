@@ -32,8 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
-
+@import '../../styles/variables.scss';
 .canvas {
   height: auto;
   margin: 0 auto;
@@ -47,20 +46,16 @@ export default {
   flex-direction: column;
   padding-top: 50px;
   height: 80vh;
-  @include md {
-    justify-content: space-around;
-    flex-direction: row;
-    padding-top: 0;
-  }
+  justify-content: space-around;
+  flex-direction: row;
+  padding-top: 0;
 }
 
 .info {
   text-align: center;
   padding: 20px;
-  @include md {
-    text-align: left;
-    padding-right: 20px;
-  }
+  text-align: left;
+  padding-right: 20px;
 
   p {
     width: 412px;
@@ -89,9 +84,6 @@ export default {
 .graphic {
   img {
     width: 100%;
-  }
-  @mixin xl {
-    width: auto;
   }
 }
 </style>
