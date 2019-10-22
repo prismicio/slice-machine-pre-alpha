@@ -2,10 +2,10 @@
   <section class="canvas">
     <div class="intro-text">
       <slot name="title" v-bind="slice.primary.title">
-        <h2>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h2>
+        <h2>{{ $prismic.asText(slice.primary.title) }}</h2>
       </slot>
       <slot name="paragraph" v-bind="slice.primary.paragraph">
-        <h4>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</h4>
+        <h4>{{ $prismic.asText(slice.primary.paragraph) }}</h4>
       </slot>
     </div>
     <div class="carousel-view">
@@ -46,6 +46,7 @@ export default {
     }
   },
   data() {
+    console.log(this.$prismic, 'header')
     return {
       slides: this.slice.items.map(slide => ({
         ...slide,
@@ -105,13 +106,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
-
+@import '../../styles/variables.scss';
 .canvas {
   height: 100vh;
-  @include md {
-    margin-top: 100px;
-  }
 }
 
 .intro-text {
@@ -126,10 +123,6 @@ export default {
     width: 90%;
     padding-bottom: 1rem;
     margin: 0 auto;
-    @include md {
-      padding-bottom: 3rem;
-      width: 664px;
-    }
   }
 }
 
@@ -163,12 +156,6 @@ export default {
   opacity: 1;
   margin: 1em;
   flex: 0 0 20em;
-  @include sm {
-    height: 15em;
-  }
-  @include md {
-    height: 20em;
-  }
 }
 
 video {
@@ -178,12 +165,6 @@ video {
 .active {
   height: 12em;
   transition: all 0.3s ease-in-out;
-  @include sm {
-    height: 17em;
-  }
-  @include md {
-    height: 22em;
-  }
 }
 
 .carousel-move {
@@ -211,7 +192,7 @@ video {
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    color: $blue-primary;
+    color: $color-primary;
     box-sizing: border-box;
     width: 14px;
     height: 14px;
@@ -233,6 +214,33 @@ video {
   &--nav__right {
     right: 2px;
     transform: rotate(45deg);
+  }
+
+  @media screen and (max-width: $mobile-max) {
+    .slide {
+      height: 15em;
+    }
+    .active {
+      height: 17em;
+    }
+  }
+
+  @media screen and (min-width: $tablet-min) {
+    .slide {
+      height: 20em;
+    }
+    .active {
+      height: 22em;
+    }
+    .canvas {
+      margin-top: 100px;
+    }
+    .intro-text {
+      h4 {
+        padding-bottom: 3rem;
+        width: 664px;
+      }
+    }
   }
 }
 </style>
