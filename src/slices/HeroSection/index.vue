@@ -2,19 +2,19 @@
   <section class="canvas">
     <slot name="header" v-bind="slice.primary">
       <div class="header">
-        <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
-        <h4>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</h4>
+        <h1>{{ $prismic.asText(slice.primary.title) }}</h1>
+        <p>{{ $prismic.asText(slice.primary.paragraph) }}</p>
       </div>
     </slot>
     <div class="call-to-action">
       <slot name="call-to-action" v-bind="slice.primary">
         <!-- eslint-disable-next-line -->
         <input type="text" :placeholder="slice.primary.placeholder" />
-        <div class="button">
-          <prismic-link :field="slice.primary.button_link">
-            {{ slice.primary.button_label }}
-          </prismic-link>
-        </div>
+        <input
+          type="button"
+          :value="slice.primary.button_label"
+          :onclick="`window.location.href='${slice.primary.button_link.url}'`"
+        />
       </slot>
     </div>
   </section>
@@ -28,36 +28,43 @@ export default {
       type: Object,
       required: true
     }
+  },
+  created() {
+    console.log(this.$prismic, 'header')
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
-
 .canvas {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  width: 90%;
+  width: 70%;
   text-align: center;
 }
 
 .header {
-  h4 {
-    padding-bottom: 2rem;
-    width: 90%;
+  h1 {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 84px;
+  }
+
+  p {
+    font-size: 22px;
+    line-height: 38px;
+    width: 65%;
     margin: 0 auto;
+    margin-bottom: 2rem;
   }
 }
 
 .call-to-action {
+  width: 80%;
   margin: 0 auto;
-  @include md {
-    width: 80%;
-  }
 }
 
 input {
@@ -68,19 +75,85 @@ input {
 
 input[type='text'] {
   padding: 0 1em;
-  margin-right: 0;
+  margin-right: 20px;
   margin-bottom: 20px;
   text-decoration: none;
-  width: 250px;
+  width: 370px;
   height: 52px;
   border: 1px solid #f2f2f2;
   border-radius: 3px;
   text-align: left;
   font-size: 14px;
   line-height: 30px;
-  @include md {
-    width: 370px;
-    margin-right: 20px;
+}
+
+input[type='button'] {
+  background-color: #007aff;
+  color: white;
+  text-decoration: none;
+  width: 120px;
+  height: 52px;
+  border: 1px solid rgb(2, 89, 182);
+  border-radius: 3px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 30px;
+  &:hover {
+    background-color: rgb(2, 89, 182);
+    cursor: pointer;
+  }
+  &:active {
+    box-shadow: none;
+    top: 5px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .header {
+    p {
+      width: 80%;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .header {
+    h1 {
+      font-size: 54px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  }
+
+  input[type='text'] {
+    width: 250px;
+  }
+}
+
+@media (max-width: 850px) {
+  .header {
+    h1 {
+      font-size: 45px;
+      line-height: 56px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 30px;
+    }
+  }
+}
+
+@media (max-width: 757px) {
+  input[type='text'] {
+    margin-right: 0;
+  }
+
+  input[type='button'] {
+    width: 278px;
   }
 }
 </style>
