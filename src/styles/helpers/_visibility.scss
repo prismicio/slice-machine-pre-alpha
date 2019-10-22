@@ -1,6 +1,4 @@
-@import '../variables/breakpoints.scss';
-
-.mobile-only {
+@import '../variables/breakpoints.scss' .mobile-only {
   @media (min-width: $tablet-min) {
     display: none !important;
   }

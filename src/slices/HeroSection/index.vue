@@ -2,8 +2,8 @@
   <section class="canvas">
     <slot name="header" v-bind="slice.primary">
       <div class="header">
-        <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
-        <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
+        <h1>{{ $prismic.asText(slice.primary.title) }}</h1>
+        <p>{{ $prismic.asText(slice.primary.paragraph) }}</p>
       </div>
     </slot>
     <div class="call-to-action">
@@ -28,11 +28,15 @@ export default {
       type: Object,
       required: true
     }
+  },
+  created() {
+    console.log(this.$prismic, 'header')
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/variables.scss';
 .canvas {
   height: 100vh;
   display: flex;
