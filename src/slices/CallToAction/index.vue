@@ -73,7 +73,7 @@ a {
 }
 
 a {
-  background-color: #007aff;
+  background-color: rgb(2, 89, 182);
   color: white;
   text-decoration: none;
   width: 134px;

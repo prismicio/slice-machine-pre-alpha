@@ -40,7 +40,8 @@ export default {
   modules: ['@nuxtjs/eslint-module', 'cookie-universal-nuxt'],
   serverMiddleware: [
     { path: '/api/models', handler: '~/api/models.js' },
-    { path: '/api/slices', handler: '~/api/slices.js' }
+    { path: '/api/slices', handler: '~/api/slices.js' },
+    { path: '/api/bootstrap', handler: '~/api/bootstrap.js' }
   ],
   /*
    ** Build configuration

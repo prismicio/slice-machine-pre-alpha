@@ -76,8 +76,12 @@ const zipFile = (zip, pathFrom, pathTo) => {
   }
 }
 
+const parseSlicesQuery = str => {
+  return str.split(',').filter(e => e.length)
+}
+
 // Change this when you allow users to select the slices they want
-const getSliceNames = (slicesParams, url = sliceFolders.nuxt) => {
+const getSliceNames = (url = sliceFolders.nuxt) => {
   const allSlices = getDirectories(url)
   return allSlices.map(path => {
     const spl = path.split('/')
@@ -92,6 +96,7 @@ module.exports = {
   readCustomTypes,
   getModelFromSliceName,
   getAllFromSliceName,
-  zipFile,
-  getSliceNames
+  parseSlicesQuery,
+  getSliceNames,
+  zipFile
 }

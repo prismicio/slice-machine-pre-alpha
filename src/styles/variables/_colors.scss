@@ -1,21 +1,20 @@
 // General color names
-$c-green-primary: #5ECE7B !default;
-$c-green-secondary: #9EE2B0 !default;
-$c-dark-primary: #1D1F22 !default;
+$sm-primary-color: #5ece7b !default;
+$c-green-secondary: #9ee2b0 !default;
+$c-dark-primary: #1d1f22 !default;
 $c-dark-secondary: #737680 !default;
-$c-gray-primary: #6A6E7E !default;
-$c-gray-secondary: #BEBFC4 !default;
-$c-light-primary: #F1F2F3 !default;
-$c-light-secondary: #FFFFFF !default;
-$c-pink-primary: #E22326 !default;
-$c-pink-secondary: #FFF8F7 !default;
-$c-yellow-primary: #FFDE3B !default;
-$c-yellow-secondary:#FFFCED !default;
-$c-blue-primary: #6699CC !default;
-$c-blue-secondary: #F5F7FA !default;
-$c-black: #000000 !default;
-$c-white: #FFFFFF !default;
-
+$c-gray-primary: #6a6e7e !default;
+$c-gray-secondary: #bebfc4 !default;
+$c-light-primary: #f1f2f3 !default;
+$c-light-secondary: #fff !default;
+$c-pink-primary: #e22326 !default;
+$c-pink-secondary: #fff8f7 !default;
+$c-yellow-primary: #ffde3b !default;
+$c-yellow-secondary: #fffced !default;
+$c-blue-primary: #69c !default;
+$c-blue-secondary: #f5f7fa !default;
+$c-black: #000 !default;
+$c-white: #fff !default;
 
 // Accent
 $c-accent-primary: $c-green-primary !default;

@@ -26,32 +26,6 @@ export const mergeCustomTypesWithSlices = (ct, slices, customTypesToMerge) => {
   })
 }
 
-const hyphenateRE = /\B([A-Z])/g
-const hyphenate = str => str.replace(hyphenateRE, '-$1').toLowerCase()
-
-/**
- * Extracts and returns a slice definition object
- * @param  {String} sliceName name of your slice
- * @return {Object}           An object with snake cased `sliceName`
- */
-export const getModelFromSliceName = sliceName => {
-  try {
-    const component = parse(
-      path.join(process.cwd(), `src/slices/${sliceName}/index.vue`)
-    )
-    const model = JSON.parse(
-      fs.readFileSync(
-        path.join(process.cwd(), `src/slices/${sliceName}/model.json`),
-        'utf8'
-      )
-    )
-    const key = hyphenate(component.displayName).replace(/-/g, '_')
-    return { [key]: model }
-  } catch (e) {
-    console.error(e) // eslint-disable-line
-  }
-}
-
 /**
  * Assembles a custom_types JSON representation
  * @param  {String} folder path to the folder
