@@ -24,7 +24,6 @@ export default {
 @import '../style/_variables';
 
 .header {
-  background: $bg-green;
   background-position: bottom right;
   background-size: 50%;
   background-repeat: no-repeat;

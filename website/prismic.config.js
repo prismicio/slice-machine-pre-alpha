@@ -1,3 +1,3 @@
 module.exports = {
-  apiEndpoint: 'https://vue-slices.prismic.io/api/v2'
+  apiEndpoint: 'https://slice-machine.prismic.io/api/v2'
 }

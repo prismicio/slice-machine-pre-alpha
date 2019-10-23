@@ -1,26 +1,23 @@
 <template>
-  <main>
-    <Header
-      justify="space-between"
-      :style="{ backgroundImage: `url('${image}')` }"
-    >
+  <main
+    :style="{ backgroundImage: `url('${document.banner_background.url}')` }"
+  >
+    <Container justify="space-around">
       <div style="max-width: 450px">
-        <Title content="Slices" />
-        <Paragraph bold content="Built with and for Nuxt.js" />
-        <Paragraph
-          style="margin-top: 18px"
-          content="Slices is a library of Nuxt components that helps you build your website faster."
-        />
-        <Button
-          style="margin-top: 30px"
-          variant="success"
-          @click="$router.push('/prismic-example')"
-        >
-          Add it to my project
-        </Button>
+        <prismic-rich-text :field="document.title" />
+        <prismic-rich-text :field="document.description" />
+        <prismic-rich-text :field="document.copy_paste_embed" />
+        <prismic-rich-text :field="document.small_description" />
       </div>
-    </Header>
+    </Container>
     <Body>
+      <row v-for="(slice, index) in slices" :key="'slice-' + index">
+        <GraphicBlock
+          v-if="slice.slice_type === 'image_with_description'"
+          :slice="slice"
+        />
+        <VideoBlock v-if="slice.slice_type === 'video_block'" :slice="slice" />
+      </row>
       <Row>
         <Card v-for="card in lst" :key="card.displayName" v-bind="card" />
       </Row>
@@ -29,15 +26,15 @@
 </template>
 
 <script>
+import Prismic from 'prismic-javascript'
+import PrismicConfig from '~/prismic.config.js'
 import Slices from '@/../src'
 import { createSlice } from '~/utils'
 
-import Header from '@/components/Header'
+import Container from '@/components/Container'
+import GraphicBlock from '@/components/TextGraphic'
+import VideoBlock from '@/components/VideoBlock'
 import Body from '@/components/Body'
-import Title from '@/components/Text/Title'
-import Paragraph from '@/components/Text/Paragraph'
-import Button from '@/components/Button'
-import headerImg from '@/static/head.svg'
 
 import Card from '@/components/Card'
 import Row from '@/components/Row'
@@ -49,18 +46,50 @@ const lst = Object.keys(Slices)
 export default {
   components: {
     ...Slices,
-    Header,
-    Title,
-    Paragraph,
-    Button,
+    Container,
+    GraphicBlock,
+    VideoBlock,
     Body,
     Card,
     Row
   },
   data: () => ({
-    lst,
-    image: headerImg
-  })
+    lst
+  }),
+  async asyncData({ params, error, req }) {
+    try {
+      // Fetching the API object
+      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
+
+      // Query to get the home page content
+      let document = {}
+      const result = await api.getSingle('home')
+      document = result.data
+
+      // Query to get the menu content
+      let menuContent = {}
+      const menu = await api.getSingle('header')
+      menuContent = menu.data
+
+      // Load the edit button
+      if (process.client) window.prismic.setupEditButton()
+
+      return {
+        // Page content
+        document,
+        documentId: result.id,
+
+        // Set slices as variable
+        slices: document.body,
+
+        // Menu
+        menuContent,
+        menuLinks: menuContent.links
+      }
+    } catch (e) {
+      error({ statusCode: 404, message: 'Page not found' })
+    }
+  }
 }
 </script>
 

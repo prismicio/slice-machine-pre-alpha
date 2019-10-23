@@ -2,8 +2,8 @@
   <section class="canvas">
     <div class="header">
       <slot name="header" v-bind="slice.primary">
-        <h2>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h2>
-        <h4>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</h4>
+        <h2>{{ $prismic.asText(slice.primary.title) }}</h2>
+        <h4>{{ $prismic.asText(slice.primary.paragraph) }}</h4>
       </slot>
     </div>
     <div class="grid">
@@ -14,8 +14,8 @@
       >
         <slot :id="index" name="item" v-bind="item">
           <prismic-image :alt="item.alt" :field="item.icon_image" />
-          <h3>{{ $prismic.richTextAsPlain(item.head) }}</h3>
-          <p>{{ $prismic.richTextAsPlain(item.desc) }}</p>
+          <h3>{{ $prismic.asText(item.head) }}</h3>
+          <p>{{ $prismic.asText(item.desc) }}</p>
           <div class="button">
             <prismic-link :field="item.button_link">
               {{ item.button_label }}

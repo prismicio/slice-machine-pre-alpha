@@ -1,7 +1,7 @@
 <template>
   <section class="canvas">
     <slot name="title" v-bind="slice.primary.title">
-      <h2>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h2>
+      <h2>{{ $prismic.asText(slice.primary.title) }}</h2>
     </slot>
     <div class="card-carousel-wrapper">
       <div class="carousel-controls" @click="previous">
@@ -21,7 +21,7 @@
             >
               <slot :id="index" name="item" v-bind="item">
                 <prismic-image :field="item.logo_image" />
-                <p>{{ $prismic.richTextAsPlain(item.paragraph) }}</p>
+                <p>{{ $prismic.asText(item.paragraph) }}</p>
               </slot>
             </div>
           </transition-group>
@@ -37,7 +37,7 @@
       :linkText="slice.primary.link_text"
     >
       <prismic-link class="call-to-action" :field="slice.primary.link">
-        {{ $prismic.richTextAsPlain(slice.primary.link_text) }}
+        {{ $prismic.asText(slice.primary.link_text) }}
       </prismic-link>
     </slot>
   </section>

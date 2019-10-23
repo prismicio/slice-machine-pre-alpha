@@ -36,6 +36,7 @@
     "nuxt": "^2.0.0",
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^2.1.1",
+    "prismic-nuxt": "^0.5.3",
     "prismic-vue": "git+https://github.com/prismicio/prismic-vue#master",
     "raw-loader": "^3.0.0",
     "vue-docgen-api": "^3.16.3",

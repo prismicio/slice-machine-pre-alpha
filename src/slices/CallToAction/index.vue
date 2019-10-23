@@ -3,8 +3,8 @@
     <slot name="header" v-bind="slice.primary">
       <div class="header">
         <prismic-image :field="slice.primary.icon_image" />
-        <h2>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h2>
-        <h4>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</h4>
+        <h2>{{ $prismic.asText(slice.primary.title) }}</h2>
+        <h4>{{ $prismic.asText(slice.primary.paragraph) }}</h4>
       </div>
     </slot>
     <div class="button">

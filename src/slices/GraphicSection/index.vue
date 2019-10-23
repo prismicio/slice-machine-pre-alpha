@@ -3,8 +3,8 @@
     <div class="grid">
       <div class="info">
         <slot name="info" v-bind="slice.primary">
-          <h2>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h2>
-          <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
+          <h2>{{ $prismic.asText(slice.primary.title) }}</h2>
+          <p>{{ $prismic.asText(slice.primary.paragraph) }}</p>
           <prismic-link class="cta" :field="slice.primary.cta_link">
             {{ slice.primary.cta_label }}
           </prismic-link>

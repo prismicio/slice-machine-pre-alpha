@@ -1,12 +1,7 @@
 import Vue from 'vue'
-import PrismicVue from 'prismic-vue'
-import linkResolver from './linkResolver'
-import htmlSerializer from './htmlSerializer'
-import PrismicConfig from '~/prismic.config.js'
+import { common, nuxt } from 'prismic-vue/components/umd'
 import '~/style/index.css'
 
-Vue.use(PrismicVue, {
-  endpoint: PrismicConfig.apiEndpoint,
-  linkResolver,
-  htmlSerializer
+Object.entries({ ...common, ...nuxt }).forEach(([_, component]) => {
+  Vue.component(component.name, component)
 })

@@ -2,10 +2,10 @@
   <section class="canvas">
     <div class="intro-text">
       <slot name="title" v-bind="slice.primary.title">
-        <h2>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h2>
+        <h2>{{ $prismic.asText(slice.primary.title) }}</h2>
       </slot>
       <slot name="paragraph" v-bind="slice.primary.paragraph">
-        <h4>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</h4>
+        <h4>{{ $prismic.asText(slice.primary.paragraph) }}</h4>
       </slot>
     </div>
     <div class="carousel-view">
