@@ -1,11 +1,16 @@
 //Colors
-$grey-primary: #333333;
-$grey-secondary: #666666;
-$blue-primary: #007AFF;
+$grey-primary: #333;
+$grey-secondary: #666;
+$blue-primary: #007aff;
 $blue-secondary: rgb(0, 80, 165);
+
+$color-primary: $blue-primary;
+$color-secondary: $blue-secondary;
 
 //Text;
 $text-primary: $grey-primary;
 $text-secondary: $grey-secondary;
 $link-primary: $blue-primary;
 $link-hover: $blue-secondary;
+
+$font-size-button: 18px;

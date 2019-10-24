@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container container--full-height">
     <div class="header">
       <slot name="top-content" />
       <slot name="header" v-bind="slice.primary">
@@ -11,10 +11,19 @@
         </h4>
       </slot>
     </div>
-    <div class="call-to-action">
-      <slot name="call-to-action" v-bind="slice.primary">
-        <button @click="e => handleLink(e, slice.primary.button_link)">
-          {{ slice.primary.button_label }}
+    <div class="cta">
+      <slot name="cta" v-bind="slice.items">
+        <button
+          v-for="(item, i) in slice.items"
+          :key="`button-item-${i + 1}`"
+          :class="
+            `cta__button ${
+              item.variant === 'secondary' ? 'cta__button--secondary' : ''
+            }`
+          "
+          @click="e => handleLink(e, item.button_link)"
+        >
+          {{ item.button_label }}
         </button>
       </slot>
     </div>
@@ -31,11 +40,16 @@ export default {
     }
   },
   methods: {
-    handleLink(e, data) {
-      if (data.link_type === 'Web') {
-        return location.replace(this.$prismic.asLink(data))
+    handleLink({ metaKey }, linkData) {
+      /** Logic could be extracted from prismic-vue/Link */
+      const link = this.$prismic.asLink(linkData)
+      if (linkData.link_type === 'Web') {
+        if (metaKey) {
+          return window.open(link, '_newtab')
+        }
+        return (location.href = link)
       }
-      return false
+      return this.$router.push(link)
     }
   }
 }
@@ -49,11 +63,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  padding-top: 2rem;
-  min-height: 100vh;
+  padding: 2rem 0;
   width: 90%;
   max-width: 940px;
   text-align: center;
+  &--full-height {
+    min-height: 100vh;
+  }
 }
 
 .header {
@@ -79,10 +95,29 @@ export default {
   }
 }
 
-.call-to-action {
+.cta {
   margin: 0 auto;
-  @include md {
-    width: 80%;
+  max-width: 640px; // Should be sm
+  *:not(:last-child) {
+    margin-right: 0.6rem;
+  }
+  &__button {
+    background: $color-primary;
+    border: 1px solid $color-primary;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 3px;
+    font-size: $font-size-button;
+    color: #fff;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(136, 136, 136, 0.24);
+    -moz-box-shadow: 0 2px 4px 0 rgba(136, 136, 136, 0.24);
+    box-shadow: 0 2px 4px 0 rgba(136, 136, 136, 0.24);
+
+    &--secondary {
+      background: #fff;
+      border: 1px solid #fff;
+      color: $text-primary;
+    }
   }
 }
 </style>
