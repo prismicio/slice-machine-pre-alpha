@@ -178,6 +178,7 @@ section {
 }
 .header {
   * {
+    margin: 0 auto;
     margin-bottom: 2rem;
     width: 100%;
   }
@@ -194,7 +195,6 @@ section {
   }
   &__subtitle {
     width: 90%;
-    margin: auto;
     max-width: calc((940px / 3) * 2);
   }
 }
