@@ -18,14 +18,9 @@
         "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
         "label": "Paragraph"
       }
-    },
-    "placeholder": {
-      "type": "Text",
-      "config": {
-        "label": "Placeholder",
-        "placeholder": "Input box Placeholder"
-      }
-    },
+    }
+  },
+  "repeat": {
     "button_link": {
       "type": "Link",
       "config": {
@@ -38,7 +33,14 @@
         "label": "Button Label",
         "placeholder": "Text for button"
       }
+    },
+    "variant": {
+      "type": "Select",
+      "config": {
+        "options": ["primary", "secondary"],
+        "default_value": "primary",
+        "label": "variant"
+      }
     }
-  },
-  "repeat": {}
+  }
 }

@@ -3,8 +3,8 @@
     <slot name="header" :header="slice.primary">
       <div class="header">
         <prismic-image :field="slice.primary.icon_image" />
-        <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
-        <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
+        <h1>{{ $prismic.asText(slice.primary.title) }}</h1>
+        <p>{{ $prismic.asText(slice.primary.paragraph) }}</p>
       </div>
     </slot>
     <div class="call-to-action">

@@ -1,20 +1,30 @@
 <template>
-  <section class="canvas">
-    <slot name="header" v-bind="slice.primary">
-      <div class="header">
-        <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
-        <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
-      </div>
-    </slot>
-    <div class="call-to-action">
-      <slot name="call-to-action" v-bind="slice.primary">
-        <!-- eslint-disable-next-line -->
-        <input type="text" :placeholder="slice.primary.placeholder" />
-        <input
-          type="button"
-          :value="slice.primary.button_label"
-          :onclick="`window.location.href='${slice.primary.button_link.url}'`"
-        />
+  <section class="container container--full-height">
+    <div class="header">
+      <slot name="top-content" />
+      <slot name="header" v-bind="slice.primary">
+        <h1 class="header__title">
+          {{ $prismic.asText(slice.primary.title) }}
+        </h1>
+        <h4 class="header__subtitle">
+          {{ $prismic.asText(slice.primary.paragraph) }}
+        </h4>
+      </slot>
+    </div>
+    <div class="cta">
+      <slot name="cta" v-bind="slice.items">
+        <button
+          v-for="(item, i) in slice.items"
+          :key="`button-item-${i + 1}`"
+          :class="
+            `cta__button ${
+              item.variant === 'secondary' ? 'cta__button--secondary' : ''
+            }`
+          "
+          @click="e => handleLink(e, item.button_link)"
+        >
+          {{ item.button_label }}
+        </button>
       </slot>
     </div>
   </section>
@@ -28,129 +38,86 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    handleLink({ metaKey }, linkData) {
+      /** Logic could be extracted from prismic-vue/Link */
+      const link = this.$prismic.asLink(linkData)
+      if (linkData.link_type === 'Web') {
+        if (metaKey) {
+          return window.open(link, '_newtab')
+        }
+        return (location.href = link)
+      }
+      return this.$router.push(link)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.canvas {
-  height: 100vh;
+@import '../../styles/_slices.scss';
+
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  width: 70%;
+  padding: 2rem 0;
+  width: 90%;
+  max-width: $screen-lg-min;
   text-align: center;
+  &--full-height {
+    min-height: 100vh;
+  }
 }
 
 .header {
-  h1 {
-    font-weight: 700;
-    font-size: 64px;
-    line-height: 84px;
-  }
-
-  p {
-    font-size: 22px;
-    line-height: 38px;
-    width: 65%;
+  * {
     margin: 0 auto;
     margin-bottom: 2rem;
+    width: 100%;
+  }
+  &__title {
+    font-size: 42px;
+    line-height: 48px;
+    @include md {
+      font-size: 5vw;
+    }
+    @include lg {
+      font-size: 70px;
+      line-height: 84px;
+    }
+  }
+  &__subtitle {
+    width: 90%;
+    max-width: calc((940px / 3) * 2);
   }
 }
 
-.call-to-action {
-  width: 80%;
+.cta {
   margin: 0 auto;
-}
-
-input {
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
-  -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
-  box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
-}
-
-input[type='text'] {
-  padding: 0 1em;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  text-decoration: none;
-  width: 370px;
-  height: 52px;
-  border: 1px solid #f2f2f2;
-  border-radius: 3px;
-  text-align: left;
-  font-size: 14px;
-  line-height: 30px;
-}
-
-input[type='button'] {
-  background-color: #007aff;
-  color: white;
-  text-decoration: none;
-  width: 120px;
-  height: 52px;
-  border: 1px solid rgb(2, 89, 182);
-  border-radius: 3px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 30px;
-  &:hover {
-    background-color: rgb(2, 89, 182);
+  max-width: 640px; // Should be sm
+  *:not(:last-child) {
+    margin-right: 0.6rem;
+  }
+  &__button {
+    background: $color-primary;
+    border: 1px solid $color-primary;
     cursor: pointer;
-  }
-  &:active {
-    box-shadow: none;
-    top: 5px;
-  }
-}
+    padding: 12px 16px;
+    border-radius: 3px;
+    font-size: $font-size-button;
+    color: #fff;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(136, 136, 136, 0.24);
+    -moz-box-shadow: 0 2px 4px 0 rgba(136, 136, 136, 0.24);
+    box-shadow: 0 2px 4px 0 rgba(136, 136, 136, 0.24);
 
-@media (max-width: 1200px) {
-  .header {
-    p {
-      width: 80%;
+    &--secondary {
+      background: #fff;
+      border: 1px solid #fff;
+      color: $text-primary;
     }
-  }
-}
-
-@media (max-width: 1000px) {
-  .header {
-    h1 {
-      font-size: 54px;
-    }
-
-    p {
-      font-size: 18px;
-    }
-  }
-
-  input[type='text'] {
-    width: 250px;
-  }
-}
-
-@media (max-width: 850px) {
-  .header {
-    h1 {
-      font-size: 45px;
-      line-height: 56px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 30px;
-    }
-  }
-}
-
-@media (max-width: 757px) {
-  input[type='text'] {
-    margin-right: 0;
-  }
-
-  input[type='button'] {
-    width: 278px;
   }
 }
 </style>

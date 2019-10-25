@@ -1,10 +1,12 @@
 <template>
   <section class="canvas">
     <slot name="title" v-bind="slice.primary.title">
-      <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
+      <h2>{{ $prismic.asText(slice.primary.title) }}</h2>
     </slot>
     <div class="card-carousel-wrapper">
-      <div class="card-carousel--nav__left" @click="previous" />
+      <div class="carousel-controls" @click="previous">
+        <div class="carousel-controls--nav__left" />
+      </div>
       <div class="card-carousel">
         <div class="card-carousel--overflow-container">
           <transition-group
@@ -19,21 +21,23 @@
             >
               <slot :id="index" name="item" v-bind="item">
                 <prismic-image :field="item.logo_image" />
-                <p>{{ $prismic.richTextAsPlain(item.paragraph) }}</p>
+                <p>{{ $prismic.asText(item.paragraph) }}</p>
               </slot>
             </div>
           </transition-group>
         </div>
       </div>
-      <div class="card-carousel--nav__right" @click="next" />
+      <div class="carousel-controls" @click="next">
+        <div class="carousel-controls--nav__right" />
+      </div>
     </div>
     <slot
       name="title"
       :link="slice.primary.link"
       :linkText="slice.primary.link_text"
     >
-      <prismic-link class="cta" :field="slice.primary.link">
-        {{ $prismic.richTextAsPlain(slice.primary.link_text) }}
+      <prismic-link class="call-to-action" :field="slice.primary.link">
+        {{ $prismic.asText(slice.primary.link_text) }}
       </prismic-link>
     </slot>
   </section>
@@ -89,32 +93,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$vue-navy: #2c3e50;
-$vue-navy-light: #3a5169;
-$vue-teal: #42b883;
-$vue-teal-light: #42b983;
-$gray: #666a73;
-$light-gray: #f8f8f8;
+@import '../../styles/_slices.scss';
 
 .canvas {
   height: 80vh;
   margin-top: 100px;
-  // background-color: #F8FAFB;
+  padding: 50px 0;
+  // background-color: #f8fafb;
 
-  h1 {
-    font-size: 48px;
-    line-height: 64px;
-    display: flex;
-    justify-content: center;
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
   }
 
-  .cta {
+  a {
     display: flex;
     justify-content: center;
-    color: #007aff;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 34px;
   }
 }
 
@@ -123,56 +117,21 @@ $light-gray: #f8f8f8;
   align-items: center;
   justify-content: center;
   margin: 20px 0 40px;
-  color: $gray;
 }
 
 .card-carousel {
   display: flex;
   justify-content: center;
-  width: 77em;
+  width: 85%;
+  cursor: ew-resize;
+
+  @include rwd(1350) {
+    width: 77em;
+  }
 
   &--overflow-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-  }
-
-  &--nav__left,
-  &--nav__right {
-    display: block;
-    height: 40px;
-    width: 40px;
-    font-size: 25px;
-    &:after {
-      cursor: pointer;
-      display: block;
-      font-family: Arial, Helvetica, sans-serif;
-      border-radius: 100%;
-      text-align: center;
-      color: #007aff;
-      box-sizing: border-box;
-      transition: transform 150ms linear;
-      transform: scaleY(1.5);
-      background-color: rgba(0, 123, 255, 0.09);
-    }
-    &:hover:after {
-      transform: scaleY(1.5) scale(1.3);
-    }
-    &[disabled] {
-      opacity: 0.2;
-      border-color: black;
-    }
-  }
-
-  &--nav__left {
-    &:after {
-      content: '\00003C';
-    }
-  }
-
-  &--nav__right {
-    &:after {
-      content: '\00003E';
-    }
   }
 }
 
@@ -186,13 +145,13 @@ $light-gray: #f8f8f8;
   .card-carousel--card {
     background-color: #ffffff;
     margin: 0 10px;
-    cursor: pointer;
+    cursor: ew-resize;
     -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
     -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
     box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
     border: 1px solid #f2f2f2;
     border-radius: 4px;
-    width: 24.375em; /* 390px */
+    width: 390px;
     height: 326px;
     display: flex;
     flex-direction: column;
@@ -205,15 +164,17 @@ $light-gray: #f8f8f8;
     }
 
     p {
+      line-height: 24px;
       width: 70%;
       text-align: center;
       padding: 3px 0;
       margin: 0;
       margin-bottom: 2px;
-      font-size: 19px;
-      font-weight: 500;
-      color: $vue-navy;
       user-select: none;
+      color: $grey-primary;
+      font-size: $body-font-size;
+      font-family: $base-font-primary;
+      font-weight: $body-font-weight;
 
       &:nth-of-type(2) {
         font-size: 12px;
@@ -223,7 +184,6 @@ $light-gray: #f8f8f8;
         display: inline-block;
         position: relative;
         margin-left: 4px;
-        color: $gray;
 
         &:before {
           content: '';
@@ -233,8 +193,7 @@ $light-gray: #f8f8f8;
           left: -12px;
           width: 0;
           height: 0;
-          border-color: transparent rgba(40, 44, 53, 0.06) transparent
-            transparent;
+          border-color: transparent rgba(40, 44, 53, 0.06) transparent;
           border-style: solid;
           border-width: 12px 12px 12px 0;
         }
@@ -264,18 +223,47 @@ $light-gray: #f8f8f8;
   }
 }
 
-@media (max-width: 1350px) {
-  .card-carousel {
-    width: 85%;
-  }
-}
+.carousel-controls {
+  margin: 2em;
+  background-color: rgba(0, 123, 255, 0.09);
+  border-radius: 100%;
 
-@media (max-width: 757px) {
-  .card-carousel {
-    &--nav__left,
-    &--nav__right {
-      display: none;
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+
+  &--nav__left,
+  &--nav__right {
+    position: relative;
+    display: none;
+    vertical-align: middle;
+    color: $blue-primary;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    border-width: 4px 4px 0 0;
+    border-style: solid;
+    margin: 16px;
+
+    &:after,
+    &:before {
+      content: '';
+      box-sizing: border-box;
     }
+
+    @include md {
+      display: inline-block;
+    }
+  }
+
+  &--nav__left {
+    left: 2px;
+    transform: rotate(-135deg);
+  }
+  &--nav__right {
+    right: 2px;
+    transform: rotate(45deg);
   }
 }
 </style>

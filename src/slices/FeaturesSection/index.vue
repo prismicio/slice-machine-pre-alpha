@@ -1,26 +1,39 @@
 <template>
-  <section class="canvas">
+  <section class="container container--full-height">
     <div class="header">
+      <slot name="top-content" />
       <slot name="header" v-bind="slice.primary">
-        <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
-        <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
+        <h1 class="header__title">
+          {{ $prismic.asText(slice.primary.title) }}
+        </h1>
+        <h4 class="header__subtitle">
+          {{ $prismic.asText(slice.primary.paragraph) }}
+        </h4>
       </slot>
     </div>
     <div class="grid">
       <div
         v-for="(item, index) in slice.items"
-        :key="'item-' + index"
-        class="grid-item"
+        :key="`grid__item-${index + 1}`"
+        class="grid__item"
       >
         <slot :id="index" name="item" v-bind="item">
-          <prismic-image :alt="item.alt" :field="item.icon_image" />
-          <h2>{{ $prismic.richTextAsPlain(item.head) }}</h2>
-          <p>{{ $prismic.richTextAsPlain(item.desc) }}</p>
-          <input
-            type="button"
-            :value="item.button_label"
-            :onclick="`window.location.href='${item.button_link.url}'`"
+          <prismic-image
+            class="grid__item__icon-image"
+            :alt="item.alt"
+            :field="item.icon_image"
           />
+          <h3 class="grid__item__head">
+            {{ $prismic.asText(item.head) }}
+          </h3>
+          <p class="grid__item__desc">
+            {{ $prismic.asText(item.desc) }}
+          </p>
+          <div class="grid__item__button">
+            <prismic-link :field="item.button_link">
+              {{ item.button_label }}
+            </prismic-link>
+          </div>
         </slot>
       </div>
     </div>
@@ -40,121 +53,93 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.canvas {
-  height: auto;
+@import '../../styles/_slices.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
-  width: 80%;
+  padding: 2rem 0;
+  width: 90%;
+  max-width: $screen-lg-min;
   text-align: center;
+  &--full-height {
+    min-height: 100vh;
+  }
 }
 
 .header {
-  padding: 75px 50px 50px 50px;
-  margin: 0 auto;
-
-  h1 {
-    font-size: 48px;
-    line-height: 64px;
+  * {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    width: 100%;
   }
 
-  p {
-    width: 50%;
-    margin: 0 auto;
-    font-size: 22px;
-    line-height: 38px;
+  &__image {
+    width: 7vw;
+  }
+  &__title {
+    font-size: 42px;
+    line-height: 48px;
+    @include md {
+      font-size: 5vw;
+    }
+    @include lg {
+      font-size: 70px;
+      line-height: 84px;
+    }
+  }
+  &__subtitle {
+    width: 90%;
+    max-width: calc((940px / 3) * 2);
   }
 }
 
 .grid {
   display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: 100%;
-  padding-bottom: 100px;
-}
-
-.grid-item {
-  padding: 0 60px;
-  border-right: 1px solid rgba(151, 151, 151, 0.2);
-
-  h2,
-  p {
-    padding: 5px 0;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding-bottom: 0;
+  margin-top: 4vw;
+  @include md {
+    grid-auto-flow: column;
+    grid-template-rows: 100%;
+    padding-bottom: 100px;
   }
 
-  h2 {
-    font-size: 24px;
-    line-height: 36px;
-  }
-
-  p {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  &:last-child {
-    border-right: 0;
-  }
-}
-
-input[type='button'] {
-  background-color: #007aff;
-  color: white;
-  text-decoration: none;
-  width: 120px;
-  height: 52px;
-  border: 1px solid rgb(2, 89, 182);
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
-  -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
-  box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 30px;
-  &:hover {
-    background-color: rgb(2, 89, 182);
-    cursor: pointer;
-  }
-  &:active {
-    box-shadow: none;
-    top: 5px;
-  }
-}
-
-@media (max-width: 1500px) {
-  .header {
-    padding: 75px 0 30px 0;
-
-    p {
-      width: 70%;
-      margin-bottom: 20px;
-    }
-  }
-}
-
-@media (max-width: 899px) {
-  .header {
-    padding: 75px 0 0 0;
-
-    p {
-      width: 95%;
-    }
-  }
-
-  .grid {
-    grid-auto-flow: row;
-    grid-template-rows: 1fr 1fr 1fr;
-    padding-bottom: 0;
-  }
-  .grid-item {
-    padding: 60px 0;
+  &__item {
+    padding: 6vw;
     border-bottom: 1px solid rgba(151, 151, 151, 0.2);
     border-right: 0;
     &:last-child {
       border-bottom: 0;
     }
-  }
-  input[type='button'] {
-    width: 278px;
+    @include lg {
+      padding: 60px;
+      border-right: 1px solid rgba(151, 151, 151, 0.2);
+      border-bottom: 0;
+    }
+    &__image {
+      max-width: 70px;
+    }
+    &__head {
+      margin-top: 1rem;
+    }
+    &__desc {
+      margin: 1rem 0;
+      text-align: center;
+      color: $grey-secondary;
+    }
+
+    &__button {
+      margin: 0 auto;
+    }
+
+    &:last-child {
+      border-right: 0;
+    }
   }
 }
 </style>

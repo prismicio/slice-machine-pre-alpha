@@ -29,15 +29,23 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '@/plugins/element-ui',
-    '@/plugins/htmlSerializer',
-    '@/plugins/prismicVue'
-  ],
+  plugins: ['@/plugins/element-ui', '@/plugins/prismicVue'],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/eslint-module', 'cookie-universal-nuxt'],
+  modules: [
+    '@nuxtjs/eslint-module',
+    'cookie-universal-nuxt',
+    [
+      'prismic-nuxt',
+      {
+        endpoint: 'https://slicesexamples.prismic.io/api/v2',
+        linkResolver: function(doc, ctx) {
+          return '/'
+        }
+      }
+    ]
+  ],
   serverMiddleware: [
     { path: '/api/models', handler: '~/api/models.js' },
     { path: '/api/slices', handler: '~/api/slices.js' }

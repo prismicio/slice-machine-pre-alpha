@@ -1,17 +1,21 @@
 <template>
-  <section class="canvas">
+  <section class="container container--large">
     <div class="grid">
-      <div class="info">
+      <div class="grid__info">
         <slot name="info" v-bind="slice.primary">
-          <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
-          <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
-          <prismic-link class="cta" :field="slice.primary.cta_link">
+          <h2 class="title">
+            {{ $prismic.asText(slice.primary.title) }}
+          </h2>
+          <p class="paragraph">
+            {{ $prismic.asText(slice.primary.paragraph) }}
+          </p>
+          <prismic-link class="link" :field="slice.primary.cta_link">
             {{ slice.primary.cta_label }}
           </prismic-link>
         </slot>
       </div>
-      <div class="graphic">
-        <slot name="graphic" v-bind="slice.primary">
+      <div class="image">
+        <slot name="image" v-bind="slice.primary">
           <prismic-image :field="slice.primary.graphic_image" />
         </slot>
       </div>
@@ -32,42 +36,72 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.canvas {
-  height: auto;
+@import '../../styles/_slices.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
+  padding: 2rem 0;
   width: 90%;
+  min-height: 50vh;
+  max-width: $screen-lg-min;
   text-align: center;
+  &--large {
+    max-width: $screen-xl-min;
+  }
 }
 
 .grid {
-  display: flex;
-  align-items: center;
-  height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding-top: 6vw;
+  @include md {
+    grid-template-columns: 1fr 1fr;
+    padding-top: 0;
+  }
+
+  &__info {
+    text-align: center;
+    padding: 20px;
+    @include md {
+      text-align: left;
+      padding-right: 20px;
+    }
+
+    * {
+      margin: 0 auto;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+
+    .paragraph {
+      width: 80%;
+      @include md {
+        margin-left: 0;
+      }
+    }
+
+    .link {
+      color: $color-primary;
+      text-decoration: none;
+    }
+
+    .title {
+      font-size: 48px;
+      line-height: 64px;
+      font-weight: bold;
+    }
+  }
 }
 
 .info {
-  text-align: left;
-  padding-right: 20px;
-
-  h1 {
-    font-size: 48px;
-    line-height: 64px;
-  }
-
-  p {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  a {
-    color: #484d52;
-    text-decoration: none;
-  }
-
   .cta {
     &:after {
       content: '\00003E';
-      color: #007aff;
+      color: $blue-primary;
       padding: 4px;
       display: inline-block;
       box-sizing: border-box;
@@ -79,15 +113,9 @@ export default {
     }
   }
 }
-
-@media (max-width: 800px) {
-  .grid {
-    padding-top: 50px;
-    flex-direction: column;
-  }
-  .info {
-    text-align: center;
-    padding: 20px;
+.image {
+  img {
+    width: 100%;
   }
 }
 </style>
