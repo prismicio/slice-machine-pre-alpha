@@ -1,31 +1,39 @@
 <template>
-  <div class="carousel-view">
-    <h1>{{ $prismic.richTextAsPlain(slice.primary.title) }}</h1>
-    <p>{{ $prismic.richTextAsPlain(slice.primary.paragraph) }}</p>
-    <div v-if="slides.length > 3" class="carousel-controls">
-      <div class="carousel-controls__button" @click="previous" />
+  <section class="canvas">
+    <div class="intro-text">
+      <slot name="title" v-bind="slice.primary.title">
+        <h2>{{ $prismic.asText(slice.primary.title) }}</h2>
+      </slot>
+      <slot name="paragraph" v-bind="slice.primary.paragraph">
+        <h4>{{ $prismic.asText(slice.primary.paragraph) }}</h4>
+      </slot>
     </div>
-    <transition-group name="carousel" class="carousel" tag="div">
-      <div
-        v-for="(slide, index) in slides"
-        :key="slide.id"
-        ref="slides"
-        class="slide"
-        :class="{ active: activeIndex === index }"
-      >
-        <video
-          class="slide__video"
-          :class="{ active: activeIndex === index }"
-          :src="slide.video.url"
-          controls
-          @click="setActive(index, $event)"
-        />
+    <div class="carousel-view">
+      <div v-if="slides.length > 3" class="carousel-controls" @click="previous">
+        <div class="carousel-controls--nav__left" />
       </div>
-    </transition-group>
-    <div v-if="slides.length > 3" class="carousel-controls">
-      <div class="carousel-controls__button" @click="next" />
+      <transition-group name="carousel" class="carousel" tag="div">
+        <div
+          v-for="(slide, index) in slides"
+          :key="slide.id"
+          ref="slides"
+          class="slide"
+          :class="{ active: activeIndex === index }"
+        >
+          <video
+            class="slide__video"
+            :class="{ active: activeIndex === index }"
+            :src="slide.video.url"
+            controls
+            @click="setActive(index, $event)"
+          />
+        </div>
+      </transition-group>
+      <div v-if="slides.length > 3" class="carousel-controls" @click="next">
+        <div class="carousel-controls--nav__right" />
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -38,6 +46,7 @@ export default {
     }
   },
   data() {
+    console.log(this.$prismic, 'header')
     return {
       slides: this.slice.items.map(slide => ({
         ...slide,
@@ -97,41 +106,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.carousel-view {
+@import '../../styles/variables.scss';
+.canvas {
   height: 100vh;
+}
+
+.intro-text {
+  text-align: center;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    width: 90%;
+    padding-bottom: 1rem;
+    margin: 0 auto;
+  }
+}
+
+.carousel-view {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-h1 {
-  font-size: 48px;
-  line-height: 64px;
-  font-weight: 700;
-  color: #484d52;
-  margin-bottom: 1rem;
-  letter-spacing: 1.14px;
-  font-family: Lato, sans-serif;
-}
-
-p {
-  margin-bottom: 2rem;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  color: #72767b;
-  line-height: 38px;
-  font-size: 22px;
-}
-
 .carousel {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   min-height: 25em;
   overflow-x: auto;
@@ -141,7 +148,7 @@ p {
 }
 
 .slide {
-  height: 20em;
+  height: 10em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,7 +163,7 @@ video {
 }
 
 .active {
-  height: 400px;
+  height: 12em;
   transition: all 0.3s ease-in-out;
 }
 
@@ -172,47 +179,68 @@ video {
 
 .carousel-controls {
   margin: 2em;
+  background-color: rgba(0, 123, 255, 0.09);
+  border-radius: 100%;
 
-  &__button {
-    display: block;
-    height: 40px;
-    width: 40px;
-    font-size: 25px;
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
 
-    &:after {
-      cursor: pointer;
-      display: block;
-      font-family: Arial, Helvetica, sans-serif;
-      border-radius: 100%;
-      text-align: center;
-      color: #007aff;
+  &--nav__left,
+  &--nav__right {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    color: $color-primary;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    border-width: 4px 4px 0 0;
+    border-style: solid;
+    margin: 16px;
+
+    &:after,
+    &:before {
+      content: '';
       box-sizing: border-box;
-      transition: transform 150ms linear;
-      transform: scaleY(1.5);
-      background-color: rgba(0, 123, 255, 0.09);
-    }
-
-    &:hover {
-      opacity: 0.5;
-      cursor: pointer;
-    }
-
-    &:nth-of-type(1):after {
-      content: '\00003C';
-    }
-    &:after {
-      content: '\00003E';
     }
   }
-}
 
-@keyframes underlineToDots {
-  0% {
-    text-decoration: underline;
-    text-decoration-style: dashed;
+  &--nav__left {
+    left: 2px;
+    transform: rotate(-135deg);
   }
-  100% {
-    text-decoration-style: solid;
+  &--nav__right {
+    right: 2px;
+    transform: rotate(45deg);
+  }
+
+  @media screen and (max-width: $mobile-max) {
+    .slide {
+      height: 15em;
+    }
+    .active {
+      height: 17em;
+    }
+  }
+
+  @media screen and (min-width: $tablet-min) {
+    .slide {
+      height: 20em;
+    }
+    .active {
+      height: 22em;
+    }
+    .canvas {
+      margin-top: 100px;
+    }
+    .intro-text {
+      h4 {
+        padding-bottom: 3rem;
+        width: 664px;
+      }
+    }
   }
 }
 </style>

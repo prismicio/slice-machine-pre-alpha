@@ -16,7 +16,8 @@ $c-blue-secondary: #F5F7FA !default;
 $c-black: #000000 !default;
 $c-white: #FFFFFF !default;
 
-
+$color-primary: $c-blue-primary !default;
+$blue-primary: $color-primary;
 // Accent
 $c-accent-primary: $c-green-primary !default;
 $c-accent-secondary: $c-green-secondary !default;
@@ -36,3 +37,6 @@ $c-bg-secondary: $c-light-secondary !default;
 // Border
 
 $c-border: $c-light-primary;
+
+$grey-secondary: #F7F7F7;
+$grey-primary: #F7F7F7;
