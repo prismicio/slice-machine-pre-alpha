@@ -72,6 +72,7 @@ export default {
     }
   },
   data() {
+    console.log(this.$prismic, 'header')
     return {
       slides: this.slice.items.map((slice, i) => ({
         ...slice,
@@ -120,10 +121,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+<<<<<<< HEAD
 @import '../../styles/_slices.scss';
 
 section {
   margin-bottom: 4vw;
+=======
+@import '../../styles/variables.scss';
+.canvas {
+  height: 100vh;
+>>>>>>> 7576fbe1ff9ab0ca939ae954113b0200161178e2
 }
 
 .container {
@@ -178,6 +185,7 @@ section {
 .header {
   * {
     margin: 0 auto;
+<<<<<<< HEAD
     margin-bottom: 2rem;
     width: 100%;
   }
@@ -191,6 +199,8 @@ section {
       font-size: 70px;
       line-height: 84px;
     }
+=======
+>>>>>>> 7576fbe1ff9ab0ca939ae954113b0200161178e2
   }
   &__subtitle {
     width: 90%;
@@ -229,6 +239,7 @@ section {
   align-items: center;
   transition: all 0.5s ease-in-out;
   opacity: 1;
+<<<<<<< HEAD
   margin: 0.6rem;
   scroll-snap-align: start;
   cursor: pointer;
@@ -253,6 +264,19 @@ section {
       }
     }
   }
+=======
+  margin: 1em;
+  flex: 0 0 20em;
+}
+
+video {
+  object-fit: contain;
+}
+
+.active {
+  height: 12em;
+  transition: all 0.3s ease-in-out;
+>>>>>>> 7576fbe1ff9ab0ca939ae954113b0200161178e2
 }
 .active {
   transition: all 0.3s ease-in-out;
@@ -282,7 +306,7 @@ section {
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    color: $blue-primary;
+    color: $color-primary;
     box-sizing: border-box;
     width: 1vw;
     height: 14px;
@@ -322,6 +346,33 @@ section {
     &--right {
       bottom: auto;
       right: -2vw;
+    }
+  }
+
+  @media screen and (max-width: $mobile-max) {
+    .slide {
+      height: 15em;
+    }
+    .active {
+      height: 17em;
+    }
+  }
+
+  @media screen and (min-width: $tablet-min) {
+    .slide {
+      height: 20em;
+    }
+    .active {
+      height: 22em;
+    }
+    .canvas {
+      margin-top: 100px;
+    }
+    .intro-text {
+      h4 {
+        padding-bottom: 3rem;
+        width: 664px;
+      }
     }
   }
 }

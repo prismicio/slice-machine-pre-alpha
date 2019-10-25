@@ -50,6 +50,7 @@ export default {
     { path: '/api/models', handler: '~/api/models.js' },
     { path: '/api/slices', handler: '~/api/slices.js' }
   ],
+  devModules: ['@nuxtjs/eslint-module'],
   /*
    ** Build configuration
    */
