@@ -330,32 +330,5 @@ video {
       right: -2vw;
     }
   }
-
-  @media screen and (max-width: $mobile-max) {
-    .slide {
-      height: 15em;
-    }
-    .active {
-      height: 17em;
-    }
-  }
-
-  @media screen and (min-width: $tablet-min) {
-    .slide {
-      height: 20em;
-    }
-    .active {
-      height: 22em;
-    }
-    .canvas {
-      margin-top: 100px;
-    }
-    .intro-text {
-      h4 {
-        padding-bottom: 3rem;
-        width: 664px;
-      }
-    }
-  }
 }
 </style>
