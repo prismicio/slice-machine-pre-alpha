@@ -65,7 +65,7 @@ export default {
   margin: 0 auto;
   padding: 2rem 0;
   width: 90%;
-  max-width: 940px;
+  max-width: $screen-lg-min;
   text-align: center;
   &--full-height {
     min-height: 100vh;

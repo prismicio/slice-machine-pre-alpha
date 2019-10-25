@@ -60,7 +60,7 @@ Example use👇
 
 ```html
 <template>
-  <hero-section :slice="mockData">
+  <hero-section :slice="document.data.body">
     <template v-slot:top-content>
       <img src="https://picsum.photos/200/100" style="max-width: 640px" />
     </template>
