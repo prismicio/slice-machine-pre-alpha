@@ -121,16 +121,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
 @import '../../styles/_slices.scss';
 
 section {
   margin-bottom: 4vw;
-=======
-@import '../../styles/variables.scss';
-.canvas {
-  height: 100vh;
->>>>>>> 7576fbe1ff9ab0ca939ae954113b0200161178e2
 }
 
 .container {
@@ -185,7 +179,6 @@ section {
 .header {
   * {
     margin: 0 auto;
-<<<<<<< HEAD
     margin-bottom: 2rem;
     width: 100%;
   }
@@ -199,8 +192,6 @@ section {
       font-size: 70px;
       line-height: 84px;
     }
-=======
->>>>>>> 7576fbe1ff9ab0ca939ae954113b0200161178e2
   }
   &__subtitle {
     width: 90%;
@@ -239,7 +230,6 @@ section {
   align-items: center;
   transition: all 0.5s ease-in-out;
   opacity: 1;
-<<<<<<< HEAD
   margin: 0.6rem;
   scroll-snap-align: start;
   cursor: pointer;
@@ -264,20 +254,12 @@ section {
       }
     }
   }
-=======
-  margin: 1em;
-  flex: 0 0 20em;
 }
 
 video {
   object-fit: contain;
 }
 
-.active {
-  height: 12em;
-  transition: all 0.3s ease-in-out;
->>>>>>> 7576fbe1ff9ab0ca939ae954113b0200161178e2
-}
 .active {
   transition: all 0.3s ease-in-out;
 }
