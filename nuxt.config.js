@@ -34,7 +34,6 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    '@nuxtjs/eslint-module',
     'cookie-universal-nuxt',
     [
       'prismic-nuxt',
