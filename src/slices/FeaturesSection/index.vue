@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
+@import '../../styles/variables';
 
 .container {
   display: flex;
@@ -121,8 +121,8 @@ export default {
       border-right: 1px solid rgba(151, 151, 151, 0.2);
       border-bottom: 0;
     }
-    &__image {
-      max-width: 70px;
+    &__icon-image {
+      max-width: 160px;
     }
     &__head {
       margin-top: 1rem;
@@ -130,7 +130,7 @@ export default {
     &__desc {
       margin: 1rem 0;
       text-align: center;
-      color: $grey-secondary;
+      color: $gray-secondary;
     }
 
     &__button {

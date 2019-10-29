@@ -1,0 +1,19 @@
+body {
+  font-size: $body-font-size-mobile;
+  font-family: $body-font-family-primary;
+  font-weight: $body-font-weight-primary;
+  color: $text-primary;
+
+  @include md {
+    font-size: $body-font-size-desktop;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $link-color-primary;
+
+  &:hover {
+    color: $link-color-hover;
+  }
+}

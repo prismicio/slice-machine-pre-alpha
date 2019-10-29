@@ -25,7 +25,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['element-ui/lib/theme-chalk/index.css'],
+  css: ['element-ui/lib/theme-chalk/index.css', '../src/styles/_global.scss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -34,7 +34,6 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    '@nuxtjs/eslint-module',
     'cookie-universal-nuxt',
     [
       'prismic-nuxt',

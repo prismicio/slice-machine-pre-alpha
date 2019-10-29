@@ -60,7 +60,6 @@ export default {
           downloadLink.download = fileName
           downloadLink.click()
           this.wroomObject = data.wroomObject
-          console.log(JSON.stringify(data.wroomObject))
         })
         .catch(console.error) // eslint-disable-line
     }

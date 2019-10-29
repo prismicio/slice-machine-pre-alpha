@@ -12,7 +12,7 @@ const rewriteExportFile = require('./methods/rewriteExportFile')
 // Takes PascalCase and returns kebab-case
 const hyphenateRE = /\B([A-Z])/g
 // eslint-disable-next-line
-const hyphenate = (str) => str.replace(hyphenateRE, '-$1').toLowerCase()
+const hyphenate = str => str.replace(hyphenateRE, '-$1').toLowerCase()
 
 process.on('exit', code => {
   if (code === 0) {
@@ -71,8 +71,6 @@ const questions = [
     const tagName = hyphenate(name)
 
     const packagePath = path.resolve(process.cwd(), 'src/slices')
-
-    console.log(tagName, packagePath)
 
     const ret = glob.sync(`${packagePath}/${name}`)
 

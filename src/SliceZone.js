@@ -23,6 +23,12 @@ export default {
       type: [String, Array],
       default: () => 'sliceMachine/slices',
       description: 'Path(s) to your slices components'
+    },
+    wrapper: {
+      required: false,
+      type: String,
+      default: 'div',
+      description: 'Wrapper tag (div, section, main...)'
     }
   },
   components: {
@@ -70,7 +76,7 @@ export default {
     }
 
     return h(
-      'div',
+      this.wrapper,
       {},
       this.computedSlices.map(e => {
         return h(
