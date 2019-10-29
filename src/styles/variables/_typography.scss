@@ -1,12 +1,13 @@
 // Font family
-$body-font-family-primary: 'Roboto', serif !default;
-$body-font-family-secondary: 'Raleway', sans-serif !default;
+$body-font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  'Helvetica Neue', Arial, sans-serif;
+$body-font-family-secondary: serif !default;
 
 // Font weight
 $body-font-weight-primary: 400 !default;
 
 // Font sizes
-$font-size-extra-small-desktop: 0.75rem !default; 
+$font-size-extra-small-desktop: 0.75rem !default;
 $font-size-small-desktop: 0.875rem !default;
 $font-size-regular-desktop: 1rem !default;
 $font-size-big-desktop: 1.125rem !default;
@@ -16,13 +17,14 @@ $font-size-small-mobile: 0.75rem !default;
 $font-size-regular-mobile: 0.875rem !default;
 $font-size-big-mobile: 1rem !default;
 $font-size-extra-big-mobile: 1.125rem !default;
+$font-size-button: 18px !default;
 
 // Base font size
 $body-font-size-desktop: $font-size-regular-desktop !default;
 $body-font-size-mobile: $font-size-regular-mobile !default;
 
 // Heading font family
-$heading-font-family: $body-font-family-secondary;
+$heading-font-family: $body-font-family-primary;
 
 // Heading font size
 $h1-font-size-desktop: 2.25rem !default;
@@ -47,4 +49,3 @@ $h1-font-weight-mobile: 500 !default;
 $h2-font-weight-mobile: 500 !default;
 $h3-font-weight-mobile: 500 !default;
 $h4-font-weight-mobile: 500 !default;
-

@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/slices.scss';
+@import '../../styles/variables';
 
 .canvas {
   height: 80vh;
@@ -167,10 +167,10 @@ export default {
       margin: 0;
       margin-bottom: 2px;
       user-select: none;
-      color: $grey-primary;
-      font-size: $body-font-size;
-      font-family: $base-font-primary;
-      font-weight: $body-font-weight;
+      color: $gray-primary;
+      font-size: $body-font-size-desktop;
+      font-family: $body-font-family-primary;
+      font-weight: $body-font-weight-primary;
 
       &:nth-of-type(2) {
         font-size: 12px;

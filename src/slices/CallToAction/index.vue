@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container container--full-height">
     <div class="header">
       <slot name="header" v-bind="slice.primary">
         <prismic-image
@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     handleLink({ metaKey }, linkData) {
-      console.log(linkData)
       /** Logic could be extracted from prismic-vue/Link instead */
       const link = this.$prismic.asLink(linkData)
       if (linkData.link_type === 'Web') {
@@ -53,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/slices.scss';
+@import '../../styles/variables';
 
 .container {
   display: flex;
@@ -79,7 +78,7 @@ export default {
   }
 
   &__image {
-    width: 7vw;
+    max-width: 40vw;
   }
   &__title {
     font-size: 42px;

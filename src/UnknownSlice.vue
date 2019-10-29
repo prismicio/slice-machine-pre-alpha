@@ -2,10 +2,10 @@
   <div class="error">
     <h1>
       SliceZone did not manage to find a component matching the Prismic slice of
-      type '{{ sliceType }}'.
+      type '{{ slice.slice_type }}'.
     </h1>
     <p>
-      Make sure you created a '{{ camelize(sliceType || 'hello') }}' component
+      Make sure you created a '{{ camelize(slice.slice_type) }}' component
       inside `vueSlices/slices`. If not: create one!
     </p>
     <p>
@@ -21,7 +21,6 @@
 <script>
 const camelizeRE = /-(\w)/g
 const camelize = str => {
-  console.log('str', str)
   str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
     return c ? c.toUpperCase() : ''
   })
@@ -31,8 +30,8 @@ const camelize = str => {
 export default {
   name: 'UnknownSlice',
   props: {
-    sliceType: {
-      type: String,
+    slice: {
+      type: Object,
       required: true
     }
   },

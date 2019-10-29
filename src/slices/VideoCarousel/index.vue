@@ -72,7 +72,6 @@ export default {
     }
   },
   data() {
-    console.log(this.$prismic, 'header')
     return {
       slides: this.slice.items.map((slice, i) => ({
         ...slice,
@@ -121,7 +120,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
+@import '../../styles/variables';
 
 section {
   margin-bottom: 4vw;

@@ -12,7 +12,7 @@ app.use((req, res) => {
   try {
     if (!req.query.framework) {
       throw new Error(
-        'Expected a query string parameter `framework` but none was reeceived'
+        'Expected a query string parameter `framework` but none was received'
       )
     }
     const file = JSON.parse(
@@ -21,10 +21,13 @@ app.use((req, res) => {
         'utf8'
       )
     )
-    res.json(file)
+    res.status(200).send(file)
   } catch (e) {
     console.error(e)
-    res.sendStatus(500)
+    if (e.code === 'ENOENT') {
+      return res.sendStatus(500)
+    }
+    res.status(400).send({ error: e })
   }
 })
 

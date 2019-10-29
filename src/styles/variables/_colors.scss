@@ -1,0 +1,37 @@
+// General color names
+$blue-primary: #007aff !default;
+$blue-secondary: #0050a5 !default;
+$dark-primary: #1d1f22 !default;
+$dark-secondary: #737680 !default;
+$gray-primary: #6a6e7e !default;
+$gray-secondary: #bebfc4 !default;
+$black: #000 !default;
+$white: #fff !default;
+
+/* Accent */
+$accent-primary: $dark-primary !default;
+$accent-secondary: $dark-secondary !default;
+
+/* Text */
+$text-primary: $dark-primary !default;
+$text-secondary: $gray-secondary !default;
+$text-on-light: $black !default;
+$text-on-dark: $white !default;
+$text-link: $dark-secondary !default;
+$text-link-hover: $dark-primary !default;
+
+/* Background */
+$bg-primary: #fff !default;
+$bg-secondary: #f1f2f3 !default;
+
+/* Border */
+$border-color: #fff;
+$button-border-color: $blue-primary !default;
+
+/* Shorthands */
+$color-primary: $blue-primary;
+$color-secondary: $blue-secondary;
+$text-color-primary: $gray-primary;
+$text-color-secondary: $gray-secondary;
+$link-color-primary: $color-primary;
+$link-color-hover: $color-secondary;

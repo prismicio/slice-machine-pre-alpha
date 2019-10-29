@@ -1,17 +1,17 @@
 <template>
   <section class="container container--full-height">
     <div class="header">
-      <slot name="top-content" />
+      <slot name="top-content" v-bind="slice" />
       <slot name="header" v-bind="slice.primary">
         <h1 class="header__title">
           {{ $prismic.asText(slice.primary.title) }}
         </h1>
-        <h4 class="header__subtitle">
+        <p class="header__subtitle">
           {{ $prismic.asText(slice.primary.paragraph) }}
-        </h4>
+        </p>
       </slot>
     </div>
-    <div class="cta">
+    <div v-if="slice.items" class="cta">
       <slot name="cta" v-bind="slice.items">
         <button
           v-for="(item, i) in slice.items"
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/_slices.scss';
+@import '../../styles/variables';
 
 .container {
   display: flex;
