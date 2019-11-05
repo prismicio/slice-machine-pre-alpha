@@ -21,7 +21,11 @@ app.use((req, res) => {
         'utf8'
       )
     )
-    res.status(200).send(file)
+    res
+      .status(200)
+      .send(
+        req.query.demo ? file.filter(e => e.key !== 'call_to_action') : file
+      )
   } catch (e) {
     console.error(e)
     if (e.code === 'ENOENT') {
