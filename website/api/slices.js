@@ -93,10 +93,13 @@ app.use((req, res) => {
       throw new Error(maybeErr)
     }
 
-    const sliceNames = getSliceNames(req.params.slices)
+    let sliceNames = getSliceNames(req.params.slices)
     if (!sliceNames || !sliceNames.length) {
       throw new Error('No slices passed to request')
     }
+    sliceNames = req.query.demo
+      ? sliceNames.filter(e => e !== 'CallToAction')
+      : sliceNames
 
     const zip = new JSZip()
 
