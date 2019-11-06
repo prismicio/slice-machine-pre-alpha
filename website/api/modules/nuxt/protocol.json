@@ -67,7 +67,7 @@
   "dependencies": [
     "https://github.com/prismicio/prismic-vue.git",
     "prismic-javascript",
-    "git+https://github.com/jamespegg/prismic-nuxt.git#nuxtjs_merge"
+    "git+https://github.com/gholgot/prismic-nuxt.git#nuxtjs_merge"
   ],
   "devDependencies": ["node-sass", "sass-loader"]
 }
