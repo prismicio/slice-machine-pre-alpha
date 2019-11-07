@@ -1,0 +1,9 @@
+sandbox
+dist
+api
+website/api/files
+website/custom_types
+jspm_packages/
+typings/
+.cache
+.nuxt
