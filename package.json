@@ -7,7 +7,7 @@
   "description": "Hey",
   "author": "Hugo & Phil",
   "scripts": {
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "eslint --ext .js,.vue --ignore-path .eslintignore .",
     "lint:fix": "npm run lint --fix",
     "stylelint": "stylelint */**/*.scss",
     "create-slice": "node builder/createSlice.js",
@@ -15,6 +15,7 @@
     "build": "npm run scripts && nuxt build",
     "scripts": "node ./scripts/bundleApi && node ./scripts/buildExamples",
     "start": "npm run scripts; nuxt start",
+    "sandbox": "cd sandbox && npm run start",
     "generate": "nuxt generate"
   },
   "main": "index.js",

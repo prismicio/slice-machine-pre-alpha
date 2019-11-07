@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{{ _target.title }} | UI Pattern Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ path '/css/global.css' }}">
+
+</head>
+
+<body>
+    {{{ yield }}}
+</body>
+
+
+<script src="{{ path '/js/main.js' }}"></script>
+<script src="{{ path '/components/raw/{{ _target.component.handle }}/{{ _target.component.handle }}.js' }}"></script>
+
+</html>

@@ -1,0 +1,10 @@
+<div class="Header">
+    <button class="Header-button Header-navToggle" data-action="toggle-sidebar">
+        {% include 'icons/close-nav.svg' %}
+        {% include 'icons/open-nav.svg' %}
+    </button>
+    <a href="{{ path('/') }}" class="Header-title logo" data-pjax>
+        
+        <span>UI Pattern Library</span>
+    </a>
+</div>
