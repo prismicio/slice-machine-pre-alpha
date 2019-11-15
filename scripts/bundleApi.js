@@ -6,8 +6,6 @@ const { exec } = require('child_process')
 const utils = require('../website/api/utils')
 
 const pathToFiles = path.join(process.cwd(), 'website', 'api', 'files')
-
-const pathToSlices = path.join(process.cwd(), 'src', 'slices')
 const pathToStatic = path.join(process.cwd(), 'website', 'static', 'components')
 
 const deleteDir = dir => {
