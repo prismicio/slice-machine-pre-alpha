@@ -123,6 +123,7 @@ export default {
   display: flex;
   justify-content: center;
   width: 85%;
+  cursor: ew-resize;
 
   @include rwd(1350) {
     width: 77em;
@@ -144,7 +145,7 @@ export default {
   .card-carousel--card {
     background-color: #ffffff;
     margin: 0 10px;
-    cursor: pointer;
+    cursor: ew-resize;
     -webkit-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
     -moz-box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
     box-shadow: 0px 2px 4px 0px rgba(136, 136, 136, 0.24);
