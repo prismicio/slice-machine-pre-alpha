@@ -7,6 +7,9 @@ const utils = require('../website/api/utils')
 
 const pathToFiles = path.join(process.cwd(), 'website', 'api', 'files')
 
+const pathToSlices = path.join(process.cwd(), 'src', 'slices')
+const pathToStatic = path.join(process.cwd(), 'website', 'static', 'components')
+
 const deleteDir = dir => {
   exec(`test -d ${dir} && rm -rf ${dir}`)
 }
@@ -25,6 +28,18 @@ async function main() {
     const sliceNames = utils.getSliceNames()
     const allSlices = sliceNames.map(sliceName => {
       const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
+      if (fs.existsSync(path.join(pathToSlices, sliceName, 'preview.png'))) {
+        const maybeErr = fs.copyFileSync(
+          path.join(pathToSlices, sliceName, 'preview.png'),
+          path.join(pathToStatic, `${sliceName}.png`)
+        )
+        if (maybeErr) {
+          throw maybeErr
+        }
+      } else {
+        throw new Error(`Unable to find preview for component ${sliceName}`)
+      }
+      slice.meta.imageSrc = `/components/${sliceName.png}`
       fs.writeFileSync(
         path.join(pathToFiles, framework, 'single', `${sliceName}.json`),
         JSON.stringify(slice),
