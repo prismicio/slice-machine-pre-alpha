@@ -35,7 +35,7 @@ async function main() {
           // throw new Error(`Unable to find preview for component ${sliceName}`)
         }
         slice.meta.imageUrl = previewExists
-          ? `/components/${sliceName.png}`
+          ? `/components/${sliceName}.png`
           : undefined
 
         fs.writeFileSync(
