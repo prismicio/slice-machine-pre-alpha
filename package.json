@@ -7,9 +7,8 @@
   "description": "Hey",
   "author": "Hugo & Phil",
   "scripts": {
-    "lint": "eslint --ext .js,.vue --ignore-path .eslintignore .",
-    "lint:fix": "npm run lint --fix",
-    "stylelint": "stylelint */**/*.scss",
+    "lint": "eslint --ext --fix .js,.vue --ignore-path .eslintignore .",
+    "stylelint": "stylelint */**/*.scss --fix",
     "create-slice": "node builder/createSlice.js",
     "dev": "npm run scripts; nuxt --port 3000",
     "build": "npm run scripts && nuxt build",
@@ -84,7 +83,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:fix && npm run stylelint --fix"
+      "pre-commit": "npm run lint && npm run stylelint"
     }
   }
 }
