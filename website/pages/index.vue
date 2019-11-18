@@ -1,61 +1,66 @@
 <template>
-  <main
-    :style="{ backgroundImage: `url('${document.banner_background.url}')` }"
-  >
-    <Container justify="space-around">
-      <div style="max-width: 450px">
-        <prismic-rich-text :field="document.title" />
-        <prismic-rich-text :field="document.description" />
-        <prismic-rich-text :field="document.copy_paste_embed" />
-        <prismic-rich-text :field="document.small_description" />
-      </div>
-    </Container>
-    <Body>
-      <row v-for="(slice, index) in slices" :key="'slice-' + index">
+  <main>
+    <MainMenu :menu="menuContent" />
+    <section
+      :style="{
+        background: `no-repeat`,
+        backgroundSize: `85%`,
+        backgroundPosition: `left`,
+        backgroundImage: `url('${document.banner_background.url}')`
+      }"
+    >
+      <Container justify="space-around">
+        <HomeBanner :document="document" />
+      </Container>
+    </section>
+    <Body class="body--white">
+      <row
+        v-for="(slice, index) in websiteSlices"
+        :key="'slice-' + index"
+        class="homerows"
+      >
         <GraphicBlock
           v-if="slice.slice_type === 'image_with_description'"
           :slice="slice"
         />
         <VideoBlock v-if="slice.slice_type === 'video_block'" :slice="slice" />
+        <ProsBlock v-if="slice.slice_type === 'slice_table'" :slice="slice" />
+        <HomeLib v-if="slice.slice_type === 'cards'" :slice="slice" />
       </row>
-      <Row>
-        <Card v-for="card in lst" :key="card.displayName" v-bind="card" />
-      </Row>
     </Body>
+    <FooterMenu :menu="menuContent" />
   </main>
 </template>
 
 <script>
 import Prismic from 'prismic-javascript'
 import PrismicConfig from '~/prismic.config.js'
-import Slices from '@/../src'
-import { createSlice } from '~/utils'
-
+import MainMenu from '@/components/MainMenu'
+import FooterMenu from '@/components/FooterMenu'
 import Container from '@/components/Container'
-import GraphicBlock from '@/components/TextGraphic'
-import VideoBlock from '@/components/VideoBlock'
+
+import HomeBanner from '@/components/Homepage/HomeBanner'
+import GraphicBlock from '@/components/Homepage/TextGraphic'
+import VideoBlock from '@/components/Homepage/VideoBlock'
+import ProsBlock from '@/components/Homepage/ProsBlock'
+import HomeLib from '@/components/Homepage/HomeLib'
+
 import Body from '@/components/Body'
-
-import Card from '@/components/Card'
 import Row from '@/components/Row'
-
-const lst = Object.keys(Slices)
-  .map(createSlice)
-  .filter(e => e) // eslint-disable-line
 
 export default {
   components: {
-    ...Slices,
+    MainMenu,
+    FooterMenu,
+    HomeBanner,
     Container,
     GraphicBlock,
     VideoBlock,
+    ProsBlock,
+    HomeLib,
     Body,
-    Card,
     Row
   },
-  data: () => ({
-    lst
-  }),
   async asyncData({ params, error, req }) {
     try {
       // Fetching the API object
@@ -68,7 +73,7 @@ export default {
 
       // Query to get the menu content
       let menuContent = {}
-      const menu = await api.getSingle('header')
+      const menu = await api.getByUID('menu', 'main_menu')
       menuContent = menu.data
 
       // Load the edit button
@@ -80,39 +85,22 @@ export default {
         documentId: result.id,
 
         // Set slices as variable
-        slices: document.body,
+        websiteSlices: document.body,
 
         // Menu
-        menuContent,
-        menuLinks: menuContent.links
+        menuContent
       }
     } catch (e) {
-      error({ statusCode: 404, message: 'Page not found' })
+      error({ statusCode: 404, message: 'Homepage not found' })
     }
   }
 }
 </script>
 
-<style>
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+<style lang="scss" scoped>
+@import '../style/_global';
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.homerows {
+  padding: 25px 0;
 }
 </style>

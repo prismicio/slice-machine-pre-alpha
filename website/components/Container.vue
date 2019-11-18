@@ -21,8 +21,8 @@ export default {
 @import '../style/_variables';
 
 .container {
+  width: 70%;
   max-width: $container-width;
-  min-height: 80vh;
   padding: 0 24px;
   flex-wrap: wrap;
 }
