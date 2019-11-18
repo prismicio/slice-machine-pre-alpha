@@ -14,7 +14,7 @@
       <MarkDownBox
         id="markdown-box"
         :edit-url="createEditUrl()"
-        style="min-height: 80vh; margin-top: 4em"
+        style="min-height: 80vh; margin-top: 4em; word-spacing: 0px;"
       >
         {{ slice.readme }}
       </MarkDownBox>
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       slice: createSlice(this.$route.params.slug),
-      exampleFolder: `${sliceRoute(this.$route.params.slug)}/examples/`
+      exampleFolder: `${sliceRoute(this.$route.params.slug)}/examples/nuxt/`
     }
   },
   computed: {
@@ -66,7 +66,7 @@ export default {
   methods: {
     createEditUrl() {
       const base =
-        'https://github.com/hypervillain/community/blob/master/src/slices/'
+        'https://github.com/prismicio/slice-machine/tree/master/src/slices/'
       return `${base}${this.slice.displayName}/README.md`
     }
   },
