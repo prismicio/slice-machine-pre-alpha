@@ -18,7 +18,7 @@
           style="margin-top: 12px"
           @click="$router.push(`/components/${displayName}`)"
         >
-          Demo
+          Learn More
         </Button>
       </div>
     </slot>
@@ -69,6 +69,7 @@ export default {
   },
   methods: {
     mouseover() {
+      console.log('mousehover')
       this.hover = true
     },
     mouseleave() {
