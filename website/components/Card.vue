@@ -3,7 +3,9 @@
     <slot name="image">
       <div
         class="image-block"
-        :style="{ backgroundImage: `url('${meta.imageUrl}')` }"
+        :style="{
+          backgroundImage: `url('/components/${displayName}.png')`
+        }"
       />
       <div
         :class="
