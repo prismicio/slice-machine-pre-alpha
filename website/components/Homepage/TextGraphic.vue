@@ -1,11 +1,14 @@
 <template>
-  <section class="auto-grid">
+  <section class="grid">
     <div>
       <prismic-image :field="slice.primary.graphic" />
     </div>
     <div>
       <h3>{{ $prismic.asText(slice.primary.subtitle) }}</h3>
-      <p>{{ $prismic.asText(slice.primary.sub_description) }}</p>
+      <prismic-rich-text
+        :field="slice.primary.sub_description"
+        class="home_body_text"
+      />
     </div>
   </section>
 </template>
@@ -13,21 +16,22 @@
 <script>
 export default {
   name: 'GraphicBlock',
-  props: ['slice']
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../style/_variables';
+@import '../../style/_global';
 
-.auto-grid {
-  --auto-grid-min-size: 16rem;
+.grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(var(--auto-grid-min-size), 1fr)
-  );
-  grid-gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 4rem;
 
   * {
     width: 100%;
@@ -35,6 +39,10 @@ export default {
     img {
       object-fit: contain;
     }
+  }
+
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>

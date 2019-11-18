@@ -1,8 +1,10 @@
 <template>
   <section class="auto-grid">
-    <div>
+    <div class="text">
       <h3>{{ $prismic.asText(slice.primary.subtitle) }}</h3>
-      <p>{{ $prismic.asText(slice.primary.sub_description) }}</p>
+      <p class="home_body_text">
+        {{ $prismic.asText(slice.primary.sub_description) }}
+      </p>
     </div>
     <div>
       <video :src="slice.primary.video.url" controls />
@@ -13,21 +15,22 @@
 <script>
 export default {
   name: 'VideoBlock',
-  props: ['slice']
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../style/_variables';
+@import '../../style/_global';
 
 .auto-grid {
-  --auto-grid-min-size: 16rem;
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(var(--auto-grid-min-size), 1fr)
-  );
-  grid-gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 4rem;
 
   * {
     width: 100%;
@@ -35,6 +38,10 @@ export default {
     video {
       object-fit: contain;
     }
+  }
+
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>

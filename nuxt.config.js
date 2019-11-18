@@ -16,7 +16,13 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -36,11 +42,27 @@ export default {
   modules: [
     'cookie-universal-nuxt',
     [
+      'vue-github-buttons/nuxt',
+      {
+        css: false,
+        useCache: false
+      }
+    ],
+    [
       'prismic-nuxt',
       {
-        endpoint: 'https://slicesexamples.prismic.io/api/v2',
+        endpoint: 'https://slice-machine.prismic.io/api/v2',
         linkResolver: function(doc, ctx) {
-          return '/'
+          if (doc.isBroken) {
+            return '/not-found'
+          }
+          if (doc.type === 'home') {
+            return `/`
+          }
+          if (doc.uid === 'component-library') {
+            return `/component-library`
+          }
+          return '/not-found'
         }
       }
     ]
