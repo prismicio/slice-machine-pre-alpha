@@ -7,7 +7,7 @@
   "description": "Hey",
   "author": "Hugo & Phil",
   "scripts": {
-    "lint": "eslint --ext --fix .js,.vue --ignore-path .eslintignore .",
+    "lint": "eslint --fix --ext .js,.vue --ignore-path .eslintignore .",
     "stylelint": "stylelint */**/*.scss --fix",
     "create-slice": "node builder/createSlice.js",
     "dev": "npm run scripts; nuxt --port 3000",
