@@ -2,12 +2,14 @@
   <div class="mainMenu">
     <Container justify="space-between">
       <nav id="menu">
-        <logo class="logo">
+        <div class="logo">
           <nuxt-link to="/">
             <prismic-image :field="menu.logo" />
-            <p><b>Slicemachine</b> by prismic</p>
           </nuxt-link>
-        </logo>
+          <nuxt-link to="/">
+            <span class="text"><b>Slicemachine</b> by prismic</span>
+          </nuxt-link>
+        </div>
         <ul class="horizontal-nav">
           <li v-for="menuLink in menu.menu_item" :key="menuLink.id">
             <prismic-link :field="menuLink.link">
@@ -78,18 +80,13 @@ export default {
   .logo {
     display: inline-flex;
     align-items: center;
-    p {
+    .text {
       padding: 0 5px;
+      text-decoration: none;
+      color: $black-primary;
     }
     b {
       font-size: 20px;
-    }
-    a {
-      display: contents;
-      text-decoration: none;
-      &:visited {
-        color: $black-primary;
-      }
     }
   }
   #menu {
@@ -108,8 +105,9 @@ export default {
       a {
         display: contents;
         text-decoration: none;
+        color: $black-primary;
         &:visited {
-          color: $black-primary;
+          font-weight: 500;
         }
       }
     }

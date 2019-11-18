@@ -1,10 +1,10 @@
 <template>
   <div class="mainMenu">
     <Container justify="space-between">
-      <logo class="logo">
+      <div class="logo">
         <prismic-image :field="menu.logo" />
         <p><b>Slicemachine</b> by prismic</p>
-      </logo>
+      </div>
       <nav>
         <ul>
           <li v-for="menuLink in menu.menu_item" :key="menuLink.id">

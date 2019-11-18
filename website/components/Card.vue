@@ -69,7 +69,6 @@ export default {
   },
   methods: {
     mouseover() {
-      console.log('mousehover')
       this.hover = true
     },
     mouseleave() {
