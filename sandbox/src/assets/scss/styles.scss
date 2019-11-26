@@ -1,0 +1,61 @@
+
+html {
+    font-size: 16px;
+    font-family: var(--font-family);
+    
+
+    @media all and (max-width: 640px) {
+        font-size: var(--text--small);
+    }
+
+    @media all and (min-width: 640px) {
+        font-size: calc(var(--text--base) + 0.05vw);
+    }
+
+    @media all and (min-width: 1400px) {
+        font-size: calc(var(--text--base) + 0.2vw);
+    }
+
+    @media all and (min-width: 1700px) {
+        font-size: calc(var(--text--base) + 0.3vw);
+    }
+
+    @media all and (min-width: 2000px) {
+        font-size: calc(var(--text--base) + 0.4vw);
+    }
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    @media all and (max-width: 640px) {
+        overflow-x: hidden;
+    }
+}
+
+.main {
+    grid-column: 2 / 3;
+    padding: 0;
+    padding-right: 4rem;
+
+    @media all and (max-width: 1024px) {
+        padding: 1em 2em;
+    }
+}
+
+#main {
+    margin-top: 4rem;
+}
+
+#main:focus {
+    outline: none;
+}
+
+
+@import "_utilities.scss";
+@import "_settings.scss";
+@import "../../_includes/components/**/*.scss";

@@ -1,0 +1,30 @@
+:root {
+    --color--primary: hsl(171, 50%, 52%);
+    --color--secondary: hsl(30, 27%, 94%);
+
+    --color-grey-0: hsl(0, 0%, 0%);
+    --color-grey-20: hsl(0, 0%, 20%);
+    
+    /* font sizes in rems are relative to the root font size. The default is 16px = 1rem; */
+    --text--small: 0.875rem; // 14px;
+    --text--base: 16px; // 16px;
+    --text--large: 1.125rem; // 18px;
+    --text--xl: 1.25rem; // 20px;
+    --text--2xl: 1.375rem; // 22px;
+    --text--3xl: 1.5rem; // 24px;
+    --text--4xl: 3.25rem; // 52px;
+
+
+
+    /* default font family is the static Inter font */
+    --font-family: "Inter", Arial, sans-serif;
+
+    /* in supporting browsers, the variable Inter font is used */
+    @supports (font-variation-settings: normal) {
+        --font-family: "Inter var", Arial, sans-serif;
+    }
+
+    --scrollbar: 0px; /* this variable is set using JS. See CS Utilities documentation for details */
+    --h-padding: 1.875rem; // 30px default when font size is base 16
+
+}

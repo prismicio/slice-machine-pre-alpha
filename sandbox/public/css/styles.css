@@ -1,0 +1,68 @@
+html {
+  font-size: 16px;
+  font-family: var(--font-family); }
+  @media all and (max-width: 640px) {
+    html {
+      font-size: var(--text--small); } }
+  @media all and (min-width: 640px) {
+    html {
+      font-size: calc(var(--text--base) + 0.05vw); } }
+  @media all and (min-width: 1400px) {
+    html {
+      font-size: calc(var(--text--base) + 0.2vw); } }
+  @media all and (min-width: 1700px) {
+    html {
+      font-size: calc(var(--text--base) + 0.3vw); } }
+  @media all and (min-width: 2000px) {
+    html {
+      font-size: calc(var(--text--base) + 0.4vw); } }
+
+body {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; }
+  @media all and (max-width: 640px) {
+    body {
+      overflow-x: hidden; } }
+
+.main {
+  grid-column: 2 / 3;
+  padding: 0;
+  padding-right: 4rem; }
+  @media all and (max-width: 1024px) {
+    .main {
+      padding: 1em 2em; } }
+
+#main {
+  margin-top: 4rem; }
+
+#main:focus {
+  outline: none; }
+
+[hidden] {
+  display: none; }
+
+:root {
+  --color--primary: hsl(171, 50%, 52%);
+  --color--secondary: hsl(30, 27%, 94%);
+  --color-grey-0: hsl(0, 0%, 0%);
+  --color-grey-20: hsl(0, 0%, 20%);
+  /* font sizes in rems are relative to the root font size. The default is 16px = 1rem; */
+  --text--small: 0.875rem;
+  --text--base: 16px;
+  --text--large: 1.125rem;
+  --text--xl: 1.25rem;
+  --text--2xl: 1.375rem;
+  --text--3xl: 1.5rem;
+  --text--4xl: 3.25rem;
+  /* default font family is the static Inter font */
+  --font-family: "Inter", Arial, sans-serif;
+  /* in supporting browsers, the variable Inter font is used */
+  --scrollbar: 0px;
+  /* this variable is set using JS. See CS Utilities documentation for details */
+  --h-padding: 1.875rem; }
+  @supports (font-variation-settings: normal) {
+    :root {
+      --font-family: "Inter var", Arial, sans-serif; } }

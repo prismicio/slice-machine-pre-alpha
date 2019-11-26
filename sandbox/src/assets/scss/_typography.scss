@@ -1,0 +1,38 @@
+
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: bold;
+    line-height: 1.2;
+    margin-top: 0;
+}
+
+h1, .h1,
+.text--4xl {
+    font-size: var(--text--4xl);
+}
+
+h2, .h2,
+.text--3xl {
+    font-size: var(--text--3xl);
+}
+
+h3, .h3,
+.text--2xl {
+    font-size: var(--text--2xl);
+}
+
+h4, .h4,
+.text--xl {
+    font-size: var(--text--xl);
+}
+
+h5, .h5,
+.text--large {
+    font-size: var(--text--large);
+}
+
+small, 
+.text--small {
+    font-size: var(--text--small);
+}
