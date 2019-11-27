@@ -3,10 +3,9 @@
     <div class="call_to_action">
       <!-- <prismic-rich-text :field="document.title" /> -->
       <HomeTitle />
-      <prismic-rich-text
-        :field="document.description"
-        class="big_description"
-      />
+      <p class="big_description">
+        {{ document.description[0].text }}
+      </p>
       <div class="clipboard" @click.stop.prevent="copyCommand">
         <prismic-rich-text :field="document.copy_paste_embed" />
         <img src="../../static/clipboard.png" />
@@ -64,23 +63,41 @@ export default {
 
 .banner {
   min-height: 576px;
-  margin-top: 63px;
+  margin-top: 0px;
+  max-width: 100%;
+  @include md {
+    margin-top: 62px;
+  }
 }
 .call_to_action {
   max-width: 540px;
   padding-top: 44px;
 }
 .clipboard {
-  width: 400px;
+  width: 100%;
   display: flex;
   color: #ffffff;
   background-color: $black-primary;
   border-radius: 5px;
-  padding: 20px;
+  padding: 20px 5px;
   margin: 20px 0;
   cursor: pointer;
+  @include md {
+    padding: 20px;
+    width: 400px;
+  }
   img {
-    margin-left: 30px;
+    display: none;
+    @include md {
+      margin-left: 30px;
+      display: inline-block;
+    }
+  }
+  pre {
+    font-size: 13px;
+    @include md {
+      font-size: 16px;
+    }
   }
   &:hover {
     background-color: $black-secondary;
@@ -88,12 +105,18 @@ export default {
 }
 .big_description {
   max-width: 530px;
-  font-size: 24px;
-  line-height: 40px;
+  font-size: 20px;
+  line-height: 34px;
+  color: $text-primary;
+  @include md {
+    font-size: 24px;
+    line-height: 40px;
+  }
 }
 .small_description {
   max-width: 430px;
   font-size: 16px;
   line-height: 24px;
+  color: $text-primary;
 }
 </style>

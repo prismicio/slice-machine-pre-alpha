@@ -59,8 +59,11 @@ export default {
           if (doc.type === 'home') {
             return `/`
           }
-          if (doc.uid === 'component-library') {
+          if (doc.type === 'component_library') {
             return `/component-library`
+          }
+          if (doc.type === 'page') {
+            return `/${doc.uid}`
           }
           return '/not-found'
         }

@@ -1,13 +1,14 @@
 //Colors
-$grey-primary: #333;
-$grey-secondary: #666;
-$blue-primary: #007aff;
+$grey-primary: #333333;
+$grey-secondary: #f0f0f0;
+$grey-transparent: rgba(206, 210, 210, 0.4);
+$blue-primary: #007AFF;
 $blue-secondary: rgb(0, 80, 165);
-$black-primary: #000;
+$black-primary: #231F20;
 $black-secondary: #353535;
 
 //Text;
-$text-primary: $grey-primary;
-$text-secondary: $grey-secondary;
+$text-primary: $black-primary;
+$text-secondary: $black-secondary;
 $link-primary: $blue-primary;
 $link-hover: $blue-secondary;

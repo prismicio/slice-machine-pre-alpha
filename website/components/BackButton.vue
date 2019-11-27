@@ -30,10 +30,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/variables.scss';
+@import '../style/global.scss';
 
 .back-button {
-  background: $color-main;
+  background: $black-primary;
   border: none;
   padding: 16px;
   border-radius: 50%;

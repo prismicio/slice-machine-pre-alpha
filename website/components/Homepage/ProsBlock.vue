@@ -52,7 +52,8 @@ export default {
     width: 100%;
 
     img {
-      width: 95px;
+      min-width: 95px;
+      min-height: 95px;
     }
   }
 
@@ -84,6 +85,7 @@ export default {
       }
       p {
         font-size: 16px;
+        line-height: 24px;
       }
     }
   }

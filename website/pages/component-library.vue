@@ -1,26 +1,38 @@
 <template>
-  <main>
-    <MainMenu :menu="menuContent" />
-    <Body class="body--white">
-      <h3 class="card-section-title">
-        {{ $prismic.asText(pageContent.page_title) }}
-      </h3>
-      <p class="card-section-description">
-        {{ $prismic.asText(pageContent.page_description) }}
-      </p>
-      <row class="homerows">
-        <Card v-for="card in lst" :key="card.displayName" v-bind="card" />
-      </row>
-    </Body>
-    <FooterMenu :menu="menuContent" />
-  </main>
+  <Body class="body--white">
+    <div class="grid">
+      <nav>
+        <SideList :comps-data="lst" :side-menu="sideMenu" />
+      </nav>
+      <main>
+        <h3 class="card-section-title">
+          {{ $prismic.asText(document.page_title) }}
+        </h3>
+        <p class="card-section-description">
+          {{ $prismic.asText(document.page_description) }}
+        </p>
+        <row class="homerows">
+          <Card
+            v-for="card in lst"
+            :key="card.displayName"
+            v-bind="card"
+            variant="2col"
+          >
+            <template v-slot:description>
+              <span style="visible: none"></span>
+            </template>
+          </Card>
+        </row>
+      </main>
+    </div>
+  </Body>
 </template>
 
 <script>
 import Prismic from 'prismic-javascript'
 import PrismicConfig from '~/prismic.config.js'
-import MainMenu from '@/components/MainMenu'
-import FooterMenu from '@/components/FooterMenu'
+
+import SideList from '@/components/menus/SideList'
 
 import Slices from '@/../src'
 import { createSlice } from '~/utils'
@@ -39,8 +51,7 @@ export default {
     Card,
     Body,
     Row,
-    MainMenu,
-    FooterMenu
+    SideList
   },
   data: () => ({
     lst
@@ -51,23 +62,23 @@ export default {
       const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
 
       // Query to get the page content
-      let pageContent = {}
-      const page = await api.getByUID('page', 'component-library')
-      pageContent = page.data
+      let document = {}
+      const page = await api.getSingle('component_library')
+      document = page.data
 
-      // Query to get the menu content
-      let menuContent = {}
-      const menu = await api.getByUID('menu', 'main_menu')
-      menuContent = menu.data
+      // Query to get the side menu content
+      let sideMenu = {}
+      const side = await api.getByUID('menu', 'side_menu')
+      sideMenu = side.data
 
       // Load the edit button
       if (process.client) window.prismic.setupEditButton()
 
       return {
         // Page
-        pageContent,
-        // Menu
-        menuContent
+        document,
+        // Side Menu
+        sideMenu
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
@@ -78,6 +89,24 @@ export default {
 
 <style lang="scss" scoped>
 @import '../style/_global';
+
+.grid {
+  display: grid;
+  grid-template-areas: 'nav content';
+  grid-template-columns: 200px 1fr;
+  grid-gap: 10px;
+  width: 100%;
+  padding-top: 44px;
+}
+nav {
+  grid-area: nav;
+  margin-left: 0.5rem;
+}
+main {
+  grid-area: content;
+  border-left: 1px solid $grey-transparent;
+  padding-left: 112px;
+}
 
 .homerows {
   padding: 25px 0;

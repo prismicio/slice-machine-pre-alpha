@@ -8,7 +8,7 @@
       </Button>
     </div>
     <div class="markdown-box">
-      <vue-markdown class="markdown-body">
+      <vue-markdown class="markdown-body" toc toc-id="toc">
         <slot />
       </vue-markdown>
     </div>
