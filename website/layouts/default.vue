@@ -1,15 +1,18 @@
 <template>
   <div>
+    <MainMenu />
     <nuxt />
-    <collection-drawer />
+    <FooterMenu />
   </div>
 </template>
 
 <script>
-import CollectionDrawer from '~/components/CollectionDrawer'
+import MainMenu from '@/components/menus/MainMenu'
+import FooterMenu from '@/components/menus/FooterMenu'
 export default {
   components: {
-    CollectionDrawer
+    MainMenu,
+    FooterMenu
   }
 }
 </script>

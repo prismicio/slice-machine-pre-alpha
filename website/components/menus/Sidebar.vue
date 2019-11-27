@@ -59,7 +59,7 @@ export default {
   top: 0;
   height: 100vh;
   z-index: 999;
-  padding: 3rem 20px 2rem 20px;
-  width: 300px;
+  width: 320px;
+  margin-top: 71px;
 }
 </style>

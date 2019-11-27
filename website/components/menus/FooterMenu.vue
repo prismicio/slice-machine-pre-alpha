@@ -1,9 +1,11 @@
 <template>
-  <div class="mainMenu">
+  <div class="footerMenu">
     <Container justify="space-between">
       <div class="logo">
-        <prismic-image :field="menu.logo" />
-        <p><b>Slicemachine</b> by prismic</p>
+        <nuxt-link to="/">
+          <prismic-image :field="menu.logo" />
+        </nuxt-link>
+        <nuxt-link to="/"> <b>Slicemachine</b> by prismic </nuxt-link>
       </div>
       <nav>
         <ul>
@@ -19,6 +21,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Container from '@/components/Container'
 
 export default {
@@ -26,17 +30,17 @@ export default {
   components: {
     Container
   },
-  props: {
-    menu: {
-      type: Object,
-      required: true
+  computed: {
+    ...mapState(['mainmenu']),
+    menu() {
+      return this.$store.state.mainmenu.menu
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../style/_global';
+@import '../../style/_global';
 
 a {
   display: contents;
@@ -46,7 +50,7 @@ a {
   }
 }
 
-.mainMenu {
+.footerMenu {
   border-top: 1px solid #d3d2d2;
   height: 30px;
   padding: 30px 0;
@@ -55,11 +59,9 @@ a {
   .logo {
     display: inline-flex;
     align-items: center;
-    p {
-      padding: 0 5px;
-    }
     b {
       font-size: 20px;
+      padding: 0 5px;
     }
   }
   ul {
@@ -69,6 +71,17 @@ a {
   li {
     display: inline-block;
     margin-left: 10px;
+  }
+  a {
+    display: contents;
+    text-decoration: none;
+    color: $black-primary;
+    &:visited {
+      color: $black-primary;
+    }
+    &:hover {
+      color: $black-secondary;
+    }
   }
 }
 </style>

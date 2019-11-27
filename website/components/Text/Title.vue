@@ -27,12 +27,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/_variables.scss';
+@import '../../style/_global.scss';
 
 .title {
   font-weight: 600;
   &--main {
-    color: $color-main;
+    color: $text-primary;
   }
   &--black {
     color: $text-darker;

@@ -1,10 +1,9 @@
 <template>
   <main>
-    <MainMenu :menu="menuContent" />
     <section
       :style="{
         background: `no-repeat`,
-        backgroundSize: `85%`,
+        backgroundSize: `90%`,
         backgroundPosition: `left`,
         backgroundImage: `url('${document.banner_background.url}')`
       }"
@@ -28,15 +27,12 @@
         <HomeLib v-if="slice.slice_type === 'cards'" :slice="slice" />
       </row>
     </Body>
-    <FooterMenu :menu="menuContent" />
   </main>
 </template>
 
 <script>
 import Prismic from 'prismic-javascript'
 import PrismicConfig from '~/prismic.config.js'
-import MainMenu from '@/components/MainMenu'
-import FooterMenu from '@/components/FooterMenu'
 import Container from '@/components/Container'
 
 import HomeBanner from '@/components/Homepage/HomeBanner'
@@ -50,8 +46,6 @@ import Row from '@/components/Row'
 
 export default {
   components: {
-    MainMenu,
-    FooterMenu,
     HomeBanner,
     Container,
     GraphicBlock,
@@ -71,11 +65,6 @@ export default {
       const result = await api.getSingle('home')
       document = result.data
 
-      // Query to get the menu content
-      let menuContent = {}
-      const menu = await api.getByUID('menu', 'main_menu')
-      menuContent = menu.data
-
       // Load the edit button
       if (process.client) window.prismic.setupEditButton()
 
@@ -85,10 +74,7 @@ export default {
         documentId: result.id,
 
         // Set slices as variable
-        websiteSlices: document.body,
-
-        // Menu
-        menuContent
+        websiteSlices: document.body
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Homepage not found' })
@@ -101,6 +87,6 @@ export default {
 @import '../style/_global';
 
 .homerows {
-  padding: 25px 0;
+  padding: 50px 0;
 }
 </style>
