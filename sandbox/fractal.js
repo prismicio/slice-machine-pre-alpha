@@ -29,6 +29,7 @@ fractal.docs.set('path', path.join(__dirname, '/src/docs'))
  * Tell the Fractal web preview plugin where to look for static assets.
  */
 fractal.web.set('static.path', path.join(__dirname, 'public'))
+fractal.web.set('static.path', __dirname + '/public');
 
 /* =========================================
    Theming
@@ -38,12 +39,12 @@ fractal.web.set('static.path', path.join(__dirname, 'public'))
 // all the paths inside this are relative to the theme's root folder `theme` locted in the project's source folder
 const mandelbrot = require('@frctl/mandelbrot')
 const jTheme = mandelbrot({
-  // theme config here
-  favicon: '/assets/favicon.ico',
-  skin: 'white',
-  nav: ['docs', 'components'], // show docs above components in the sidebar
-  panels: ['notes', 'html', 'resources', 'info'], // possible values: "html", "view", "context", "resources", "info", "notes"
-  styles: ['default', '/css/theme.css']
+    // theme config here
+    favicon: '/assets/favicon.ico',
+    skin: 'white',
+    nav: ['docs', 'components'], // show docs above components in the sidebar
+    panels: ['notes', 'html', 'resources', 'info'], // possible values: "html", "view", "context", "resources", "info", "notes"
+    styles: ['default', '/css/theme.css']
 })
 
 // specify a directory to hold the theme override templates

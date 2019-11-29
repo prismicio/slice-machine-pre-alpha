@@ -1,0 +1,90 @@
+/************************************************************************************************\
+ *
+ * Styles common to all slices/components, such as spacing and layout of the common elements
+ * including the kicker (a.k.a. eyebrow header), main heading, and description
+ * The `.ps` prefix stands for "prismic slice"
+ *
+ ************************************************************************************************/
+
+ .ps {
+    width: 100vw;
+    width: calc(100vw - var(--scrollbar));
+    position: relative;
+    padding-left:  var(--h-padding);
+    padding-right: var(--h-padding);
+    padding-top: var(--v-space);
+    padding-bottom: var(--v-space);
+}
+
+.ps--black {
+    background-color: #000;
+    color: #fff;
+}
+
+.ps__wrap {
+    margin: 0 auto;
+
+    @media all and (min-width: 1024px) {
+        max-width: 80%;
+    }
+
+    @media all and (min-width: 1200px) {
+        max-width: 68%;
+    }
+}
+
+.ps__head {     
+    @media all and (min-width: 800px) {
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+.ps__title {
+    margin-bottom: 0;
+    @extend .text--4xl;
+}
+
+.ps__desc {
+    max-width: 50ch;
+
+    @media all and (min-width: 800px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    font-weight: 350;
+    line-height: 1.45;
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+// when the description is preceded with a heading, add margin between them
+.ps__header + .ps__desc {
+    margin-top: calc(var(--c-padding));
+}
+
+.ps__main {
+    margin-top: calc(var(--v-margin) * 2);
+
+    @media all and (min-width: 50em){
+        display: grid; 
+        grid-template-columns: repeat(12, 1fr);
+        grid-column-gap: var(--h-padding); 
+    }  
+}
+
+.ps__kicker {
+    display: block;
+    color: var(--color--primary);
+    font-weight: 500;
+    @extend .text--xl;
+    margin: 0 0 0.6em;
+}
+
+.ps__kicker-icon {
+    display: inline-block;
+    margin: 0 0 1rem;
+}

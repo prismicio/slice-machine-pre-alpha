@@ -74,15 +74,15 @@ var util = {
 (function (w, doc, undefined) {
 
     var ARIAaccOptions = {
-        showOneAnswerAtATime: false,
+        showOneAnswerAtATime: true,
         allCollapsed: true,
-        withControls: true,
+        withControls: false,
 
         // the following needs to be an SVG icon
         // we will be dynamically inserting this icon into the buttons in this script
-        // you could, alternatively, insert the icons inline in the code and hide them, and show them from here
+        // make sure you add the class `accordion-icon` to it
         icon:
-            '<svg aria-hidden="true" focusable="false" width="50" height="50" viewBox="0 0 50 50" class="accordion-icon"><circle stroke-width="2" fill="transparent" stroke="currentColor" cx="16" cy="16" r="16" transform="translate(9 9)"/><path stroke-width="2" stroke="currentColor" fill="none" d="M20 23l5.5 5.092 5.5-5.092" /></svg>'
+            '<svg class="accordion-icon" width="12" height="8" aria-hidden="true" focusable="false" viewBox="0 0 12 8"><g fill="none"><path fill="#000" d="M1.41.59l4.59 4.58 4.59-4.58 1.41 1.41-6 6-6-6z"/><path d="M-6-8h24v24h-24z"/></g></svg>'
     }
     /**
      * ARIA Accordion
@@ -101,9 +101,9 @@ var util = {
         var controlsWrapper;
         var expandButton;
         var collapseButton;
+        var accID = util.generateID('c-accordion-');
 
         var init = function () {
-
             // if you have any functionality in CSS that needs JS to be activated
             // this class added to the accordion container works as a JS hook to announce JS is enabled
             // in the CSS, we have a part that adds borders and paddings to the headings, buttons and panels
@@ -175,13 +175,14 @@ var util = {
         var setupAccordionHeadings = function (accordionHeadings) {
             Array.from(accordionHeadings).forEach(function (item, index) {
                 var $this = item;
-                $this.setAttribute("id", "c-accordion-heading-" + index);
+
 
                 let text = $this.innerText;
                 let headingButton = document.createElement("button");
-                headingButton.setAttribute("aria-controls", "c-accordion-panel-" + index);
                 headingButton.setAttribute("aria-expanded", "false");
                 headingButton.setAttribute("data-accordion-toggle", "");
+                headingButton.setAttribute("id", accID + '__heading-' + index);
+                headingButton.setAttribute("aria-controls", accID + '__panel-' + index);
                 headingButton.innerText = text;
 
                 $this.innerHTML = "";
@@ -203,8 +204,8 @@ var util = {
             Array.from(accordionPanels).forEach(function (item, index) {
                 let $this = item;
 
-                $this.setAttribute("id", "c-accordion-panel-" + index);
-                // $this.setAttribute('aria-labelledby', "c-accordion-heading-" + index);
+                $this.setAttribute("id", accID + '__panel-' + index);
+                $this.setAttribute("aria-labelledby", accID + '__heading-' + index);
                 $this.setAttribute("aria-hidden", "true");
             });
         }
@@ -221,10 +222,15 @@ var util = {
             } else {
                 if (_options.showOneAnswerAtATime) {
                     // Hide all answers
-                    accordionPanels.setAttribute("aria-hidden", "true");
-                    accordionHeadings
-                        .querySelector("button")
-                        .setAttribute("aria-expanded", "false");
+                    Array.from(accordionPanels).forEach((panel) => {
+                        panel.setAttribute("aria-hidden", "true");
+                    });
+
+                    Array.from(accordionHeadings).forEach((heading) => {
+                        heading.querySelector("button")
+                            .setAttribute("aria-expanded", "false");
+                    })
+
 
                     checkToggleCollapseButtonState();
                     checkToggleExpandButtonState();
@@ -311,25 +317,25 @@ var util = {
         // }
 
         var enableCollapseButton = function () {
-            collapseButton.removeAttribute("disabled");
+            if (collapseButton) collapseButton.removeAttribute("disabled");
         }
 
         var disableCollapseButton = function () {
-            collapseButton.setAttribute("disabled", "disabled");
+            if (collapseButton) collapseButton.setAttribute("disabled", "disabled");
         }
 
         var enableExpandButton = function () {
-            expandButton.removeAttribute("disabled");
+            if (expandButton) expandButton.removeAttribute("disabled");
         }
 
         var disableExpandButton = function () {
-            expandButton.setAttribute("disabled", "disabled");
+            if (expandButton) expandButton.setAttribute("disabled", "disabled");
         }
 
         var checkToggleExpandButtonState = function () {
             var closedPanels = el.querySelectorAll(
                 'button[aria-expanded="false"]'
-            ); // find any and all collapsed panels
+            );
 
             if (!closedPanels.length) {
                 disableExpandButton();
@@ -341,7 +347,7 @@ var util = {
         var checkToggleCollapseButtonState = function () {
             var openPanels = el.querySelectorAll(
                 'button[aria-expanded="true"]'
-            ); // find any and all expanded panels
+            );
 
             if (openPanels.length === 0) {
                 disableCollapseButton();
@@ -352,7 +358,7 @@ var util = {
 
         init.call(this);
         return this;
-    }; // ARIAtabs()
+    }; // ARIAaccordion()
 
     w.ARIAaccordion = ARIAaccordion;
 })(window, document);
@@ -364,8 +370,8 @@ var allAccs = [];
 
 // Generate all accordion instances
 for (var i = 0; i < els.length; i++) {
-    var nAccs = new ARIAaccordion(els[i]);
-    // var nAccs = new ARIAaccordion(els[i], { withControls: false });
+    // var nAccs = new ARIAaccordion(els[i]);
+    var nAccs = new ARIAaccordion(els[i], { withControls: false });
 
     allAccs.push(nAccs);
 }

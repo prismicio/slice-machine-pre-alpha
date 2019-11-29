@@ -16,13 +16,21 @@ const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
 const merge = require('merge-stream')
 const path = require('path')
+const image = require("gulp-image")
 
 gulp.task('browserSync', function () {
     browserSync.init({
         files: ['src/**/*.*'],
-        proxy: 'localhost:4000', // fractal uses localhost:4000
+        proxy: 'localhost:7000', // fractal uses localhost:7000
         injectChanges: true
     })
+})
+
+gulp.task("images", function () {
+    return gulp
+        .src(["src/assets/img/**/*"])
+        .pipe(image())
+        .pipe(gulp.dest("public/img"));
 })
 
 gulp.task('scripts', function () {
@@ -54,7 +62,7 @@ gulp.task('sass', function () {
 gulp.task('watch', function () {
     browserSync.init({
         files: ['src/**/*.*'],
-        proxy: 'localhost:4000', // fractal uses localhost:4000
+        proxy: 'localhost:7000', // fractal uses localhost:7000
         injectChanges: true
     })
 
@@ -66,6 +74,9 @@ gulp.task('watch', function () {
         ['src/assets/js/**/*.js', 'src/components/**/*.js'],
         gulp.series('scripts')
     )
+
+    gulp.watch(["src/assets/img/**/*"], gulp.series("images"))
+
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('src/*.hbs').on('change', browserSync.reload)
 })
@@ -90,3 +101,4 @@ gulp.task('fractal:start', function () {
 })
 
 gulp.task('default', gulp.series('fractal:start', 'watch'))
+// gulp.task("default", gulp.series("watch"));

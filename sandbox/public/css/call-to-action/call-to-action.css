@@ -1,0 +1,7 @@
+.ps-cta {
+  text-align: center; }
+
+@media all and (min-width: 40em) {
+  .ps-cta .ps-button {
+    display: inline-block;
+    margin-top: var(--h-padding); } }

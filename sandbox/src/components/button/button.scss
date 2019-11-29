@@ -1,0 +1,23 @@
+.ps-button {
+    display: block;
+    border-radius: 5px;
+    padding: 1.25em 3em;
+    text-decoration: none;
+    font-weight: 500;
+
+    margin-top: var(--v-margin);
+    
+    &:focus {
+        outline-offset: 4px;
+    }
+}
+
+.ps-button--primary {
+    background-color: var(--color--primary);
+    color: #fff;
+}
+
+.ps-button--secondary {
+    background-color: #000;
+    color: #fff;
+}
