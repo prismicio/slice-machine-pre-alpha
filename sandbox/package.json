@@ -9,7 +9,8 @@
     "gulp-sass-glob": "^1.0.9"
   },
   "scripts": {
-    "start": "fractal start --port 4000 & gulp"
+    "start": "fractal start --port 4000 & gulp",
+    "build": "fractal build"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",

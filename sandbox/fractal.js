@@ -30,6 +30,8 @@ fractal.docs.set('path', path.join(__dirname, '/src/docs'))
  */
 fractal.web.set('static.path', path.join(__dirname, 'public'))
 
+fractal.web.set('builder.dest', path.join(__dirname, 'dist'))
+
 /* =========================================
    Theming
 =========================================== */
