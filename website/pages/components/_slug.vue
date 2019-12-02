@@ -25,9 +25,6 @@
           v-html="sandbox"
         />
       </main>
-      <aside>
-        <ContentsTable :document="document" />
-      </aside>
     </div>
   </Body>
 </template>
@@ -40,7 +37,6 @@ import * as Slices from '~/../src/slices'
 import { createSlice, sliceRoute } from '~/utils'
 
 import SideList from '@/components/menus/SideList'
-import ContentsTable from '@/components/menus/ContentsTable'
 
 import Body from '@/components/Body'
 import MarkDownBox from '@/components/MarkDownBox'
@@ -54,8 +50,7 @@ export default {
     ...Slices,
     MarkDownBox,
     Body,
-    SideList,
-    ContentsTable
+    SideList
   },
   data() {
     return {
@@ -118,23 +113,13 @@ export default {
 
 .grid {
   display: grid;
-  grid-template-areas: 'content';
-  grid-template-columns: 1fr;
+  grid-template-columns: [container-start] minmax(0, 1fr) [container-end];
   @include lg {
     padding-top: 44px;
     grid-template-areas: 'nav content';
     grid-template-columns: 200px minmax(200px, 1fr);
     grid-gap: 10px;
   }
-  @include xl {
-    padding-top: 44px;
-    grid-template-areas: 'nav content side';
-    grid-template-columns: 200px minmax(200px, 1fr) 200px;
-    grid-gap: 10px;
-  }
-}
-img {
-  max-width: 100%;
 }
 nav {
   display: none;
@@ -145,22 +130,15 @@ nav {
   }
 }
 main {
-  grid-area: content;
+  grid-column: container;
   @include lg {
+    grid-area: content;
     padding-left: 44px;
     border-left: 1px solid $grey-transparent;
   }
-  @include xl {
-    padding: 0 44px;
-  }
 }
-aside {
-  display: none;
-  @include xl {
-    display: inline;
-    grid-area: side;
-    margin-right: 0.5rem;
-  }
+img {
+  max-width: 100%;
 }
 .subtitle {
   font-weight: 300;

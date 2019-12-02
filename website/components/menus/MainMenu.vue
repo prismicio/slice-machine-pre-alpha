@@ -6,7 +6,9 @@
           <nuxt-link to="/">
             <prismic-image :field="menu.logo" />
           </nuxt-link>
-          <nuxt-link to="/"> <b>Slicemachine</b> by prismic </nuxt-link>
+          <nuxt-link to="/">
+            <span> <b>Slicemachine</b> by prismic </span>
+          </nuxt-link>
         </div>
         <ul class="horizontal-nav">
           <li v-for="menuLink in menu.menu_item" :key="menuLink.id">
@@ -29,10 +31,12 @@
     <Sidebar>
       <div class="sidebar-logo">
         <nuxt-link to="/">
-          <prismic-image :field="menu.logo" />
+          <prismic-image v-if="menu.logo" :field="menu.logo" />
         </nuxt-link>
-        <nuxt-link to="/"> <b>Slicemachine</b> by prismic </nuxt-link>
-        <Burger></Burger>
+        <nuxt-link to="/">
+          <span> <b>Slicemachine</b> by prismic </span>
+        </nuxt-link>
+        <Burger class="side-burger"></Burger>
       </div>
       <ul class="sidebar-panel-nav">
         <div v-for="menuLink in menu.menu_item" :key="menuLink.id">
@@ -54,11 +58,7 @@
               ></span>
             </prismic-link>
             <ul v-show="open" class="second-level">
-              <li
-                v-for="listItem in lst"
-                :key="listItem.displayName"
-                v-bind="listItem.displayName"
-              >
+              <li v-for="listItem in lst" :key="listItem.displayName">
                 <nuxt-link :to="`/components/${listItem.displayName}`">
                   {{ listItem.meta.title }}
                 </nuxt-link>
@@ -161,13 +161,13 @@ export default {
     b {
       padding: 0 5px;
       font-size: 16px;
-      @include md {
+      @include lg {
         font-size: 20px;
       }
     }
     a {
       font-size: 13px;
-      @include md {
+      @include lg {
         font-size: 16px;
       }
     }
@@ -177,7 +177,9 @@ export default {
     .top-level {
       border-bottom: 1px solid $grey-transparent;
       a {
-        display: block;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 1em;
         font-weight: bold;
         cursor: pointer;

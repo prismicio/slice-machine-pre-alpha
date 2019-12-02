@@ -7,21 +7,26 @@
       :field="slice.primary.card_box_description"
       class="card-section-description"
     />
-    <row class="homerows">
+    <row class="card-section-library">
       <Card
         v-for="card in lst.slice(0, 3)"
         :key="card.displayName"
         v-bind="card"
         variant="3col"
+        class="threeCards"
+      />
+      <Card
+        v-for="card in lst.slice(0, 1)"
+        :key="card.displayName"
+        v-bind="card"
+        class="oneCard"
       />
     </row>
-    <row class="homerows">
-      <Button variant="text-white">
-        <prismic-link :field="slice.primary.button_link">
-          {{ slice.primary.button_label }}
-        </prismic-link>
-      </Button>
-    </row>
+    <Button variant="text-white">
+      <prismic-link :field="slice.primary.button_link">
+        {{ slice.primary.button_label }}
+      </prismic-link>
+    </Button>
   </section>
 </template>
 
@@ -58,23 +63,31 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../style/_global';
-.homerows {
-  padding: 25px 0;
-}
 
 .card-section {
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: [container-start] minmax(0, 1fr) [container-end];
   &-title {
-    text-align: center;
+    text-align: left;
     font-size: 28px;
     line-height: 50px;
+    @include md {
+      text-align: center;
+    }
   }
   &-description {
-    width: 800px;
-    text-align: center;
+    max-width: 800px;
+    text-align: left;
     margin: 0 auto;
     font-size: 18px;
     line-height: 34px;
+    @include md {
+      text-align: center;
+    }
+  }
+  &-library {
+    margin-bottom: 50px;
   }
   .button {
     margin: 0 auto;
@@ -86,6 +99,18 @@ export default {
     a {
       text-decoration: none;
     }
+  }
+}
+.threeCards {
+  display: none;
+  @include md {
+    display: inline;
+  }
+}
+.oneCard {
+  display: inline;
+  @include md {
+    display: none;
   }
 }
 </style>

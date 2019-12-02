@@ -2,7 +2,9 @@
   <section class="banner">
     <div class="call_to_action">
       <!-- <prismic-rich-text :field="document.title" /> -->
-      <HomeTitle />
+      <h1 class="site-title">
+        Slİcemachİne
+      </h1>
       <p class="big_description">
         {{ document.description[0].text }}
       </p>
@@ -24,12 +26,8 @@
 </template>
 
 <script>
-import HomeTitle from '@/components/Homepage/HomeTitle.vue'
 export default {
   name: 'HomeBanner',
-  components: {
-    HomeTitle
-  },
   props: {
     document: {
       type: Object,
@@ -72,6 +70,16 @@ export default {
 .call_to_action {
   max-width: 540px;
   padding-top: 44px;
+  h1 {
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 42px;
+    font-weight: 800;
+    @include md {
+      font-size: 60px;
+      line-height: 71px;
+    }
+  }
 }
 .clipboard {
   width: 100%;

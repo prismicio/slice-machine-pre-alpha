@@ -60,6 +60,5 @@ export default {
   height: 100vh;
   z-index: 999;
   width: 320px;
-  margin-top: 71px;
 }
 </style>

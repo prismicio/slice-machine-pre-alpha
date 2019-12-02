@@ -92,22 +92,30 @@ export default {
 
 .grid {
   display: grid;
-  grid-template-areas: 'nav content';
-  grid-template-columns: 200px 1fr;
-  grid-gap: 10px;
-  width: 100%;
-  padding-top: 44px;
+  grid-template-columns: [container-start] minmax(0, 1fr) [container-end];
+  @include lg {
+    padding-top: 44px;
+    grid-template-areas: 'nav content';
+    grid-template-columns: 200px minmax(200px, 1fr);
+    grid-gap: 10px;
+  }
 }
 nav {
-  grid-area: nav;
-  margin-left: 0.5rem;
+  display: none;
+  @include lg {
+    display: inline;
+    grid-area: nav;
+    margin-left: 0.5rem;
+  }
 }
 main {
-  grid-area: content;
-  border-left: 1px solid $grey-transparent;
-  padding-left: 112px;
+  grid-column: container;
+  @include lg {
+    grid-area: content;
+    padding-left: 44px;
+    border-left: 1px solid $grey-transparent;
+  }
 }
-
 .homerows {
   padding: 25px 0;
 }

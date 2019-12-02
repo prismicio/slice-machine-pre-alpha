@@ -5,6 +5,11 @@
 <script>
 export default {
   name: 'TextSlice',
-  props: ['slice']
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
