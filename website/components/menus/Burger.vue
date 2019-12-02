@@ -97,6 +97,10 @@ button:focus {
   background-color: #fff;
 }
 
+#burger.side-burger .burger-bar {
+  background-color: #000;
+}
+
 #burger.active .burger-bar--1 {
   transform: rotate(45deg);
 }

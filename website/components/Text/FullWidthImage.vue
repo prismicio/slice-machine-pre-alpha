@@ -7,6 +7,11 @@
 <script>
 export default {
   name: 'FullWidthImage',
-  props: ['slice']
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>

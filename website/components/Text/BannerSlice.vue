@@ -13,6 +13,11 @@
 <script>
 export default {
   name: 'BannerSlice',
-  props: ['slice']
+  props: {
+    slice: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>

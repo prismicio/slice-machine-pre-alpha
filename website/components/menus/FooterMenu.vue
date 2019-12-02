@@ -5,7 +5,9 @@
         <nuxt-link to="/">
           <prismic-image :field="menu.logo" />
         </nuxt-link>
-        <nuxt-link to="/"> <b>Slicemachine</b> by prismic </nuxt-link>
+        <nuxt-link to="/">
+          <span> <b>Slicemachine</b> by prismic </span>
+        </nuxt-link>
       </div>
       <nav>
         <ul>
@@ -52,10 +54,12 @@ a {
 
 .footerMenu {
   border-top: 1px solid #d3d2d2;
-  height: 30px;
   padding: 30px 0;
   margin: 30px 0;
   min-height: 80px;
+  @include sm {
+    display: block;
+  }
   .logo {
     display: inline-flex;
     align-items: center;
@@ -65,12 +69,19 @@ a {
     }
   }
   ul {
-    display: inline-flex;
+    display: grid;
+    padding: 0;
     font-size: 14px;
+    @include sm {
+      display: inline-flex;
+    }
   }
   li {
     display: inline-block;
-    margin-left: 10px;
+    padding-top: 15px;
+    @include sm {
+      margin-left: 10px;
+    }
   }
   a {
     display: contents;
