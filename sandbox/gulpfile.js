@@ -96,7 +96,7 @@ gulp.task('fractal:start', function () {
  */
 
 gulp.task('fractal:build', function () {
-    const builder = fractal.web.builder();
+    const builder = fractal.web.builder({ dest: 'dist' });
     builder.on('progress', (completed, total) => logger.update(`Exported ${completed} of ${total} items`, 'info'));
     builder.on('error', err => logger.error(err.message));
     return builder.build().then(() => {

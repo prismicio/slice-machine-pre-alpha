@@ -2,29 +2,30 @@
   "name": "Prismic-Slices",
   "version": "0.1.0",
   "dependencies": {
-    "@frctl/fractal": "^1.1.7",
-    "@frctl/mandelbrot": "^1.2.0",
+    "@frctl/fractal": "^1.2.0",
+    "@frctl/mandelbrot": "^1.2.1",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-sass-glob": "^1.0.9"
+    "gulp-sass-glob": "^1.1.0"
   },
   "scripts": {
     "start": "fractal start --port 4000 & gulp",
-    "build": "fractal build"
+    "build": "fractal build",
+    "gulp:build": "gulp fractal:build"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "browser-sync": "^2.26.3",
-    "gulp": "^4.0.0",
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.1",
+    "gulp-uglify": "^3.0.2",
     "merge-stream": "^1.0.1"
   }
 }
