@@ -116,8 +116,4 @@ gulp.task('fractal:build', function () {
 });
 
 gulp.task('default', gulp.series('fractal:start', 'watch'))
-<<<<<<< HEAD
 // gulp.task("default", gulp.series("watch"));
-=======
-
->>>>>>> a7506f8cb7bc6277177dbbd079149237d2c36829
