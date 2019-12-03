@@ -1,26 +1,10 @@
 // import the accordion component styles (the actual accordion element)
 @import "_c-accordion.scss";
 
-.ps-accordion--faq {
-    [data-accordion] {
-        grid-column: 1 / 13;
-    }
+.ps-accordion__img {
+    display: block;
+    margin: 0 auto calc(var(--c-padding) * 2);
+    background: var(--color--secondary);
 }
 
-.ps-accordion--with-img {
-    .ps-accordion__img {
-        text-align: center;
-        margin-bottom: calc(var(--c-padding) * 2);
-    }
 
-    @media all and (min-width: 50em){ //800px
-        .c-accordion {
-            grid-column: 7 / 13;
-        }
-
-        .ps-accordion__img {
-            grid-column: 1 / 7;
-            background: var(--color--secondary);
-        }
-    }
-}

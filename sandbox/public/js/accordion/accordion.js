@@ -1,4 +1,3 @@
-// TODO: generate random IDs for the buttons and panels because otherwise IDs would clash if you have more than one instance of the accordion on the page
 "use strict";
 
 if (typeof Object.assign != "function") {
@@ -62,7 +61,7 @@ var util = {
   var ARIAaccOptions = {
     showOneAnswerAtATime: true,
     allCollapsed: true,
-    withControls: false,
+    withControls: true,
     // the following needs to be an SVG icon
     // we will be dynamically inserting this icon into the buttons in this script
     // make sure you add the class `accordion-icon` to it
@@ -162,9 +161,7 @@ var util = {
         headingButton.innerHTML += _options.icon;
         headingButton.addEventListener("click", function (e) {
           togglePanel(headingButton);
-        }); // headingButton.addEventListener("keydown", function (e) {
-        // enableKeyboardInteractions(headingButton, e);
-        // });
+        });
       });
     };
 
@@ -204,68 +201,7 @@ var util = {
         checkToggleCollapseButtonState();
         checkToggleExpandButtonState();
       }
-    }; // commented out because there is a discussion that the user's UP/DOWN/LEFT/RIGHT keys should
-    // maintain their default behavior for scrolling the page, rather than be used in the accordion
-    // var enableKeyboardInteractions = function (elem, e) {
-    //     var keyCode = e.which,
-    //         // check if the element exists first, otherwis this throws an error
-    //         // if it does, get the button in it, we'll focus it on keyboard event
-    //         nextHeading = elem.parentNode.nextElementSibling.nextElementSibling
-    //             ? elem.parentNode.nextElementSibling.nextElementSibling.querySelector(
-    //                 "button"
-    //             )
-    //             : false,
-    //         // check if the element exists first, otherwis this throws an error
-    //         // if it does, get the button in it, we'll focus it on keyboard event
-    //         previousHeading = elem.parentNode.previousElementSibling
-    //             .previousElementSibling
-    //             ? elem.parentNode.previousElementSibling.previousElementSibling.querySelector(
-    //                 "button"
-    //             )
-    //             : false,
-    //         // get the first in the nodelist of headings in the accordion
-    //         firstHeading = accordion.querySelectorAll("[data-accordion-toggle]")[0],
-    //         lastHeading = accordion.querySelectorAll("[data-accordion-toggle]")[
-    //             accordionHeadings.length - 1
-    //         ];
-    //     switch (keyCode) {
-    //         // Left/Up
-    //         case 37:
-    //         case 38:
-    //             e.preventDefault();
-    //             e.stopPropagation();
-    //             if (!previousHeading) {
-    //                 lastHeading.focus(); // keep focus within component
-    //             } else {
-    //                 previousHeading.focus();
-    //             }
-    //             break;
-    //         // Right/Down
-    //         case 39:
-    //         case 40:
-    //             e.preventDefault();
-    //             e.stopPropagation();
-    //             if (!nextHeading) {
-    //                 firstHeading.focus(); // keep focus within component
-    //             } else {
-    //                 nextHeading.focus();
-    //             }
-    //             break;
-    //         // Home
-    //         case 36:
-    //             e.preventDefault();
-    //             e.stopPropagation();
-    //             firstHeading.focus();
-    //             break;
-    //         // End
-    //         case 35:
-    //             e.preventDefault();
-    //             e.stopPropagation();
-    //             lastHeading.focus();
-    //             break;
-    //     }
-    // }
-
+    };
 
     var enableCollapseButton = function enableCollapseButton() {
       if (collapseButton) collapseButton.removeAttribute("disabled");

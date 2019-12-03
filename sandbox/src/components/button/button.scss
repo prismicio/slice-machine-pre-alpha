@@ -1,7 +1,8 @@
 .ps-button {
     display: block;
-    border-radius: 5px;
-    padding: 1.25em 3em;
+    text-align: center;
+    border-radius: 4px;
+    padding: 1em 3em;
     text-decoration: none;
     font-weight: 500;
 
@@ -9,6 +10,10 @@
     
     &:focus {
         outline-offset: 4px;
+        outline-color: #000;
+    }
+    .ps--black &:focus {
+        outline-color: #fff;
     }
 }
 

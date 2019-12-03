@@ -1,4 +1,8 @@
+
+
 .c-accordion__heading {
+    @extend .text--l !optional;
+    
   .accordion-js & {
       margin: 0;
   }

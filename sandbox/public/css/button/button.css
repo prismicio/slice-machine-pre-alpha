@@ -1,12 +1,16 @@
 .ps-button {
   display: block;
-  border-radius: 5px;
-  padding: 1.25em 3em;
+  text-align: center;
+  border-radius: 4px;
+  padding: 1em 3em;
   text-decoration: none;
   font-weight: 500;
   margin-top: var(--v-margin); }
   .ps-button:focus {
-    outline-offset: 4px; }
+    outline-offset: 4px;
+    outline-color: #000; }
+  .ps--black .ps-button:focus {
+    outline-color: #fff; }
 
 .ps-button--primary {
   background-color: var(--color--primary);

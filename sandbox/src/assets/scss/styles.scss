@@ -18,6 +18,10 @@ body {
     outline: none;
 }
 
+a {
+    color: inherit;
+}
+
 a:focus {
     outline: var(--focus-outline);
     outline-offset: 2px;

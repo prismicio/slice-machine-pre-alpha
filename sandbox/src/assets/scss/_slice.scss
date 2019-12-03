@@ -21,6 +21,10 @@
     color: #fff;
 }
 
+.ps--beige {
+    background-color: var(--color--secondary);
+}
+
 .ps__wrap {
     margin: 0 auto;
 
@@ -29,7 +33,7 @@
     }
 
     @media all and (min-width: 1200px) {
-        max-width: 68%;
+        max-width: 75%;
     }
 }
 
@@ -63,28 +67,121 @@
 
 // when the description is preceded with a heading, add margin between them
 .ps__header + .ps__desc {
-    margin-top: calc(var(--c-padding));
+    margin-top: calc(var(--c-margin));
 }
 
-.ps__main {
-    margin-top: calc(var(--v-margin) * 2);
 
-    @media all and (min-width: 50em){
-        display: grid; 
-        grid-template-columns: repeat(12, 1fr);
-        grid-column-gap: var(--h-padding); 
-    }  
+// only when the main section is preceded with a head section does it have a top margin
+// otherwise it's not needed
+.ps__head + .ps__main {
+    margin-top: calc(var(--v-margin) * 2);
 }
 
 .ps__kicker {
     display: block;
     color: var(--color--primary);
     font-weight: 500;
-    @extend .text--xl;
+    @extend .text--l;
     margin: 0 0 0.6em;
+    line-height: 1.3;
 }
 
 .ps__kicker-icon {
     display: inline-block;
     margin: 0 0 1rem;
 }
+
+
+
+
+.ps__card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ps__card-item {
+    // background-color: var(--color--secondary);
+    border-radius: 8px;
+    margin-bottom: var(--h-padding);
+}
+
+.ps__card-item--full {
+    background-color: var(--color--secondary);
+    padding: calc(var(--h-padding) * 1.25) var(--h-padding);
+}
+
+.ps__card-item__title {
+    @extend .text--l;
+    margin-bottom: calc(var(--c-margin) / 2);
+}
+
+.ps__card-item__content {
+    margin-top: var(--c-padding);
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.ps__card-item__cta {
+    text-align: center;
+}
+
+@media all and (min-width: 40em) {
+    .ps__card-item {
+        display: inline-block;
+        margin-right: var(--h-padding);
+    }
+
+    @supports (display: grid) {
+        .ps__card-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-column-gap: var(--v-margin);
+            grid-row-gap: calc(var(--v-margin) * 2);
+        } 
+
+        .ps__card-item {
+            margin-right: 0;
+        }  
+    }
+}
+
+
+
+
+
+
+/* slice main content area grid layout */
+@media all and (min-width: 50em){ // 800px
+
+    .ps__main.grid {
+        display: grid; 
+    }
+
+    .ps__main.grid--12 {
+        grid-template-columns: repeat(12, 1fr);
+        grid-column-gap: var(--h-padding); 
+    }
+
+    .span-7-12 {
+        grid-column: 7 / 13;
+    }
+
+    .span-1-6 {
+        grid-column: 1 / 7;
+    }
+
+    .span-1-12 {
+        grid-column: 1 / 13;
+    }
+
+    .span-1-4 {
+        grid-column: 1 / 5;
+    }
+
+    .span-5-12 {
+        grid-column: 5 / 13;
+    }
+}  

@@ -100,5 +100,24 @@ gulp.task('fractal:start', function () {
     })
 })
 
+/**
+ * Currently unused due to bug:
+ * "path" argument must be of type string. Received undefined
+ * for builder dest argument.
+ */
+
+gulp.task('fractal:build', function () {
+    const builder = fractal.web.builder();
+    builder.on('progress', (completed, total) => logger.update(`Exported ${completed} of ${total} items`, 'info'));
+    builder.on('error', err => logger.error(err.message));
+    return builder.build().then(() => {
+        logger.success('Fractal build completed!');
+    });
+});
+
 gulp.task('default', gulp.series('fractal:start', 'watch'))
+<<<<<<< HEAD
 // gulp.task("default", gulp.series("watch"));
+=======
+
+>>>>>>> a7506f8cb7bc6277177dbbd079149237d2c36829

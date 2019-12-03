@@ -6,6 +6,9 @@
 
     --color-grey-0: hsl(0, 0%, 0%);
     --color-grey-20: hsl(0, 0%, 20%);
+    // --color-text-grey: hsl(270, 1%, 58%);
+    --color-grey-53: hsl(0, 0%, 53%);
+    --color-text-grey: var(--color-grey-53);
     
 
     /* default font family is the static Inter font */
@@ -17,9 +20,9 @@
     }
 
     --scrollbar: 0px; /* this variable is set using JS. See CS Utilities documentation for details */
-    --h-padding: 1.875rem; // horizontal padding for the slice relative to the page borders; 30px default when font size is base 16
+    --h-padding: 2rem; // horizontal padding for the slice relative to the page borders; 30px default when font size is base 16
     --c-padding: 1.25rem; // component-level padding
-    --c-margin: 1.5rem; // component-level padding
+    --c-margin: 1rem; // component-level padding
     --v-margin: 2.5rem; // vertical component-level external margin (margin between two components)
     --v-space: 8vw; // vertical space within sections
 
