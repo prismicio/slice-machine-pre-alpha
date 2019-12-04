@@ -42,7 +42,6 @@ h2,
 h3,
 .text--2xl {
     @include fluid-type(font-size,40rem, 80rem, var(--text-min-2xl), var(--text-max-2xl));
-    
 }
 
 h4,

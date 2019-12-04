@@ -9,7 +9,7 @@
 
     @media screen and (min-width: $min-screen) {
       @each $property in $properties {
-        #{$property}: calc($min-value + ($max-value - $min-value) * (100vw - $min-screen) / ($max-screem - $min-screen));
+        #{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value); 
       }
     }
 
@@ -20,15 +20,15 @@
     }
   }
 }
-// /* required and used by the fluid-type mixin above */
-// @function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
-// 		$a: calc(($max-value - $min-value) / ($max-screen - $min-screen));
-// 	$b: calc($min-value - $a * $min-screen); 
+/* required and used by the fluid-type mixin above */
+@function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
+		$a: ($max-value - $min-value) / ($max-screen - $min-screen);
+	$b: $min-value - ($a) * $min-screen; 
 
-// 	$sign: "+";
-// 	@if ($b < 0) {
-// 		$sign: "-";
-// 		$b: abs($b);
-// 	}
-// 	@return calc(#{$a*100}vw #{$sign} #{$b});
-// }
+	$sign: "+";
+	@if ($b < 0) {
+		$sign: "-";
+		$b: abs($b);
+	}
+	@return calc(#{$a*100}vw #{$sign} #{$b});
+}
