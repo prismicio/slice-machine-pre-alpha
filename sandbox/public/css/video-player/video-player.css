@@ -50,8 +50,6 @@
 .ps__video-player__playlist__link {
   display: block;
   cursor: pointer;
-  font-weight: normal;
-  transition-duration: .05s;
   text-align: left;
   text-decoration: none;
   text-overflow: ellipsis;
@@ -79,7 +77,3 @@
     background-repeat: no-repeat;
     outline-color: var(--color-text-grey);
     outline-offset: 5px; }
-  .ps__video-player__playlist__link:visited {
-    color: inherit; }
-  .ps__video-player__playlist__link:hover {
-    text-decoration: none; }

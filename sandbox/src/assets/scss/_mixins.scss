@@ -23,7 +23,7 @@
 /* required and used by the fluid-type mixin above */
 @function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
 		$a: ($max-value - $min-value) / ($max-screen - $min-screen);
-	$b: $min-value - ($a) * $min-screen; 
+	$b: $min-value - $a * $min-screen; 
 
 	$sign: "+";
 	@if ($b < 0) {

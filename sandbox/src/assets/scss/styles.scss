@@ -19,11 +19,11 @@ body {
 }
 
 
+
 a {
     text-decoration: none;
     color: var(--color--primary);
     font-weight: bold;
-    transition: all .1s linear;
 
     &:hover {
         text-decoration: underline;
