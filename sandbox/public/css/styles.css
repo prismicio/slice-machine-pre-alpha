@@ -38,10 +38,6 @@ img {
   max-width: 100%;
   height: auto; }
 
-/*******************************************************************************************************\
- * Source: https://www.smashingmagazine.com/2016/05/fluid-typography/ & accompanying Codepens 
- ********************************************************************************************************/
-/* required and used by the fluid-type mixin above */
 :root {
   --primary-hue: 167;
   --secondary-hue: 30;
@@ -63,7 +59,29 @@ img {
   --c-margin: 1rem;
   --v-margin: 2.5rem;
   --v-space: 8vw;
-  --focus-outline: 3px solid currentColor; }
+  --focus-outline: 3px solid currentColor;
+  /*******************************************************************************************************\
+    *
+    * Repsonsive Typography 
+    * Two scales: one for small screens, one for large screens
+    * And scaling the text between two viewport sizes
+    * See https://www.smashingmagazine.com/2016/05/fluid-typography/ & accompanying Codepens for details 
+    *
+    ********************************************************************************************************/
+  --scale--small: 1.125;
+  --scale--large: 1.250;
+  --text-min-4xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small));
+  --text-max-4xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large));
+  --text-min-3xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small));
+  --text-max-3xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large));
+  --text-min-2xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small));
+  --text-max-2xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large));
+  --text-min-xl:   calc(1 * var(--scale--small) * var(--scale--small));
+  --text-max-xl:   calc(1 * var(--scale--large) * var(--scale--large));
+  --text-min-l:    calc(1 * var(--scale--small));
+  --text-max-l:    calc(1 * var(--scale--large));
+  --text-min-small:  calc(1 / var(--scale--small));
+  --text-max-small:  calc(1 / var(--scale--large)); }
   @supports (font-variation-settings: normal) {
     :root {
       --font-family: "Inter var", Arial, sans-serif; } }
@@ -85,14 +103,6 @@ img {
   width: 1px;
   white-space: nowrap; }
 
-/*******************************************************************************************************\
- *
- * Repsonsive Typography 
- * Two scales: one for small screens, one for large screens
- * And scaling the text between two viewport sizes
- * See https://www.smashingmagazine.com/2016/05/fluid-typography/ & accompanying Codepens for details 
- *
- ********************************************************************************************************/
 html {
   font-size: 1rem;
   font-family: var(--font-family); }
@@ -120,86 +130,86 @@ h2 {
 h1,
 .text--4xl,
 .ps__title {
-  font-size: 1.80203rem; }
+  font-size: calc(1rem * var(--text-min-4xl)); }
   @media screen and (min-width: 40rem) {
     h1,
     .text--4xl,
     .ps__title {
-      font-size: calc(3.12431vw + 0.55231rem); } }
+      font-size: calc( calc(1rem * var(--text-min-4xl)) + (var(--text-max-4xl) - var(--text-min-4xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h1,
     .text--4xl,
     .ps__title {
-      font-size: 3.05176rem; } }
+      font-size: calc(1rem * var(--text-max-4xl)); } }
 
 h2,
 .text--3xl {
-  font-size: 1.60181rem; }
+  font-size: calc(1rem * var(--text-min-3xl)); }
   @media screen and (min-width: 40rem) {
     h2,
     .text--3xl {
-      font-size: calc(2.099vw + 0.76221rem); } }
+      font-size: calc( calc(1rem * var(--text-min-3xl)) + (var(--text-max-3xl) - var(--text-min-3xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h2,
     .text--3xl {
-      font-size: 2.44141rem; } }
+      font-size: calc(1rem * var(--text-max-3xl)); } }
 
 h3,
 .text--2xl {
-  font-size: 1.42383rem; }
+  font-size: calc(1rem * var(--text-min-2xl)); }
   @media screen and (min-width: 40rem) {
     h3,
     .text--2xl {
-      font-size: calc(1.32324vw + 0.89453rem); } }
+      font-size: calc( calc(1rem * var(--text-min-2xl)) + (var(--text-max-2xl) - var(--text-min-2xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h3,
     .text--2xl {
-      font-size: 1.95312rem; } }
+      font-size: calc(1rem * var(--text-max-2xl)); } }
 
 h4,
 .text--xl {
-  font-size: 1.26562rem; }
+  font-size: calc(1rem * var(--text-min-xl)); }
   @media screen and (min-width: 40rem) {
     h4,
     .text--xl {
-      font-size: calc(0.74219vw + 0.96875rem); } }
+      font-size: calc( calc(1rem * var(--text-min-xl)) + (var(--text-max-xl) - var(--text-min-xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h4,
     .text--xl {
-      font-size: 1.5625rem; } }
+      font-size: calc(1rem * var(--text-max-xl)); } }
 
 h5,
 .text--l,
 .ps__kicker,
 .ps__card-item__title,
 .c-accordion__heading {
-  font-size: 1.125rem; }
+  font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {
     h5,
     .text--l,
     .ps__kicker,
     .ps__card-item__title,
     .c-accordion__heading {
-      font-size: calc(0.3125vw + 1rem); } }
+      font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h5,
     .text--l,
     .ps__kicker,
     .ps__card-item__title,
     .c-accordion__heading {
-      font-size: 1.25rem; } }
+      font-size: calc(1rem * var(--text-max-l)); } }
 
 small,
 .text--small {
-  font-size: 0.88889rem; }
+  font-size: calc(1rem * var(--text-min-small)); }
   @media screen and (min-width: 40rem) {
     small,
     .text--small {
-      font-size: calc(-0.22222vw + 0.97778rem); } }
+      font-size: calc( calc(1rem * var(--text-min-small)) + (var(--text-max-small) - var(--text-min-small)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     small,
     .text--small {
-      font-size: 0.8rem; } }
+      font-size: calc(1rem * var(--text-max-small)); } }
 
 /************************************************************************************************\
  *

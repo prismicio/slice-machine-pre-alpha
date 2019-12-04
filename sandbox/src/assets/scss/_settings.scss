@@ -37,5 +37,48 @@
     }
 
     --focus-outline: 3px solid currentColor;
+
+
+
+    /*******************************************************************************************************\
+    *
+    * Repsonsive Typography 
+    * Two scales: one for small screens, one for large screens
+    * And scaling the text between two viewport sizes
+    * See https://www.smashingmagazine.com/2016/05/fluid-typography/ & accompanying Codepens for details 
+    *
+    ********************************************************************************************************/
+
+
+    --scale--small: 1.125; // modular scale on small screens
+    --scale--large: 1.250; // modular scale on large screens
+
+    // calculate the modular scale (unitless)
+    --text-min-4xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small)); 
+    --text-max-4xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large));
+
+    --text-min-3xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small)); 
+    --text-max-3xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large));
+
+    --text-min-2xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small)); 
+    --text-max-2xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large));
+
+    --text-min-xl:   calc(1 * var(--scale--small) * var(--scale--small)); 
+    --text-max-xl:   calc(1 * var(--scale--large) * var(--scale--large));
+
+    --text-min-l:    calc(1 * var(--scale--small)); 
+    --text-max-l:    calc(1 * var(--scale--large));
+
+    --text-min-small:  calc(1 / var(--scale--small)); 
+    --text-max-small:  calc(1 / var(--scale--large));
+
+
+    // --text--small ~= 0.875rem; // 14px;
+    // --text--base ~= 1rem; // 16px;
+    // --text--large ~= 1.125rem; // 18px;
+    // --text--xl ~= 1.25rem; // 20px;
+    // --text--2xl ~= 1.375rem; // 22px;
+    // --text--3xl ~= 1.5rem; // 24px;
+    // --text--4xl ~= calc(1.6rem + 1.2vw); //52px
 }
 
