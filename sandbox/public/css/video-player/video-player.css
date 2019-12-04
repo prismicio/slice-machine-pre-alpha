@@ -1,0 +1,79 @@
+.ps-video-player--dark {
+  background-color: black;
+  color: #fff; }
+
+.ps__video-player {
+  display: flex;
+  flex-direction: column-reverse; }
+  @media all and (min-width: 50em) {
+    .ps__video-player {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-column-gap: var(--h-padding); } }
+
+.ps__video-player__playlist__list {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.ps__video-container {
+  height: 0;
+  width: 100%;
+  padding-top: 56.2%;
+  position: relative;
+  margin-bottom: var(--c-margin);
+  grid-row: 1; }
+  @media all and (min-width: 50em) {
+    .ps__video-container {
+      margin-bottom: 0; } }
+  .ps__video-container:focus {
+    outline-color: var(--color-text-grey); }
+  .ps__video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+    .ps__video-container iframe:focus {
+      outline-color: var(--color-text-grey); }
+
+.ps__video-player__playlist__item {
+  border-top: 1px solid #e5e5e5; }
+  .ps__video-player__playlist__item:last-of-type {
+    border-bottom: 1px solid #e5e5e5; }
+  @media all and (max-width: 50em) {
+    .ps__video-player__playlist__item:first-of-type {
+      border-top: none; } }
+  .ps-video-player--dark .ps__video-player__playlist__item {
+    border-color: var(--color-grey-20); }
+
+.ps__video-player__playlist__link {
+  display: block;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  padding: .75em;
+  padding-left: .5em;
+  padding-right: 3em;
+  background-size: 1em 1em;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-image: url("../img/video-play-icon--grey.svg"); }
+  .ps-video-player--dark .ps__video-player__playlist__link {
+    color: var(--color-text-grey);
+    background-image: url("../img/video-play-icon--dark-grey.svg"); }
+  .ps__video-player__playlist__link[aria-selected="true"] {
+    background-image: url("../img/video-play-icon--black.svg");
+    font-weight: bold; }
+  .ps-video-player--dark .ps__video-player__playlist__link[aria-selected="true"] {
+    background-image: url("../img/video-play-icon--white.svg");
+    color: #fff;
+    font-weight: normal; }
+  .ps__video-player__playlist__link[href]:focus {
+    background-repeat: no-repeat;
+    outline-color: var(--color-text-grey);
+    outline-offset: 5px; }
