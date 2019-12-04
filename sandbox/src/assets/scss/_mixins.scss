@@ -1,16 +1,34 @@
 /*******************************************************************************************************\
  * Source: https://www.smashingmagazine.com/2016/05/fluid-typography/ & accompanying Codepens 
  ********************************************************************************************************/
-@mixin fluid-type($min-screen, $max-screen, $min-value, $max-value) {
+@mixin fluid-type($properties, $min-screen, $max-screen, $min-value, $max-value) {
   & {
-        font-size: $min-value;
+    @each $property in $properties {
+      #{$property}: $min-value;
+    }
 
-        @media screen and (min-width: $min-screen) {
-            font-size: calc($min-value + ($max-value - $min-value) * (100vw - $min-screen) / ($max-screem - $min-screen));
-        }
+    @media screen and (min-width: $min-screen) {
+      @each $property in $properties {
+        #{$property}: calc($min-value + ($max-value - $min-value) * (100vw - $min-screen) / ($max-screem - $min-screen));
+      }
+    }
 
-        @media screen and (min-width: $max-screen) {
-            font-size: $max-value;
-        }
+    @media screen and (min-width: $max-screen) {
+      @each $property in $properties {
+        #{$property}: $max-value;
+      }
+    }
   }
 }
+// /* required and used by the fluid-type mixin above */
+// @function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
+// 		$a: calc(($max-value - $min-value) / ($max-screen - $min-screen));
+// 	$b: calc($min-value - $a * $min-screen); 
+
+// 	$sign: "+";
+// 	@if ($b < 0) {
+// 		$sign: "-";
+// 		$b: abs($b);
+// 	}
+// 	@return calc(#{$a*100}vw #{$sign} #{$b});
+// }
