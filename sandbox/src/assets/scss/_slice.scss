@@ -151,14 +151,18 @@
 
 
 
-
+.ps__main.grid {
+    display: grid; 
+    grid-template-columns: 1fr;
+}
 
 /* slice main content area grid layout */
 @media all and (min-width: 50em){ // 800px
+    
 
     .ps__main.grid {
-        display: grid; 
         grid-auto-flow: dense;
+        grid-row-gap: var(--v-margin);
 
         &.grid--align-center {
             align-items: center;

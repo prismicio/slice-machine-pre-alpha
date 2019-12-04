@@ -1,45 +1,3 @@
-/*******************************************************************************************************\
- *
- * Repsonsive Typography 
- * Two scales: one for small screens, one for large screens
- * And scaling the text between two viewport sizes
- * See https://www.smashingmagazine.com/2016/05/fluid-typography/ & accompanying Codepens for details 
- *
- ********************************************************************************************************/
-
-
-$scale--small: 1.125; // modular scale on small screens
-$scale--large: 1.250; // modular scale on large screens
-
-// calculate the modular scale
-$text-min-4xl: 1rem * $scale--small * $scale--small * $scale--small * $scale--small * $scale--small; 
-$text-max-4xl: 1rem * $scale--large * $scale--large * $scale--large * $scale--large * $scale--large;
-
-$text-min-3xl: 1rem * $scale--small * $scale--small * $scale--small * $scale--small; 
-$text-max-3xl: 1rem * $scale--large * $scale--large * $scale--large * $scale--large;
-
-$text-min-2xl: 1rem * $scale--small * $scale--small * $scale--small; 
-$text-max-2xl: 1rem * $scale--large * $scale--large * $scale--large;
-
-$text-min-xl:  1rem * $scale--small * $scale--small; 
-$text-max-xl:  1rem * $scale--large * $scale--large;
-
-$text-min-l:   1rem * $scale--small; 
-$text-max-l:   1rem * $scale--large;
-
-$text-base:    1rem;
-
-$text-min-small: 1rem / $scale--small;
-$text-max-small: 1rem / $scale--large;
-
-// --text--small ~= 0.875rem; // 14px;
-// --text--base ~= 1rem; // 16px;
-// --text--large ~= 1.125rem; // 18px;
-// --text--xl ~= 1.25rem; // 20px;
-// --text--2xl ~= 1.375rem; // 22px;
-// --text--3xl ~= 1.5rem; // 24px;
-// --text--4xl ~= calc(1.6rem + 1.2vw); //52px
-
 html {
     font-size: 1rem;
     font-family: var(--font-family);
@@ -59,6 +17,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
     margin-top: 0;
+    margin-bottom: .6em;
     font-weight: 500;
 }
 
@@ -72,32 +31,33 @@ h2 {
 
 h1,
 .text--4xl {
-   @include fluid-type(font-size,40rem, 80rem, $text-min-4xl, $text-max-4xl);
+   @include fluid-type(font-size,40rem, 80rem, var(--text-min-4xl), var(--text-max-4xl));
 }
 
 h2,
 .text--3xl {
-    @include fluid-type(font-size,40rem, 80rem, $text-min-3xl, $text-max-3xl);
+    @include fluid-type(font-size,40rem, 80rem, var(--text-min-3xl), var(--text-max-3xl));
 }
 
 h3,
 .text--2xl {
-    @include fluid-type(font-size,40rem, 80rem, $text-min-2xl, $text-max-2xl);
+    @include fluid-type(font-size,40rem, 80rem, var(--text-min-2xl), var(--text-max-2xl));
+    
 }
 
 h4,
 .text--xl {
-    @include fluid-type(font-size,40rem, 80rem, $text-min-xl, $text-max-xl);
+    @include fluid-type(font-size,40rem, 80rem, var(--text-min-xl), var(--text-max-xl));
 }
 
 h5,
 .text--l {
-   @include fluid-type(font-size,40rem, 80rem, $text-min-l, $text-max-l);
+   @include fluid-type(font-size,40rem, 80rem, var(--text-min-l), var(--text-max-l));
 }
 
 small, 
 .text--small {
-    @include fluid-type(font-size,40rem, 80rem, $text-min-small, $text-max-small);
+    @include fluid-type(font-size,40rem, 80rem, var(--text-min-small), var(--text-max-small));
 }
 
 
