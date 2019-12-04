@@ -19,6 +19,9 @@
     display: block; }
 
 .ps-customer-logos__link {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: normal;
   display: block;
   text-align: center; }
 

@@ -158,11 +158,17 @@
 
     .ps__main.grid {
         display: grid; 
+        grid-auto-flow: dense;
+
+        &.grid--align-center {
+            align-items: center;
+        }
     }
 
     .ps__main.grid--12 {
         grid-template-columns: repeat(12, 1fr);
         grid-column-gap: var(--h-padding); 
+        grid-row-gap: var(--v-margin); 
     }
 
     .span-7-12 {

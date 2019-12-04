@@ -13,11 +13,20 @@ body {
   outline: none; }
 
 a {
-  color: inherit; }
+  text-decoration: none;
+  color: var(--color--primary);
+  font-weight: bold; }
+  a:hover {
+    text-decoration: underline;
+    color: var(--color--primary--dark); }
+  a:active {
+    color: var(--color--primary--darker); }
+  a:visited {
+    color: #755EBB; }
 
 a:focus {
   outline: var(--focus-outline);
-  outline-offset: 2px; }
+  outline-offset: 3px; }
 
 a:focus:not(:focus-visible) {
   outline: none; }
@@ -34,8 +43,12 @@ img {
  ********************************************************************************************************/
 /* required and used by the fluid-type mixin above */
 :root {
-  --color--primary: hsl(167, 66%, 31%);
-  --color--secondary: hsl(30, 27%, 94%);
+  --primary-hue: 167;
+  --secondary-hue: 30;
+  --color--primary: hsl(var(--primary-hue), 66%, 31%);
+  --color--primary--dark: hsl(var(--primary-hue), 68%, 27%);
+  --color--primary--darker: hsl(var(--primary-hue), 75%, 21%);
+  --color--secondary: hsl(var(--secondary-hue), 27%, 94%);
   --color-grey-0: hsl(0, 0%, 0%);
   --color-grey-20: hsl(0, 0%, 20%);
   --color-grey-53: hsl(0, 0%, 53%);
@@ -296,10 +309,14 @@ small,
 /* slice main content area grid layout */
 @media all and (min-width: 50em) {
   .ps__main.grid {
-    display: grid; }
+    display: grid;
+    grid-auto-flow: dense; }
+    .ps__main.grid.grid--align-center {
+      align-items: center; }
   .ps__main.grid--12 {
     grid-template-columns: repeat(12, 1fr);
-    grid-column-gap: var(--h-padding); }
+    grid-column-gap: var(--h-padding);
+    grid-row-gap: var(--v-margin); }
   .span-7-12 {
     grid-column: 7 / 13; }
   .span-1-6 {
@@ -505,6 +522,9 @@ small,
     display: block; }
 
 .ps-customer-logos__link {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: normal;
   display: block;
   text-align: center; }
 

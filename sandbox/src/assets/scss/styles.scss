@@ -18,13 +18,30 @@ body {
     outline: none;
 }
 
+
+
 a {
-    color: inherit;
+    text-decoration: none;
+    color: var(--color--primary);
+    font-weight: bold;
+
+    &:hover {
+        text-decoration: underline;
+        color: var(--color--primary--dark);
+    }
+
+    &:active {
+        color: var(--color--primary--darker);
+    }
+
+    &:visited {
+        color: #755EBB;
+    }
 }
 
 a:focus {
     outline: var(--focus-outline);
-    outline-offset: 2px;
+    outline-offset: 3px;
 }
 
 a:focus:not(:focus-visible) {
