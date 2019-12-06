@@ -38,7 +38,7 @@ a {
         color: #755EBB;
     }
 
-    &:focus {
+    &:focus, &.focus-visible {
         outline: var(--focus-outline);
         outline-offset: 3px;
     }   

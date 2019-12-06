@@ -59,7 +59,11 @@
     }
 
     font-weight: 350;
-    line-height: 1.45;
+    
+
+    p {
+        line-height: 1.4;
+    }
 
     p:last-of-type {
         margin-bottom: 0;
@@ -188,7 +192,7 @@
     .ps__main.grid--12 {
         grid-template-columns: repeat(12, 1fr);
         grid-column-gap: var(--h-padding); 
-        grid-row-gap: var(--v-margin); 
+        grid-row-gap: var(--v-space); 
     }
 
     
