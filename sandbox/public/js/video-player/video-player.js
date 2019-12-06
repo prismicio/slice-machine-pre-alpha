@@ -59,7 +59,7 @@ var util = {
     video_playlist_sources.forEach(function (tab, index) {
       tab.setAttribute('role', 'tab');
       tab.setAttribute('data-href', tab.getAttribute('href'));
-      tab.setAttribute('href', ''); // each tab needs an ID that will be used to label its corresponding panel
+      tab.setAttribute('href', '#'); // each tab needs an ID that will be used to label its corresponding panel
 
       tab.setAttribute('id', video_id + util.generateID('__tab-')); // first tab is initially active
 

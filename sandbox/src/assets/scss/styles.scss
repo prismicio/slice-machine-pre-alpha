@@ -37,19 +37,23 @@ a {
     &:visited {
         color: #755EBB;
     }
-}
 
-a:focus {
-    outline: var(--focus-outline);
-    outline-offset: 3px;
-}
+    &:focus {
+        outline: var(--focus-outline);
+        outline-offset: 3px;
+    }   
 
-a:focus:not(:focus-visible) {
-    outline: none;
-}
+    &:focus:not(:focus-visible) {
+        outline: none;
+    }
+    .js-focus-visible &:focus:not(.focus-visible) {
+        outline: none;
+    }
 
-a.focus:not(.focus-visible) {
-    outline: none;
+    &:-moz-focusring {
+        outline: none;
+        background: none;
+    }
 }
 
 img {
