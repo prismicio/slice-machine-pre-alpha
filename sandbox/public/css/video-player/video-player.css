@@ -50,6 +50,8 @@
 .ps__video-player__playlist__link {
   display: block;
   cursor: pointer;
+  font-weight: normal;
+  transition-duration: .05s;
   text-align: left;
   text-decoration: none;
   text-overflow: ellipsis;
@@ -66,6 +68,8 @@
   .ps-video-player--dark .ps__video-player__playlist__link {
     color: var(--color-text-grey);
     background-image: url("../img/video-play-icon--dark-grey.svg"); }
+    .ps-video-player--dark .ps__video-player__playlist__link:visited {
+      color: var(--color-text-grey); }
   .ps__video-player__playlist__link[aria-selected="true"] {
     background-image: url("../img/video-play-icon--black.svg");
     font-weight: bold; }
@@ -77,3 +81,7 @@
     background-repeat: no-repeat;
     outline-color: var(--color-text-grey);
     outline-offset: 5px; }
+  .ps__video-player__playlist__link:visited {
+    color: inherit; }
+  .ps__video-player__playlist__link:hover {
+    text-decoration: none; }

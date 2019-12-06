@@ -1,0 +1,132 @@
+
+.ps-video-player--dark {
+    background-color: black;
+    color: #fff;
+}
+
+.ps__video-player {
+    display: flex;
+    flex-direction: column-reverse;
+
+
+    @media all and (min-width: 50em) {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-column-gap: var(--h-padding); 
+    }
+}
+
+
+
+.ps__video-player__playlist__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ps__video-container {
+    height: 0;
+    width: 100%;
+    padding-top: 56.2%;
+    position: relative;
+    margin-bottom: var(--c-margin);
+
+    grid-row: 1;
+
+    @media all and (min-width: 50em) {
+        margin-bottom: 0;
+    }
+
+    &:focus {
+        outline-color: var(--color-text-grey);
+    }
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &:focus {
+            outline-color: var(--color-text-grey);
+        }
+    }
+}
+
+
+.ps__video-player__playlist__item {
+    border-top: 1px solid #e5e5e5;
+
+    &:last-of-type {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    @media all and (max-width: 50em) {
+        &:first-of-type {
+            border-top: none;
+        }
+    }
+
+    .ps-video-player--dark & {
+        border-color: var(--color-grey-20);
+    }
+}
+
+.ps__video-player__playlist__link {
+    display: block;
+    cursor: pointer;
+    font-weight: normal;
+    transition-duration: .05s;
+
+    text-align: left;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+
+
+    padding: .75em;
+    padding-left: .5em;
+    padding-right: 3em;
+    background-size: 1em 1em;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-image: url("../img/video-play-icon--grey.svg");
+
+    .ps-video-player--dark & {
+        color: var(--color-text-grey);
+        background-image: url("../img/video-play-icon--dark-grey.svg");
+
+        &:visited {
+            color: var(--color-text-grey);
+        }
+    }
+    
+    &[aria-selected="true"] {
+        background-image: url("../img/video-play-icon--black.svg");
+        font-weight: bold;
+    }
+
+    .ps-video-player--dark &[aria-selected="true"] {
+        background-image: url("../img/video-play-icon--white.svg");
+        color: #fff;
+        font-weight: normal;
+    }
+
+    &[href]:focus {
+        background-repeat: no-repeat; // for a weird firefox bug on click
+        outline-color: var(--color-text-grey);
+
+        outline-offset: 5px;
+  }
+
+    &:visited {
+        color: inherit;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}
