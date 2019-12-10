@@ -11,16 +11,18 @@ fractal.docs.set('path', path.join(__dirname, '/src/docs'))
 
 fractal.web.set('static.path', path.join(__dirname, 'public'))
 
+fractal.components.set('default.status', 'null');
+
 /* =========================================
    Theming
 =========================================== */
 
 const jTheme = mandelbrot({
-  favicon: '/assets/favicon.ico',
-  skin: 'white',
-  nav: ['docs', 'components'],
-  panels: ['notes', 'html', 'resources', 'info'],
-  styles: ['default', '/theme/css/theme.css']
+    favicon: '/assets/favicon.ico',
+    skin: 'white',
+    nav: ['docs', 'components'],
+    panels: ['notes', 'html', 'resources', 'info'],
+    styles: ['default', '/theme/css/theme.css']
 })
 
 fractal.web.theme(jTheme)
