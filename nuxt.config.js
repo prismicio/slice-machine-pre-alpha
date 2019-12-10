@@ -22,6 +22,16 @@ export default {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap'
       }
+    ],
+    script: [
+      {
+        src:
+          'https://cdn.polyfill.io/v2/polyfill.min.js?features=Element.prototype.classList'
+      },
+      {
+        src:
+          'https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.min.js'
+      }
     ]
   },
   /*
@@ -31,7 +41,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['element-ui/lib/theme-chalk/index.css', '../src/styles/_global.scss'],
+  css: [],
   /*
    ** Plugins to load before mounting the App
    */

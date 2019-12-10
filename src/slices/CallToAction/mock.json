@@ -1,6 +1,6 @@
 {
   "slice_type": "call_to_action",
-  "slice_label": null,
+  "slice_label": "dark_mode",
   "items": [{}],
   "primary": {
     "icon_image": {
@@ -10,7 +10,7 @@
       },
       "alt": "Some alt text for the image.",
       "copyright": null,
-      "url": "https://slicesexamples.cdn.prismic.io/slicesexamples/e435d0aca1f3f7da800ccebd04139d684d760a35_group-icon.png"
+      "url": "https://images.prismic.io/slicesexamples/0a64ab37-8ba3-4882-a766-53bad869d3cf_cta-eyebrow-icon.svg?auto=compress,format&w=900"
     },
     "title": [
       {
