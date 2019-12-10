@@ -563,6 +563,22 @@ small,
   .ps-alternate--list__content-desc p:last-of-type {
     margin-bottom: 0; }
 
+.ps-alternate--list__ctas {
+  display: flex;
+  flex-direction: column; }
+  @media all and (min-width: 40rem) {
+    .ps-alternate--list__ctas {
+      flex-direction: row; } }
+
+.ps-alternate--list .ps-button {
+  flex: 1;
+  margin-top: var(--h-padding); }
+  @media all and (min-width: 40rem) {
+    .ps-alternate--list .ps-button {
+      margin-right: var(--h-padding); } }
+  .ps-alternate--list .ps-button:last-of-type {
+    margin-right: 0; }
+
 .ps-button,
 a.ps-button {
   display: block;
@@ -668,21 +684,22 @@ a.ps-button--ghost {
 .ps-pricing-table__option__features {
   list-style: none;
   padding: 0; }
-  .ps-pricing-table__option__features li {
-    margin-bottom: 1em;
-    padding-left: var(--h-padding);
-    position: relative; }
-    .ps-pricing-table__option__features li .feature-icon {
-      color: var(--color--primary);
-      display: block;
-      width: 1em;
-      height: 1em;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      margin-top: -.5em; }
-    .ps-pricing-table__option__features li.feature-not-included .feature-icon {
-      color: #888; }
+
+.ps-pricing-table__option__feature {
+  margin-bottom: 1em;
+  padding-left: var(--h-padding);
+  position: relative; }
+  .ps-pricing-table__option__feature .feature-icon {
+    color: var(--color--primary);
+    display: block;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -.5em; }
+  .ps-pricing-table__option__feature.not-included .feature-icon {
+    color: #888; }
 
 .ps-video-player--dark {
   background-color: black;

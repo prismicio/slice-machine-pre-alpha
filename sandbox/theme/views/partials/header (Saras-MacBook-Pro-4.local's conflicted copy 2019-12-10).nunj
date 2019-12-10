@@ -5,6 +5,6 @@
     </button>
     <a href="{{ path('/') }}" class="Header-title logo" data-pjax>
         
-        <span>UI Pattern Library</span>
+        <span>Prismic Slices</span>
     </a>
 </div>
