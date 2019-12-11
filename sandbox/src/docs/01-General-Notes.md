@@ -1,5 +1,6 @@
 ---
 title: General Notes
+status: draft
 ---
 
 There are many repeated patterns and styles across the slices. 

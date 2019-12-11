@@ -1,5 +1,6 @@
 ---
 title: The Web Font Loading Strategy
+status: draft
 ---
 
 Inter is the typeface in use across all slices. It is a great typeface and is available as both a Variable and 'Static' (regular) font.
