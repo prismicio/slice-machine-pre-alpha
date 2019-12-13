@@ -4,6 +4,14 @@
 @import '/mixins.scss';
 @import '/variables.scss';
 
+h2 {
+  font-size: 60px;
+  line-height: 71px;
+  font-weight: 900;
+  font-family: $base-font-primary;
+  color: $text-primary;
+}
+
 h3 {
   font-size: 28px;
   line-height: 50px;
@@ -23,4 +31,12 @@ p {
   line-height: 34px;
   font-family: $base-font-primary;
   color: $text-primary;
+  font-weight: normal;
+}
+
+.page-enter-active, .page-leave-active {
+  transition: opacity 0.2s
+}
+.page-enter, .page-leave-active {
+  opacity: 0
 }

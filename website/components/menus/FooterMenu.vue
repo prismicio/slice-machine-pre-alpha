@@ -1,9 +1,9 @@
 <template>
   <div class="footerMenu">
-    <Container justify="space-between">
+    <Container class="foor-container" justify="space-between">
       <div class="logo">
         <nuxt-link to="/">
-          <prismic-image :field="menu.logo" />
+          <prismic-image v-if="menu.logo" :field="menu.logo" />
         </nuxt-link>
         <nuxt-link to="/">
           <span> <b>Slicemachine</b> by prismic </span>
@@ -23,8 +23,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 import Container from '@/components/Container'
 
 export default {
@@ -33,9 +31,8 @@ export default {
     Container
   },
   computed: {
-    ...mapState(['mainmenu']),
     menu() {
-      return this.$store.state.mainmenu.menu
+      return this.$store.state.menus.main
     }
   }
 }
@@ -57,8 +54,11 @@ a {
   padding: 30px 0;
   margin: 30px 0;
   min-height: 80px;
-  @include sm {
+  .foor-container {
     display: block;
+    @include md {
+      display: flex;
+    }
   }
   .logo {
     display: inline-flex;
@@ -72,14 +72,14 @@ a {
     display: grid;
     padding: 0;
     font-size: 14px;
-    @include sm {
+    @include md {
       display: inline-flex;
     }
   }
   li {
     display: inline-block;
     padding-top: 15px;
-    @include sm {
+    @include md {
       margin-left: 10px;
     }
   }

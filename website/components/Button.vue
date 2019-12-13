@@ -35,7 +35,7 @@ export default {
   border: 1px solid $black-secondary;
   border-radius: 3px;
   text-align: center;
-  min-width: 250px;
+  width: 250px;
   height: 70px;
   font-size: 20px;
   font-weight: 600;
@@ -57,14 +57,26 @@ export default {
     background: #f9f9fb;
     color: #1d2230;
     border: 1px solid #c9d0d8;
+    &:hover {
+      background-color: $black-secondary;
+      cursor: pointer;
+    }
+    &:active {
+      box-shadow: none;
+      top: 5px;
+    }
   }
   &--icon {
-    background: transparent;
+    width: 50px;
+    height: 50px;
+    background-color: #f6f8fa;
     border: none;
     padding: 7px 10px;
     box-shadow: none;
+    transition: all 0.2s ease-in-out;
     &:hover {
-      background-color: transparent;
+      background-color: #f6f8fa;
+      transform: scale(1.2);
     }
     &:active {
       box-shadow: none;
@@ -86,19 +98,19 @@ export default {
     a {
       color: #fff;
     }
+    &:hover {
+      background-color: $black-secondary;
+      cursor: pointer;
+    }
+    &:active {
+      box-shadow: none;
+      top: 5px;
+    }
   }
   &--text-black {
     color: $text-dark;
     border: none;
     background: transparent;
-  }
-  &:hover {
-    background-color: $black-secondary;
-    cursor: pointer;
-  }
-  &:active {
-    box-shadow: none;
-    top: 5px;
   }
 }
 </style>

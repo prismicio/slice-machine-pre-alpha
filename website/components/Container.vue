@@ -25,7 +25,10 @@ export default {
   max-width: $container-width;
   padding: 0 24px;
   flex-wrap: wrap;
-  @include md {
+  @include lg {
+    width: 90%;
+  }
+  @include xl {
     width: 80%;
   }
 }

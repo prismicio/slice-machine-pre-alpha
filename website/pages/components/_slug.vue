@@ -1,32 +1,25 @@
 <template>
-  <Body variant="body--white">
-    <div class="grid">
-      <nav>
-        <SideList :comps-data="lst" :side-menu="sideMenu" />
-      </nav>
-      <main>
-        <h3 class="card-section-title">
-          {{ slice.meta.title }}
-        </h3>
-        <p class="card-section-description">
-          {{ slice.meta.description }}
-        </p>
-        <img :src="`/components/${slice.displayName}.png`" />
-        <MarkDownBox
-          id="markdown-box"
-          :edit-url="createEditUrl()"
-          style="min-height: 80vh; margin-top: 4em; word-spacing: 0px;"
-        >
-          {{ slice.readme }}
-        </MarkDownBox>
-        <div
-          v-if="hasSandbox"
-          style="width: 100%; margin-top: 3em;"
-          v-html="sandbox"
-        />
-      </main>
-    </div>
-  </Body>
+  <div>
+    <h3 class="card-section-title">
+      {{ slice.meta.title }}
+    </h3>
+    <p class="card-section-description">
+      {{ slice.meta.description }}
+    </p>
+    <img :src="`/components/${slice.displayName}.png`" />
+    <MarkDownBox
+      id="markdown-box"
+      :edit-url="createEditUrl()"
+      style="min-height: 80vh; margin-top: 4em; word-spacing: 0px;"
+    >
+      {{ slice.readme }}
+    </MarkDownBox>
+    <div
+      v-if="hasSandbox"
+      style="width: 100%; margin-top: 3em;"
+      v-html="sandbox"
+    />
+  </div>
 </template>
 
 <script>
@@ -36,9 +29,6 @@ import PrismicConfig from '~/prismic.config.js'
 import * as Slices from '~/../src/slices'
 import { createSlice, sliceRoute } from '~/utils'
 
-import SideList from '@/components/menus/SideList'
-
-import Body from '@/components/Body'
 import MarkDownBox from '@/components/MarkDownBox'
 
 const lst = Object.keys(Slices)
@@ -46,11 +36,31 @@ const lst = Object.keys(Slices)
   .filter(e => e) // eslint-disable-line
 
 export default {
+  layout: 'compdocs',
   components: {
     ...Slices,
-    MarkDownBox,
-    Body,
-    SideList
+    MarkDownBox
+  },
+  async fetch({ store }) {
+    await store.dispatch('slices/init')
+  },
+  async asyncData({ params, error, req }) {
+    try {
+      // Fetching the API object
+      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
+
+      // Query to get the main menu content
+      let document = {}
+      const page = await api.getSingle('sample_pages')
+      document = page.data
+
+      return {
+        // Page content
+        document
+      }
+    } catch (e) {
+      error({ statusCode: 404, message: 'Page not found' })
+    }
   },
   data() {
     return {
@@ -64,37 +74,6 @@ export default {
       $router.resolve({ name: `examples-${slice.displayName}` }).href !== '/',
     sandbox: ({ slice: { displayName } }) =>
       `<iframe src="https://codesandbox.io/embed/github/hypervillain/community/tree/master/?autoresize=1&fontsize=14&initialpath=%2Fexamples%2F${displayName}&module=%2Fwebsite%2Fpages%2Fexamples%2F${displayName}.vue&moduleview=0" title="community" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>`
-  },
-  async asyncData({ params, error, req }) {
-    try {
-      // Fetching the API object
-      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
-
-      // Query to get the main menu content
-      let document = {}
-      const page = await api.getSingle('sample_pages')
-      document = page.data
-
-      // Query to get the side menu content
-      let sideMenu = {}
-      const side = await api.getByUID('menu', 'side_menu')
-      sideMenu = side.data
-
-      // Load the edit button
-      if (process.client) window.prismic.setupEditButton()
-
-      return {
-        // Page content
-        document,
-        // Side Menu
-        sideMenu
-      }
-    } catch (e) {
-      error({ statusCode: 404, message: 'Page not found' })
-    }
-  },
-  async fetch({ store }) {
-    await store.dispatch('slices/init')
   },
   methods: {
     createEditUrl() {
@@ -111,32 +90,6 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/_global';
 
-.grid {
-  display: grid;
-  grid-template-columns: [container-start] minmax(0, 1fr) [container-end];
-  @include lg {
-    padding-top: 44px;
-    grid-template-areas: 'nav content';
-    grid-template-columns: 200px minmax(200px, 1fr);
-    grid-gap: 10px;
-  }
-}
-nav {
-  display: none;
-  @include lg {
-    display: inline;
-    grid-area: nav;
-    margin-left: 0.5rem;
-  }
-}
-main {
-  grid-column: container;
-  @include lg {
-    grid-area: content;
-    padding-left: 44px;
-    border-left: 1px solid $grey-transparent;
-  }
-}
 img {
   max-width: 100%;
 }

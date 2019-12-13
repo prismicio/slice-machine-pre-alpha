@@ -1,12 +1,19 @@
 <template>
-  <div class="row">
+  <div :class="`row row--${variant}`">
     <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Row'
+  name: 'Row',
+  props: {
+    variant: {
+      type: String,
+      required: false,
+      default: 'default'
+    }
+  }
 }
 </script>
 
