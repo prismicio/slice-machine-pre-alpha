@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="`card card--${variant}`"
-    @mouseover="mouseover"
-    @mouseleave="mouseleave"
-  >
+  <div class="card" @mouseover="mouseover" @mouseleave="mouseleave">
     <slot name="image">
       <div
         class="image-block"
@@ -58,11 +54,6 @@ export default {
     displayName: {
       type: String,
       required: true
-    },
-    variant: {
-      type: String,
-      default: 'default',
-      required: false
     }
   },
   data() {
@@ -153,27 +144,6 @@ export default {
     &__description {
       color: $text-dark;
       margin-top: 8px;
-    }
-  }
-}
-
-@include xl {
-  .card {
-    &--2col {
-      width: calc(50% - #{$base-horizontal-margins});
-      &:nth-child(odd) {
-        margin-right: $base-horizontal-margins;
-      }
-
-      &:nth-child(even) {
-        margin-left: $base-horizontal-margins;
-      }
-    }
-    &--3col {
-      width: calc(100% / 3 - #{$base-horizontal-margins});
-      &:not(:last-child) {
-        margin-right: $base-horizontal-margins;
-      }
     }
   }
 }

@@ -4,10 +4,10 @@
       <nav id="menu">
         <div class="logo">
           <nuxt-link to="/">
-            <prismic-image :field="menu.logo" />
+            <prismic-image v-if="menu.logo" :field="menu.logo" />
           </nuxt-link>
           <nuxt-link to="/">
-            <span> <b>Slicemachine</b> by prismic </span>
+            <span> <b>Slicemachine</b> by Prismic </span>
           </nuxt-link>
         </div>
         <ul class="horizontal-nav">
@@ -31,16 +31,20 @@
     <Sidebar>
       <div class="sidebar-logo">
         <nuxt-link to="/">
-          <prismic-image v-if="menu.logo" :field="menu.logo" />
-        </nuxt-link>
-        <nuxt-link to="/">
-          <span> <b>Slicemachine</b> by prismic </span>
+          <span class="logo-span">
+            <prismic-image v-if="menu.logo" :field="menu.logo" />
+            <b>Slicemachine</b> by Prismic
+          </span>
         </nuxt-link>
         <Burger class="side-burger"></Burger>
       </div>
       <ul class="sidebar-panel-nav">
         <div v-for="menuLink in menu.menu_item" :key="menuLink.id">
-          <li v-if="menuLink.link_label === 'Slices Library'" class="top-level">
+          <li
+            v-if="menuLink.link_label === 'Slices Library'"
+            class="top-level"
+            @click.prevent="toggle"
+          >
             <prismic-link :field="menuLink.link">
               {{ menuLink.link_label }}
             </prismic-link>
@@ -48,24 +52,40 @@
           <li
             v-else-if="menuLink.link_label === 'Documentation'"
             class="top-level"
-            @click="open = !open"
+            @click="accordionToggle()"
           >
             <prismic-link :field="menuLink.link">
-              {{ menuLink.link_label }}
+              <span>
+                {{ menuLink.link_label }}
+              </span>
               <span
                 class="accordion-item-trigger-icon"
                 :class="{ isOpen: open }"
               ></span>
             </prismic-link>
-            <ul v-show="open" class="second-level">
-              <li v-for="listItem in lst" :key="listItem.displayName">
-                <nuxt-link :to="`/components/${listItem.displayName}`">
-                  {{ listItem.meta.title }}
-                </nuxt-link>
-              </li>
-            </ul>
+            <transition name="slide-fade">
+              <ul v-show="open" class="second-level">
+                <li v-for="sideLink in side.menu_item" :key="sideLink.id">
+                  <prismic-link :field="sideLink.link">
+                    {{ sideLink.link_label }}
+                  </prismic-link>
+                </li>
+                <li class="menu-sub-title">
+                  <b>Slice Components</b>
+                </li>
+                <li
+                  v-for="listItem in lst"
+                  :key="listItem.displayName"
+                  @click.prevent="toggle"
+                >
+                  <nuxt-link :to="`/components/${listItem.displayName}`">
+                    {{ listItem.meta.title }}
+                  </nuxt-link>
+                </li>
+              </ul>
+            </transition>
           </li>
-          <li v-else class="top-level">
+          <li v-else class="top-level" @click.prevent="toggle">
             <prismic-link :field="menuLink.link">
               {{ menuLink.link_label }}
             </prismic-link>
@@ -77,7 +97,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { store, mutations } from '@/store/popoutmenu.js'
 
 import Burger from '@/components/menus/Burger.vue'
 import Sidebar from '@/components/menus/Sidebar.vue'
@@ -105,9 +125,22 @@ export default {
     }
   },
   computed: {
-    ...mapState(['mainmenu']),
     menu() {
-      return this.$store.state.mainmenu.menu
+      return this.$store.state.menus.main
+    },
+    side() {
+      return this.$store.state.menus.side
+    },
+    isBurgerActive() {
+      return store.isNavOpen
+    }
+  },
+  methods: {
+    accordionToggle() {
+      this.open = !this.open
+    },
+    toggle() {
+      mutations.toggleNav()
     }
   }
 }
@@ -128,7 +161,7 @@ export default {
     display: inline-flex;
     align-items: center;
     b {
-      padding: 0 5px;
+      padding-left: 5px;
       font-size: 16px;
       @include md {
         font-size: 20px;
@@ -154,16 +187,18 @@ export default {
     }
   }
   .sidebar-logo {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 20px 16px;
     width: 100%;
+    .logo-span {
+      display: flex;
+      align-items: center;
+    }
     b {
       padding: 0 5px;
       font-size: 16px;
-      @include lg {
-        font-size: 20px;
-      }
     }
     a {
       font-size: 13px;
@@ -180,36 +215,49 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1em;
+        padding: 1.4em;
         font-weight: bold;
         cursor: pointer;
       }
       .second-level {
+        padding: 1em;
         border-top: 1px solid $grey-transparent;
         background-color: $grey-secondary;
+        li {
+          padding: 0;
+          a {
+            padding: 0.7em 1.4em;
+            font-weight: normal;
+          }
+        }
+        .menu-sub-title {
+          padding: 1.4em;
+        }
       }
     }
     li {
       list-style-type: none;
-      padding: 5px 0;
     }
     .accordion-item-trigger-icon {
-      float: right;
       $size: 8px;
-      display: inline-block;
-      top: 0;
-      right: 1.25rem;
-      bottom: 0;
-      margin: auto;
       width: $size;
       height: $size;
+      margin-right: 7px;
       border-right: 2px solid #363636;
       border-bottom: 2px solid #363636;
       transform: translateY(-$size / 4) rotate(45deg);
       transition: transform 0.2s ease;
-      .isOpen & {
+      &.isOpen {
         transform: translateY($size / 4) rotate(225deg);
       }
+    }
+    .slide-fade-enter-active,
+    .slide-fade-leave-active {
+      transition: all 0.3s ease;
+    }
+    .slide-fade-enter,
+    .slide-fade-leave-to {
+      opacity: 0;
     }
   }
   a {

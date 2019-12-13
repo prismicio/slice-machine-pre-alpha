@@ -1,12 +1,17 @@
 <template>
-  <div class="app-screen container">
+  <Body variant="body--white">
     <prismic-image :field="slice.primary.image" />
-  </div>
+  </Body>
 </template>
 
 <script>
+import Body from '@/components/Body'
+
 export default {
   name: 'FullWidthImage',
+  components: {
+    Body
+  },
   props: {
     slice: {
       type: Object,

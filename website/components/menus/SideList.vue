@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ul>
-      <li v-for="menuLink in sideMenu.menu_item" :key="menuLink.id">
+      <li v-for="menuLink in side.menu_item" :key="menuLink.id">
         <prismic-link :field="menuLink.link">
           {{ menuLink.link_label }}
         </prismic-link>
@@ -29,10 +29,11 @@ export default {
     compsData: {
       type: Array,
       required: true
-    },
-    sideMenu: {
-      type: Object,
-      required: true
+    }
+  },
+  computed: {
+    side() {
+      return this.$store.state.menus.side
     }
   }
 }
@@ -53,9 +54,9 @@ li {
 }
 a {
   text-decoration: none;
-  color: $black-primary;
-  &:visited {
-    color: $black-primary;
+  color: #7b7979;
+  &:active {
+    color: $black-secondary;
   }
   &:hover {
     color: $black-secondary;

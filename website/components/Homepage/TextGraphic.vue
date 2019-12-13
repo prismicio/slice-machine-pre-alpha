@@ -1,7 +1,11 @@
 <template>
   <section class="grid">
     <div>
-      <prismic-image :field="slice.primary.graphic" />
+      <prismic-image
+        class="side-img-sm"
+        :field="slice.primary.graphic.small_main"
+      />
+      <prismic-image class="side-img-lg" :field="slice.primary.graphic" />
     </div>
     <div>
       <h3>{{ $prismic.asText(slice.primary.subtitle) }}</h3>
@@ -43,6 +47,19 @@ export default {
 
   @include lg {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+.side-img-sm {
+  display: block;
+  visibility: hidden;
+  @include lg {
+    display: none;
+  }
+}
+.side-img-lg {
+  display: none;
+  @include lg {
+    display: block;
   }
 }
 </style>

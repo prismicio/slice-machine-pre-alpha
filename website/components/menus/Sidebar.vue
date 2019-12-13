@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import { store, mutations } from '@/store/sidemenu.js'
+import { store, mutations } from '@/store/popoutmenu.js'
 
 export default {
   computed: {

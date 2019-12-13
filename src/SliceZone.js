@@ -69,6 +69,7 @@ export default {
     for (const name of slotNames) {
       const [sliceName, sliceSlot] = name.split('.')
       // skip if not parsed correctly
+      // eslint-disable-next-line
       if (!sliceName) continue
       scopedSlots[sliceName] = scopedSlots[sliceName] || {}
       // TODO: dev warning if found duplicated entries for the same slot
