@@ -129,21 +129,18 @@ h2 {
 
 h1,
 .text--4xl,
-.ps__title,
-.ps-alternate--list__content-title {
+.ps__title {
   line-height: 1.3;
   font-size: calc(1rem * var(--text-min-4xl)); }
   @media screen and (min-width: 40rem) {
     h1,
     .text--4xl,
-    .ps__title,
-    .ps-alternate--list__content-title {
+    .ps__title {
       font-size: calc( calc(1rem * var(--text-min-4xl)) + (var(--text-max-4xl) - var(--text-min-4xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h1,
     .text--4xl,
-    .ps__title,
-    .ps-alternate--list__content-title {
+    .ps__title {
       font-size: calc(1rem * var(--text-max-4xl)); } }
 
 h2,
@@ -174,45 +171,39 @@ h3,
 
 h4,
 .text--xl,
-.ps__desc,
-.ps-alternate--list__content-desc {
+.ps__desc {
   line-height: 1.2;
   font-size: calc(1rem * var(--text-min-xl)); }
   @media screen and (min-width: 40rem) {
     h4,
     .text--xl,
-    .ps__desc,
-    .ps-alternate--list__content-desc {
+    .ps__desc {
       font-size: calc( calc(1rem * var(--text-min-xl)) + (var(--text-max-xl) - var(--text-min-xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h4,
     .text--xl,
-    .ps__desc,
-    .ps-alternate--list__content-desc {
+    .ps__desc {
       font-size: calc(1rem * var(--text-max-xl)); } }
 
 h5,
 .text--l,
 .ps__kicker,
 .ps__card-item__title,
-.c-accordion__heading,
-.ps-alternate--list__content-kicker {
+.c-accordion__heading {
   font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {
     h5,
     .text--l,
     .ps__kicker,
     .ps__card-item__title,
-    .c-accordion__heading,
-    .ps-alternate--list__content-kicker {
+    .c-accordion__heading {
       font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h5,
     .text--l,
     .ps__kicker,
     .ps__card-item__title,
-    .c-accordion__heading,
-    .ps-alternate--list__content-kicker {
+    .c-accordion__heading {
       font-size: calc(1rem * var(--text-max-l)); } }
 
 h6,
@@ -533,51 +524,6 @@ small,
   display: block;
   margin: 0 auto calc(var(--c-padding) * 2);
   background: var(--color--secondary); }
-
-.ps-alternate--image-text__img {
-  display: block;
-  margin: calc(var(--v-margin) * 2) auto var(--c-margin); }
-  @media all and (min-width: 50em) {
-    .ps-alternate--image-text__img {
-      margin: var(--c-margin) auto; } }
-
-.ps-alternate--list__content-head {
-  margin-bottom: var(--v-margin); }
-
-.ps-alternate--list__content-kicker {
-  display: block;
-  color: var(--color--primary);
-  font-weight: 500;
-  margin: 0 0 0.6em;
-  line-height: 1.3; }
-
-.ps-alternate--list__content-title {
-  margin-bottom: 0; }
-
-.ps-alternate--list__content-desc {
-  margin-top: .5rem;
-  max-width: 50ch;
-  font-weight: 350; }
-  .ps-alternate--list__content-desc p {
-    line-height: 1.4; }
-  .ps-alternate--list__content-desc p:last-of-type {
-    margin-bottom: 0; }
-
-.ps-alternate--list__ctas {
-  display: flex;
-  flex-direction: column; }
-  @media all and (min-width: 40rem) {
-    .ps-alternate--list__ctas {
-      flex-direction: row; } }
-
-.ps-alternate--list .ps-button {
-  flex: 1;
-  margin-top: var(--h-padding); }
-  @media all and (min-width: 40rem) {
-    .ps-alternate--list .ps-button {
-      margin-right: var(--h-padding); } }
-  .ps-alternate--list .ps-button:last-of-type {
-    margin-right: 0; }
 
 .ps-button,
 a.ps-button {

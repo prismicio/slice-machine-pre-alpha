@@ -2,12 +2,17 @@
   <main>
     <ps-faq id="faq-0" :slice="PsFaqMock" />
     <ps-faq :slice="FaqMockAlt" />
+    <VideoHighlights :slice="VideoHighlightsMock" />
+    <CustomerLogos />
   </main>
 </template>
 <script>
 import Prismic from 'prismic-javascript'
 
 import PsFaq from '@/../src/slices/PsFaq'
+import VideoHighlights from '@/../src/slices/VideoHighlights'
+import CustomerLogos from '@/../src/slices/CustomerLogos'
+import VideoHighlightsMock from '@/../src/slices/VideoHighlights/mock.json'
 import PsFaqMock from '@/../src/slices/PsFaq/mock.json'
 
 const FaqMockAlt = { ...PsFaqMock }
@@ -23,16 +28,19 @@ const FaqMockAlt = { ...PsFaqMock }
 // }
 export default {
   components: {
-    PsFaq
+    PsFaq,
+    VideoHighlights,
+    CustomerLogos
   },
   data() {
-    return { PsFaqMock, FaqMockAlt }
+    return { PsFaqMock, FaqMockAlt, VideoHighlightsMock }
   },
   async asyncData({ error, req }) {
     try {
       const apiEndpoint = 'https://slicesexamples.prismic.io/api/v2'
       const api = await Prismic.getApi(apiEndpoint, { req })
-      const result = await api.getByUID('example', 'ps-faq')
+      const result = await api.getByUID('example', 'video-highlights')
+      console.log(JSON.stringify(result.data))
       return {
         document: result.data
       }

@@ -1,41 +1,33 @@
-
-
 :root {
-    --primary-hue: 167;
-    --secondary-hue: 30;
+  --primary-hue: 167;
+  --secondary-hue: 30;
+  --color--primary: hsl(var(--primary-hue), 66%, 31%);
+  --color--primary--dark: hsl(var(--primary-hue), 68%, 27%);
+  --color--primary--darker: hsl(var(--primary-hue), 75%, 21%);
+  --color--secondary: hsl(var(--secondary-hue), 27%, 94%);
+  --color-grey-0: hsl(0, 0%, 0%);
+  --color-grey-20: hsl(0, 0%, 20%);
+  --color-grey-53: hsl(0, 0%, 53%);
+  --color-text-grey: var(--color-grey-53);
 
-    --color--primary: hsl(var(--primary-hue), 66%, 31%);
-    --color--primary--dark: hsl(var(--primary-hue), 68%, 27%);
-    --color--primary--darker: hsl(var(--primary-hue), 75%, 21%);
+  /* default font family is the static Inter font */
+  --font-family: "Inter", Arial, sans-serif;
 
-    --color--secondary: hsl(var(--secondary-hue), 27%, 94%);
+  /* in supporting browsers, the variable Inter font is used */
+  @supports (font-variation-settings: normal) {
+    --font-family: "Inter var", Arial, sans-serif;
+  }
 
-    --color-grey-0: hsl(0, 0%, 0%);
-    --color-grey-20: hsl(0, 0%, 20%);
+  --scrollbar: 0; /* this variable is set using JS. See CS Utilities documentation for details */
+  --h-padding: 2rem; // horizontal padding for the slice relative to the page borders; 30px default when font size is base 16
+  --c-padding: 1.25rem; // component-level padding
+  --c-margin: 1rem; // component-level padding
+  --v-margin: 2.5rem; // vertical component-level external margin (margin between two components)
+  --v-space: 8vw; // vertical space within sections
 
-    --color-grey-53: hsl(0, 0%, 53%);
-    --color-text-grey: var(--color-grey-53);
-    
+  @media all and (max-width: 640px) {
+    --h-padding: 1.25rem;
+  }
 
-    /* default font family is the static Inter font */
-    --font-family: "Inter", Arial, sans-serif;
-
-    /* in supporting browsers, the variable Inter font is used */
-    @supports (font-variation-settings: normal) {
-        --font-family: "Inter var", Arial, sans-serif;
-    }
-
-    --scrollbar: 0px; /* this variable is set using JS. See CS Utilities documentation for details */
-    --h-padding: 2rem; // horizontal padding for the slice relative to the page borders; 30px default when font size is base 16
-    --c-padding: 1.25rem; // component-level padding
-    --c-margin: 1rem; // component-level padding
-    --v-margin: 2.5rem; // vertical component-level external margin (margin between two components)
-    --v-space: 8vw; // vertical space within sections
-
-    @media all and (max-width: 640px) {
-        --h-padding: 1.25rem;
-    }
-
-    --focus-outline: 3px solid currentColor;
+  --focus-outline: 3px solid currentColor;
 }
-
