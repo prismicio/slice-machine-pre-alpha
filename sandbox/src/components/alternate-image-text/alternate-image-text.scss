@@ -1,0 +1,8 @@
+.ps-alternate--image-text__img {
+    display: block;
+    margin: calc(var(--v-margin) * 2) auto var(--c-margin);
+
+    @media all and (min-width: 50em) {
+        margin: var(--c-margin) auto;
+    }
+}

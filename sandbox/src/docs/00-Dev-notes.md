@@ -1,5 +1,6 @@
 ---
 title: Dev Notes
+status: draft
 ---
 
 ## Ensuring proper heading hierarchy in the slices using Vue/React
