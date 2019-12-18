@@ -3,8 +3,8 @@
 		<call-to-action :slice="CallToActionMock" />
 		<ps-faq id="faq-0" :slice="PsFaqMock" />
 		<VideoHighlights :slice="VideoHighlightsMock" />
+		<PricingTable :slice="document.body[0]" />
 		<CustomerLogos :slice="CustomerLogosMock" />
-		<PricingTable :slice="PricingTableMock" />
 	</main>
 </template>
 <script>
@@ -27,16 +27,7 @@ import CallToAction from '@/../src/slices/CallToAction'
 import CallToActionMock from '@/../src/slices/CallToAction/mock.json'
 
 const FaqMockAlt = { ...PsFaqMock }
-// FaqMockAlt.primary.optional_image = {
-//   dimensions: {
-//     width: 2048,
-//     height: 1536
-//   },
-//   alt: 'an altt',
-//   copyright: null,
-//   url:
-//     'https://images.prismic.io/slicesexamples/b4aeb1e2-e9c1-43ab-82ab-0d0519f9c3cd_float.png?auto=compress,format'
-// }
+
 export default {
 	components: {
 		CallToAction,
@@ -61,7 +52,7 @@ export default {
 		try {
 			const apiEndpoint = 'https://slicesexamples.prismic.io/api/v2'
 			const api = await Prismic.getApi(apiEndpoint, { req })
-			const result = await api.getByUID('example', 'pricing-plan')
+			const result = await api.getByUID('example', 'pricing-table')
 			console.log(JSON.stringify(result.data))
 			return {
 				document: result.data

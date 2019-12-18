@@ -1,31 +1,126 @@
 {
-	"slice_type": "pricing_table",
-	"slice_label": null,
-	"items": [
+	"display_name": "PricingTable",
+	"body": [
 		{
-			"pricing_plan": "Cool plan",
-			"features": [
-				{ "type": "paragraph", "text": "Super cool", "spans": [] },
-				{ "type": "list-item", "text": "An item", "spans": [] },
-				{ "type": "list-item", "text": "An item 2", "spans": [] },
+			"slice_type": "pricing_table",
+			"slice_label": null,
+			"items": [
 				{
-					"type": "list-item",
-					"text": "A feature not included",
-					"spans": [
+					"plan_title": "Small",
+					"price_option": "Free",
+					"features": [
 						{
-							"start": 0,
-							"end": 22,
-							"type": "label",
-							"data": { "label": "not-included" }
+							"type": "list-item",
+							"text": "Figma and Sketch Files",
+							"spans": []
+						},
+						{
+							"type": "list-item",
+							"text": "Auto-Updatable Styles",
+							"spans": []
+						},
+						{ "type": "list-item", "text": "Base Elements", "spans": [] },
+						{
+							"type": "list-item",
+							"text": "Page Layouts",
+							"spans": [
+								{
+									"start": 0,
+									"end": 12,
+									"type": "label",
+									"data": { "label": "not-included" }
+								}
+							]
+						},
+						{
+							"type": "list-item",
+							"text": "24/7 Free Support",
+							"spans": [
+								{
+									"start": 0,
+									"end": 17,
+									"type": "label",
+									"data": { "label": "not-included" }
+								}
+							]
 						}
-					]
+					],
+					"call_to_action": {
+						"link_type": "Web",
+						"url": "https://prismic.io",
+						"target": "_blank"
+					},
+					"call_to_action_text": "Start your free trial"
+				},
+				{
+					"plan_title": "Medium",
+					"price_option": "From $18",
+					"features": [
+						{
+							"type": "list-item",
+							"text": "Figma and Sketch Files",
+							"spans": []
+						},
+						{
+							"type": "list-item",
+							"text": "Auto-Updatable Styles",
+							"spans": []
+						},
+						{ "type": "list-item", "text": "Base Elements", "spans": [] },
+						{ "type": "list-item", "text": "Page Layouts", "spans": [] },
+						{
+							"type": "list-item",
+							"text": "24/7 Free Support",
+							"spans": [
+								{
+									"start": 0,
+									"end": 17,
+									"type": "label",
+									"data": { "label": "not-included" }
+								}
+							]
+						}
+					],
+					"call_to_action": { "link_type": "Any" },
+					"call_to_action_text": null
+				},
+				{
+					"plan_title": "Large",
+					"price_option": "From $39",
+					"features": [
+						{
+							"type": "list-item",
+							"text": "Figma and Sketch Files",
+							"spans": []
+						},
+						{
+							"type": "list-item",
+							"text": "Auto-Updatable Styles",
+							"spans": []
+						},
+						{ "type": "list-item", "text": "Base Elements", "spans": [] },
+						{ "type": "list-item", "text": "Page Layouts", "spans": [] },
+						{ "type": "list-item", "text": "24/7 Free Support", "spans": [] }
+					],
+					"call_to_action": {
+						"link_type": "Web",
+						"url": "https://prismic.io",
+						"target": "_blank"
+					},
+					"call_to_action_text": "Contact us"
 				}
-			]
+			],
+			"primary": {
+				"eyebrow_headline": "Pricing",
+				"title": [{ "type": "heading2", "text": "Choose a plan", "spans": [] }],
+				"description": [
+					{
+						"type": "paragraph",
+						"text": "Choose the plan that works for you and streamline your design process in an unlimited number of projects.",
+						"spans": []
+					}
+				]
+			}
 		}
-	],
-	"primary": {
-		"eyebrow_headline": "Eyebrow",
-		"title": [{ "type": "heading2", "text": "Title", "spans": [] }],
-		"description": [{ "type": "paragraph", "text": "Description", "spans": [] }]
-	}
+	]
 }

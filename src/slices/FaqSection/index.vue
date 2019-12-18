@@ -37,7 +37,7 @@ if (!Vue.options.components['ps-accordion']) {
 	components['ps-accordion'] = () => import('../../components/PsAccordion')
 }
 export default {
-	name: 'PsFaq',
+	name: 'FaqSection',
 	components,
 	props: {
 		slice: {

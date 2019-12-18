@@ -28,10 +28,18 @@
 		}
 	},
 	"repeat": {
-		"pricing_plan": {
+		"plan_title": {
 			"type": "Text",
 			"config": {
-				"label": "Pricing Plan"
+				"label": "Plan title",
+				"placeholder": "Simple, Gold, Premium..."
+			}
+		},
+		"price_option": {
+			"type": "Text",
+			"config": {
+				"label": "Price Option",
+				"placeholder": "Free, $19, Contact us..."
 			}
 		},
 		"features": {
@@ -40,6 +48,21 @@
 				"multi": "list-item",
 				"label": "Features",
 				"labels": ["not-included"]
+			}
+		},
+		"call_to_action": {
+			"type": "Link",
+			"config": {
+				"allowTargetBlank": true,
+				"label": "Call To Action",
+				"placeholder": "Link to Signup / More info..."
+			}
+		},
+		"call_to_action_text": {
+			"type": "Text",
+			"config": {
+				"label": "Call To Action Text",
+				"placeholder": "Start your free trial"
 			}
 		}
 	}

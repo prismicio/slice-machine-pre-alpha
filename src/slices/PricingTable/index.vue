@@ -3,19 +3,19 @@
 		<div class="ps__wrap">
 			<div class="ps__head">
 				<header class="ps__header">
-					<slot name="header">
-						<span class="ps__kicker">Features</span>
-						<h2 class="ps__title" aria-level>Choose a Plan</h2>
-					</slot>
+					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">
+						{{ slice.primary.eyebrow_headline }}
+					</span>
+					<h2 v-if="slice.primary.title" class="ps__title" aria-level="2">
+						{{ $prismic.asText(slice.primary.title) }}
+					</h2>
 				</header>
-				<div class="ps__desc">
+				<div v-if="slice.primary.description" class="ps__desc">
 					<p>
-						Choose the plan that works for you and streamline your design
-						process in an unlimited number of projects.
+						{{ $prismic.asText(slice.primary.description) }}
 					</p>
 				</div>
 			</div>
-
 			<div class="ps__main">
 				<ol
 					role="list"
@@ -28,23 +28,31 @@
 						:key="`ps__card-item-${index + 1}`"
 					>
 						<article>
-							<header>
+							<header v-if="item.plan_title">
 								<h3
 									class="ps-pricing-table__option__title ps__card-item__title"
 								>
-									Small
+									{{ item.plan_title }}
 								</h3>
-								<span class="ps-pricing-table__option__price">Free</span>
+								<span class="ps-pricing-table__option__price">
+									{{ item.price_option }}
+								</span>
 							</header>
 							<prismic-rich-text
 								class="ps__card-item__content"
 								:field="item.features"
-								:htmlSerializer="serialize"
+								:htmlSerializer="listSerializer"
 							/>
-							<div class="ps__card-item__cta">
-								<a href="#" class="ps-button ps-button--secondary">
-									Call to Action
-								</a>
+							<div
+								v-if="item.call_to_action && item.call_to_action_text"
+								class="ps__card-item__cta"
+							>
+								<prismic-link
+									:field="item.call_to_action"
+									class="ps-button ps-button--secondary"
+								>
+									{{ item.call_to_action_text }}
+								</prismic-link>
 							</div>
 						</article>
 					</li>
@@ -54,6 +62,8 @@
 	</section>
 </template>
 <script>
+import { featureIcon, notIncludedIcon } from './icons'
+
 export default {
 	name: 'PricingTable',
 	props: {
@@ -69,65 +79,17 @@ export default {
 			}
 		}
 	},
-	data() {
-		return {
-			dataItems: [
-				{
-					features: [true, false, false]
-				},
-				{
-					features: [true, true, false]
-				}
-			],
-			featureIcon: `<svg
-					class="feature-icon"
-					aria-hidden="true"
-					focusable="false"
-					width="20"
-					height="20"
-					viewBox="0 0 20 20"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<g fill="none">
-						<path d="M-2-2h24v24h-24z" />
-						<path
-							d="M10 0c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-2 15l-5-5 1.41-1.41 3.59 3.58 7.59-7.59 1.41 1.42-9 9z"
-							fill="currentColor"
-							fill-rule="nonzero"
-						/>
-					</g>
-				</svg>`,
-			notIncludedIcon: `
-				<svg
-					class="feature-icon"
-					aria-hidden="true"
-					focusable="false"
-					width="20"
-					height="20"
-					viewBox="0 0 20 20"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<g fill="none">
-						<path d="M-2-2h24v24h-24z" />
-						<path
-							d="M5 9v2h10v-2h-10zm5-9c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-							fill="currentColor"
-							fill-rule="nonzero"
-						/>
-					</g>
-				</svg>`
-		}
-	},
 	methods: {
-		serialize(type, props, _, children) {
+		listSerializer(type, props, _, children) {
 			if (type === 'list-item') {
-				const notIncluded =
-					props.spans && props.spans.find(e => e && e.type === 'label')
+				const isNotIncluded =
+					props.spans &&
+					props.spans.find(e => e && e.data.label === 'not-included')
 				const className = `ps-pricing-table__option__feature${
-					notIncluded ? ' not-included' : ''
+					isNotIncluded ? ' not-included' : ''
 				}`
 				return `<li class="${className}">${
-					notIncluded ? this.notIncludedIcon : this.featureIcon
+					isNotIncluded ? notIncludedIcon : featureIcon
 				} ${props.text}</li>`
 			}
 			if (type === 'group-list-item') {
@@ -140,10 +102,10 @@ export default {
 	}
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .ps-pricing-table__option {
 	@media all and (min-width: 40em) {
-		&:nth-of-type(2) {
+		&:nth-of-type(2n) {
 			background-color: #fff;
 			border: 1px solid;
 		}
