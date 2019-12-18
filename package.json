@@ -1,90 +1,90 @@
 {
-  "name": "community",
-  "version": "1.0.0",
-  "engines": {
-    "node": ">= 10.0.0"
-  },
-  "description": "Hey",
-  "author": "Hugo & Phil",
-  "scripts": {
-    "lint": "eslint --fix --ext .js,.vue --ignore-path .eslintignore .",
-    "stylelint": "stylelint */**/*.scss --fix",
-    "create-slice": "node builder/createSlice.js",
-    "dev": "npm run scripts; nuxt --port 3000",
-    "build": "npm run scripts && nuxt build",
-    "scripts": "node ./scripts/bundleApi && node ./scripts/buildExamples",
-    "start": "npm run scripts; nuxt start",
-    "sandbox": "cd sandbox && npm run start",
-    "generate": "nuxt generate"
-  },
-  "main": "index.js",
-  "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^2.6.0",
-    "adm-zip": "^0.4.13",
-    "cookie-universal-nuxt": "^2.0.17",
-    "cors": "^2.8.5",
-    "cross-env": "^5.2.0",
-    "element-ui": "^2.4.11",
-    "focus-visible": "^5.0.2",
-    "fs-extra": "^8.1.0",
-    "install": "^0.13.0",
-    "isomorphic-fetch": "^2.2.1",
-    "jsdom": "^15.1.1",
-    "jszip": "^3.2.2",
-    "lodash.get": "^4.4.2",
-    "lodash.merge": "^4.6.2",
-    "lodash.set": "^4.3.2",
-    "marked": "^0.7.0",
-    "npm": "^6.13.2",
-    "nuxt": "^2.0.0",
-    "prismic-dom": "^2.1.0",
-    "prismic-javascript": "^2.1.1",
-    "prismic-nuxt": "^0.5.3",
-    "prismic-vue": "git+https://github.com/prismicio/prismic-vue#master",
-    "raw-loader": "^3.0.0",
-    "vue-docgen-api": "^3.16.3",
-    "vue-github-buttons": "^3.1.0",
-    "vue-markdown": "^2.2.4"
-  },
-  "devDependencies": {
-    "@nuxtjs/eslint-config": "^0.0.1",
-    "@nuxtjs/eslint-module": "^0.0.1",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.1",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-config-standard": ">=12.0.0",
-    "eslint-plugin-import": ">=2.16.0",
-    "eslint-plugin-jest": ">=22.3.0",
-    "eslint-plugin-node": ">=8.0.1",
-    "eslint-plugin-nuxt": ">=0.4.2",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-promise": ">=4.0.1",
-    "eslint-plugin-standard": ">=4.0.0",
-    "eslint-plugin-vue": "^5.2.2",
-    "file-save": "^0.2.0",
-    "husky": "^3.0.2",
-    "node-sass": "^4.12.0",
-    "nodemon": "^1.18.9",
-    "prettier": "^1.16.4",
-    "prompts": "^2.1.0",
-    "sass-loader": "^7.3.1",
-    "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.3.0"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "license": "ISC",
-  "__lint-staged": {
-    "*.{js,vue}": [
-      "npm run lint",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run stylelint"
-    }
-  }
+	"name": "community",
+	"version": "1.0.0",
+	"engines": {
+		"node": ">= 10.0.0"
+	},
+	"description": "Hey",
+	"author": "Hugo & Phil",
+	"scripts": {
+		"lint": "eslint --fix --ext .js,.vue --ignore-path .eslintignore .",
+		"stylelint": "stylelint */**/*.scss --fix",
+		"create-slice": "node builder/createSlice.js",
+		"dev": "npm run scripts; nuxt --port 3000",
+		"build": "npm run scripts && nuxt build",
+		"scripts": "node ./scripts/bundleApi && node ./scripts/buildExamples",
+		"start": "npm run scripts; nuxt start",
+		"sandbox": "cd sandbox && npm run start",
+		"generate": "nuxt generate"
+	},
+	"main": "index.js",
+	"dependencies": {
+		"@nuxtjs/axios": "^5.3.6",
+		"@nuxtjs/pwa": "^2.6.0",
+		"adm-zip": "^0.4.13",
+		"cookie-universal-nuxt": "^2.0.17",
+		"cors": "^2.8.5",
+		"cross-env": "^5.2.0",
+		"element-ui": "^2.4.11",
+		"focus-visible": "^5.0.2",
+		"fs-extra": "^8.1.0",
+		"install": "^0.13.0",
+		"isomorphic-fetch": "^2.2.1",
+		"jsdom": "^15.1.1",
+		"jszip": "^3.2.2",
+		"lodash.get": "^4.4.2",
+		"lodash.merge": "^4.6.2",
+		"lodash.set": "^4.3.2",
+		"marked": "^0.7.0",
+		"npm": "^6.13.2",
+		"nuxt": "^2.0.0",
+		"prismic-dom": "^2.1.0",
+		"prismic-javascript": "^2.1.1",
+		"prismic-nuxt": "^0.5.3",
+		"prismic-vue": "git+https://github.com/prismicio/prismic-vue#master",
+		"raw-loader": "^3.0.0",
+		"vue-docgen-api": "^3.16.3",
+		"vue-github-buttons": "^3.1.0",
+		"vue-markdown": "^2.2.4"
+	},
+	"devDependencies": {
+		"@nuxtjs/eslint-config": "^0.0.1",
+		"@nuxtjs/eslint-module": "^0.0.1",
+		"babel-eslint": "^10.0.1",
+		"eslint": "^5.15.1",
+		"eslint-config-prettier": "^4.1.0",
+		"eslint-config-standard": ">=12.0.0",
+		"eslint-plugin-import": ">=2.16.0",
+		"eslint-plugin-jest": ">=22.3.0",
+		"eslint-plugin-node": ">=8.0.1",
+		"eslint-plugin-nuxt": ">=0.4.2",
+		"eslint-plugin-prettier": "^3.0.1",
+		"eslint-plugin-promise": ">=4.0.1",
+		"eslint-plugin-standard": ">=4.0.0",
+		"eslint-plugin-vue": "^5.2.2",
+		"file-save": "^0.2.0",
+		"husky": "^3.0.2",
+		"node-sass": "^4.12.0",
+		"nodemon": "^1.18.9",
+		"prettier": "^1.16.4",
+		"prompts": "^2.1.0",
+		"sass-loader": "^7.3.1",
+		"stylelint": "^10.1.0",
+		"stylelint-config-standard": "^18.3.0"
+	},
+	"gitHooks": {
+		"pre-commit": "lint-staged"
+	},
+	"license": "ISC",
+	"__lint-staged": {
+		"*.{js,vue}": [
+			"npm run lint",
+			"git add"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint && npm run stylelint"
+		}
+	}
 }

@@ -52,25 +52,25 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/_global';
 .homerows {
-  padding: 25px 0;
+	padding: 25px 0;
 }
 
 .card-section {
-  margin: 0 auto;
-  .card-section-description {
-    font-size: 18px;
-    line-height: 34px;
-  }
-  .button {
-    margin: 0 auto;
-    width: 250px;
-    height: 70px;
-    font-size: 20px;
-    line-height: 24px;
-    display: grid;
-    a {
-      text-decoration: none;
-    }
-  }
+	margin: 0 auto;
+	.card-section-description {
+		font-size: 18px;
+		line-height: 34px;
+	}
+	.button {
+		margin: 0 auto;
+		width: 250px;
+		height: 70px;
+		font-size: 20px;
+		line-height: 24px;
+		display: grid;
+		a {
+			text-decoration: none;
+		}
+	}
 }
 </style>

@@ -22,19 +22,19 @@ export default {
 
 <style lang="scss" scoped>
 h1 {
-  font-size: 60px;
-  line-height: 71px;
-  span {
-    margin: 0;
-    display: inline-block;
-    margin-left: -2.5px;
-    .character {
-      display: block;
-      line-height: 0.6;
-      margin-top: 10px;
-      margin-bottom: 0;
-      margin-right: -8px;
-    }
-  }
+	font-size: 60px;
+	line-height: 71px;
+	span {
+		margin: 0;
+		display: inline-block;
+		margin-left: -2.5px;
+		.character {
+			display: block;
+			line-height: 0.6;
+			margin-top: 10px;
+			margin-bottom: 0;
+			margin-right: -8px;
+		}
+	}
 }
 </style>

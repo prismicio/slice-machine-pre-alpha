@@ -66,7 +66,7 @@ export default {
   methods: {
     createEditUrl() {
       const base =
-        'https://github.com/prismicio/slice-machine/tree/master/src/slices/'
+				'https://github.com/prismicio/slice-machine/tree/master/src/slices/'
       return `${base}${this.slice.displayName}/README.md`
     }
   },
@@ -77,14 +77,14 @@ export default {
 
 <style>
 .subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+	font-weight: 300;
+	font-size: 42px;
+	color: #526488;
+	word-spacing: 5px;
+	padding-bottom: 15px;
 }
 
 .links {
-  padding-top: 15px;
+	padding-top: 15px;
 }
 </style>

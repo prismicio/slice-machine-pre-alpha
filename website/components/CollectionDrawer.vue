@@ -69,14 +69,14 @@ export default {
 
 <style lang="scss" scoped>
 .drawer {
-  position: fixed;
-  bottom: 12px;
-  right: 24px;
+	position: fixed;
+	bottom: 12px;
+	right: 24px;
 }
 
 .open {
-  border: 1px solid #111;
-  height: 220px;
-  width: 300px;
+	border: 1px solid #111;
+	height: 220px;
+	width: 300px;
 }
 </style>

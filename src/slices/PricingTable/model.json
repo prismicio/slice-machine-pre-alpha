@@ -1,0 +1,46 @@
+{
+	"type": "Slice",
+	"fieldset": "Pricing Table",
+	"description": "Display a list of pricing plans",
+	"icon": "attach_money",
+	"display": "list",
+	"non-repeat": {
+		"eyebrow_headline": {
+			"type": "Text",
+			"config": {
+				"label": "Eyebrow Headline"
+			}
+		},
+		"title": {
+			"type": "StructuredText",
+			"config": {
+				"single": "heading2",
+				"label": "Title"
+			}
+		},
+		"description": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"allowTargetBlank": true,
+				"label": "Description"
+			}
+		}
+	},
+	"repeat": {
+		"pricing_plan": {
+			"type": "Text",
+			"config": {
+				"label": "Pricing Plan"
+			}
+		},
+		"features": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "list-item",
+				"label": "Features",
+				"labels": ["not-included"]
+			}
+		}
+	}
+}

@@ -39,36 +39,36 @@ export default {
 @import '../style/_global';
 
 a {
-  display: contents;
-  text-decoration: none;
-  &:visited {
-    color: $black-primary;
-  }
+	display: contents;
+	text-decoration: none;
+	&:visited {
+		color: $black-primary;
+	}
 }
 
 .mainMenu {
-  border-top: 1px solid #d3d2d2;
-  height: 30px;
-  padding: 30px 0;
-  margin: 30px 0;
-  min-height: 80px;
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    p {
-      padding: 0 5px;
-    }
-    b {
-      font-size: 20px;
-    }
-  }
-  ul {
-    display: inline-flex;
-    font-size: 14px;
-  }
-  li {
-    display: inline-block;
-    margin-left: 10px;
-  }
+	border-top: 1px solid #d3d2d2;
+	height: 30px;
+	padding: 30px 0;
+	margin: 30px 0;
+	min-height: 80px;
+	.logo {
+		display: inline-flex;
+		align-items: center;
+		p {
+			padding: 0 5px;
+		}
+		b {
+			font-size: 20px;
+		}
+	}
+	ul {
+		display: inline-flex;
+		font-size: 14px;
+	}
+	li {
+		display: inline-block;
+		margin-left: 10px;
+	}
 }
 </style>

@@ -91,66 +91,66 @@ export default {
 @import '../style/variables';
 
 .card {
-  width: calc(50% - #{$base-horizontal-margins});
-  box-sizing: border-box;
-  min-height: 490px;
-  background: #fff;
-  border: 1px solid #e1e1e1;
-  position: relative;
-  &:nth-child(odd) {
-    margin-right: $base-horizontal-margins;
-  }
+	width: calc(50% - #{$base-horizontal-margins});
+	box-sizing: border-box;
+	min-height: 490px;
+	background: #fff;
+	border: 1px solid #e1e1e1;
+	position: relative;
+	&:nth-child(odd) {
+		margin-right: $base-horizontal-margins;
+	}
 
-  &:nth-child(even) {
-    margin-left: $base-horizontal-margins;
-  }
+	&:nth-child(even) {
+		margin-left: $base-horizontal-margins;
+	}
 
-  .image-block {
-    width: 100%;
-    height: 350px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
+	.image-block {
+		width: 100%;
+		height: 350px;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
 
-  .hover-block {
-    width: 100%;
-    height: 350px;
-    top: 0;
-    left: 0;
-    display: none;
-    background-image: linear-gradient(
-      0deg,
-      rgba(101, 181, 135, 0.95),
-      rgba(101, 181, 135, 0.95)
-    );
-    &--hovered {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      flex-direction: column;
-    }
-  }
+	.hover-block {
+		width: 100%;
+		height: 350px;
+		top: 0;
+		left: 0;
+		display: none;
+		background-image: linear-gradient(
+			0deg,
+			rgba(101, 181, 135, 0.95),
+			rgba(101, 181, 135, 0.95)
+		);
+		&--hovered {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			flex-direction: column;
+		}
+	}
 
-  .description-block {
-    padding: 32px;
-    font-size: 16px;
-    line-height: 24px;
-    &__title {
-      color: $text-darker;
-    }
-    &__description {
-      color: $text-dark;
-      margin-top: 8px;
-    }
-  }
+	.description-block {
+		padding: 32px;
+		font-size: 16px;
+		line-height: 24px;
+		&__title {
+			color: $text-darker;
+		}
+		&__description {
+			color: $text-dark;
+			margin-top: 8px;
+		}
+	}
 }
 
 @media screen and (max-width: 790px) {
-  .card {
-    width: 100%;
-    margin: 32px 0 0 0 !important;
-  }
+	.card {
+		width: 100%;
+		margin: 32px 0 0 0 !important;
+	}
 }
 </style>

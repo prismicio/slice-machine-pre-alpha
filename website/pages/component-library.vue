@@ -80,24 +80,24 @@ export default {
 @import '../style/_global';
 
 .homerows {
-  padding: 25px 0;
+	padding: 25px 0;
 }
 
 .card-section {
-  margin: 0 auto;
-  &-description {
-    margin: 0 auto;
-    font-size: 20px;
-    line-height: 34px;
-    font-family: $base-font-primary;
-  }
-  .button {
-    margin: 0 auto;
-    width: 250px;
-    height: 70px;
-    font-size: 20px;
-    line-height: 24px;
-    display: grid;
-  }
+	margin: 0 auto;
+	&-description {
+		margin: 0 auto;
+		font-size: 20px;
+		line-height: 34px;
+		font-family: $base-font-primary;
+	}
+	.button {
+		margin: 0 auto;
+		width: 250px;
+		height: 70px;
+		font-size: 20px;
+		line-height: 24px;
+		display: grid;
+	}
 }
 </style>

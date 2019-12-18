@@ -1,0 +1,31 @@
+{
+	"slice_type": "pricing_table",
+	"slice_label": null,
+	"items": [
+		{
+			"pricing_plan": "Cool plan",
+			"features": [
+				{ "type": "paragraph", "text": "Super cool", "spans": [] },
+				{ "type": "list-item", "text": "An item", "spans": [] },
+				{ "type": "list-item", "text": "An item 2", "spans": [] },
+				{
+					"type": "list-item",
+					"text": "A feature not included",
+					"spans": [
+						{
+							"start": 0,
+							"end": 22,
+							"type": "label",
+							"data": { "label": "not-included" }
+						}
+					]
+				}
+			]
+		}
+	],
+	"primary": {
+		"eyebrow_headline": "Eyebrow",
+		"title": [{ "type": "heading2", "text": "Title", "spans": [] }],
+		"description": [{ "type": "paragraph", "text": "Description", "spans": [] }]
+	}
+}

@@ -63,37 +63,37 @@ export default {
 @import '../../style/_global';
 
 .banner {
-  min-height: 576px;
-  margin-top: 63px;
+	min-height: 576px;
+	margin-top: 63px;
 }
 .call_to_action {
-  max-width: 540px;
-  padding-top: 44px;
+	max-width: 540px;
+	padding-top: 44px;
 }
 .clipboard {
-  width: 400px;
-  display: flex;
-  color: #ffffff;
-  background-color: $black-primary;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 20px 0;
-  cursor: pointer;
-  img {
-    margin-left: 30px;
-  }
-  &:hover {
-    background-color: $black-secondary;
-  }
+	width: 400px;
+	display: flex;
+	color: #ffffff;
+	background-color: $black-primary;
+	border-radius: 5px;
+	padding: 20px;
+	margin: 20px 0;
+	cursor: pointer;
+	img {
+		margin-left: 30px;
+	}
+	&:hover {
+		background-color: $black-secondary;
+	}
 }
 .big_description {
-  max-width: 530px;
-  font-size: 24px;
-  line-height: 40px;
+	max-width: 530px;
+	font-size: 24px;
+	line-height: 40px;
 }
 .small_description {
-  max-width: 430px;
-  font-size: 16px;
-  line-height: 24px;
+	max-width: 430px;
+	font-size: 16px;
+	line-height: 24px;
 }
 </style>

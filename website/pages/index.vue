@@ -101,6 +101,6 @@ export default {
 @import '../style/_global';
 
 .homerows {
-  padding: 25px 0;
+	padding: 25px 0;
 }
 </style>

@@ -29,20 +29,20 @@ export default {
 @import '../../style/_global';
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 4rem;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	grid-gap: 4rem;
 
-  * {
-    width: 100%;
+	* {
+		width: 100%;
 
-    img {
-      object-fit: contain;
-    }
-  }
+		img {
+			object-fit: contain;
+		}
+	}
 
-  @include lg {
-    grid-template-columns: repeat(2, 1fr);
-  }
+	@include lg {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 </style>

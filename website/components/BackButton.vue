@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       back:
-        'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTIxIDExSDYuODNsMy41OC0zLjU5TDkgNmwtNiA2IDYgNiAxLjQxLTEuNDFMNi44MyAxM0gyMXoiLz48L3N2Zz4K'
+				'data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTIxIDExSDYuODNsMy41OC0zLjU5TDkgNmwtNiA2IDYgNiAxLjQxLTEuNDFMNi44MyAxM0gyMXoiLz48L3N2Zz4K'
     }
   },
   methods: {
@@ -33,14 +33,14 @@ export default {
 @import '../style/variables.scss';
 
 .back-button {
-  background: $color-main;
-  border: none;
-  padding: 16px;
-  border-radius: 50%;
-  cursor: pointer;
-  img {
-    position: relative;
-    top: 2px;
-  }
+	background: $color-main;
+	border: none;
+	padding: 16px;
+	border-radius: 50%;
+	cursor: pointer;
+	img {
+		position: relative;
+		top: 2px;
+	}
 }
 </style>
