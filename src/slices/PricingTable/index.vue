@@ -88,9 +88,11 @@ export default {
 				const className = `ps-pricing-table__option__feature${
 					isNotIncluded ? ' not-included' : ''
 				}`
-				return `<li class="${className}">${
-					isNotIncluded ? notIncludedIcon : featureIcon
-				} ${props.text}</li>`
+				return `<li class="${className}">
+					${isNotIncluded ? notIncludedIcon : featureIcon}
+					<span class="sr-only">${isNotIncluded ? 'Not included:' : 'Included'} </span>
+					${props.text}
+				</li>`
 			}
 			if (type === 'group-list-item') {
 				return `
@@ -102,7 +104,7 @@ export default {
 	}
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .ps-pricing-table__option {
 	@media all and (min-width: 40em) {
 		&:nth-of-type(2n) {
@@ -127,6 +129,7 @@ export default {
 	padding-left: var(--h-padding);
 	position: relative;
 
+	/* this style is not applied to DOM element when SCSS is scoped */
 	.feature-icon {
 		color: var(--color--primary);
 
@@ -139,25 +142,7 @@ export default {
 		margin-top: -0.5em;
 	}
 
-	// &::before {
-	//     content: "";
-	//     display: block;
-	//     width: 1em;
-	//     height: 1em;
-	//     background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Echeck_circle-24px%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg fill='none'%3E%3Cpath d='M-2-2h24v24h-24z'/%3E%3Cpath d='M10 0c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-2 15l-5-5 1.41-1.41 3.59 3.58 7.59-7.59 1.41 1.42-9 9z' fill='%2347C1AF' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E");
-	//     background-repeat: no-repeat;
-	//     background-size: 97% 97%;
-	//     position: absolute;
-	//     left: 0;
-	//     top: 50%;
-	//     margin-top: -.5em;
-	// }
-
 	&.not-included {
-		// &::before {
-		//     background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Eremove_circle_outline-24px%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg opacity='.4' fill='none'%3E%3Cpath d='M-2-2h24v24h-24z'/%3E%3Cpath d='M5 9v2h10v-2h-10zm5-9c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z' fill='%23000' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E");
-		// }
-
 		.feature-icon {
 			color: #888;
 		}

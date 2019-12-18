@@ -45,10 +45,15 @@ async function main() {
 		console.log(framework, pathToSlices)
 		const sliceNames = utils.getSliceNames(null, pathToSlices)
 		sliceNames.map(sliceName => {
+			const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
+			if (!slice) {
+				console.error(`Unable to get slice for sliceName: ${sliceName}`)
+				return
+			}
 			const {
 				key,
 				meta: { title, description }
-			} = utils.getAllFromSliceName(sliceName, pathToSlices)
+			} = slice
 			const pToFile = path.join(pathToFiles, framework, `${sliceName}.vue`)
 			const fileExists = fs.existsSync(pToFile)
 			if (!fileExists) {

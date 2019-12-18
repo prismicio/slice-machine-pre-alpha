@@ -20,6 +20,10 @@ async function main() {
 			const sliceNames = utils.getSliceNames()
 			const allSlices = sliceNames.map(sliceName => {
 				const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
+				if (!slice) {
+					console.error(`Unable to find slice for sliceName: ${sliceName}`)
+					return
+				}
 				const previewExists = fs.existsSync(
 					path.join(pathToSlices, sliceName, 'preview.png')
 				)
@@ -32,7 +36,9 @@ async function main() {
 						throw maybeErr
 					}
 				} else {
-					// throw new Error(`Unable to find preview for component ${sliceName}`)
+					// throw new Error(
+					// 	`Unable to find preview for component ${sliceName}.\nPlease add a preview before continuing.`
+					// )
 				}
 				slice.meta.imageUrl = previewExists
 					? `/components/${sliceName}.png`
