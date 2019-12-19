@@ -10,14 +10,7 @@
 <script>
 import Prismic from 'prismic-javascript'
 
-<<<<<<< HEAD
-import FaqSection from '@/../src/slices/FaqSection'
-=======
-import HeroMock from '@/../src/slices/HeroSection/mock.json'
-import HeroSection from '@/../src/slices/HeroSection'
-
 import PsFaq from '@/../src/slices/PsFaq'
->>>>>>> parent of 4c39ec2... Pre-lerna
 import VideoHighlights from '@/../src/slices/VideoHighlights'
 import CustomerLogos from '@/../src/slices/CustomerLogos'
 import VideoHighlightsMock from '@/../src/slices/VideoHighlights/mock.json'
