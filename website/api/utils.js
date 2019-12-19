@@ -41,19 +41,19 @@ const hyphenate = str => str.replace(hyphenateRE, '-$1').toLowerCase()
  */
 const getModelFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
 	try {
-		const component = parse(path.join(`${url}/${sliceName}/index.vue`))
+		const component = parse(path.join(url, sliceName, 'index.vue'))
 		const model = JSON.parse(
-			fs.readFileSync(path.join(`${url}/${sliceName}/model.json`), 'utf8')
+			fs.readFileSync(path.join(url, sliceName, 'model.json'), 'utf8')
 		)
 
 		console.log(
-			'getModalFromSliceName log',
-			sliceName,
-			component,
-			component.displayName,
-			url
+			'TESTING PATH --> ',
+			path.join(url, sliceName, 'index.vue'),
+			fs.existsSync(path.join(url, sliceName, 'index.vue')),
+			fs.existsSync(path.join(url, sliceName, 'model.json'))
 		)
-		const key = hyphenate(component.displayName).replace(/-/g, '_')
+		console.log(component, component.displayName)
+		const key = hyphenate(component.displayName || sliceName).replace(/-/g, '_')
 		return [key, model]
 	} catch (e) {
 		console.error('Error in getModelFromSliceName', e)
@@ -81,9 +81,7 @@ const zipFile = (zip, pathFrom, pathTo) => {
 		const f = fs.readFileSync(pathFrom, 'utf8')
 		zip.file(pathTo, f)
 	} catch (e) {
-		if (!prod()) {
-			console.error('error in api/utils.js[87]: ', e)
-		}
+		console.error('error in api/utils.js[82]: ', e)
 	}
 }
 
