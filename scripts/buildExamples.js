@@ -44,8 +44,7 @@ export default {
 async function main() {
 	await onBefore()
 	Object.entries(utils.sliceFolders).map(([framework, pathToSlices]) => {
-		console.log(framework, pathToSlices)
-		const sliceNames = utils.getSliceNames(null, pathToSlices)
+		const sliceNames = utils.getSliceNames()
 		sliceNames.map(sliceName => {
 			const {
 				key,

@@ -62,26 +62,26 @@ export default {
 			}
 		],
 		[
-      'prismic-nuxt',
-      {
-        endpoint: 'https://slice-machine.prismic.io/api/v2',
-        linkResolver: function(doc, ctx) {
-          if (doc.isBroken) {
-            return '/not-found'
-          }
-          if (doc.type === 'home') {
-            return `/`
-          }
-          if (doc.type === 'component_library') {
-            return `/component-library`
-          }
-          if (doc.type === 'page') {
-            return `/${doc.uid}`
-          }
-          return '/not-found'
-        }
-      }
-    ]
+			'prismic-nuxt',
+			{
+				endpoint: 'https://slice-machine.prismic.io/api/v2',
+				linkResolver: function(doc, ctx) {
+					if (doc.isBroken) {
+						return '/not-found'
+					}
+					if (doc.type === 'home') {
+						return `/`
+					}
+					if (doc.type === 'component_library') {
+						return `/component-library`
+					}
+					if (doc.type === 'page') {
+						return `/${doc.uid}`
+					}
+					return '/not-found'
+				}
+			}
+		]
 	],
 	serverMiddleware: [
 		{ path: '/api/models', handler: '~/api/models.js' },
