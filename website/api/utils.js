@@ -46,6 +46,13 @@ const getModelFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
 			fs.readFileSync(path.join(`${url}/${sliceName}/model.json`), 'utf8')
 		)
 
+		console.log(
+			'getModalFromSliceName log',
+			sliceName,
+			component,
+			component.displayName,
+			url
+		)
 		const key = hyphenate(component.displayName).replace(/-/g, '_')
 		return [key, model]
 	} catch (e) {
