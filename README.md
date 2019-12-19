@@ -8,6 +8,7 @@ or scroll down if want to contribute! 👇
 ⭐️Oh and star us on GitHub — it helps
 
 ### Motivation
+
 Developing websites sometimes feels tedious and redundant. In addition to choosing a framework and build tools, you'll need to design the same components over again and find a way to feed them with content.
 
 We believe that Nuxt has already made the process of creating modern websites a lot faster and that VueSlices
@@ -22,6 +23,7 @@ What types of projects would this project be a good fit for, and when might some
 First iteration is pretty simple: copy-paste what you like and start using the components.
 
 #### 👇 For Prismic users
+
 If you're already used to building websites with Prismic, think of this library as a solution to kickstart your project or custom type in a matter of minutes. We offer you both the code and the model you need to create the slice in the writing room.
 
 1. Select the slice components you want to use
@@ -87,9 +89,9 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+- [Maven](https://maven.apache.org/) - Dependency Management
+- [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
@@ -97,11 +99,11 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+- **Billie Thompson** - _Initial work_ - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
@@ -111,9 +113,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
 
 ## P.S
 
