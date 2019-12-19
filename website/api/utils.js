@@ -48,7 +48,9 @@ const getModelFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
 
 		const key = hyphenate(component.displayName).replace(/-/g, '_')
 		return [key, model]
-	} catch (e) {}
+	} catch (e) {
+		console.error('Error in getModelFromSliceName', e)
+	}
 }
 
 const getAllFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
@@ -62,7 +64,9 @@ const getAllFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
 			model,
 			meta
 		}
-	} catch (e) {}
+	} catch (e) {
+		console.error('Error in getAllFromSliceName', e)
+	}
 }
 
 const zipFile = (zip, pathFrom, pathTo) => {
