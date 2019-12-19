@@ -22,6 +22,9 @@ async function main() {
 				.map(sliceName => {
 					const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
 					if (!slice) {
+						console.error(
+							`[bundleApi.js]: Slice data not found for sliceName ${sliceName}`
+						)
 						return null
 					}
 					const previewExists = fs.existsSync(

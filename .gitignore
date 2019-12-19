@@ -1,7 +1,6 @@
 dist
 
 api
-website/api/files
 website/custom_types
 
 # Logs

@@ -50,6 +50,9 @@ async function main() {
 				console.log('Here', sliceName)
 				const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
 				if (!slice) {
+					console.error(
+						`[bundleExamples.js]: Slice data not found for sliceName ${sliceName}`
+					)
 					return null
 				}
 				const {
