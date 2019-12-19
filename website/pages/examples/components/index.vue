@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<call-to-action :slice="CallToActionMock" />
-		<faq-section id="faq-0" :slice="FaqSectionMock" />
+		<ps-faq id="faq-0" :slice="PsFaqMock" />
 		<VideoHighlights :slice="VideoHighlightsMock" />
 		<PricingTable :slice="document.body[0]" />
 		<CustomerLogos :slice="CustomerLogosMock" />
@@ -10,11 +10,18 @@
 <script>
 import Prismic from 'prismic-javascript'
 
+<<<<<<< HEAD
 import FaqSection from '@/../src/slices/FaqSection'
+=======
+import HeroMock from '@/../src/slices/HeroSection/mock.json'
+import HeroSection from '@/../src/slices/HeroSection'
+
+import PsFaq from '@/../src/slices/PsFaq'
+>>>>>>> parent of 4c39ec2... Pre-lerna
 import VideoHighlights from '@/../src/slices/VideoHighlights'
 import CustomerLogos from '@/../src/slices/CustomerLogos'
 import VideoHighlightsMock from '@/../src/slices/VideoHighlights/mock.json'
-import FaqSectionMock from '@/../src/slices/FaqSection/mock.json'
+import PsFaqMock from '@/../src/slices/PsFaq/mock.json'
 import CustomerLogosMock from '@/../src/slices/CustomerLogos/mock.json'
 
 import PricingTable from '@/../src/slices/PricingTable'
@@ -23,13 +30,13 @@ import PricingTableMock from '@/../src/slices/PricingTable/mock.json'
 import CallToAction from '@/../src/slices/CallToAction'
 import CallToActionMock from '@/../src/slices/CallToAction/mock.json'
 
-const FaqMockAlt = { ...FaqSectionMock }
+const FaqMockAlt = { ...PsFaqMock }
 
 export default {
 	components: {
 		CallToAction,
 		HeroSection,
-		FaqSection,
+		PsFaq,
 		VideoHighlights,
 		CustomerLogos,
 		PricingTable
@@ -38,7 +45,7 @@ export default {
 		return {
 			CallToActionMock,
 			HeroMock,
-			FaqSectionMock,
+			PsFaqMock,
 			FaqMockAlt,
 			VideoHighlightsMock,
 			CustomerLogosMock,
