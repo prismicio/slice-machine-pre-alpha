@@ -5,7 +5,7 @@
 	"prismicConfig": "prismic.config.js",
 	"examplesFolder": "pages",
 	"firstCommand": "npm run dev",
-	"additionalDisplay": "Before running your project, make sure you added\n`modules: [\n['prismic-nuxt', {\nendpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',\nlinkResolver: function(doc, ctx) {\nreturn '/'\n}\n}]\n]`\nto your Nuxt config file",
+	"additionalDisplay": "Before running your project, make sure you added\n`modules: [\n\t['prismic-nuxt', {\n\t\tendpoint: 'https://my-current-projo.cdn.prismic.io/api/v2',\n\t\troutes: [\n\t\t'/pages/',\n\t\t'/pages/:uid',\n\t\t'/',\n\t]\n\t]\n]\n\nto your Nuxt config file",
 	"projectTests": [
 		{
 			"arg": "-f",
@@ -59,7 +59,7 @@
 	"dependencies": [
 		"prismic-javascript",
 		"prismic-vue",
-		"git+https://github.com/Gholgot/prismic-nuxt/tree/tj/prismic_routes#master"
+		"git+https://github.com/Gholgot/prismic-nuxt.git#master"
 	],
 	"devDependencies": ["node-sass", "sass-loader"]
 }
