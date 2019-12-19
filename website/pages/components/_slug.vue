@@ -6,9 +6,9 @@
 		<p class="card-section-description">
 			{{ slice.meta.description }}
 		</p>
-		<nuxt-link :to="`/examples/nuxt/${slice.displayName}`">
-			<img :src="`/components/${slice.displayName}.png`" />
-		</nuxt-link>
+    <nuxt-link :to=“`/examples/nuxt/${slice.displayName}`“>
+      <img :src=“`/components/${slice.displayName}.png`” />
+    </nuxt-link>
 		<MarkDownBox
 			id="markdown-box"
 			:edit-url="createEditUrl()"
