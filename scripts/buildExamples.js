@@ -45,24 +45,31 @@ async function main() {
 	await onBefore()
 	Object.entries(utils.sliceFolders).map(([framework, pathToSlices]) => {
 		const sliceNames = utils.getSliceNames()
-		sliceNames.map(sliceName => {
-			const {
-				key,
-				meta: { title, description }
-			} = utils.getAllFromSliceName(sliceName, pathToSlices)
-			const pToFile = path.join(pathToFiles, framework, `${sliceName}.vue`)
-			const fileExists = fs.existsSync(pToFile)
-			if (!fileExists) {
-				const file = createFile({
-					relativePathToSlice: pathToSlices.split(process.cwd())[1],
-					sliceName,
+		sliceNames
+			.map(sliceName => {
+				console.log('Here', sliceName)
+				const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
+				if (!slice) {
+					return null
+				}
+				const {
 					key,
-					title,
-					description
-				})
-				fs.writeFileSync(pToFile, file, 'utf8')
-			}
-		})
+					meta: { title, description }
+				} = slice
+				const pToFile = path.join(pathToFiles, framework, `${sliceName}.vue`)
+				const fileExists = fs.existsSync(pToFile)
+				if (!fileExists) {
+					const file = createFile({
+						relativePathToSlice: pathToSlices.split(process.cwd())[1],
+						sliceName,
+						key,
+						title,
+						description
+					})
+					fs.writeFileSync(pToFile, file, 'utf8')
+				}
+			})
+			.filter(e => e)
 	})
 }
 
