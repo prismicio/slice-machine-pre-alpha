@@ -5,7 +5,7 @@
 	"prismicConfig": "prismic.config.js",
 	"examplesFolder": "pages",
 	"firstCommand": "npm run dev",
-	"additionalDisplay": "Before running your project make sure you added\n`modules: [\n['prismic-nuxt', {\nendpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',\nlinkResolver: function(doc, ctx) {\nreturn '/'\n}\n}]\n]`\nto your Nuxt config file",
+	"additionalDisplay": "Before running your project, make sure you added\n`modules: [\n['prismic-nuxt', {\nendpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',\nlinkResolver: function(doc, ctx) {\nreturn '/'\n}\n}]\n]`\nto your Nuxt config file",
 	"projectTests": [
 		{
 			"arg": "-f",
@@ -30,10 +30,6 @@
 			"overwrite": false
 		},
 		{
-			"zipPath": "slices.scss",
-			"overwrite": false
-		},
-		{
 			"zipPath": "pages/pages/_uid.vue",
 			"overwrite": false
 		},
@@ -46,10 +42,6 @@
 			"zipPath": "custom_types/",
 			"overwrite": false,
 			"bootstrapped": true
-		},
-		{
-			"type": "delete",
-			"zipPath": "slices.scss"
 		},
 		{
 			"type": "delete",
