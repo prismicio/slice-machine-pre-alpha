@@ -1,7 +1,7 @@
 <template>
 	<main>
 		<call-to-action :slice="CallToActionMock" />
-		<ps-faq id="faq-0" :slice="PsFaqMock" />
+		<faq-section id="faq-0" :slice="PsFaqMock" />
 		<VideoHighlights :slice="VideoHighlightsMock" />
 		<PricingTable :slice="document.body[0]" />
 		<CustomerLogos :slice="CustomerLogosMock" />
@@ -10,11 +10,12 @@
 <script>
 import Prismic from 'prismic-javascript'
 
-import PsFaq from '@/../src/slices/PsFaq'
+import FaqSection from '@/../src/slices/FaqSection'
+import PsFaqMock from '@/../src/slices/FaqSection/mock.json'
+
 import VideoHighlights from '@/../src/slices/VideoHighlights'
 import CustomerLogos from '@/../src/slices/CustomerLogos'
 import VideoHighlightsMock from '@/../src/slices/VideoHighlights/mock.json'
-import PsFaqMock from '@/../src/slices/PsFaq/mock.json'
 import CustomerLogosMock from '@/../src/slices/CustomerLogos/mock.json'
 
 import PricingTable from '@/../src/slices/PricingTable'
@@ -23,13 +24,11 @@ import PricingTableMock from '@/../src/slices/PricingTable/mock.json'
 import CallToAction from '@/../src/slices/CallToAction'
 import CallToActionMock from '@/../src/slices/CallToAction/mock.json'
 
-const FaqMockAlt = { ...PsFaqMock }
-
 export default {
 	components: {
 		CallToAction,
 		HeroSection,
-		PsFaq,
+		FaqSection,
 		VideoHighlights,
 		CustomerLogos,
 		PricingTable
