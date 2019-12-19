@@ -18,33 +18,38 @@ async function main() {
 		await onBefore()
 		Object.entries(utils.sliceFolders).map(([framework, pathToSlices]) => {
 			const sliceNames = utils.getSliceNames()
-			const allSlices = sliceNames.map(sliceName => {
-				const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
-				const previewExists = fs.existsSync(
-					path.join(pathToSlices, sliceName, 'preview.png')
-				)
-				if (previewExists) {
-					const maybeErr = fs.copyFileSync(
-						path.join(pathToSlices, sliceName, 'preview.png'),
-						path.join(pathToStatic, `${sliceName}.png`)
-					)
-					if (maybeErr) {
-						throw maybeErr
+			const allSlices = sliceNames
+				.map(sliceName => {
+					const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
+					if (!slice) {
+						return null
 					}
-				} else {
-					// throw new Error(`Unable to find preview for component ${sliceName}`)
-				}
-				slice.meta.imageUrl = previewExists
-					? `/components/${sliceName}.png`
-					: undefined
+					const previewExists = fs.existsSync(
+						path.join(pathToSlices, sliceName, 'preview.png')
+					)
+					if (previewExists) {
+						const maybeErr = fs.copyFileSync(
+							path.join(pathToSlices, sliceName, 'preview.png'),
+							path.join(pathToStatic, `${sliceName}.png`)
+						)
+						if (maybeErr) {
+							throw maybeErr
+						}
+					} else {
+						// throw new Error(`Unable to find preview for component ${sliceName}`)
+					}
+					slice.meta.imageUrl = previewExists
+						? `/components/${sliceName}.png`
+						: undefined
 
-				fs.writeFileSync(
-					path.join(pathToFiles, framework, 'single', `${sliceName}.json`),
-					JSON.stringify(slice),
-					'utf8'
-				)
-				return slice
-			})
+					fs.writeFileSync(
+						path.join(pathToFiles, framework, 'single', `${sliceName}.json`),
+						JSON.stringify(slice),
+						'utf8'
+					)
+					return slice
+				})
+				.filter(e => e)
 			fs.writeFileSync(
 				path.join(pathToFiles, framework, 'slices.json'),
 				JSON.stringify(allSlices),

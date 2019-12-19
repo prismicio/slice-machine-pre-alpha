@@ -5,7 +5,7 @@ A library of reusable, high-quality website sections to be used in your own Nuxt
 Make sure to view the complete list of components [here](https://prismic.io),
 or scroll down if want to contribute! 👇
 
-⭐️Oh and star us on GitHub — it helps!
+⭐️Oh and star us on GitHub — it helps
 
 ### Motivation
 Developing websites sometimes feels tedious and redundant. In addition to choosing a framework and build tools, you'll need to design the same components over again and find a way to feed them with content.
