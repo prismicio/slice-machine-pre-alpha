@@ -25,7 +25,7 @@ export default (type, element, content, children) => {
   // Present by default, it is recommended to keep this
   if (type === Elements.image) {
     let result = `<img src="${element.url}" alt="${element.alt ||
-      ''}" copyright="${element.copyright || ''}">`
+			''}" copyright="${element.copyright || ''}">`
 
     if (element.linkTo) {
       const url = prismicDOM.Link.url(element.linkTo, linkResolver)

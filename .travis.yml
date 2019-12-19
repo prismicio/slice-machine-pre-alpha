@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - '10'
 deploy:
-  provider: heroku
-  app: community-slices
-  github_token: $GITHUB_TOKEN
-  api_key: '$HEROKU_TOKEN'
-after_deploy:
-  - npm run build:files
+  - provider: heroku
+    app: community-slices
+    github_token: $GITHUB_TOKEN
+    api_key: $HEROKU_TOKEN
+after_deploy: # This should be run with heroku only
+   - if [[ provider == "heroku" ]]; then npm run build:files ; fi

@@ -42,11 +42,11 @@ export default {
 @import '../../style/_global';
 
 a {
-  display: contents;
-  text-decoration: none;
-  &:visited {
-    color: $black-primary;
-  }
+	display: contents;
+	text-decoration: none;
+	&:visited {
+		color: $black-primary;
+	}
 }
 
 .footerMenu {

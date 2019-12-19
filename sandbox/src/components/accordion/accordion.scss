@@ -1,0 +1,10 @@
+// import the accordion component styles (the actual accordion element)
+@import "_c-accordion.scss";
+
+.ps-accordion__img {
+    display: block;
+    margin: 0 auto calc(var(--c-padding) * 2);
+    background: var(--color--secondary);
+}
+
+

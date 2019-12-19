@@ -1,0 +1,48 @@
+<div data-accordion class="c-accordion">
+    <h3 data-accordion-heading class="c-accordion__heading" aria-level="">
+        Test tracking
+    </h3>
+    <div data-accordion-panel class="c-accordion__panel">
+        Only use them when the content is appropriate. If the panels are too long, the user will end up scrolling too
+        much (esp. on mobile), which negates the whole purpose of using an accordion. For very long panels, using links
+        to separate pages is preferred.
+        <p>
+            If you use accordions to replace page steps such as checkout form steps, make sure you stop the default
+            browser BACK button behavior so that the BACK button would move up a step in the accordion, because this is
+            the behavior that most users expect, as tests show.
+        </p>
+    </div>
+
+    <h3 data-accordion-heading class="c-accordion__heading" aria-level="">
+        What's a headless CMS?
+    </h3>
+    <div data-accordion-panel class="c-accordion__panel">
+        <a href="#">LINK</a>
+        The default markup is enhanced using JavaScript so that the buttons are added to the headings. The buttons
+        should NOT be in the headings by default. The markup should always consider what the component or content would
+        look like if no Javascript is enabled and therefore the accordion is not functional. The content is most likely
+        going to be all visible — either as a series of panels with headings or a definition list, depending on the type
+        of content.
+    </div>
+
+    <h3 data-accordion-heading class="c-accordion__heading" aria-level="">
+        What's special or different about Prismic?
+    </h3>
+    <div data-accordion-panel class="c-accordion__panel">
+        The buttons need to specify which panels they control using <code>aria-controls</code>, and they need to reflect
+        the state of the panel (collapsed/expanded) using <code>aria-expanded="true/false"</code>. The panel itself also
+        should have <code>aria-hidden</code> set to true or false if it is hidden or shown, respectively.
+        <p>
+            The accordion needs to be able to trap keyboard focus when the user is IN the accordion and uses the arrow
+            keys to traverse the items in it. Tabbing out of the accordion must be enabled.
+        </p>
+    </div>
+
+    <h3 data-accordion-heading class="c-accordion__heading" aria-level="">
+        How is Prismic different from other CMSs?
+    </h3>
+    <div data-accordion-panel class="c-accordion__panel">
+        You can allow one or more panels to be always collapsed or expanded. You can also set a panel to be open by
+        default (e.g. the first one). All this functionality can be tied to the markup using data attributes as flags.
+    </div>
+</div>

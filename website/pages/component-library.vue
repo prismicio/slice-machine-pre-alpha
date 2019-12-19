@@ -1,67 +1,68 @@
 <template>
-  <div>
-    <h3 class="card-section-title">
-      {{ $prismic.asText(document.page_title) }}
-    </h3>
-    <p class="card-section-description">
-      {{ $prismic.asText(document.page_description) }}
-    </p>
-    <Row>
-      <Grid columns="2">
-        <Card v-for="card in lst" :key="card.displayName" v-bind="card">
-          <template v-slot:description>
-            <span style="visible: none"></span>
-          </template>
-        </Card>
-      </Grid>
-    </Row>
-  </div>
+	<div>
+		<h3 class="card-section-title">
+			{{ $prismic.asText(document.page_title) }}
+		</h3>
+		<p class="card-section-description">
+			{{ $prismic.asText(document.page_description) }}
+		</p>
+		<Row>
+			<Grid columns="2">
+				<Card v-for="card in lst" :key="card.displayName" v-bind="card">
+					<template v-slot:description>
+						<span style="visible: none"></span>
+					</template>
+				</Card>
+			</Grid>
+		</Row>
+	</div>
 </template>
 
 <script>
 import Prismic from 'prismic-javascript'
 import PrismicConfig from '~/prismic.config.js'
 
-import Slices from '@/../src'
+import * as Slices from '@/../src'
 import { createSlice } from '~/utils'
 import Card from '@/components/Card'
 import Grid from '@/components/Grid'
 import Row from '@/components/Row'
 
 const lst = Object.keys(Slices)
-  .map(createSlice)
-  .filter(e => e) // eslint-disable-line
+	.filter(e => e !== 'SliceZone')
+	.map(createSlice)
+	.filter(e => e) // eslint-disable-line
 
 export default {
-  name: 'HomeLib',
-  layout: 'compdocs',
-  components: {
-    ...Slices,
-    Card,
-    Grid,
-    Row
-  },
-  async asyncData({ params, error, req }) {
-    try {
-      // Fetching the API object
-      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
+	name: 'HomeLib',
+	layout: 'compdocs',
+	components: {
+		...Slices,
+		Card,
+		Grid,
+		Row
+	},
+	async asyncData({ params, error, req }) {
+		try {
+			// Fetching the API object
+			const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
 
-      // Query to get the page content
-      let document = {}
-      const page = await api.getSingle('component_library')
-      document = page.data
+			// Query to get the page content
+			let document = {}
+			const page = await api.getSingle('component_library')
+			document = page.data
 
-      return {
-        // Page
-        document
-      }
-    } catch (e) {
-      error({ statusCode: 404, message: 'Page not found' })
-    }
-  },
-  data: () => ({
-    lst
-  })
+			return {
+				// Page
+				document
+			}
+		} catch (e) {
+			error({ statusCode: 404, message: 'Page not found' })
+		}
+	},
+	data: () => ({
+		lst
+	})
 }
 </script>
 
@@ -69,20 +70,20 @@ export default {
 @import '../style/_global';
 
 .card-section {
-  margin: 0 auto;
-  &-description {
-    margin: 0 auto;
-    font-size: 20px;
-    line-height: 34px;
-    font-family: $base-font-primary;
-  }
-  .button {
-    margin: 0 auto;
-    width: 250px;
-    height: 70px;
-    font-size: 20px;
-    line-height: 24px;
-    display: grid;
-  }
+	margin: 0 auto;
+	&-description {
+		margin: 0 auto;
+		font-size: 20px;
+		line-height: 34px;
+		font-family: $base-font-primary;
+	}
+	.button {
+		margin: 0 auto;
+		width: 250px;
+		height: 70px;
+		font-size: 20px;
+		line-height: 24px;
+		display: grid;
+	}
 }
 </style>
