@@ -59,7 +59,7 @@
 	"dependencies": [
 		"prismic-javascript",
 		"prismic-vue",
-		"git+https://github.com/Gholgot/prismic-nuxt.git#master"
+		"\"git+https://github.com/Gholgot/prismic-nuxt.git#tj/prismic_routes\""
 	],
 	"devDependencies": ["node-sass", "sass-loader"]
 }
