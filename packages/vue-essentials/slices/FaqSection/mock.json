@@ -1,0 +1,56 @@
+{
+	"slice_type": "faq_section",
+	"slice_label": null,
+	"items": [
+		{
+			"title": [
+				{
+					"type": "heading3",
+					"text": "What's a headless CMS?",
+					"spans": []
+				}
+			],
+			"text": [
+				{
+					"type": "paragraph",
+					"text": "Only use them when the content is appropriate. If the panels are too long, the user will end up scrolling too much (esp. on mobile), which negates the whole purpose of using an accordion. For very long panels, using links to separate pages is preferred.",
+					"spans": []
+				}
+			]
+		},
+		{
+			"title": [
+				{
+					"type": "heading3",
+					"text": "Is it free?",
+					"spans": []
+				}
+			],
+			"text": [
+				{
+					"type": "paragraph",
+					"text": "The default markup is enhanced using JavaScript so that the buttons are added to the headings. The buttons should NOT be in the headings by default. The markup should always be considered first.",
+					"spans": []
+				}
+			]
+		}
+	],
+	"primary": {
+		"eyebrow_headline": "FAQ",
+		"title": [
+			{
+				"type": "heading2",
+				"text": "Answers to common questions",
+				"spans": []
+			}
+		],
+		"description": [
+			{
+				"type": "paragraph",
+				"text": "Learn about Prismic by reading questions and answers. It’s almost like talking to a human – and maybe even better.",
+				"spans": []
+			}
+		],
+		"optional_image": {}
+	}
+}

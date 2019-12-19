@@ -1,0 +1,20 @@
+{
+  "name": "@slice-machine/common",
+  "version": "0.0.0",
+  "description": "A set of common methods for slice-machine",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gihtub.com/prismicio/slice-machine"
+  },
+  "keywords": [
+    "Prismic",
+    "slices",
+    "slice-machine"
+  ],
+  "author": "Prismic.io",
+  "license": "ISC"
+}

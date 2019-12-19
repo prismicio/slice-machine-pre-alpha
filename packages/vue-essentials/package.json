@@ -1,0 +1,20 @@
+{
+	"name": "@slice-machine/vue-essentials",
+	"version": "0.0.0",
+	"description": "A set of accessible website sections, made for Prismic.io",
+	"main": "index.js",
+	"scripts": {
+		"test": "npm run test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://gihtub.com/prismicio/slice-machine"
+	},
+	"keywords": [
+		"Prismic",
+		"slices",
+		"slice-machine"
+	],
+	"author": "Prismic.io",
+	"license": "ISC"
+}
