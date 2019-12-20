@@ -119,7 +119,8 @@ p {
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
   margin-top: 0;
-  font-weight: bold; }
+  font-weight: bold;
+  color: inherit; }
 
 h1 {
   font-weight: 700; }
@@ -687,7 +688,7 @@ a.ps-button--ghost {
 
 .ps-pricing-table__option__feature {
   margin-bottom: 1em;
-  padding-left: var(--h-padding);
+  padding-left: 2rem;
   position: relative; }
   .ps-pricing-table__option__feature .feature-icon {
     color: var(--color--primary);
