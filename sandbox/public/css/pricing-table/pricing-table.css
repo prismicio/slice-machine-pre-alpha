@@ -10,18 +10,19 @@
 .ps-pricing-table__option__features {
   list-style: none;
   padding: 0; }
-  .ps-pricing-table__option__features li {
-    margin-bottom: 1em;
-    padding-left: var(--h-padding);
-    position: relative; }
-    .ps-pricing-table__option__features li .feature-icon {
-      color: var(--color--primary);
-      display: block;
-      width: 1em;
-      height: 1em;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      margin-top: -.5em; }
-    .ps-pricing-table__option__features li.feature-not-included .feature-icon {
-      color: #888; }
+
+.ps-pricing-table__option__feature {
+  margin-bottom: 1em;
+  padding-left: 2rem;
+  position: relative; }
+  .ps-pricing-table__option__feature .feature-icon {
+    color: var(--color--primary);
+    display: block;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -.5em; }
+  .ps-pricing-table__option__feature.not-included .feature-icon {
+    color: #888; }
