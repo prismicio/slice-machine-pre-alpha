@@ -44,7 +44,7 @@ export default {
 	/*
 	 ** Global CSS
 	 */
-	css: [],
+	css: ['@/../src/styles/styles.scss'],
 	/*
 	 ** Plugins to load before mounting the App
 	 */
@@ -97,7 +97,7 @@ export default {
 		 ** You can extend webpack config here
 		 */
 		// eslint-disable-next-line
-    extend(config, ctx) {
+		extend(config, ctx) {
 			config.resolve.alias.vue = 'vue/dist/vue.common'
 		}
 	}

@@ -1,9 +1,9 @@
 <template>
 	<main>
 		<call-to-action :slice="CallToActionMock" />
-		<faq-section id="faq-0" :slice="PsFaqMock" />
+		<faq-section :slice="PsFaqMock" />
 		<VideoHighlights :slice="VideoHighlightsMock" />
-		<PricingTable :slice="document.body[0]" />
+		<PricingTable :slice="PricingTableMock" />
 		<CustomerLogos :slice="CustomerLogosMock" />
 	</main>
 </template>
@@ -25,9 +25,9 @@ import CallToAction from '@/../src/slices/CallToAction'
 import CallToActionMock from '@/../src/slices/CallToAction/mock.json'
 
 export default {
+	layout: 'example',
 	components: {
 		CallToAction,
-		HeroSection,
 		FaqSection,
 		VideoHighlights,
 		CustomerLogos,
@@ -36,9 +36,7 @@ export default {
 	data() {
 		return {
 			CallToActionMock,
-			HeroMock,
 			PsFaqMock,
-			FaqMockAlt,
 			VideoHighlightsMock,
 			CustomerLogosMock,
 			PricingTableMock
@@ -49,7 +47,6 @@ export default {
 			const apiEndpoint = 'https://slicesexamples.prismic.io/api/v2'
 			const api = await Prismic.getApi(apiEndpoint, { req })
 			const result = await api.getByUID('example', 'pricing-table')
-			console.log(JSON.stringify(result.data))
 			return {
 				document: result.data
 			}

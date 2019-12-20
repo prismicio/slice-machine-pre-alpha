@@ -3,17 +3,15 @@
 		<div class="ps__wrap">
 			<div class="ps__head">
 				<header class="ps__header">
-					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">
-						{{ slice.primary.eyebrow_headline }}
-					</span>
+					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">{{
+						slice.primary.eyebrow_headline
+					}}</span>
 					<h2 v-if="slice.primary.title" class="ps__title" aria-level="2">
 						{{ $prismic.asText(slice.primary.title) }}
 					</h2>
 				</header>
 				<div v-if="slice.primary.description" class="ps__desc">
-					<p>
-						{{ $prismic.asText(slice.primary.description) }}
-					</p>
+					<p>{{ $prismic.asText(slice.primary.description) }}</p>
 				</div>
 			</div>
 			<div class="ps__main">
@@ -34,9 +32,9 @@
 								>
 									{{ item.plan_title }}
 								</h3>
-								<span class="ps-pricing-table__option__price">
-									{{ item.price_option }}
-								</span>
+								<span class="ps-pricing-table__option__price">{{
+									item.price_option
+								}}</span>
 							</header>
 							<prismic-rich-text
 								class="ps__card-item__content"
@@ -50,9 +48,8 @@
 								<prismic-link
 									:field="item.call_to_action"
 									class="ps-button ps-button--secondary"
+									>{{ item.call_to_action_text }}</prismic-link
 								>
-									{{ item.call_to_action_text }}
-								</prismic-link>
 							</div>
 						</article>
 					</li>
@@ -102,7 +99,7 @@ export default {
 	}
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .ps-pricing-table__option {
 	@media all and (min-width: 40em) {
 		&:nth-of-type(2n) {
