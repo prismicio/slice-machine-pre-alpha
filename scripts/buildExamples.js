@@ -47,7 +47,6 @@ async function main() {
 		const sliceNames = utils.getSliceNames()
 		sliceNames
 			.map(sliceName => {
-				console.log('Here', sliceName)
 				const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
 				if (!slice) {
 					console.error(

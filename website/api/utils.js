@@ -19,7 +19,7 @@ const getDirectories = source =>
 const readCustomTypes = folder => {
 	if (folder) {
 		const customTypesPath = path.join(folder, 'index.json')
-		// test path maybe?
+		// test path
 		const customTypes = JSON.parse(fs.readFileSync(customTypesPath, 'utf8'))
 		customTypes.forEach(t => {
 			const customType = t
@@ -46,13 +46,6 @@ const getModelFromSliceName = (sliceName, url = sliceFolders.nuxt) => {
 			fs.readFileSync(path.join(url, sliceName, 'model.json'), 'utf8')
 		)
 
-		console.log(
-			'TESTING PATH --> ',
-			path.join(url, sliceName, 'index.vue'),
-			fs.existsSync(path.join(url, sliceName, 'index.vue')),
-			fs.existsSync(path.join(url, sliceName, 'model.json'))
-		)
-		console.log(component, component.displayName)
 		const key = hyphenate(component.displayName || sliceName).replace(/-/g, '_')
 		return [key, model]
 	} catch (e) {
@@ -87,9 +80,7 @@ const zipFile = (zip, pathFrom, pathTo) => {
 
 // Change this when you allow users to select the slices they want
 const getSliceNames = (slicesParams, url = sliceFolders.nuxt) => {
-	console.log('getSliceNames', url)
 	const allSlices = getDirectories(url)
-	console.log('allSlices -> ', allSlices)
 	return allSlices.map(path => {
 		const spl = path.split('/')
 		return spl[spl.length - 1]
