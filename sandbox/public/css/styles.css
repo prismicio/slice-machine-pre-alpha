@@ -537,6 +537,7 @@ small,
   margin: 0 auto calc(var(--c-padding) * 2);
   background: var(--color--secondary); }
 
+/* styles are in the alternate--list scss file (most of them are in common */
 .ps-alternate--image-text__img {
   display: block;
   margin: calc(var(--v-margin) * 2) auto var(--c-margin); }
@@ -544,51 +545,57 @@ small,
     .ps-alternate--image-text__img {
       margin: var(--c-margin) auto; } }
 
-.ps-alternate--list .ps__header *,
-.ps-alternate--list .ps__desc {
+.ps-alternate .ps__header *,
+.ps-alternate .ps__desc {
   text-align: left; }
 
-.ps-alternate--list .ps__head {
+.ps-alternate .ps__head {
   margin-bottom: var(--v-margin); }
   @media all and (min-width: 40em) {
-    .ps-alternate--list .ps__head {
+    .ps-alternate .ps__head {
       margin-bottom: calc(var(--v-margin) * 1.5); } }
 
-.ps-alternate--list .ps__header + .ps__desc {
+.ps-alternate .ps__header + .ps__desc {
   margin-top: .5rem; }
 
-.ps-alternate--list__ctas {
+.ps-alternate__ctas {
   display: flex;
   flex-direction: column; }
   @media all and (min-width: 40rem) {
-    .ps-alternate--list__ctas {
+    .ps-alternate__ctas {
       flex-direction: row; } }
 
-.ps-alternate--list .ps-button {
+.ps-alternate .ps-button {
   flex: 1;
   margin-top: var(--h-padding); }
   @media all and (min-width: 40rem) {
-    .ps-alternate--list .ps-button {
+    .ps-alternate .ps-button {
       margin-right: var(--h-padding);
       margin-top: 0; } }
-  .ps-alternate--list .ps-button:last-of-type {
+  .ps-alternate .ps-button:last-of-type {
     margin-right: 0; }
 
-.ps-alternate--list__module {
+.ps-alternate__module {
   margin-bottom: var(--v-margin); }
 
-.ps-alternate--list__module__title {
+.ps-alternate__module__title {
   font-size: 1rem;
   margin-top: 1em; }
 
-@supports (display: grid) {
-  @media all and (min-width: 40rem) {
-    .ps-alternate--list__module {
+@media all and (min-width: 40rem) {
+  @supports (display: grid) {
+    .ps-alternate--list .ps-alternate__module {
       display: grid;
       grid-template-columns: auto 1fr;
       grid-column-gap: var(--h-padding); }
-    .ps-alternate--list__module__title {
-      margin-top: 0; } } }
+    .ps-alternate--list .ps-alternate__module__title {
+      margin-top: 0; } }
+  .ps-alternate--grid .ps-alternate__module {
+    display: inline-block;
+    width: calc(50% - var(--h-padding));
+    margin-right: var(--h-padding); }
+    .ps-alternate--grid .ps-alternate__module:nth-of-type(even) {
+      margin-right: 0; } }
 
 .ps-button,
 a.ps-button {
