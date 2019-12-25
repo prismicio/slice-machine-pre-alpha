@@ -59,202 +59,199 @@ var util = {
 
 (function (w, doc, undefined) {
   var ARIAaccOptions = {
-    showOneAnswerAtATime: true,
-    allCollapsed: true,
-    withControls: true,
-    // the following needs to be an SVG icon
-    // we will be dynamically inserting this icon into the buttons in this script
-    // make sure you add the class `accordion-icon` to it
-    icon: '<svg class="accordion-icon" width="12" height="8" aria-hidden="true" focusable="false" viewBox="0 0 12 8"><g fill="none"><path fill="#000" d="M1.41.59l4.59 4.58 4.59-4.58 1.41 1.41-6 6-6-6z"/><path d="M-6-8h24v24h-24z"/></g></svg>'
-    /**
-     * ARIA Accordion
-     * Creates a tab list to toggle the visibility of
-     * different subsections of a document.
-     *
-     * Author: Sara Soueidan
-     * Version: 0.2.0
-     */
-
+    openOnFocus: false,
+    open: 0
   };
 
-  var ARIAaccordion = function ARIAaccordion(inst, options) {
+  var ARIAtabs = function ARIAtabs(inst, options) {
     var _options = Object.assign(ARIAaccOptions, options);
 
     var el = inst;
-    var accordionHeadings = el.querySelectorAll("[data-accordion-heading]");
-    var accordionPanels = el.querySelectorAll("[data-accordion-panel]");
-    var controlsWrapper;
-    var expandButton;
-    var collapseButton;
-    var accID = util.generateID('c-accordion-');
+    var tablist = el.querySelector("[data-tablist]");
+    var tabs = Array.from(el.querySelectorAll("[data-tab]"));
+    var tabpanels = Array.from(el.querySelectorAll("[data-tabpanel]"));
+    var tabsID = util.generateID('ps__tabs-');
+    var orientation = el.getAttribute('data-tabs-orientation');
+    var activeIndex = _options.open;
+    el.setAttribute('id', tabsID);
 
     var init = function init() {
-      // if you have any functionality in CSS that needs JS to be activated
-      // this class added to the accordion container works as a JS hook to announce JS is enabled
-      // in the CSS, we have a part that adds borders and paddings to the headings, buttons and panels
-      // these borders and padding are only needed if the content turns into an accordion
-      el.classList.add("accordion-js");
-      setupAccordionHeadings(accordionHeadings);
-      setupAccordionPanels(accordionPanels);
+      el.classList.add('js-tabs');
+      setupTabList();
+      setupTabs();
+      setupTabPanels();
+    };
 
-      if (_options.withControls) {
-        createControls();
+    var setupTabList = function setupTabList() {
+      tablist.setAttribute("role", "tablist");
+      if (orientation == 'vertical') tablist.setAttribute("aria-orientation", "vertical");
+    };
+
+    var setupTabs = function setupTabs() {
+      tabs.forEach(function (tab, index) {
+        tab.setAttribute('role', 'tab'); // each tab needs an ID that will be used to label its corresponding panel
+
+        tab.setAttribute('id', tabsID + util.generateID('__tab-')); // first tab is initially active
+
+        if (index === activeIndex) {
+          activateTab(tab);
+        }
+
+        tab.addEventListener('click', function (e) {
+          e.preventDefault();
+          activeIndex = index;
+          activateTab(tab);
+        }, false);
+        tab.addEventListener('keydown', function (e) {
+          tabKeyboardRespond(e, tab);
+        }, false);
+      });
+    };
+
+    var selectTab = function selectTab(tab) {
+      // unselect all other tabs
+      tabs.forEach(function (tab) {
+        tab.setAttribute('tabindex', '-1');
+      }); //select current tab
+
+      tab.focus();
+    };
+
+    var activateTab = function activateTab(tab) {
+      // unactivate all other tabs
+      tabs.forEach(function (tab) {
+        tab.setAttribute('aria-selected', 'false');
+        tab.setAttribute('tabindex', '-1');
+      }); //activate current tab
+
+      tab.setAttribute('aria-selected', 'true');
+      tab.setAttribute('tabindex', '0'); // activate corresponding panel accordingly
+
+      activatePanel(tab);
+    };
+
+    var setupTabPanels = function setupTabPanels() {
+      tabpanels.forEach(function (tabpanel, index) {
+        tabpanel.setAttribute('role', 'tabpanel');
+        tabpanel.setAttribute('tabindex', '-1');
+        tabpanel.setAttribute('hidden', '');
+
+        if (index == activeIndex) {
+          tabpanel.removeAttribute('hidden');
+        }
+
+        tabpanel.addEventListener('keydown', function (e) {
+          panelKeyboardRespond(e);
+        }, false);
+        tabpanel.addEventListener("blur", function () {
+          tabpanel.setAttribute('tabindex', '-1');
+        }, false);
+      });
+    };
+
+    var panelKeyboardRespond = function panelKeyboardRespond(e) {
+      var keyCode = e.keyCode || e.which;
+
+      switch (keyCode) {
+        case util.keyCodes.TAB:
+          tabpanels[activeIndex].setAttribute('tabindex', '-1');
+          break;
+
+        default:
+          break;
       }
     };
 
-    var createControls = function createControls() {
-      controlsWrapper = document.createElement("div");
-      controlsWrapper.setAttribute("data-accordion-controls", "");
-      el.prepend(controlsWrapper);
-      expandButton = document.createElement("button");
-      expandButton.setAttribute("data-accordion-control", "expand");
-      expandButton.setAttribute("aria-label", "Expand all panels");
-      expandButton.innerText = "Expand All";
-      controlsWrapper.appendChild(expandButton);
-      collapseButton = document.createElement("button");
-      collapseButton.setAttribute("data-accordion-control", "collapse");
-      collapseButton.setAttribute("aria-label", "Collapse all panels");
-      collapseButton.innerText = "collapse All";
-      controlsWrapper.appendChild(collapseButton); // if we start out with an accordion whose panels are collapsed (as opposed to open)
-      // disable the Collapse All button
+    var activatePanel = function activatePanel(tab) {
+      tabpanels.forEach(function (tabpanel, index) {
+        tabpanel.setAttribute('hidden', '');
+        tabpanel.setAttribute('tabindex', '-1');
 
-      if (_options.allCollapsed) disableCollapseButton();
-      setupAccordionControls();
-    };
-
-    var setupAccordionControls = function setupAccordionControls() {
-      expandButton.addEventListener("click", function () {
-        // expand them all
-        Array.from(accordionHeadings).forEach(function (item, index) {
-          item.querySelector("button").setAttribute("aria-expanded", "true");
-        });
-        Array.from(accordionPanels).forEach(function (item, index) {
-          item.setAttribute("aria-hidden", "false");
-        });
-        disableExpandButton();
-        enableCollapseButton();
-      });
-      collapseButton.addEventListener("click", function () {
-        Array.from(accordionHeadings).forEach(function (item, index) {
-          item.querySelector("button").setAttribute("aria-expanded", "false");
-        });
-        Array.from(accordionPanels).forEach(function (item, index) {
-          item.setAttribute("aria-hidden", "true");
-        });
-        disableCollapseButton();
-        enableExpandButton();
+        if (index == activeIndex) {
+          tabpanel.removeAttribute('hidden');
+          tabpanel.setAttribute('aria-labelledby', tabs[activeIndex].getAttribute('id'));
+          tabpanel.setAttribute('tabindex', '0');
+        }
       });
     };
 
-    var setupAccordionHeadings = function setupAccordionHeadings(accordionHeadings) {
-      Array.from(accordionHeadings).forEach(function (item, index) {
-        var $this = item;
-        var text = $this.innerText;
-        var headingButton = document.createElement("button");
-        headingButton.setAttribute("aria-expanded", "false");
-        headingButton.setAttribute("data-accordion-toggle", "");
-        headingButton.setAttribute("id", accID + '__heading-' + index);
-        headingButton.setAttribute("aria-controls", accID + '__panel-' + index);
-        headingButton.innerText = text;
-        $this.innerHTML = "";
-        $this.appendChild(headingButton);
-        headingButton.innerHTML += _options.icon;
-        headingButton.addEventListener("click", function (e) {
-          togglePanel(headingButton);
-        });
-      });
-    };
-
-    var setupAccordionPanels = function setupAccordionPanels(accordionPanels) {
-      Array.from(accordionPanels).forEach(function (item, index) {
-        var $this = item;
-        $this.setAttribute("id", accID + '__panel-' + index);
-        $this.setAttribute("aria-labelledby", accID + '__heading-' + index);
-        $this.setAttribute("aria-hidden", "true");
-      });
-    };
-
-    var togglePanel = function togglePanel(toggleButton) {
-      var thepanel = toggleButton.parentNode.nextElementSibling;
-
-      if (toggleButton.getAttribute("aria-expanded") == "true") {
-        toggleButton.setAttribute("aria-expanded", "false");
-        thepanel.setAttribute("aria-hidden", "true");
-        checkToggleCollapseButtonState();
-        checkToggleExpandButtonState();
+    var incrementActiveIndex = function incrementActiveIndex() {
+      if (activeIndex < tabs.length - 1) {
+        return ++activeIndex;
       } else {
-        if (_options.showOneAnswerAtATime) {
-          // Hide all answers
-          Array.from(accordionPanels).forEach(function (panel) {
-            panel.setAttribute("aria-hidden", "true");
-          });
-          Array.from(accordionHeadings).forEach(function (heading) {
-            heading.querySelector("button").setAttribute("aria-expanded", "false");
-          });
-          checkToggleCollapseButtonState();
-          checkToggleExpandButtonState();
-        } // Show answer
-
-
-        toggleButton.setAttribute("aria-expanded", "true");
-        thepanel.setAttribute("aria-hidden", "false");
-        checkToggleCollapseButtonState();
-        checkToggleExpandButtonState();
+        activeIndex = 0;
+        return activeIndex;
       }
-    };
+    }; // incrementActiveIndex()
 
-    var enableCollapseButton = function enableCollapseButton() {
-      if (collapseButton) collapseButton.removeAttribute("disabled");
-    };
 
-    var disableCollapseButton = function disableCollapseButton() {
-      if (collapseButton) collapseButton.setAttribute("disabled", "disabled");
-    };
-
-    var enableExpandButton = function enableExpandButton() {
-      if (expandButton) expandButton.removeAttribute("disabled");
-    };
-
-    var disableExpandButton = function disableExpandButton() {
-      if (expandButton) expandButton.setAttribute("disabled", "disabled");
-    };
-
-    var checkToggleExpandButtonState = function checkToggleExpandButtonState() {
-      var closedPanels = el.querySelectorAll('button[aria-expanded="false"]');
-
-      if (!closedPanels.length) {
-        disableExpandButton();
+    var decrementActiveIndex = function decrementActiveIndex() {
+      if (activeIndex > 0) {
+        return --activeIndex;
       } else {
-        enableExpandButton();
+        activeIndex = tabs.length - 1;
+        return activeIndex;
       }
-    };
+    }; // decrementActiveIndex()
+    // keyboard interactions
 
-    var checkToggleCollapseButtonState = function checkToggleCollapseButtonState() {
-      var openPanels = el.querySelectorAll('button[aria-expanded="true"]');
 
-      if (openPanels.length === 0) {
-        disableCollapseButton();
-      } else {
-        enableCollapseButton();
+    var tabKeyboardRespond = function tabKeyboardRespond(e, tab) {
+      var nextTab = tab.nextElementSibling ? tab.nextElementSibling : false;
+      var previousTab = tab.previousElementSibling ? tab.previousElementSibling : false;
+      var firstTab = tabs[0];
+      var lastTab = tabs[tabs.length - 1];
+      var keyCode = e.keyCode || e.which;
+
+      switch (keyCode) {
+        case util.keyCodes.UP:
+          e.preventDefault();
+          decrementActiveIndex();
+          selectTab(tabs[activeIndex]);
+          break;
+
+        case util.keyCodes.DOWN:
+          e.preventDefault();
+          incrementActiveIndex();
+          selectTab(tabs[activeIndex]);
+          break;
+
+        case util.keyCodes.ENTER:
+        case util.keyCodes.SPACE:
+          e.preventDefault();
+          activateTab(tabs[activeIndex]);
+          tabs[activeIndex].focus();
+          break;
+
+        case util.keyCodes.TAB:
+          tabpanels[activeIndex].setAttribute('tabindex', '0');
+          break;
+
+        case util.keyCodes.HOME:
+          e.preventDefault();
+          firstTab.focus();
+          break;
+
+        case util.keyCodes.END:
+          e.preventDefault();
+          lastTab.focus();
+          break;
       }
     };
 
     init.call(this);
     return this;
-  }; // ARIAaccordion()
+  }; // ARIAtabs()
 
 
-  w.ARIAaccordion = ARIAaccordion;
+  w.ARIAtabs = ARIAtabs;
 })(window, document);
 
-var accInstance = "[data-accordion]";
-var els = document.querySelectorAll(accInstance);
-var allAccs = []; // Generate all accordion instances
+var tabsInstance = "[data-tabs]";
+var els = document.querySelectorAll(tabsInstance);
+var allTabs = []; // Generate all accordion instances
 
 for (var i = 0; i < els.length; i++) {
-  // var nAccs = new ARIAaccordion(els[i]);
-  var nAccs = new ARIAaccordion(els[i], {
-    withControls: false
-  });
-  allAccs.push(nAccs);
+  var nTabs = new ARIAtabs(els[i]);
+  allTabs.push(nTabs);
 }
