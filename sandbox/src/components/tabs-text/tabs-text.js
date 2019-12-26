@@ -129,6 +129,7 @@ var util = {
     var orientation = el.getAttribute('data-tabs-orientation');
     var currentIndex = _options.open;
     var selectedTab = currentIndex;
+    var manual = _options.manual;
 
     el.setAttribute('id', tabsID);
 
@@ -150,18 +151,27 @@ var util = {
         tab.setAttribute('role', 'tab');
         // each tab needs an ID that will be used to label its corresponding panel
         tab.setAttribute('id', tabsID + '__tab-' + index);
-
+        tab.setAttribute('data-controls', tabpanels[index].getAttribute('id'));
 
         // first tab is initially active
         if (index === currentIndex) {
+          selectTab(tab);
+          // updateUrlHash();
+        }
+
+        if (tab.getAttribute('data-controls') === util.getUrlHash()) {
+          currentIndex = index;
+          selectedTab = index;
           selectTab(tab);
         }
 
         tab.addEventListener('click', (e) => {
           e.preventDefault();
           currentIndex = index;
+          selectedTab = index;
           focusCurrentTab();
           selectTab(tab);
+          updateUrlHash();
         }, false);
 
         tab.addEventListener('keydown', (e) => {
@@ -174,8 +184,12 @@ var util = {
       tabs[currentIndex].focus();
     }
 
-    var selectTab = function (tab) {
+    var updateUrlHash = function () {
+      var active = tabs[selectedTab];
+      util.setUrlHash(active.getAttribute('data-controls'));
+    };
 
+    var selectTab = function (tab) {
       // unactivate all other tabs
       tabs.forEach(tab => {
         tab.setAttribute('aria-selected', 'false');
@@ -186,12 +200,11 @@ var util = {
       tab.setAttribute('tabindex', '0');
       tab.focus();
 
-      // activate corresponding panel accordingly
-      activatePanel(tab);
+      // activate corresponding panel 
+      showTabpanel(tab);
     }
 
     var setupTabPanels = function () {
-
       tabpanels.forEach((tabpanel, index) => {
         tabpanel.setAttribute('role', 'tabpanel');
         tabpanel.setAttribute('tabindex', '-1');
@@ -208,9 +221,9 @@ var util = {
         tabpanel.addEventListener("blur", () => {
           tabpanel.setAttribute('tabindex', '-1');
         }, false);
-
       });
     }
+
 
     var panelKeyboardRespond = function (e) {
       var keyCode = e.keyCode || e.which;
@@ -225,10 +238,10 @@ var util = {
       }
     }
 
-    var activatePanel = function (tab) {
+
+    var showTabpanel = function (tab) {
       tabpanels.forEach((tabpanel, index) => {
         tabpanel.setAttribute('hidden', '');
-        // tabpanel.setAttribute('tabindex', '-1');
         tabpanel.removeAttribute('tabindex');
 
         if (index == currentIndex) {
@@ -247,7 +260,7 @@ var util = {
         currentIndex = 0;
         return currentIndex;
       }
-    }; // incrementcurrentIndex()
+    };
 
 
     var decrementcurrentIndex = function () {
@@ -258,9 +271,10 @@ var util = {
         currentIndex = tabs.length - 1;
         return currentIndex;
       }
-    }; // decrementcurrentIndex()
+    };
 
-    // keyboard interactions
+
+
     var tabKeyboardRespond = function (e, tab) {
       var firstTab = tabs[0];
       var lastTab = tabs[tabs.length - 1];
@@ -272,72 +286,84 @@ var util = {
         case util.keyCodes.LEFT:
           e.preventDefault();
           decrementcurrentIndex();
-
-          console.log("currentIndex: " + currentIndex);
-          console.log("selectedTab: " + selectedTab);
-
-
           focusCurrentTab();
+
+          if (!manual) {
+            selectedTab = currentIndex;
+            selectTab(tabs[selectedTab]);
+            updateUrlHash();
+          }
+
           break;
+
 
         case util.keyCodes.DOWN:
         case util.keyCodes.RIGHT:
           e.preventDefault();
           incrementcurrentIndex();
-          console.log("currentIndex: " + currentIndex);
-          console.log("selectedTab: " + selectedTab);
-
-
           focusCurrentTab();
+
+          if (!manual) {
+            selectedTab = currentIndex;
+            selectTab(tabs[selectedTab]);
+            updateUrlHash();
+          }
+
           break;
+
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
           e.preventDefault();
           selectedTab = currentIndex;
-
-          console.log("currentIndex: " + currentIndex);
-          console.log("selectedTab: " + selectedTab);
-
           selectTab(tabs[selectedTab]);
+          updateUrlHash();
+
           break;
+
 
         case util.keyCodes.TAB:
           tabpanels[selectedTab].setAttribute('tabindex', '0');
           currentIndex = selectedTab;
+
           break;
+
 
         case util.keyCodes.HOME:
           e.preventDefault();
           firstTab.focus();
+          updateUrlHash();
+
           break;
+
 
         case util.keyCodes.END:
           e.preventDefault();
           lastTab.focus();
+          updateUrlHash();
+
           break;
       }
 
     }
-
-
-
-
 
     init.call(this);
     return this;
   }; // ARIAtabs()
 
   w.ARIAtabs = ARIAtabs;
+
 })(window, document);
+
+
 
 
 var tabsInstance = "[data-tabs]";
 var els = document.querySelectorAll(tabsInstance);
 var allTabs = [];
 
-// Generate all accordion instances
+// Generate all tabs instances
 for (var i = 0; i < els.length; i++) {
-  var nTabs = new ARIAtabs(els[i]);
+  var nTabs = new ARIAtabs(els[i], { manual: true }); // if manual is set to false, the tabs open on focus without needing an ENTER or SPACE press
   allTabs.push(nTabs);
 }

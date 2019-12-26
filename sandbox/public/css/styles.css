@@ -727,6 +727,12 @@ a.ps-button--ghost {
   .ps-pricing-table__option__feature.not-included .feature-icon {
     color: #888; }
 
+.ps-tabs--steps .c-tabs__tabpanel {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: var(--h-padding); }
+
 /* General Tabs Styles Common to all tabs slices */
 @supports (display: grid) {
   @media all and (min-width: 50em) {

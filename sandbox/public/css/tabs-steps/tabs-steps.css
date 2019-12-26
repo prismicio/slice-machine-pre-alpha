@@ -1,0 +1,5 @@
+.ps-tabs--steps .c-tabs__tabpanel {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: var(--h-padding); }
