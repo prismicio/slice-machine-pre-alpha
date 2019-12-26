@@ -299,11 +299,34 @@ small,
   margin: 0 0 1rem; }
 
 .ps__img {
+  display: block;
   margin: 0 auto calc(var(--c-padding) * 2); }
   .ps__img img {
     display: block;
     max-width: 100%;
     margin: 0 auto; }
+
+.ps__features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  margin-top: var(--v-margin); }
+  .ps__features-list li {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    position: relative; }
+    .ps__features-list li::before {
+      content: "";
+      display: block;
+      width: 1em;
+      height: 1em;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Echeck_circle-24px%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg fill='none'%3E%3Cpath d='M-2-2h24v24h-24z'/%3E%3Cpath d='M10 0c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-2 15l-5-5 1.41-1.41 3.59 3.58 7.59-7.59 1.41 1.42-9 9z' fill='%2347C1AF' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: 97% 97%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -.5em; }
 
 .ps__card-list {
   list-style: none;
@@ -328,6 +351,8 @@ small,
 
 .ps__card-item__cta {
   text-align: center; }
+  .ps__card-item__cta .ps-button {
+    display: block; }
 
 @media all and (min-width: 40em) {
   .ps__card-item {
@@ -607,7 +632,7 @@ small,
 
 .ps-button,
 a.ps-button {
-  display: block;
+  display: inline-block;
   text-align: center;
   border: none;
   border-radius: 4px;
@@ -617,7 +642,7 @@ a.ps-button {
   line-height: 1.3;
   font-weight: 500;
   transition: all .1s linear;
-  margin-top: var(--v-margin); }
+  margin-top: var(--c-margin); }
 
 .ps-button--primary,
 a.ps-button--primary {
@@ -776,18 +801,36 @@ a.ps-button--ghost {
   .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible) {
     outline: none;
     background: none; }
+    .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] {
+      color: var(--color--primary); }
+      .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg {
+        color: inherit;
+        stroke: var(--color--primary); }
+        .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg .dot {
+          fill: #fff; }
   .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible) {
     outline: none;
     background: none; }
+    .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] {
+      color: var(--color--primary); }
+      .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg {
+        color: inherit;
+        stroke: var(--color--primary); }
+        .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg .dot {
+          fill: #fff; }
   .ps-tabs--steps .c-tabs__tab:-moz-focusring {
     outline: none;
     background: none; }
 
-.ps-tabs--steps .c-tabs__tabpanel {
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-column-gap: var(--h-padding); }
+@media all and (min-width: 50em) {
+  @supports (display: grid) {
+    .ps-tabs--steps .c-tabs__tabpanel {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-column-gap: var(--h-padding); }
+      .ps-tabs--steps .c-tabs__tabpanel[hidden] {
+        display: none; } } }
 
 /* General Tabs Styles Common to all tabs slices */
 @supports (display: grid) {

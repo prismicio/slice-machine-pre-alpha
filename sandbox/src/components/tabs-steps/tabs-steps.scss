@@ -64,35 +64,51 @@
 
       &:focus, &.focus-visible {
          outline: none;
-        svg {
-          color: #000;
-          stroke: #000;
+          svg {
+            color: #000;
+            stroke: #000;
 
-          .dot {
-            fill: #fff;
-          }
-        }
-       
-
-        // &[aria-selected="true"] {
-        //   svg {
-        //     color: inherit;
-        //     stroke: var(--color--primary);
-
-        //     .dot {
-        //       fill: #fff;
-        //     }
-        //   }
-        // }
+            .dot {
+              fill: #fff;
+            }
+          } 
       }
 
       &:focus:not(:focus-visible) {
           outline: none;
           background: none;
+
+              &[aria-selected="true"] {
+        color: var(--color--primary);
+        
+
+        svg {
+          color: inherit;
+          stroke: var(--color--primary);
+
+          .dot {
+            fill: #fff;
+          }
+        }
+      }
       }
       .js-focus-visible &:focus:not(.focus-visible) {
           outline: none;
           background: none;
+
+          &[aria-selected="true"] {
+        color: var(--color--primary);
+        
+
+        svg {
+          color: inherit;
+          stroke: var(--color--primary);
+
+          .dot {
+            fill: #fff;
+          }
+        }
+      }
       }
 
       &:-moz-focusring {
@@ -104,10 +120,18 @@
 
 
     .c-tabs__tabpanel {
-      display: grid;
-      grid-template-columns: subgrid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-column-gap: var(--h-padding);
+      @media all and (min-width:50em) {
+        @supports (display:grid) {
+          display: grid;
+          grid-template-columns: subgrid;
+          grid-template-columns: repeat(12, 1fr);
+          grid-column-gap: var(--h-padding);
+
+          &[hidden] {
+            display: none; // we don't want the tabpanel to show up when it should be hidden
+          }
+        }
+      }
     }
 
 }
