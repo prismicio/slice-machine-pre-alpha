@@ -762,13 +762,16 @@ a.ps-button--ghost {
 
 .ps-tabs--steps .c-tabs__tab {
   padding: 0;
+  max-width: 10rem;
   text-align: center;
   font-weight: bold;
   margin-bottom: -2rem;
   position: relative; }
   .ps-tabs--steps .c-tabs__tab:first-of-type {
+    text-align: left;
     left: -1rem; }
   .ps-tabs--steps .c-tabs__tab:last-of-type {
+    text-align: right;
     right: -1rem; }
   .ps-tabs--steps .c-tabs__tab svg {
     display: inline-block;
@@ -780,7 +783,10 @@ a.ps-button--ghost {
       fill: #000; }
   .ps-tabs--steps .c-tabs__tab span {
     display: block;
-    margin-top: 1rem; }
+    margin-top: 1rem;
+    white-space: normal;
+    line-height: 1.3;
+    position: relative; }
   .ps-tabs--steps .c-tabs__tab[aria-selected="true"] {
     color: var(--color--primary); }
     .ps-tabs--steps .c-tabs__tab[aria-selected="true"] svg {
