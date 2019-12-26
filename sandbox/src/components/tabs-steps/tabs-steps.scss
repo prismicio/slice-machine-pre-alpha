@@ -1,10 +1,104 @@
 .ps-tabs--steps {
 
     .c-tabs__tablist {
+      background-image: url('../img/dashed-line.svg');
+      background-repeat-y: no-repeat;
+      background-position: left 1rem top 1rem;
+      background-clip: content-box;
+      padding: 0 1rem;
 
+      align-items: flex-start;
+      min-height: 6rem;
     }
 
     .c-tabs__tab {
+      padding: 0;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: -2rem;
+      position: relative;
+
+      &:first-of-type() {
+        left: -1rem;
+      }
+
+      &:last-of-type() {
+        right: -1rem;
+      }
+
+
+      svg {
+        display: inline-block;
+        color: #fff;
+        stroke: #ccc;
+        width: 2rem;
+        height: 2rem;
+
+        .dot {
+          fill: #000;
+        }
+      }
+
+      span {
+        display: block;
+        margin-top: 1rem;
+      }
+
+      &[aria-selected="true"] {
+        color: var(--color--primary);
+        
+
+        svg {
+          color: inherit;
+          stroke: var(--color--primary);
+
+          .dot {
+            fill: #fff;
+          }
+        }
+      }
+
+      &:hover {
+        color: var(--color--primary);
+      }
+
+      &:focus, &.focus-visible {
+         outline: none;
+        svg {
+          color: #000;
+          stroke: #000;
+
+          .dot {
+            fill: #fff;
+          }
+        }
+       
+
+        // &[aria-selected="true"] {
+        //   svg {
+        //     color: inherit;
+        //     stroke: var(--color--primary);
+
+        //     .dot {
+        //       fill: #fff;
+        //     }
+        //   }
+        // }
+      }
+
+      &:focus:not(:focus-visible) {
+          outline: none;
+          background: none;
+      }
+      .js-focus-visible &:focus:not(.focus-visible) {
+          outline: none;
+          background: none;
+      }
+
+      &:-moz-focusring {
+          outline: none;
+          background: none;
+      }
 
     }
 
