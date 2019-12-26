@@ -1,5 +1,4 @@
 // (function () {
-// source: https://webdesign.tutsplus.com/tutorials/how-to-build-a-shifting-underline-hover-effect-with-css-and-javascript--cms-28510
 //   const target = document.querySelector(".c-tabs__underline");
 //   const tabs = document.querySelectorAll(".c-tabs__tab");
 //   function slideUnderline() {

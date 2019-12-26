@@ -1,4 +1,5 @@
 
+/* General Tabs Styles Common to all tabs slices */
 
 .js-tabs .c-tabs__tabpanel {
   .c-tabs__tabpanel__title {
@@ -17,99 +18,120 @@
     }
 }
 
+.c-tabs__tablist {   
+    margin-bottom: calc(var(--v-margin) * 1.5);
+    position: relative;
 
-.c-tabs__underline {
-  position: absolute;
-  border-bottom: 4px solid var(--color--primary);
-  z-index: -1;
-  transition: all .35s ease-in-out;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    display: flex;
+    justify-content: space-between;
+
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &:focus, &.focus-visible {
+      outline: 2px dotted #888;
+      outline-offset: 5px;
+    }
+}
+.c-tabs__tab {
+    display: inline-block;
+    line-height: 1;
+    text-align: left;
+    position: relative;
+    transition: all .1s linear; 
+}
+
+.c-tabs__tabpanel {
+    &:focus {
+      outline: 2px dotted #888;
+      outline-offset: 5px;
+    }
 }
 
 
-.c-tabs__tablist-wrapper {
-    // overflow: hidden;
-    margin-bottom: calc(var(--v-margin) * 1.5);
-  }
+/* tab styles specific to the Tabs | Text slice */
 
-  .c-tabs__tablist {
-      // overflow-x: auto;
-      position: relative;
-      // top: calc(var(--scrollbar) + 5px);
-      white-space: nowrap;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 4px solid var(--color-grey-90);
 
-      &[aria-orientation="vertical"] {
+.ps-tabs--text {
+    .c-tabs__tablist {
+        background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90));
+        background-size: 100% 4px;
+        background-position: left bottom;
+        background-repeat: no-repeat;
+
+        &[aria-orientation="vertical"] {
           @media all and (min-width: 50em){
             flex-direction: column;
             align-items: flex-start;
-            border-bottom: none;
-            border-left: 4px solid var(--color-grey-90);
-          }
-      }
 
-      hr {
-        position: absolute;
-        bottom: calc(var(--scrollbar) + 5px);
+            background-size: 4px 100%;
+            background-position: left top;
+            background-repeat: no-repeat;
+          }
       }
     }
 
-.c-tabs__tab {
-      display: inline-block;
-      font-weight: normal;
-      text-align: left;
-      padding: 1.5rem 0;
-      margin-right: 2rem;
-      transition: all .1s linear;
+    [aria-orientation="vertical"] .c-tabs__tab {
+        @media all and (min-width: 50em){
+          padding: 1.5rem;
+          border-left: 4px solid transparent;
+          border-bottom: none;
+        }
+    }
 
-      &:last-of-type() {
-          margin-right: 0;
-      }
-      position: relative;
+    [aria-orientation="vertical"] .c-tabs__tab[aria-selected="true"] {
+          border-bottom: none;
+          border-left: 4px solid currentColor;
+    }
+
+    .c-tabs__tab {
+      font-weight: normal;
+      padding: 1.5rem;
       border-bottom: 4px solid transparent;
       border-left: none;
-      bottom: -4px;
-      line-height: 1;
-
+      
       &[aria-selected = "true"] {
         color: var(--color--primary);
         font-weight: bold;
         border-bottom: 4px solid currentColor;
       }
 
-      [aria-orientation="vertical"] & {
-        @media all and (min-width: 50em){
-          padding: .5rem 1.5rem;
-          margin-bottom: var(--v-margin);
-
-          bottom: 0;
-          left: -4px;
-          border-left: 4px solid transparent;
-          border-bottom: none;
-
-          &:last-of-type() {
-            margin-bottom: 0;
-          }
-        }
-      }
-
-      [aria-orientation="vertical"] &[aria-selected="true"] {
-          border-bottom: none;
-          border-left: 4px solid currentColor;
-      }
-
+  
       &:hover {
         color: var(--color--primary);
       }
-  }
 
-.c-tabs__tabpanel {
-    &:focus {
-      outline: 2px solid #888;
-      outline-offset: 5px;
+      &:focus, &.focus-visible {
+        background-color: var(--color-grey-90);
+        font-weight: bold;
+        outline: none;
+      }
+
+      &:focus:not(:focus-visible) {
+          outline: none;
+          background: none;
+      }
+      .js-focus-visible &:focus:not(.focus-visible) {
+          outline: none;
+          background: none;
+      }
+
+      &:-moz-focusring {
+          outline: none;
+          background: none;
+      }
     }
 }
+ 
+
+
 
 
 

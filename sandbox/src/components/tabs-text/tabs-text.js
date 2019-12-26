@@ -1,5 +1,5 @@
 // (function () {
-
+// source: https://webdesign.tutsplus.com/tutorials/how-to-build-a-shifting-underline-hover-effect-with-css-and-javascript--cms-28510
 //   const target = document.querySelector(".c-tabs__underline");
 //   const tabs = document.querySelectorAll(".c-tabs__tab");
 
@@ -115,7 +115,7 @@ var util = {
 (function (w, doc, undefined) {
 
   var ARIAaccOptions = {
-    openOnFocus: false,
+    manual: true,
     open: 0
   }
 
@@ -127,7 +127,8 @@ var util = {
     var tabpanels = Array.from(el.querySelectorAll("[data-tabpanel]"));
     var tabsID = util.generateID('ps__tabs-');
     var orientation = el.getAttribute('data-tabs-orientation');
-    var activeIndex = _options.open;
+    var currentIndex = _options.open;
+    var selectedTab = currentIndex;
 
     el.setAttribute('id', tabsID);
 
@@ -148,18 +149,19 @@ var util = {
       tabs.forEach((tab, index) => {
         tab.setAttribute('role', 'tab');
         // each tab needs an ID that will be used to label its corresponding panel
-        tab.setAttribute('id', tabsID + util.generateID('__tab-'));
+        tab.setAttribute('id', tabsID + '__tab-' + index);
 
 
         // first tab is initially active
-        if (index === activeIndex) {
-          activateTab(tab);
+        if (index === currentIndex) {
+          selectTab(tab);
         }
 
         tab.addEventListener('click', (e) => {
           e.preventDefault();
-          activeIndex = index;
-          activateTab(tab);
+          currentIndex = index;
+          focusCurrentTab();
+          selectTab(tab);
         }, false);
 
         tab.addEventListener('keydown', (e) => {
@@ -168,17 +170,11 @@ var util = {
       });
     }
 
-    var selectTab = function (tab) {
-
-      // unselect all other tabs
-      tabs.forEach(tab => {
-        tab.setAttribute('tabindex', '-1');
-      });
-      //select current tab
-      tab.focus();
+    var focusCurrentTab = function () {
+      tabs[currentIndex].focus();
     }
 
-    var activateTab = function (tab) {
+    var selectTab = function (tab) {
 
       // unactivate all other tabs
       tabs.forEach(tab => {
@@ -188,6 +184,7 @@ var util = {
       //activate current tab
       tab.setAttribute('aria-selected', 'true');
       tab.setAttribute('tabindex', '0');
+      tab.focus();
 
       // activate corresponding panel accordingly
       activatePanel(tab);
@@ -200,7 +197,7 @@ var util = {
         tabpanel.setAttribute('tabindex', '-1');
         tabpanel.setAttribute('hidden', '');
 
-        if (index == activeIndex) {
+        if (index == currentIndex) {
           tabpanel.removeAttribute('hidden');
         }
 
@@ -220,7 +217,7 @@ var util = {
 
       switch (keyCode) {
         case util.keyCodes.TAB:
-          tabpanels[activeIndex].setAttribute('tabindex', '-1');
+          tabpanels[currentIndex].setAttribute('tabindex', '-1');
           break;
 
         default:
@@ -231,41 +228,40 @@ var util = {
     var activatePanel = function (tab) {
       tabpanels.forEach((tabpanel, index) => {
         tabpanel.setAttribute('hidden', '');
-        tabpanel.setAttribute('tabindex', '-1');
+        // tabpanel.setAttribute('tabindex', '-1');
+        tabpanel.removeAttribute('tabindex');
 
-        if (index == activeIndex) {
+        if (index == currentIndex) {
           tabpanel.removeAttribute('hidden');
-          tabpanel.setAttribute('aria-labelledby', tabs[activeIndex].getAttribute('id'));
+          tabpanel.setAttribute('aria-labelledby', tabs[currentIndex].getAttribute('id'));
           tabpanel.setAttribute('tabindex', '0');
         }
       });
     }
 
-    var incrementActiveIndex = function () {
-      if (activeIndex < tabs.length - 1) {
-        return ++activeIndex;
+    var incrementcurrentIndex = function () {
+      if (currentIndex < tabs.length - 1) {
+        return ++currentIndex;
       }
       else {
-        activeIndex = 0;
-        return activeIndex;
+        currentIndex = 0;
+        return currentIndex;
       }
-    }; // incrementActiveIndex()
+    }; // incrementcurrentIndex()
 
 
-    var decrementActiveIndex = function () {
-      if (activeIndex > 0) {
-        return --activeIndex;
+    var decrementcurrentIndex = function () {
+      if (currentIndex > 0) {
+        return --currentIndex;
       }
       else {
-        activeIndex = tabs.length - 1;
-        return activeIndex;
+        currentIndex = tabs.length - 1;
+        return currentIndex;
       }
-    }; // decrementActiveIndex()
+    }; // decrementcurrentIndex()
 
     // keyboard interactions
     var tabKeyboardRespond = function (e, tab) {
-      var nextTab = tab.nextElementSibling ? tab.nextElementSibling : false;
-      var previousTab = tab.previousElementSibling ? tab.previousElementSibling : false;
       var firstTab = tabs[0];
       var lastTab = tabs[tabs.length - 1];
 
@@ -273,26 +269,42 @@ var util = {
 
       switch (keyCode) {
         case util.keyCodes.UP:
+        case util.keyCodes.LEFT:
           e.preventDefault();
-          decrementActiveIndex();
-          selectTab(tabs[activeIndex]);
+          decrementcurrentIndex();
+
+          console.log("currentIndex: " + currentIndex);
+          console.log("selectedTab: " + selectedTab);
+
+
+          focusCurrentTab();
           break;
 
         case util.keyCodes.DOWN:
+        case util.keyCodes.RIGHT:
           e.preventDefault();
-          incrementActiveIndex();
-          selectTab(tabs[activeIndex]);
+          incrementcurrentIndex();
+          console.log("currentIndex: " + currentIndex);
+          console.log("selectedTab: " + selectedTab);
+
+
+          focusCurrentTab();
           break;
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
           e.preventDefault();
-          activateTab(tabs[activeIndex]);
-          tabs[activeIndex].focus();
+          selectedTab = currentIndex;
+
+          console.log("currentIndex: " + currentIndex);
+          console.log("selectedTab: " + selectedTab);
+
+          selectTab(tabs[selectedTab]);
           break;
 
         case util.keyCodes.TAB:
-          tabpanels[activeIndex].setAttribute('tabindex', '0');
+          tabpanels[selectedTab].setAttribute('tabindex', '0');
+          currentIndex = selectedTab;
           break;
 
         case util.keyCodes.HOME:
