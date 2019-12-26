@@ -175,8 +175,7 @@ var util = {
       }); //activate current tab
 
       tab.setAttribute('aria-selected', 'true');
-      tab.setAttribute('tabindex', '0'); // tab.focus();
-      // activate corresponding panel 
+      tab.setAttribute('tabindex', '0'); // activate corresponding panel 
 
       showTabpanel(tab);
     };
