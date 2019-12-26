@@ -302,9 +302,8 @@ small,
   display: block;
   margin: 0 auto calc(var(--c-padding) * 2); }
   .ps__img img {
-    display: block;
-    max-width: 100%;
-    margin: 0 auto; }
+    display: inline-block;
+    max-width: 100%; }
 
 .ps__features-list {
   list-style: none;
@@ -335,7 +334,7 @@ small,
 
 .ps__card-item {
   border-radius: 8px;
-  margin-bottom: var(--h-padding); }
+  margin-bottom: calc(var(--v-space) * 2); }
 
 .ps__card-item--full {
   background-color: var(--color--secondary);
@@ -754,7 +753,7 @@ a.ps-button--ghost {
 
 .ps-tabs--steps .c-tabs__tablist {
   background-image: url("../img/dashed-line.svg");
-  background-repeat-y: no-repeat;
+  background-repeat: repeat no-repeat;
   background-position: left 1rem top 1rem;
   background-clip: content-box;
   padding: 0 1rem;
@@ -887,9 +886,10 @@ a.ps-button--ghost {
     border-left: 4px solid transparent;
     border-bottom: none; } }
 
-.ps-tabs--text [aria-orientation="vertical"] .c-tabs__tab[aria-selected="true"] {
-  border-bottom: none;
-  border-left: 4px solid currentColor; }
+@media all and (min-width: 50em) {
+  .ps-tabs--text [aria-orientation="vertical"] .c-tabs__tab[aria-selected="true"] {
+    border-bottom: none;
+    border-left: 4px solid currentColor; } }
 
 .ps-tabs--text .c-tabs__tab {
   font-weight: normal;

@@ -103,9 +103,8 @@
     margin: 0 auto calc(var(--c-padding) * 2);
 
     img {
-        display: block;
+        display: inline-block;
         max-width: 100%;
-        margin: 0 auto;
     }
      
 }
@@ -147,7 +146,7 @@
 .ps__card-item {
     // background-color: var(--color--secondary);
     border-radius: 8px;
-    margin-bottom: var(--h-padding);
+    margin-bottom: calc(var(--v-space) * 2);
 }
 
 .ps__card-item--full {

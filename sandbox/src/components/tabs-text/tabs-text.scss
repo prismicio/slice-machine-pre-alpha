@@ -87,8 +87,10 @@
     }
 
     [aria-orientation="vertical"] .c-tabs__tab[aria-selected="true"] {
-          border-bottom: none;
-          border-left: 4px solid currentColor;
+          @media all and (min-width: 50em){
+            border-bottom: none;
+            border-left: 4px solid currentColor;
+          }
     }
 
     .c-tabs__tab {
