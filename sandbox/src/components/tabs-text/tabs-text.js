@@ -1,3 +1,27 @@
+// (function () {
+
+//   const target = document.querySelector(".c-tabs__underline");
+//   const tabs = document.querySelectorAll(".c-tabs__tab");
+
+//   function slideUnderline() {
+
+//     const width = this.getBoundingClientRect().width;
+//     const height = this.getBoundingClientRect().height;
+//     const left = this.offsetLeft;
+//     const top = this.offsetTop;
+
+//     target.style.width = `${width}px`;
+//     target.style.height = `${height}px`;
+//     target.style.left = `${left}px`;
+//     target.style.top = `${top}px`;
+//     target.style.transform = "none";
+//   }
+
+//   for (let i = 0; i < tabs.length; i++) {
+//     tabs[i].addEventListener("click", slideUnderline);
+//   }
+
+// })();
 
 "use strict";
 if (typeof Object.assign != "function") {
@@ -39,7 +63,7 @@ if (typeof Object.assign != "function") {
     configurable: true
   });
 }
-// add utilities
+// add utilities; borrowed from: https://scottaohara.github.io/a11y_tab_widget/
 var util = {
   keyCodes: {
     UP: 38,
@@ -62,6 +86,26 @@ var util = {
     return Array.prototype.filter.call(elm.children, function (child) {
       return child.matches(selector);
     });
+  },
+
+  getUrlHash: function () {
+    return window.location.hash.replace('#', '');
+  },
+
+  /**
+   * Use history.replaceState so clicking through Tabs
+   * does not create dozens of new history entries.
+   * Browser back should navigate to the previous page
+   * regardless of how many Tabs were activated.
+   *
+   * @param {string} hash
+   */
+  setUrlHash: function (hash) {
+    if (history.replaceState) {
+      history.replaceState(null, '', '#' + hash);
+    } else {
+      location.hash = hash;
+    }
   }
 };
 

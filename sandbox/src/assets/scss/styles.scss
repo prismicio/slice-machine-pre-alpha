@@ -61,6 +61,31 @@ img {
 }
 
 
+button {
+    background: none;
+    font: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+
+    &:focus, &.focus-visible {
+      outline: 2px solid #888;
+      outline-offset: 4px;
+    }
+
+    &:focus:not(:focus-visible) {
+        outline: none;
+    }
+    .js-focus-visible &:focus:not(.focus-visible) {
+        outline: none;
+    }
+
+    &:-moz-focusring {
+        outline: none;
+        background: none;
+    }
+}
+
 
 
 @import "_settings.scss";
