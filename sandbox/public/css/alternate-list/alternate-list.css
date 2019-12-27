@@ -1,16 +1,3 @@
-.ps-alternate .ps__header *,
-.ps-alternate .ps__desc {
-  text-align: left; }
-
-.ps-alternate .ps__head {
-  margin-bottom: var(--v-margin); }
-  @media all and (min-width: 40em) {
-    .ps-alternate .ps__head {
-      margin-bottom: calc(var(--v-margin) * 1.5); } }
-
-.ps-alternate .ps__header + .ps__desc {
-  margin-top: .5rem; }
-
 .ps-alternate__ctas {
   display: flex;
   flex-direction: column; }

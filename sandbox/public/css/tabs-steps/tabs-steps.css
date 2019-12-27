@@ -5,21 +5,21 @@
   background-clip: content-box;
   padding: 0 1rem;
   align-items: flex-start;
-  min-height: 6rem; }
+  min-height: auto; }
 
 .ps-tabs--steps .c-tabs__tab {
   padding: 0;
   max-width: 10rem;
   text-align: center;
   font-weight: bold;
-  margin-bottom: -2rem;
-  position: relative; }
+  position: relative;
+  margin-right: 1rem; }
   .ps-tabs--steps .c-tabs__tab:first-of-type() {
     text-align: left;
     left: -1rem; }
   .ps-tabs--steps .c-tabs__tab:last-of-type() {
     text-align: right;
-    right: -1rem; }
+    right: -2rem; }
   .ps-tabs--steps .c-tabs__tab svg {
     display: inline-block;
     color: #fff;

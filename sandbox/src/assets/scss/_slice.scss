@@ -38,7 +38,7 @@
 }
 
 .ps__head {     
-    @media all and (min-width: 800px) {
+    @media all and (min-width: 50em) {
         margin: 0 auto;
         text-align: center;
     }
@@ -76,6 +76,23 @@
     margin-top: var(--v-margin);
 }
 
+.ps__head--left  {
+
+  margin-bottom: var(--v-margin);
+
+    @media all and (min-width: 40em) {
+      margin-bottom: calc(var(--v-margin) * 1.5);  
+    }
+    
+  .ps__header *,
+  .ps__desc {
+    text-align: left;
+  }
+
+  .ps__header + .ps__desc {
+    margin-top: .5rem;
+  }
+}
 
 // only when the main section is preceded with a head section does it have a top margin
 // otherwise it's not needed

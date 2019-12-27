@@ -19,9 +19,7 @@
 }
 
 .c-tabs__tablist {   
-    margin-bottom: calc(var(--v-margin) * 1.5);
-    position: relative;
-
+    margin-bottom: calc(var(--v-margin) * 1.5);  
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
@@ -50,7 +48,7 @@
 
 .c-tabs__tabpanel {
     &:focus {
-      outline: 2px dotted #888;
+      outline: 4px dotted #888;
       outline-offset: 5px;
     }
 }
@@ -65,6 +63,7 @@
         background-size: 100% 4px;
         background-position: left bottom;
         background-repeat: no-repeat;
+        padding: 0;
 
         &[aria-orientation="vertical"] {
           @media all and (min-width: 50em){

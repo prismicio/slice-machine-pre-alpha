@@ -8,7 +8,7 @@
       padding: 0 1rem;
 
       align-items: flex-start;
-      min-height: 6rem;
+      min-height: auto;
     }
 
     .c-tabs__tab {
@@ -16,8 +16,9 @@
       max-width: 10rem;
       text-align: center;
       font-weight: bold;
-      margin-bottom: -2rem;
+      // margin-bottom: -2rem;
       position: relative;
+      margin-right: 1rem;
 
       &:first-of-type() {
         text-align: left;
@@ -26,7 +27,7 @@
 
       &:last-of-type() {
         text-align: right;
-        right: -1rem;
+        right: -2rem;
       }
 
 
