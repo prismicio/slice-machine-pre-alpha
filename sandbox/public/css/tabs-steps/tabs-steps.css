@@ -2,6 +2,7 @@
   background-image: url("../img/dashed-line.svg");
   background-repeat: repeat no-repeat;
   background-position: left 1rem top 1rem;
+  background-size: auto auto;
   background-clip: content-box;
   padding: 0 1rem;
   align-items: flex-start;

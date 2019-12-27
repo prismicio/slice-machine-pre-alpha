@@ -33,11 +33,11 @@
     linear-gradient(90deg,rgba(255,255,255,0),#fff 70%) 0 100%,
     radial-gradient(farthest-side at 0 50%,rgba(0,0,0,.25),transparent),
     radial-gradient(farthest-side at 100% 50%,rgba(0,0,0,.25),transparent) 0 100%;
-  background-color: #ffffff;
-  background-position: 0 0,100%,0 0,100%;
-  background-repeat: no-repeat;
-  background-attachment: local, local, scroll, scroll;
-  background-size: 20px 100%,20px 100%,10px 100%,10px 100%;
+    background-color: #fff;
+    background-position: 0 0,100%,0 0,100%;
+    background-repeat: no-repeat;
+    background-attachment: local, local, scroll, scroll;
+    background-size: 20px 100%,20px 100%,10px 100%,10px 100%;
 
     &::-webkit-scrollbar {
       display: none;

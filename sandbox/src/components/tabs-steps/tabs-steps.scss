@@ -1,9 +1,9 @@
 .ps-tabs--steps {
-
     .c-tabs__tablist {
       background-image: url('../img/dashed-line.svg');
       background-repeat: repeat no-repeat;
       background-position: left 1rem top 1rem;
+      background-size: auto auto;
       background-clip: content-box;
       padding: 0 1rem;
 
@@ -16,7 +16,6 @@
       max-width: 10rem;
       text-align: center;
       font-weight: bold;
-      // margin-bottom: -2rem;
       position: relative;
       margin-right: 1rem;
 
