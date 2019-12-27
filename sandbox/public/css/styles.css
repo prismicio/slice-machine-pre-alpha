@@ -747,7 +747,7 @@ a.ps-button--ghost {
     position: absolute;
     left: 0;
     top: 50%;
-    margin-top: -0.5em; }
+    margin-top: -.5em; }
   .ps-pricing-table__option__feature.not-included .feature-icon {
     color: #888; }
 
