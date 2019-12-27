@@ -51,29 +51,20 @@
       stroke: #000; }
       .ps-tabs--steps .c-tabs__tab:focus svg .dot, .ps-tabs--steps .c-tabs__tab.focus-visible svg .dot {
         fill: #fff; }
-  .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible) {
-    outline: none;
-    background: none; }
-    .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] {
-      color: var(--color--primary); }
-      .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg {
-        color: inherit;
-        stroke: var(--color--primary); }
-        .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg .dot {
-          fill: #fff; }
-  .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible) {
-    outline: none;
-    background: none; }
-    .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] {
-      color: var(--color--primary); }
-      .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg {
-        color: inherit;
-        stroke: var(--color--primary); }
-        .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg .dot {
-          fill: #fff; }
-  .ps-tabs--steps .c-tabs__tab:-moz-focusring {
-    outline: none;
-    background: none; }
+  .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] {
+    color: var(--color--primary); }
+    .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg {
+      color: inherit;
+      stroke: var(--color--primary); }
+      .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg .dot {
+        fill: #fff; }
+  .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] {
+    color: var(--color--primary); }
+    .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg {
+      color: inherit;
+      stroke: var(--color--primary); }
+      .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg .dot {
+        fill: #fff; }
 
 @media all and (min-width: 50em) {
   @supports (display: grid) {

@@ -21,18 +21,9 @@
     margin-right: 0; }
   .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab[aria-selected="true"] {
     border-bottom: 4px solid var(--color--primary); }
-  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:active, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab.focus-visible {
-    outline: 4px dotted #888;
-    outline-offset: 4px; }
-  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus:not(:focus-visible) {
+  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:active, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:hover, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab.focus-visible {
     outline: none;
-    background: none; }
-  .js-focus-visible .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus:not(.focus-visible) {
-    outline: none;
-    background: none; }
-  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:-moz-focusring {
-    outline: none;
-    background: none; }
+    border-bottom: 4px solid #000; }
 
 @media all and (min-width: 50em) {
   .ps-testimonials .c-tabs__tabpanel {
@@ -77,7 +68,7 @@
     line-height: 1.5; }
   @media screen and (min-width: 40rem) {
     .ps-testimonials__quote {
-      font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     .ps-testimonials__quote {
       font-size: calc(1rem * var(--text-max-l)); } }

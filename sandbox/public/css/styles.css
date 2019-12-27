@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box; }
 
 body {
@@ -44,6 +46,14 @@ button {
   font-size: 1rem;
   cursor: pointer;
   border: none; }
+  button:-moz-focusring {
+    outline: none; }
+  button:focus:not(:focus-visible) {
+    outline: none;
+    background: none; }
+  .js-focus-visible button:focus:not(.focus-visible) {
+    outline: none;
+    background: none; }
 
 :root {
   --primary-hue: 167;
@@ -804,29 +814,20 @@ a.ps-button--ghost {
       stroke: #000; }
       .ps-tabs--steps .c-tabs__tab:focus svg .dot, .ps-tabs--steps .c-tabs__tab.focus-visible svg .dot {
         fill: #fff; }
-  .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible) {
-    outline: none;
-    background: none; }
-    .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] {
-      color: var(--color--primary); }
-      .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg {
-        color: inherit;
-        stroke: var(--color--primary); }
-        .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg .dot {
-          fill: #fff; }
-  .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible) {
-    outline: none;
-    background: none; }
-    .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] {
-      color: var(--color--primary); }
-      .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg {
-        color: inherit;
-        stroke: var(--color--primary); }
-        .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg .dot {
-          fill: #fff; }
-  .ps-tabs--steps .c-tabs__tab:-moz-focusring {
-    outline: none;
-    background: none; }
+  .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] {
+    color: var(--color--primary); }
+    .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg {
+      color: inherit;
+      stroke: var(--color--primary); }
+      .ps-tabs--steps .c-tabs__tab:focus:not(:focus-visible)[aria-selected="true"] svg .dot {
+        fill: #fff; }
+  .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] {
+    color: var(--color--primary); }
+    .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg {
+      color: inherit;
+      stroke: var(--color--primary); }
+      .js-focus-visible .ps-tabs--steps .c-tabs__tab:focus:not(.focus-visible)[aria-selected="true"] svg .dot {
+        fill: #fff; }
 
 @media all and (min-width: 50em) {
   @supports (display: grid) {
@@ -857,10 +858,10 @@ a.ps-button--ghost {
   -webkit-overflow-scrolling: touch;
   background: linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
   background-color: #fff;
-  background-position: 0 0,100%,0 0,100%;
+  background-position: 0 0, 100%, 0 0, 100%;
   background-repeat: no-repeat;
   background-attachment: local, local, scroll, scroll;
-  background-size: 20px 100%,20px 100%,10px 100%,10px 100%;
+  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
   scrollbar-width: none;
@@ -892,23 +893,21 @@ a.ps-button--ghost {
     background-color: #000;
     width: 1rem;
     height: 1rem;
-    border-radius: 50%; }
+    border-radius: 50%;
+    transition: background-color .1s linear; }
   .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"] {
     color: var(--color--primary); }
     .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"]::before {
       background-color: var(--color--primary); }
+  .c-tabs__tablist--dotnav .c-tabs__tab:hover::before {
+    background-color: var(--color--primary); }
   .c-tabs__tablist--dotnav .c-tabs__tab:focus, .c-tabs__tablist--dotnav .c-tabs__tab.focus-visible {
     outline: none;
     border-color: currentColor;
     outline-offset: -4px; }
   .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(:focus-visible) {
-    outline: none;
     border-color: transparent; }
   .js-focus-visible .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(.focus-visible) {
-    outline: none;
-    border-color: transparent; }
-  .c-tabs__tablist--dotnav .c-tabs__tab:-moz-focusring {
-    outline: none;
     border-color: transparent; }
 
 .c-tabs__tablist--text .c-tabs__tab {
@@ -927,9 +926,6 @@ a.ps-button--ghost {
     outline: none;
     border-color: transparent; }
   .js-focus-visible .c-tabs__tablist--text .c-tabs__tab:focus:not(.focus-visible) {
-    outline: none;
-    border-color: transparent; }
-  .c-tabs__tablist--text .c-tabs__tab:-moz-focusring {
     outline: none;
     border-color: transparent; }
 
@@ -986,15 +982,6 @@ a.ps-button--ghost {
     background-color: var(--color-grey-90);
     font-weight: bold;
     outline: none; }
-  .ps-tabs--text .c-tabs__tab:focus:not(:focus-visible) {
-    outline: none;
-    background: none; }
-  .js-focus-visible .ps-tabs--text .c-tabs__tab:focus:not(.focus-visible) {
-    outline: none;
-    background: none; }
-  .ps-tabs--text .c-tabs__tab:-moz-focusring {
-    outline: none;
-    background: none; }
 
 /* tabs content specific styles */
 .c-tabs__tabpanel__modules {
@@ -1029,18 +1016,9 @@ a.ps-button--ghost {
     margin-right: 0; }
   .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab[aria-selected="true"] {
     border-bottom: 4px solid var(--color--primary); }
-  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:active, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab.focus-visible {
-    outline: 4px dotted #888;
-    outline-offset: 4px; }
-  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus:not(:focus-visible) {
+  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:active, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:hover, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab.focus-visible {
     outline: none;
-    background: none; }
-  .js-focus-visible .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus:not(.focus-visible) {
-    outline: none;
-    background: none; }
-  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:-moz-focusring {
-    outline: none;
-    background: none; }
+    border-bottom: 4px solid #000; }
 
 @media all and (min-width: 50em) {
   .ps-testimonials .c-tabs__tabpanel {
@@ -1085,7 +1063,7 @@ a.ps-button--ghost {
     line-height: 1.5; }
   @media screen and (min-width: 40rem) {
     .ps-testimonials__quote {
-      font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     .ps-testimonials__quote {
       font-size: calc(1rem * var(--text-max-l)); } }
