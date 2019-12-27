@@ -1027,7 +1027,7 @@ a.ps-button--ghost {
   .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:last-of-type {
     margin-right: 0; }
   .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab[aria-selected="true"] {
-    border-bottom: 8px solid var(--color--primary); }
+    border-bottom: 4px solid var(--color--primary); }
   .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:active, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab.focus-visible {
     outline: 4px dotted #888;
     outline-offset: 4px; }

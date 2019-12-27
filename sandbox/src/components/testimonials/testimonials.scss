@@ -34,8 +34,7 @@
       }
 
       &[aria-selected="true"] {
-
-        border-bottom: 8px solid var(--color--primary);
+        border-bottom: 4px solid var(--color--primary);
       }
 
       &:active, &:focus, &.focus-visible {
