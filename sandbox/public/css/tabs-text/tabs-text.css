@@ -1,4 +1,7 @@
 /* General Tabs Styles Common to all tabs slices */
+.js-tabs .c-tabs__tabpanel .c-tabs__tabpanel__title {
+  display: none; }
+
 @supports (display: grid) {
   @media all and (min-width: 50em) {
     .c-tabs {
@@ -14,7 +17,17 @@
   overflow-y: hidden;
   display: flex;
   justify-content: space-between;
-  -webkit-overflow-scrolling: touch; }
+  -webkit-overflow-scrolling: touch;
+  background: linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
+  background-color: #fff;
+  background-position: 0 0, 100%, 0 0, 100%;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */ }
   .c-tabs__tablist::-webkit-scrollbar {
     display: none; }
   .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {
@@ -28,17 +41,77 @@
   position: relative;
   transition: all .1s linear; }
 
-.c-tabs__tabpanel:focus {
+.c-tabs__tablist--dotnav {
+  justify-content: center; }
+
+.c-tabs__tablist--dotnav .c-tabs__tab {
+  padding: .75rem;
+  border-radius: 50%;
+  color: #000;
+  border: 2px dotted transparent; }
+  .c-tabs__tablist--dotnav .c-tabs__tab::before {
+    content: "";
+    display: block;
+    background-color: #000;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    transition: background-color .1s linear; }
+  .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"] {
+    color: var(--color--primary); }
+    .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"]::before {
+      background-color: var(--color--primary); }
+  .c-tabs__tablist--dotnav .c-tabs__tab:hover::before {
+    background-color: var(--color--primary); }
+  .c-tabs__tablist--dotnav .c-tabs__tab:focus, .c-tabs__tablist--dotnav .c-tabs__tab.focus-visible {
+    outline: none;
+    border-color: currentColor;
+    outline-offset: -4px; }
+  .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(:focus-visible) {
+    border-color: transparent; }
+  .js-focus-visible .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(.focus-visible) {
+    border-color: transparent; }
+
+.c-tabs__tablist--text .c-tabs__tab {
+  padding: 1rem;
+  color: #000;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 2px dotted transparent; }
+  .c-tabs__tablist--text .c-tabs__tab[aria-selected="true"] {
+    color: var(--color--primary); }
+  .c-tabs__tablist--text .c-tabs__tab:focus, .c-tabs__tablist--text .c-tabs__tab.focus-visible {
+    outline: none;
+    border-color: currentColor;
+    outline-offset: -4px; }
+  .c-tabs__tablist--text .c-tabs__tab:focus:not(:focus-visible) {
+    outline: none;
+    border-color: transparent; }
+  .js-focus-visible .c-tabs__tablist--text .c-tabs__tab:focus:not(.focus-visible) {
+    outline: none;
+    border-color: transparent; }
+
+.c-tabs__tabpanel:focus, .c-tabs__tabpanel.focus-visible {
   outline: 4px dotted #888;
   outline-offset: 5px; }
 
+.c-tabs__tabpanel:focus:not(:focus-visible) {
+  outline: none;
+  border-color: transparent; }
+
+.js-focus-visible .c-tabs__tabpanel:focus:not(.focus-visible) {
+  outline: none;
+  border-color: transparent; }
+
 /* tab styles specific to the Tabs | Text slice */
 .ps-tabs--text .c-tabs__tablist {
-  background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90));
-  background-size: 100% 4px;
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  padding: 0; }
+  background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90)), linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
+  background-size: 100% 4px, 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+  background-position: left bottom, 0 0, 100%, 0 0, 100%;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: local, local, local, scroll, scroll;
+  padding: 0;
+  position: relative; }
   @media all and (min-width: 50em) {
     .ps-tabs--text .c-tabs__tablist[aria-orientation="vertical"] {
       flex-direction: column;
@@ -73,15 +146,6 @@
     background-color: var(--color-grey-90);
     font-weight: bold;
     outline: none; }
-  .ps-tabs--text .c-tabs__tab:focus:not(:focus-visible) {
-    outline: none;
-    background: none; }
-  .js-focus-visible .ps-tabs--text .c-tabs__tab:focus:not(.focus-visible) {
-    outline: none;
-    background: none; }
-  .ps-tabs--text .c-tabs__tab:-moz-focusring {
-    outline: none;
-    background: none; }
 
 /* tabs content specific styles */
 .c-tabs__tabpanel__modules {

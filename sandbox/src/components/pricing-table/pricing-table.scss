@@ -1,42 +1,42 @@
 .ps-pricing-table__option {
-	@media all and (min-width: 40em) {
-		&:nth-of-type(2) {
-			background-color: #fff;
-			border: 1px solid;
-		}
-	}
+  @media all and (min-width: 40em) {
+    &:nth-of-type(2) {
+      background-color: #fff;
+      border: 1px solid;
+    }
+  }
 }
 
 .ps-pricing-table__option__price {
-	display: block;
-	color: var(--color-text-grey);
+  display: block;
+  color: var(--color-text-grey);
 }
 
 .ps-pricing-table__option__features {
-	list-style: none;
-	padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
-    .ps-pricing-table__option__feature {
-        margin-bottom: 1em;
-        padding-left: 2rem;
-        position: relative;
+.ps-pricing-table__option__feature {
+  margin-bottom: 1em;
+  padding-left: 2rem;
+  position: relative;
 
-        .feature-icon {
-            color: var(--color--primary);
+  .feature-icon {
+    color: var(--color--primary);
 
-            display: block;
-            width: 1em;
-            height: 1em;
-            position: absolute;
-            left: 0;
-            top: 50%;
-            margin-top: -.5em;
-        }
+    display: block;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -.5em;
+  }
 
-        &.not-included {
-            .feature-icon {
-                color: #888;
-            }
-        }
+  &.not-included {
+    .feature-icon {
+      color: #888;
     }
+  }
+}
