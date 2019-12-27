@@ -102,11 +102,13 @@
 
 /* tab styles specific to the Tabs | Text slice */
 .ps-tabs--text .c-tabs__tablist {
-  background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90));
-  background-size: 100% 4px;
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  padding: 0; }
+  background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90)), linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
+  background-size: 100% 4px, 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+  background-position: left bottom, 0 0, 100%, 0 0, 100%;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: local, local, local, scroll, scroll;
+  padding: 0;
+  position: relative; }
   @media all and (min-width: 50em) {
     .ps-tabs--text .c-tabs__tablist[aria-orientation="vertical"] {
       flex-direction: column;

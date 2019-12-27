@@ -81,7 +81,6 @@
   }
 
   &:focus:not(:focus-visible) {
-
     &[aria-selected="true"] {
       color: var(--color--primary);
 
@@ -97,7 +96,6 @@
   }
 
   .js-focus-visible &:focus:not(.focus-visible) {
-
     &[aria-selected="true"] {
       color: var(--color--primary);
 
