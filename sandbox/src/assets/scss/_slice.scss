@@ -77,16 +77,17 @@
 }
 
 .ps__head--left  {
-
   margin-bottom: var(--v-margin);
 
     @media all and (min-width: 40em) {
+      margin: 0;
       margin-bottom: calc(var(--v-margin) * 1.5);  
     }
     
   .ps__header *,
   .ps__desc {
     text-align: left;
+    margin-left: 0;
   }
 
   .ps__header + .ps__desc {
