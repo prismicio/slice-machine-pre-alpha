@@ -62,11 +62,14 @@
   padding: 1.5rem;
   border-radius: 8px;
   position: relative;
+  box-shadow: 0 12px 18px -8px rgba(0, 0, 0, 0.15), 0 12px 55px 10px rgba(0, 0, 0, 0.07);
   font-size: calc(1rem * var(--text-min-l));
   /* the triangle */ }
   @media all and (min-width: 50em) {
     .ps-testimonial__quote {
       margin: calc(var(--v-margin) * 2) 1rem 0 0; } }
+  .ps-testimonial__quote * {
+    line-height: 1.5; }
   @media screen and (min-width: 40rem) {
     .ps-testimonial__quote {
       font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
