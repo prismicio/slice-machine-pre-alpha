@@ -1,4 +1,7 @@
 /* General Tabs Styles Common to all tabs slices */
+.js-tabs .c-tabs__tabpanel .c-tabs__tabpanel__title {
+  display: none; }
+
 @supports (display: grid) {
   @media all and (min-width: 50em) {
     .c-tabs {

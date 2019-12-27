@@ -1,8 +1,10 @@
 /* General Tabs Styles Common to all tabs slices */
 
+// when the js is enabled, the tabpanels are labelled by their tabs
+// you may choose to hide or keep the headings inside of them visible
 .js-tabs .c-tabs__tabpanel {
   .c-tabs__tabpanel__title {
-    // display: none;
+    display: none;
   }
 }
 
@@ -176,7 +178,6 @@
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-attachment: local, local, local, scroll, scroll;
   padding: 0;
-
   position: relative;
 
 
@@ -184,7 +185,6 @@
     @media all and (min-width: 50em) {
       flex-direction: column;
       align-items: flex-start;
-
       background-size: 4px 100%;
       background-position: left top;
       background-repeat: no-repeat;
