@@ -28,12 +28,12 @@ export default {
 @import '../style/_variables';
 
 .body {
-  padding: 32px 0;
-  &--default {
-    background: $bg-secondary;
-  }
-  &--white {
-    background: #fff;
-  }
+	padding: 32px 0;
+	&--default {
+		background: $bg-secondary;
+	}
+	&--white {
+		background: #fff;
+	}
 }
 </style>

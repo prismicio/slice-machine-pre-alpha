@@ -18,18 +18,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/_variables';
+@import '../style/_global';
 
 .container {
-  width: 70%;
+  width: 98%;
   max-width: $container-width;
   padding: 0 24px;
   flex-wrap: wrap;
+  @include lg {
+    width: 90%;
+  }
+  @include xl {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 790px) {
-  .container {
-    padding: 0 16px;
-  }
+	.container {
+		padding: 0 16px;
+	}
 }
 </style>

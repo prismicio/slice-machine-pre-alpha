@@ -30,13 +30,13 @@ export default {
 @import '../../style/_variables.scss';
 
 .paragraph {
-  font-size: 18px;
-  line-height: 38px;
-  &--main {
-    color: $color-paragraph-main;
-  }
-  &--bold {
-    font-weight: 500;
-  }
+	font-size: 18px;
+	line-height: 38px;
+	&--main {
+		color: $color-paragraph-main;
+	}
+	&--bold {
+		font-weight: 500;
+	}
 }
 </style>

@@ -14,17 +14,19 @@ const pathToFiles = path.join(process.cwd(), 'website', 'pages', 'examples')
  */
 
 const createFile = ({
-  relativePathToSlice,
-  sliceName,
-  key,
-  title,
-  description
+	relativePathToSlice,
+	sliceName,
+	key,
+	title,
+	description
 }) => {
-  return `<template>
+	return `<template>
   <${key.replace(/_/g, '-')} :slice="mockData" />
 </template>
 <script>
-import { ${sliceName} } from '@/..${relativePathToSlice}'
+import { ${sliceName} } from '@/..${relativePathToSlice
+		.split('/slices')
+		.shift()}'
 import mockData from '@/..${relativePathToSlice}/${sliceName}/mock.json'
 export default {
   components: {
@@ -40,51 +42,59 @@ export default {
 `
 }
 async function main() {
-  await onBefore()
-  Object.entries(utils.sliceFolders).map(([framework, pathToSlices]) => {
-    console.log(framework, pathToSlices)
-    const sliceNames = utils.getSliceNames(null, pathToSlices)
-    sliceNames.map(sliceName => {
-      const {
-        key,
-        meta: { title, description }
-      } = utils.getAllFromSliceName(sliceName, pathToSlices)
-      const pToFile = path.join(pathToFiles, framework, `${sliceName}.vue`)
-      const fileExists = fs.existsSync(pToFile)
-      if (!fileExists) {
-        const file = createFile({
-          relativePathToSlice: pathToSlices.split(process.cwd())[1],
-          sliceName,
-          key,
-          title,
-          description
-        })
-        fs.writeFileSync(pToFile, file, 'utf8')
-      }
-    })
-  })
+	await onBefore()
+	Object.entries(utils.sliceFolders).map(([framework, pathToSlices]) => {
+		const sliceNames = utils.getSliceNames()
+		sliceNames
+			.map(sliceName => {
+				const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
+				if (!slice) {
+					console.error(
+						`[bundleExamples.js]: Slice data not found for sliceName ${sliceName}`
+					)
+					return null
+				}
+				const {
+					key,
+					meta: { title, description }
+				} = slice
+				const pToFile = path.join(pathToFiles, framework, `${sliceName}.vue`)
+				const fileExists = fs.existsSync(pToFile)
+				if (!fileExists) {
+					const file = createFile({
+						relativePathToSlice: pathToSlices.split(process.cwd())[1],
+						sliceName,
+						key,
+						title,
+						description
+					})
+					fs.writeFileSync(pToFile, file, 'utf8')
+				}
+			})
+			.filter(e => e)
+	})
 }
 
 /**
  * Build folders to files
  */
 function onBefore() {
-  const promises = []
-  Object.keys(utils.sliceFolders).forEach(framework => {
-    const p = new Promise(resolve => {
-      try {
-        fs.promises
-          .mkdir(path.join(pathToFiles, framework), {
-            recursive: true
-          })
-          .then(resolve)
-      } catch (e) {
-        console.error('onBefore err: ', e)
-      }
-    })
-    promises.push(p)
-  })
-  return Promise.all(promises)
+	const promises = []
+	Object.keys(utils.sliceFolders).forEach(framework => {
+		const p = new Promise(resolve => {
+			try {
+				fs.promises
+					.mkdir(path.join(pathToFiles, framework), {
+						recursive: true
+					})
+					.then(resolve)
+			} catch (e) {
+				console.error('onBefore err: ', e)
+			}
+		})
+		promises.push(p)
+	})
+	return Promise.all(promises)
 }
 
 main()

@@ -1,0 +1,62 @@
+@import "../mixins.scss";
+@import "../typography.scss";
+
+html {
+    font-size: 1rem;
+    font-family: var(--font-family);
+}
+
+body {
+    font-size: 1rem;
+    font-weight: 350;
+    line-height: 1.6;
+}
+
+p {
+    margin: 0 0 1.5em;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    margin-top: 0;
+    font-weight: 500;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+h1,
+.text--4xl {
+   @include fluid-type(font-size,40rem, 80rem, $text-min-4xl, $text-max-4xl);
+}
+
+h2,
+.text--3xl {
+    @include fluid-type(font-size,40rem, 80rem, $text-min-3xl, $text-max-3xl);
+}
+
+h3,
+.text--2xl {
+    @include fluid-type(font-size,40rem, 80rem, $text-min-2xl, $text-max-2xl);
+}
+
+h4,
+.text--xl {
+    @include fluid-type(font-size,40rem, 80rem, $text-min-xl, $text-max-xl);
+}
+
+h5,
+.text--l {
+   @include fluid-type(font-size,40rem, 80rem, $text-min-l, $text-max-l);
+}
+
+small, 
+.text--small {
+    @include fluid-type(font-size,40rem, 80rem, $text-min-small, $text-max-small);
+}

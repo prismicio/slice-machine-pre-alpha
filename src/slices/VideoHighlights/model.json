@@ -1,0 +1,45 @@
+{
+    "type": "Slice",
+    "fieldset": "Video Highlights",
+    "description": "Highlights of your video channel",
+    "icon": "ondemand_video",
+    "display": "list",
+    "non-repeat": {
+        "eyebrow_headline": {
+            "type": "Text",
+            "config": {
+                "label": "Eyebrow headline",
+                "placeholder": "Reinforce your copy with a key-worded text, to be displayed before title"
+            }
+        },
+        "title": {
+            "type": "StructuredText",
+            "config": {
+                "single": "heading2",
+                "label": "Title"
+            }
+        },
+        "description": {
+            "type": "StructuredText",
+            "config": {
+                "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                "allowTargetBlank": true,
+                "label": "Description"
+            }
+        }
+    },
+    "repeat": {
+        "video_title": {
+            "type": "Text",
+            "config": {
+                "label": "Video title"
+            }
+        },
+        "video_src": {
+            "type": "Embed",
+            "config": {
+                "label": "Video src"
+            }
+        }
+    }
+}

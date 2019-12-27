@@ -1,73 +1,65 @@
 {
-  "frameworkName": "Nuxt",
-  "customTypesToMerge": ["page"],
-  "pathToMergedSlices": "slices.json",
-  "prismicConfig": "prismic.config.js",
-  "examplesFolder": "pages",
-  "firstCommand": "npm run dev",
-  "additionalDisplay": "Before running your project, make sure you added\n`modules: [\n['prismic-nuxt', {\nendpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',\nlinkResolver: function(doc, ctx) {\nreturn '/'\n}\n}]\n]`\nto your Nuxt config file",
-  "projectTests": [
-    {
-      "arg": "-f",
-      "path": "nuxt.config.js",
-      "reason": "No `nuxt.config.js` file found"
-    },
-    {
-      "arg": "-d",
-      "path": "pages",
-      "reason": "No `pages` folder found"
-    }
-  ],
-  "bootstraper": ["npx", ["create-nuxt-app"]],
-  "actions": [
-    {
-      "type": "write",
-      "zipPath": "plugins/link-resolver.js",
-      "overwrite": false
-    },
-    {
-      "zipPath": "plugins/prismic-vue.js",
-      "overwrite": false
-    },
-    {
-      "zipPath": "slices.scss",
-      "overwrite": false
-    },
-    {
-      "zipPath": "pages/pages/_uid.vue",
-      "overwrite": false
-    },
-    {
-      "zipPath": "pages/index.vue",
-      "overwrite": false,
-      "bootstrapped": true
-    },
-    {
-      "zipPath": "custom_types/",
-      "overwrite": false,
-      "bootstrapped": true
-    },
-    {
-      "type": "delete",
-      "zipPath": "slices.scss"
-    },
-    {
-      "type": "delete",
-      "zipPath": "custom_types/"
-    },
-    {
-      "type": "delete",
-      "zipPath": "pages/"
-    },
-    {
-      "type": "delete",
-      "zipPath": "plugins/"
-    }
-  ],
-  "dependencies": [
-    "https://github.com/prismicio/prismic-vue.git",
-    "prismic-javascript",
-    "git+https://github.com/gholgot/prismic-nuxt.git#nuxtjs_merge"
-  ],
-  "devDependencies": ["node-sass", "sass-loader"]
+	"frameworkName": "Nuxt",
+	"customTypesToMerge": ["page"],
+	"pathToMergedSlices": "slices.json",
+	"prismicConfig": "prismic.config.js",
+	"examplesFolder": "pages",
+	"firstCommand": "npm run dev",
+	"additionalDisplay": "Before running your project, make sure you added\n`modules: [\n\t['prismic-nuxt', {\n\t\tendpoint: 'https://my-current-projo.cdn.prismic.io/api/v2',\n\t\troutes: [\n\t\t'/pages/',\n\t\t'/pages/:uid',\n\t\t'/',\n\t]}\n\t]\n]\n\nto your Nuxt config file",
+	"projectTests": [
+		{
+			"arg": "-f",
+			"path": "nuxt.config.js",
+			"reason": "No `nuxt.config.js` file found"
+		},
+		{
+			"arg": "-d",
+			"path": "pages",
+			"reason": "No `pages` folder found"
+		}
+	],
+	"bootstraper": ["npx", ["create-nuxt-app"]],
+	"actions": [
+		{
+			"type": "write",
+			"zipPath": "plugins/link-resolver.js",
+			"overwrite": false
+		},
+		{
+			"zipPath": "plugins/prismic-vue.js",
+			"overwrite": false
+		},
+		{
+			"zipPath": "pages/pages/_uid.vue",
+			"overwrite": false
+		},
+		{
+			"zipPath": "pages/index.vue",
+			"overwrite": false,
+			"bootstrapped": true
+		},
+		{
+			"zipPath": "custom_types/",
+			"overwrite": false,
+			"bootstrapped": true
+		},
+		{
+			"type": "delete",
+			"zipPath": "custom_types/"
+		},
+		{
+			"type": "delete",
+			"zipPath": "pages/"
+		},
+		{
+			"type": "delete",
+			"zipPath": "plugins/"
+		}
+	],
+	"dependencies": [
+		"prismic-javascript",
+		"prismic-vue",
+		"\"git+https://github.com/Gholgot/prismic-nuxt.git#tj/prismic_routes\""
+	],
+	"devDependencies": ["node-sass", "sass-loader"]
 }
