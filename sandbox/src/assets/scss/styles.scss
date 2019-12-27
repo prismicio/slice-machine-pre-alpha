@@ -3,7 +3,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     margin: 0;
     padding: 0;
@@ -61,6 +60,16 @@ img {
     height: auto; // to prevent imge squishing with width and height attrs set
 }
 
+
+button {
+    background: none;
+    font: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+
+    
+}
 
 
 

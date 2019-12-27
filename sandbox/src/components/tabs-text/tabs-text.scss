@@ -1,0 +1,161 @@
+
+/* General Tabs Styles Common to all tabs slices */
+
+.js-tabs .c-tabs__tabpanel {
+  .c-tabs__tabpanel__title {
+    // display: none;
+  }
+}
+
+.c-tabs {
+    @supports(display: grid) {
+      @media all and (min-width: 50em) {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-columns: subgrid;
+        grid-column-gap: var(--h-padding); 
+      }
+    }
+}
+
+.c-tabs__tablist {   
+    margin-bottom: calc(var(--v-margin) * 1.5);  
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    display: flex;
+    justify-content: space-between;
+
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &:focus, &.focus-visible {
+      outline: 2px dotted #888;
+      outline-offset: 5px;
+    }
+}
+.c-tabs__tab {
+    display: inline-block;
+    line-height: 1;
+    text-align: left;
+    position: relative;
+    transition: all .1s linear; 
+}
+
+.c-tabs__tabpanel {
+    &:focus {
+      outline: 4px dotted #888;
+      outline-offset: 5px;
+    }
+}
+
+
+/* tab styles specific to the Tabs | Text slice */
+
+
+.ps-tabs--text {
+    .c-tabs__tablist {
+        background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90));
+        background-size: 100% 4px;
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        padding: 0;
+
+        &[aria-orientation="vertical"] {
+          @media all and (min-width: 50em){
+            flex-direction: column;
+            align-items: flex-start;
+
+            background-size: 4px 100%;
+            background-position: left top;
+            background-repeat: no-repeat;
+          }
+      }
+    }
+
+    [aria-orientation="vertical"] .c-tabs__tab {
+        @media all and (min-width: 50em){
+          padding: 1.5rem;
+          border-left: 4px solid transparent;
+          border-bottom: none;
+        }
+    }
+
+    [aria-orientation="vertical"] .c-tabs__tab[aria-selected="true"] {
+          @media all and (min-width: 50em){
+            border-bottom: none;
+            border-left: 4px solid currentColor;
+          }
+    }
+
+    .c-tabs__tab {
+      font-weight: normal;
+      padding: 1.5rem;
+      border-bottom: 4px solid transparent;
+      border-left: none;
+      
+      &[aria-selected = "true"] {
+        color: var(--color--primary);
+        font-weight: bold;
+        border-bottom: 4px solid currentColor;
+      }
+
+  
+      &:hover {
+        color: var(--color--primary);
+      }
+
+      &:focus, &.focus-visible {
+        background-color: var(--color-grey-90);
+        font-weight: bold;
+        outline: none;
+      }
+
+      &:focus:not(:focus-visible) {
+          outline: none;
+          background: none;
+      }
+      .js-focus-visible &:focus:not(.focus-visible) {
+          outline: none;
+          background: none;
+      }
+
+      &:-moz-focusring {
+          outline: none;
+          background: none;
+      }
+    }
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* tabs content specific styles */
+
+.c-tabs__tabpanel__modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-column-gap: var(--h-padding);
+    grid-row-gap: var(--v-margin);
+}
+
+.c-tabs__tabpanel__module__img {
+  margin-bottom: 1rem;
+}

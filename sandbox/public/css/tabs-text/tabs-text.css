@@ -1,0 +1,94 @@
+/* General Tabs Styles Common to all tabs slices */
+@supports (display: grid) {
+  @media all and (min-width: 50em) {
+    .c-tabs {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: subgrid;
+      grid-column-gap: var(--h-padding); } } }
+
+.c-tabs__tablist {
+  margin-bottom: calc(var(--v-margin) * 1.5);
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: space-between;
+  -webkit-overflow-scrolling: touch; }
+  .c-tabs__tablist::-webkit-scrollbar {
+    display: none; }
+  .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {
+    outline: 2px dotted #888;
+    outline-offset: 5px; }
+
+.c-tabs__tab {
+  display: inline-block;
+  line-height: 1;
+  text-align: left;
+  position: relative;
+  transition: all .1s linear; }
+
+.c-tabs__tabpanel:focus {
+  outline: 4px dotted #888;
+  outline-offset: 5px; }
+
+/* tab styles specific to the Tabs | Text slice */
+.ps-tabs--text .c-tabs__tablist {
+  background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90));
+  background-size: 100% 4px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  padding: 0; }
+  @media all and (min-width: 50em) {
+    .ps-tabs--text .c-tabs__tablist[aria-orientation="vertical"] {
+      flex-direction: column;
+      align-items: flex-start;
+      background-size: 4px 100%;
+      background-position: left top;
+      background-repeat: no-repeat; } }
+
+@media all and (min-width: 50em) {
+  .ps-tabs--text [aria-orientation="vertical"] .c-tabs__tab {
+    padding: 1.5rem;
+    border-left: 4px solid transparent;
+    border-bottom: none; } }
+
+@media all and (min-width: 50em) {
+  .ps-tabs--text [aria-orientation="vertical"] .c-tabs__tab[aria-selected="true"] {
+    border-bottom: none;
+    border-left: 4px solid currentColor; } }
+
+.ps-tabs--text .c-tabs__tab {
+  font-weight: normal;
+  padding: 1.5rem;
+  border-bottom: 4px solid transparent;
+  border-left: none; }
+  .ps-tabs--text .c-tabs__tab[aria-selected="true"] {
+    color: var(--color--primary);
+    font-weight: bold;
+    border-bottom: 4px solid currentColor; }
+  .ps-tabs--text .c-tabs__tab:hover {
+    color: var(--color--primary); }
+  .ps-tabs--text .c-tabs__tab:focus, .ps-tabs--text .c-tabs__tab.focus-visible {
+    background-color: var(--color-grey-90);
+    font-weight: bold;
+    outline: none; }
+  .ps-tabs--text .c-tabs__tab:focus:not(:focus-visible) {
+    outline: none;
+    background: none; }
+  .js-focus-visible .ps-tabs--text .c-tabs__tab:focus:not(.focus-visible) {
+    outline: none;
+    background: none; }
+  .ps-tabs--text .c-tabs__tab:-moz-focusring {
+    outline: none;
+    background: none; }
+
+/* tabs content specific styles */
+.c-tabs__tabpanel__modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-column-gap: var(--h-padding);
+  grid-row-gap: var(--v-margin); }
+
+.c-tabs__tabpanel__module__img {
+  margin-bottom: 1rem; }
