@@ -12,9 +12,9 @@
           `hover-block ${hover || isInMyList ? 'hover-block--hovered' : ''}`
         "
       >
-        <Button variant="reverse" @click="addOrRemove()">
+        <!-- <Button variant="text-white" @click="addOrRemove()">
           {{ isInMyList ? 'Remove from my project' : 'Add it to my project' }}
-        </Button>
+        </Button> -->
         <Button
           variant="text-white"
           style="margin-top: 12px"
@@ -88,22 +88,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../style/variables';
+@import '../style/_global';
 
 .card {
-  width: calc(50% - #{$base-horizontal-margins});
   box-sizing: border-box;
-  min-height: 490px;
   background: #fff;
-  border: 1px solid #e1e1e1;
+  border: 1px solid $black-primary;
+  border-radius: 3px;
   position: relative;
-  &:nth-child(odd) {
-    margin-right: $base-horizontal-margins;
-  }
-
-  &:nth-child(even) {
-    margin-left: $base-horizontal-margins;
-  }
+  width: 100%;
+  margin: 32px 0 0 0;
 
   .image-block {
     width: 100%;
@@ -111,6 +105,9 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    @include xl {
+      height: 250px;
+    }
   }
 
   .hover-block {
@@ -121,8 +118,8 @@ export default {
     display: none;
     background-image: linear-gradient(
       0deg,
-      rgba(101, 181, 135, 0.95),
-      rgba(101, 181, 135, 0.95)
+      rgba(182, 182, 182, 0.95),
+      rgba(182, 182, 182, 0.95)
     );
     &--hovered {
       display: flex;
@@ -131,12 +128,16 @@ export default {
       position: absolute;
       flex-direction: column;
     }
+    @include xl {
+      height: 250px;
+    }
   }
 
   .description-block {
     padding: 32px;
     font-size: 16px;
     line-height: 24px;
+    border-top: 1px solid $black-primary;
     &__title {
       color: $text-darker;
     }
@@ -144,13 +145,6 @@ export default {
       color: $text-dark;
       margin-top: 8px;
     }
-  }
-}
-
-@media screen and (max-width: 790px) {
-  .card {
-    width: 100%;
-    margin: 32px 0 0 0 !important;
   }
 }
 </style>

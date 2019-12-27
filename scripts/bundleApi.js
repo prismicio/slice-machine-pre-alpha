@@ -14,74 +14,82 @@ const pathToStatic = path.join(process.cwd(), 'website', 'static', 'components')
  */
 
 async function main() {
-  try {
-    await onBefore()
-    Object.entries(utils.sliceFolders).map(([framework, pathToSlices]) => {
-      const sliceNames = utils.getSliceNames()
-      const allSlices = sliceNames.map(sliceName => {
-        const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
-        const previewExists = fs.existsSync(
-          path.join(pathToSlices, sliceName, 'preview.png')
-        )
-        if (previewExists) {
-          const maybeErr = fs.copyFileSync(
-            path.join(pathToSlices, sliceName, 'preview.png'),
-            path.join(pathToStatic, `${sliceName}.png`)
-          )
-          if (maybeErr) {
-            throw maybeErr
-          }
-        } else {
-          // throw new Error(`Unable to find preview for component ${sliceName}`)
-        }
-        slice.meta.imageUrl = previewExists
-          ? `/components/${sliceName}.png`
-          : undefined
+	try {
+		await onBefore()
+		Object.entries(utils.sliceFolders).map(([framework, pathToSlices]) => {
+			const sliceNames = utils.getSliceNames()
+			const allSlices = sliceNames
+				.map(sliceName => {
+					const slice = utils.getAllFromSliceName(sliceName, pathToSlices)
+					if (!slice) {
+						console.error(
+							`[bundleApi.js]: Slice data not found for sliceName ${sliceName}`
+						)
+						return null
+					}
+					const previewExists = fs.existsSync(
+						path.join(pathToSlices, sliceName, 'preview.png')
+					)
+					if (previewExists) {
+						const maybeErr = fs.copyFileSync(
+							path.join(pathToSlices, sliceName, 'preview.png'),
+							path.join(pathToStatic, `${sliceName}.png`)
+						)
+						if (maybeErr) {
+							throw maybeErr
+						}
+					} else {
+						// throw new Error(`Unable to find preview for component ${sliceName}`)
+					}
+					slice.meta.imageUrl = previewExists
+						? `/components/${sliceName}.png`
+						: undefined
 
-        fs.writeFileSync(
-          path.join(pathToFiles, framework, 'single', `${sliceName}.json`),
-          JSON.stringify(slice),
-          'utf8'
-        )
-        return slice
-      })
-      fs.writeFileSync(
-        path.join(pathToFiles, framework, 'slices.json'),
-        JSON.stringify(allSlices),
-        'utf8'
-      )
-    })
-  } catch (e) {
-    console.error(e)
-    process.exit(-1)
-  }
+					fs.writeFileSync(
+						path.join(pathToFiles, framework, 'single', `${sliceName}.json`),
+						JSON.stringify(slice),
+						'utf8'
+					)
+					return slice
+				})
+				.filter(e => e)
+			fs.writeFileSync(
+				path.join(pathToFiles, framework, 'slices.json'),
+				JSON.stringify(allSlices),
+				'utf8'
+			)
+		})
+	} catch (e) {
+		console.error(e)
+		process.exit(-1)
+	}
 }
 
 /**
  * Build folders to files
  */
 async function onBefore() {
-  const promises = []
-  await fs.remove(pathToFiles)
-  Object.keys(utils.sliceFolders).forEach(framework => {
-    const p = new Promise(resolve => {
-      try {
-        const pathToSingleApi = path.join(pathToFiles, framework, 'single')
-        if (fs.existsSync(pathToSingleApi)) {
-          return resolve()
-        }
-        return fs.promises
-          .mkdir(pathToSingleApi, {
-            recursive: true
-          })
-          .then(resolve)
-      } catch (e) {
-        resolve(e)
-      }
-    })
-    promises.push(p)
-  })
-  return Promise.all(promises)
+	const promises = []
+	await fs.remove(pathToFiles)
+	Object.keys(utils.sliceFolders).forEach(framework => {
+		const p = new Promise(resolve => {
+			try {
+				const pathToSingleApi = path.join(pathToFiles, framework, 'single')
+				if (fs.existsSync(pathToSingleApi)) {
+					return resolve()
+				}
+				return fs.promises
+					.mkdir(pathToSingleApi, {
+						recursive: true
+					})
+					.then(resolve)
+			} catch (e) {
+				resolve(e)
+			}
+		})
+		promises.push(p)
+	})
+	return Promise.all(promises)
 }
 
 main()

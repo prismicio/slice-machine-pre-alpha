@@ -10,12 +10,12 @@ export default {
   },
   render(h) {
     const component = () =>
-      import(`@/../src/slices/HeaderSlice/example.vue`)
-        .then(m => m.default)
-        .catch(e => {
-          console.error(e)
-          return Example
-        })
+			import(`@/../src/slices/HeaderSlice/example.vue`)
+			  .then(m => m.default)
+			  .catch(e => {
+			    console.error(e)
+			    return Example
+			  })
     return h(component)
   }
 }

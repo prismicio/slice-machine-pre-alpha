@@ -25,7 +25,7 @@ export default (type, element, content, children) => {
   // Present by default, it is recommended to keep this
   if (type === Elements.image) {
     let result = `<img src="${element.url}" alt="${element.alt ||
-      ''}" copyright="${element.copyright || ''}">`
+			''}" copyright="${element.copyright || ''}">`
 
     if (element.linkTo) {
       const url = prismicDOM.Link.url(element.linkTo, linkResolver)
@@ -44,6 +44,15 @@ export default (type, element, content, children) => {
     return result
   }
 
+  if (type === Elements.heading2) {
+    const id = element.text.replace(/\W+/g, '-').toLowerCase()
+    return '<h2 id="' + id + '">' + children.join('') + '</h2>'
+  }
+
+  if (type === Elements.heading3) {
+    const id = element.text.replace(/\W+/g, '-').toLowerCase()
+    return '<h3 id="' + id + '">' + children.join('') + '</h3>'
+  }
   // Return null to stick with the default behavior for everything else
   return null
 }

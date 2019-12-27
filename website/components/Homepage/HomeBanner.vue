@@ -2,13 +2,17 @@
   <section class="banner">
     <div class="call_to_action">
       <!-- <prismic-rich-text :field="document.title" /> -->
-      <HomeTitle />
-      <prismic-rich-text
-        :field="document.description"
-        class="big_description"
-      />
+      <h1 class="site-title">
+        Slİcemachİne
+      </h1>
+      <p class="big_description">
+        {{ document.description[0].text }}
+      </p>
       <div class="clipboard" @click.stop.prevent="copyCommand">
-        <prismic-rich-text :field="document.copy_paste_embed" />
+        <prismic-rich-text
+          class="embed-text"
+          :field="document.copy_paste_embed"
+        />
         <img src="../../static/clipboard.png" />
         <input
           id="command-to-copy"
@@ -25,12 +29,8 @@
 </template>
 
 <script>
-import HomeTitle from '@/components/Homepage/HomeTitle.vue'
 export default {
   name: 'HomeBanner',
-  components: {
-    HomeTitle
-  },
   props: {
     document: {
       type: Object,
@@ -63,37 +63,83 @@ export default {
 @import '../../style/_global';
 
 .banner {
-  min-height: 576px;
-  margin-top: 63px;
+  height: 288px;
+  padding-top: 12px;
+  @include md {
+    padding-top: 44px;
+  }
+  @include lg {
+    max-width: 450px;
+    height: 500px;
+    max-height: 582px;
+  }
+  @include xl {
+    max-width: 540px;
+    height: 576px;
+  }
 }
 .call_to_action {
-  max-width: 540px;
-  padding-top: 44px;
+  padding-top: 12px;
+  @include lg {
+    padding-top: 44px;
+  }
+  h1 {
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 42px;
+    font-weight: 800;
+    @include xl {
+      font-size: 60px;
+      line-height: 71px;
+    }
+  }
 }
 .clipboard {
-  width: 400px;
   display: flex;
+  justify-content: space-between;
   color: #ffffff;
   background-color: $black-primary;
   border-radius: 5px;
   padding: 20px;
   margin: 20px 0;
   cursor: pointer;
+  max-width: 400px;
   img {
-    margin-left: 30px;
+    display: none;
+    @include rwd(400) {
+      margin-left: 30px;
+      display: inline-block;
+    }
+  }
+  .embed-text {
+    text-align: center;
+    font-size: 13px;
+    @include sm {
+      font-size: 16px;
+    }
   }
   &:hover {
     background-color: $black-secondary;
   }
 }
 .big_description {
-  max-width: 530px;
-  font-size: 24px;
-  line-height: 40px;
+  font-size: 20px;
+  line-height: 34px;
+  color: $text-primary;
+  @include lg {
+    max-width: 530px;
+  }
+  @include xl {
+    font-size: 24px;
+    line-height: 40px;
+  }
 }
 .small_description {
-  max-width: 430px;
   font-size: 16px;
   line-height: 24px;
+  color: $text-primary;
+  @include lg {
+    max-width: 430px;
+  }
 }
 </style>

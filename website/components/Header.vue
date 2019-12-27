@@ -24,8 +24,8 @@ export default {
 @import '../style/_variables';
 
 .header {
-  background-position: bottom right;
-  background-size: 50%;
-  background-repeat: no-repeat;
+	background-position: bottom right;
+	background-size: 50%;
+	background-repeat: no-repeat;
 }
 </style>

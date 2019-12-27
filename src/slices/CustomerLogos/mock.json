@@ -1,0 +1,110 @@
+{
+    "slice_type": "customer_logos",
+    "slice_label": null,
+    "items": [
+        {
+            "logo": {
+                "dimensions": {
+                    "width": 137,
+                    "height": 23
+                },
+                "alt": null,
+                "copyright": null,
+                "url": "https://images.prismic.io/slicesexamples/23461395-458d-41f5-be25-bac37a4ff53e_logo-6.svg?auto=compress,format"
+            },
+            "link": {
+                "link_type": "Web",
+                "url": "https://prismic.io",
+                "target": "_blank"
+            }
+        },
+        {
+            "logo": {
+                "dimensions": {
+                    "width": 116,
+                    "height": 19
+                },
+                "alt": null,
+                "copyright": null,
+                "url": "https://images.prismic.io/slicesexamples/b62a8629-f7f1-4d2e-885a-bd7c6bcff201_logo-2.svg?auto=compress,format"
+            },
+            "link": {
+                "link_type": "Web",
+                "url": "https://prismic.io",
+                "target": "_blank"
+            }
+        },
+        {
+            "logo": {
+                "dimensions": {
+                    "width": 137,
+                    "height": 23
+                },
+                "alt": null,
+                "copyright": null,
+                "url": "https://images.prismic.io/slicesexamples/23461395-458d-41f5-be25-bac37a4ff53e_logo-6.svg?auto=compress,format"
+            },
+            "link": {
+                "link_type": "Web",
+                "url": "https://prismic.io"
+            }
+        },
+        {
+            "logo": {
+                "dimensions": {
+                    "width": 92,
+                    "height": 30
+                },
+                "alt": null,
+                "copyright": null,
+                "url": "https://images.prismic.io/slicesexamples/4360a72b-bfe4-4144-911c-597146f72c00_logo-5.svg?auto=compress,format"
+            },
+            "link": {
+                "link_type": "Web",
+                "url": "https://prismic.io",
+                "target": "_blank"
+            }
+        },
+        {
+            "logo": {
+                "dimensions": {
+                    "width": 92,
+                    "height": 25
+                },
+                "alt": null,
+                "copyright": null,
+                "url": "https://images.prismic.io/slicesexamples/846576e2-c93c-40dd-8aaa-b97f4e99e7aa_logo-1.svg?auto=compress,format"
+            },
+            "link": {
+                "link_type": "Web",
+                "url": "https://prismic.io",
+                "target": "_blank"
+            }
+        },
+        {
+            "logo": {
+                "dimensions": {
+                    "width": 82,
+                    "height": 33
+                },
+                "alt": null,
+                "copyright": null,
+                "url": "https://images.prismic.io/slicesexamples/7d1eee79-2e69-47ea-807d-22b8287773c0_logo-4.svg?auto=compress,format"
+            },
+            "link": {
+                "link_type": "Web",
+                "url": "https://prismic.io",
+                "target": "_blank"
+            }
+        }
+    ],
+    "primary": {
+        "eyebrow_headline": "They like us",
+        "call_to_action": "View customer stories",
+        "call_to_action_link": {
+            "link_type": "Web",
+            "url": "https://prismic.io",
+            "target": "_blank"
+        }
+    }
+}

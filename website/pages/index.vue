@@ -1,11 +1,8 @@
 <template>
   <main>
-    <MainMenu :menu="menuContent" />
     <section
+      class="banner-bg"
       :style="{
-        background: `no-repeat`,
-        backgroundSize: `85%`,
-        backgroundPosition: `left`,
         backgroundImage: `url('${document.banner_background.url}')`
       }"
     >
@@ -13,8 +10,8 @@
         <HomeBanner :document="document" />
       </Container>
     </section>
-    <Body class="body--white">
-      <row
+    <Body class="body--white home-body-img" :style="imageVars">
+      <Row
         v-for="(slice, index) in websiteSlices"
         :key="'slice-' + index"
         class="homerows"
@@ -26,17 +23,14 @@
         <VideoBlock v-if="slice.slice_type === 'video_block'" :slice="slice" />
         <ProsBlock v-if="slice.slice_type === 'slice_table'" :slice="slice" />
         <HomeLib v-if="slice.slice_type === 'cards'" :slice="slice" />
-      </row>
+      </Row>
     </Body>
-    <FooterMenu :menu="menuContent" />
   </main>
 </template>
 
 <script>
 import Prismic from 'prismic-javascript'
 import PrismicConfig from '~/prismic.config.js'
-import MainMenu from '@/components/MainMenu'
-import FooterMenu from '@/components/FooterMenu'
 import Container from '@/components/Container'
 
 import HomeBanner from '@/components/Homepage/HomeBanner'
@@ -50,8 +44,6 @@ import Row from '@/components/Row'
 
 export default {
   components: {
-    MainMenu,
-    FooterMenu,
     HomeBanner,
     Container,
     GraphicBlock,
@@ -71,14 +63,6 @@ export default {
       const result = await api.getSingle('home')
       document = result.data
 
-      // Query to get the menu content
-      let menuContent = {}
-      const menu = await api.getByUID('menu', 'main_menu')
-      menuContent = menu.data
-
-      // Load the edit button
-      if (process.client) window.prismic.setupEditButton()
-
       return {
         // Page content
         document,
@@ -86,12 +70,19 @@ export default {
 
         // Set slices as variable
         websiteSlices: document.body,
-
-        // Menu
-        menuContent
+        smallBg: document.body.find(
+          x => x.slice_type === 'image_with_description'
+        ).primary.graphic.small_main.url
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Homepage not found' })
+    }
+  },
+  computed: {
+    imageVars() {
+      return {
+        '--bg-image': `url(${this.smallBg})`
+      }
     }
   }
 }
@@ -100,7 +91,32 @@ export default {
 <style lang="scss" scoped>
 @import '../style/_global';
 
+.banner-bg {
+  background: no-repeat;
+  background-size: 0;
+  background-position: left;
+  background-origin: content-box;
+  padding-top: 22px;
+  @include lg {
+    background-size: 88%;
+  }
+  @include rwd(1724) {
+    background-position: center;
+    background-size: 1342px;
+  }
+}
+
+.home-body-img {
+  background: var(--bg-image) no-repeat content-box;
+  background-size: contain;
+  padding-top: 50px;
+  @include lg {
+    background: none;
+    padding-top: inherit;
+  }
+}
+
 .homerows {
-  padding: 25px 0;
+  padding: 50px 0;
 }
 </style>

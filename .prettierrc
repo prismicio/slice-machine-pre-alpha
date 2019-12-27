@@ -2,5 +2,6 @@
   "semi": false,
   "arrowParens": "avoid",
   "singleQuote": true,
-  "v-bind-style": false
+  "v-bind-style": false,
+  "useTabs": true
 }
