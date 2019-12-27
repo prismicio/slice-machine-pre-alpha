@@ -853,7 +853,17 @@ a.ps-button--ghost {
   overflow-y: hidden;
   display: flex;
   justify-content: space-between;
-  -webkit-overflow-scrolling: touch; }
+  -webkit-overflow-scrolling: touch;
+  background: linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
+  background-color: #ffffff;
+  background-position: 0 0,100%,0 0,100%;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+  background-size: 20px 100%,20px 100%,10px 100%,10px 100%;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */ }
   .c-tabs__tablist::-webkit-scrollbar {
     display: none; }
   .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {
@@ -871,7 +881,7 @@ a.ps-button--ghost {
   justify-content: center; }
 
 .c-tabs__tablist--dotnav .c-tabs__tab {
-  padding: 1rem;
+  padding: .75rem;
   border-radius: 50%;
   color: #000;
   border: 2px dotted transparent; }
@@ -922,9 +932,17 @@ a.ps-button--ghost {
     outline: none;
     border-color: transparent; }
 
-.c-tabs__tabpanel:focus {
+.c-tabs__tabpanel:focus, .c-tabs__tabpanel.focus-visible {
   outline: 4px dotted #888;
   outline-offset: 5px; }
+
+.c-tabs__tabpanel:focus:not(:focus-visible) {
+  outline: none;
+  border-color: transparent; }
+
+.js-focus-visible .c-tabs__tabpanel:focus:not(.focus-visible) {
+  outline: none;
+  border-color: transparent; }
 
 /* tab styles specific to the Tabs | Text slice */
 .ps-tabs--text .c-tabs__tablist {
@@ -993,18 +1011,24 @@ a.ps-button--ghost {
 
 .ps-testimonials .c-tabs__tablist {
   grid-row: 2;
-  padding: var(--v-margin);
-  margin-left: calc(var(--v-margin) * -1); }
+  padding: var(--v-margin); }
   @media all and (min-width: 50em) {
     .ps-testimonials .c-tabs__tablist {
       margin-top: calc(var(--v-space) / 2); } }
 
+.ps-testimonials .c-tabs__tablist--imgs {
+  margin-left: calc(var(--v-margin) * -1); }
+
 .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab {
   min-width: 44px;
-  margin-right: 2rem; }
+  margin-right: 2rem;
+  padding-bottom: .5rem;
+  border-bottom: 4px solid transparent; }
   .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:last-of-type {
     margin-right: 0; }
-  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab.focus-visible {
+  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab[aria-selected="true"] {
+    border-bottom: 8px solid var(--color--primary); }
+  .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:active, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus, .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab.focus-visible {
     outline: 4px dotted #888;
     outline-offset: 4px; }
   .ps-testimonials .c-tabs__tablist--imgs .c-tabs__tab:focus:not(:focus-visible) {
@@ -1031,8 +1055,7 @@ a.ps-button--ghost {
 
 .ps-testimonials__img-wrapper {
   background-color: var(--color--secondary);
-  border-radius: 16px;
-  height: 100%; }
+  border-radius: 16px; }
   @media all and (min-width: 50em) {
     .ps-testimonials__img-wrapper {
       width: 100%;
@@ -1074,6 +1097,7 @@ a.ps-button--ghost {
     background-image: url("../img/quote-triangle.svg");
     background-size: 100% auto;
     transform: rotate(90deg);
+    background-repeat: no-repeat;
     bottom: -1rem;
     left: 2.5rem; }
     @media all and (min-width: 50em) {
