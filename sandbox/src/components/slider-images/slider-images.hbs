@@ -16,23 +16,42 @@
     <div class="ps__main grid grid--12">
       <div class="span-1-12">
 
-        <div class="c-slider" data-slider>
+        <!-- the slider label should not have word "slider" in it -->
+        <div class="c-slider" data-slider data-aria-label="PROVIDE_LABEL">
+          <!-- make sure to provide a readable label for each section to be used in the dotNav buttons -->
+          <div class="c-slider__slides-container" data-slides>
+            <div class="c-slider__slides-wrapper">
+              <div id="PROVIDE_LABEL_1" class="c-slider__slide" data-slide>
+                <a href="#">Slide</a> 1
+              </div>
+              <div id="PROVIDE_LABEL_2" class="c-slider__slide" data-slide>
+                <a href="#">Slide</a> 2
+              </div>
+              <div id="PROVIDE_LABEL_3" class="c-slider__slide" data-slide>
+                <a href="#">Slide</a> 3
+              </div>
+              <div id="PROVIDE_LABEL_4" class="c-slider__slide" data-slide>
+                <a href="#">Slide</a> 4
+              </div>
+            </div>
+          </div>
+
           <!-- the dotNav is generated in the JS according to the number of slides / -->
           <!---->
           <!-- paddleNav (prev and next buttons) provided here for flexibility (choose and use the icon you want) -->
-          <div data-slider-paddlenav hidden>
-            <button class="slider__nav__prev" aria-label="Previous Slide" data-prev>
+          <div class="c-slider__paddleNav" data-slider-paddlenav hidden>
+            <button class="c-slider__paddleNav__prev" aria-label="Previous Slide" data-prev>
               <!-- place icon here -->
-              <svg width="8" height="12">
+              <svg width="8" height="12" aria-hidden="true" focusable="false">
                 <g fill="none" fill-rule="evenodd">
                   <path d="M-8-6h24v24H-8z" />
                   <path fill="#000" fill-rule="nonzero" d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z" />
                 </g>
               </svg>
             </button>
-            <button class="slider__nav__next" aria-label="Next Slide" data-next>
+            <button class="c-slider__paddleNav__next" aria-label="Next Slide" data-next>
               <!-- place icon here -->
-              <svg width="8" height="12">
+              <svg width="8" height="12" aria-hidden="true" focusable="false">
                 <g fill="none" fill-rule="evenodd">
                   <path d="M-8-6h24v24H-8z" />
                   <path fill="#000" fill-rule="nonzero" d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z" />
@@ -41,21 +60,6 @@
             </button>
           </div>
 
-          <!-- make sure to provide a readable label for each section to be used in the URL hash & dotNav buttons -->
-          <div data-slides>
-            <div id="PROVIDE_LABEL_1" class="c-slider__slide span-1-12" data-slide>
-              Slide 1
-            </div>
-            <div id="PROVIDE_LABEL_2" class="c-slider__slide span-1-12" data-slide>
-              Slide 2
-            </div>
-            <div id="PROVIDE_LABEL_3" class="c-slider__slide span-1-12" data-slide>
-              Slide 3
-            </div>
-            <div id="PROVIDE_LABEL_4" class="c-slider__slide span-1-12" data-slide>
-              Slide 4
-            </div>
-          </div>
         </div>
       </div>
 

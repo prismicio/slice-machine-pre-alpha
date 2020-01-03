@@ -1,6 +1,4 @@
-// select data-slider
-// data-slider gets role="group" and aria-label="" and aria-roledescription="slider"
-// 
+
 // each data-slide gets role group and aria-roledescription=slide
 // if dotnav exists: 
 // generate dotnav based on number of slides
@@ -10,12 +8,11 @@
 // each slide has aria-labelledby set to the dot that controls it
 // each dot would need a useful name; 
 // from the apple site: use the data-slide ID but replace - with  nothing and capitalize, use "Slide X" instead
-// using the ID is useful because you need the ID for the URL hash to start with, so the dev needs to provide it anyway
 
 
 // if looping:
-// when the selectedTab = current = last tab, disable next button
-// when the selectedTab = current = first tab, disable previous button
+// when the selectedDot = current = last tab, disable next button
+// when the selectedDot = current = first tab, disable previous button
 
 "use strict";
 if (typeof Object.assign != "function") {
@@ -126,7 +123,8 @@ var util = {
   var ARIAaccOptions = {
     manual: true,
     open: 0,
-    loop: true
+    loop: true,
+    widthDotNav: true
   }
 
   var ARIAslider = function (inst, options) {
@@ -138,115 +136,135 @@ var util = {
     var prevButton = paddleNav.querySelector('[data-prev]');
     var nextButton = paddleNav.querySelector('[data-next]');
 
-    var sliderID = util.generateID('ps__slider-');
+    var sliderID = util.generateID('c-slider-');
 
     var currentIndex = _options.open;
-    var selectedSlide = currentIndex;
+    var selectedDot = currentIndex;
     var manual = _options.manual;
     var loop = _options.loop;
+    var withDotNav = _options.widthDotNav;
+    var dots = [];
 
 
     var init = function () {
       el.setAttribute('id', sliderID);
       el.classList.add('js-slider');
+
+      // data-slider gets role="group" and aria-label="" and aria-roledescription="slider"
+      el.setAttribute('role', 'group'); // or region
+      el.setAttribute('aria-roledescription', 'Slider');
+      el.setAttribute('aria-label', el.getAttribute('data-aria-label'));
+
+      // show Next and Prev Buttons
       paddleNav.removeAttribute('hidden');
 
-      // setupDotNav();
-      // setupTabs();
-      // setupTabPanels();
+      setupPaddleNav();
+
+      if (withDotNav) setupDotNav();
+      setupSlides();
     };
 
-    var setupTabList = function () {
-      // create 
-      tablist.setAttribute("role", "tablist");
-      if (orientation == 'vertical') tablist.setAttribute("aria-orientation", "vertical");
+    var setupPaddleNav = function () {
+
     }
 
-    var setupTabs = function () {
+    var setupDotNav = function () {
+      var dotNavList = document.createElement('div');
+      dotNavList.setAttribute('data-slider-dotNav', '');
+      dotNavList.setAttribute('role', 'tablist');
+      dotNavList.setAttribute('class', 'c-slider__dotNav');
 
-      tabs.forEach((tab, index) => {
-        tab.setAttribute('role', 'tab');
-        // each tab needs an ID that will be used to label its corresponding panel
-        tab.setAttribute('id', tabsID + '__tab-' + index);
-        tab.setAttribute('data-controls', tabpanels[index].getAttribute('id'));
+      // create dots
+      var nb = slides.length;
+      for (var i = 0; i < nb; i++) {
+        let dot = document.createElement('button');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('id', sliderID + '__dot-' + i)
+        dot.setAttribute('class', 'c-slider__dotNav__dot')
+        dot.setAttribute('data-slider-dot', '')
+        dot.setAttribute('data-controls', slides[i].getAttribute('id'));
 
-        // first tab is initially active
+        // append dot to dotNavList
+        dotNavList.appendChild(dot);
+        dots.push(dot);
+      }
+
+      dots.forEach((dot, index) => {
         if (index === currentIndex) {
-          selectTab(tab);
-          // updateUrlHash();
+          selectDot(dot);
         }
 
-        if (tab.getAttribute('data-controls') === util.getUrlHash()) {
-          currentIndex = index;
-          selectedTab = index;
-          selectTab(tab);
-        }
-
-        tab.addEventListener('click', (e) => {
+        dot.addEventListener('click', (e) => {
           e.preventDefault();
           currentIndex = index;
-          selectedTab = index;
-          focusCurrentTab();
-          selectTab(tab);
-          updateUrlHash();
+          selectedDot = index;
+          focusCurrentDot();
+          selectDot(dot);
         }, false);
 
-        tab.addEventListener('keydown', (e) => {
-          tabKeyboardRespond(e, tab);
+        dot.addEventListener('keydown', (e) => {
+          dotKeyboardRespond(e, dot);
         }, false);
       });
+
+
+      // append dotNavList to slider
+      el.appendChild(dotNavList);
     }
 
-    var focusCurrentTab = function () {
-      tabs[currentIndex].focus();
+
+    var focusCurrentDot = function () {
+      dots[currentIndex].focus();
     }
 
-    var updateUrlHash = function () {
-      var active = tabs[selectedTab];
-      util.setUrlHash(active.getAttribute('data-controls'));
-    };
-
-    var selectTab = function (tab) {
-      // unactivate all other tabs
-      tabs.forEach(tab => {
-        tab.setAttribute('aria-selected', 'false');
-        tab.setAttribute('tabindex', '-1');
+    var selectDot = function (dot) {
+      // unactivate all other dots
+      dots.forEach(dot => {
+        dot.setAttribute('aria-selected', 'false');
+        dot.setAttribute('tabindex', '-1');
       });
       //activate current tab
-      tab.setAttribute('aria-selected', 'true');
-      tab.setAttribute('tabindex', '0');
+      dot.setAttribute('aria-selected', 'true');
+      dot.setAttribute('tabindex', '0');
 
       // activate corresponding panel 
-      showTabpanel(tab);
+      showSlide(dot);
     }
 
-    var setupTabPanels = function () {
-      tabpanels.forEach((tabpanel, index) => {
-        tabpanel.setAttribute('role', 'tabpanel');
-        tabpanel.setAttribute('tabindex', '-1');
-        tabpanel.setAttribute('hidden', '');
-
-        if (index == currentIndex) {
-          tabpanel.removeAttribute('hidden');
+    var setupSlides = function () {
+      slides.forEach((slide, index) => {
+        if (_options.widthDotNav) {
+          slide.setAttribute('role', 'tabpanel');
+        }
+        else {
+          slide.setAttribute('role', 'group');
+          slide.setAttribute('aria-roledescription', 'Slide');
         }
 
-        tabpanel.addEventListener('keydown', (e) => {
-          panelKeyboardRespond(e);
+        slide.setAttribute('tabindex', '-1');
+        // slide.setAttribute('hidden', '');
+
+        if (index == currentIndex) {
+          // slide.removeAttribute('hidden');
+        }
+
+        slide.addEventListener('keydown', (e) => {
+          // panelKeyboardRespond(e);
         }, false);
 
-        tabpanel.addEventListener("blur", () => {
-          tabpanel.setAttribute('tabindex', '-1');
+        slide.addEventListener("blur", () => {
+          slide.setAttribute('tabindex', '-1');
         }, false);
       });
     }
 
 
-    var panelKeyboardRespond = function (e) {
+    var slideKeyboardRespond = function (e) {
       var keyCode = e.keyCode || e.which;
 
       switch (keyCode) {
         case util.keyCodes.TAB:
-          tabpanels[currentIndex].setAttribute('tabindex', '-1');
+          slides[currentIndex].setAttribute('tabindex', '-1');
           break;
 
         default:
@@ -255,21 +273,21 @@ var util = {
     }
 
 
-    var showTabpanel = function (tab) {
-      tabpanels.forEach((tabpanel, index) => {
-        tabpanel.setAttribute('hidden', '');
-        tabpanel.removeAttribute('tabindex');
+    var showSlide = function (dot) {
+      slides.forEach((slide, index) => {
+        slide.setAttribute('hidden', '');
+        slide.removeAttribute('tabindex');
 
         if (index == currentIndex) {
-          tabpanel.removeAttribute('hidden');
-          tabpanel.setAttribute('aria-labelledby', tabs[currentIndex].getAttribute('id'));
-          tabpanel.setAttribute('tabindex', '0');
+          slide.removeAttribute('hidden');
+          slide.setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
+          slide.setAttribute('tabindex', '0');
         }
       });
     }
 
     var incrementcurrentIndex = function () {
-      if (currentIndex < tabs.length - 1) {
+      if (currentIndex < dots.length - 1) {
         return ++currentIndex;
       }
       else {
@@ -284,14 +302,14 @@ var util = {
         return --currentIndex;
       }
       else {
-        currentIndex = tabs.length - 1;
+        currentIndex = dots.length - 1;
         return currentIndex;
       }
     };
 
-    var tabKeyboardRespond = function (e, tab) {
-      var firstTab = tabs[0];
-      var lastTab = tabs[tabs.length - 1];
+    var dotKeyboardRespond = function (e, dot) {
+      var firstDot = dots[0];
+      var lastDot = dots[dots.length - 1];
 
       var keyCode = e.keyCode || e.which;
 
@@ -300,12 +318,11 @@ var util = {
         case util.keyCodes.LEFT:
           e.preventDefault();
           decrementcurrentIndex();
-          focusCurrentTab();
+          focusCurrentDot();
 
           if (!manual) {
-            selectedTab = currentIndex;
-            selectTab(tabs[selectedTab]);
-            updateUrlHash();
+            selectedDot = currentIndex;
+            selectDot(dots[selectedDot]);
           }
 
           break;
@@ -315,12 +332,11 @@ var util = {
         case util.keyCodes.RIGHT:
           e.preventDefault();
           incrementcurrentIndex();
-          focusCurrentTab();
+          focusCurrentDot();
 
           if (!manual) {
-            selectedTab = currentIndex;
-            selectTab(tabs[selectedTab]);
-            updateUrlHash();
+            selectedDot = currentIndex;
+            selectDot(dots[selectedDot]);
           }
 
           break;
@@ -329,16 +345,15 @@ var util = {
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
           e.preventDefault();
-          selectedTab = currentIndex;
-          selectTab(tabs[selectedTab]);
-          updateUrlHash();
+          selectedDot = currentIndex;
+          selectDot(dots[selectedDot]);
 
           break;
 
 
         case util.keyCodes.TAB:
-          tabpanels[selectedTab].setAttribute('tabindex', '0');
-          currentIndex = selectedTab;
+          tabpanels[selectedDot].setAttribute('tabindex', '0');
+          currentIndex = selectedDot;
 
           break;
 
@@ -346,7 +361,6 @@ var util = {
         case util.keyCodes.HOME:
           e.preventDefault();
           firstTab.focus();
-          updateUrlHash();
 
           break;
 
@@ -354,7 +368,6 @@ var util = {
         case util.keyCodes.END:
           e.preventDefault();
           lastTab.focus();
-          updateUrlHash();
 
           break;
       }
