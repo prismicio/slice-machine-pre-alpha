@@ -307,7 +307,7 @@ var util = {
           break;
 
         case util.keyCodes.TAB:
-          tabpanels[selectedDot].setAttribute('tabindex', '0');
+          slides[selectedDot].setAttribute('tabindex', '0');
           currentIndex = selectedDot;
           break;
 
