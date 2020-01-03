@@ -38,7 +38,6 @@
 
 .c-slider[data-slider] {
   position: relative;
-  border: 5px solid #ddd;
   padding: 0 3rem;
 }
 
@@ -81,11 +80,20 @@
   border: 5px solid hsl(187, 41%, 70%);
 }
 
-[data-slide] {
+.c-slider__slide {
   width: 100%;
   border: 2px solid;
   padding: 10vw;
   margin-bottom: var(--v-space);
+  transition: visibility .4s linear;
+
+  &[data-hidden="true"] {
+    visibility: hidden;
+  }
+
+  &[data-hidden="false"] {
+    visibility: visible;
+  }
 }
 
 .js-slider {
@@ -96,11 +104,11 @@
 
   .c-slider__slides-wrapper {
     width: 100%;
-    overflow: hidden;
     display: flex;
+    transition: transform .4s linear;
   }
 
-  [data-slide] {
+  .c-slider__slide {
     margin: 0;
     flex-shrink: 0; // to make sure slides inside the flex container take up 100% of the container and don't shrink to their content size.
   }

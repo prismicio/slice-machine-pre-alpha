@@ -18,28 +18,9 @@
 
         <!-- the slider label should not have word "slider" in it -->
         <div class="c-slider" data-slider data-aria-label="PROVIDE_LABEL">
-          <!-- make sure to provide a readable label for each section to be used in the dotNav buttons -->
-          <div class="c-slider__slides-container" data-slides>
-            <div class="c-slider__slides-wrapper">
-              <div id="PROVIDE_LABEL_1" class="c-slider__slide" data-slide>
-                <a href="#">Slide</a> 1
-              </div>
-              <div id="PROVIDE_LABEL_2" class="c-slider__slide" data-slide>
-                <a href="#">Slide</a> 2
-              </div>
-              <div id="PROVIDE_LABEL_3" class="c-slider__slide" data-slide>
-                <a href="#">Slide</a> 3
-              </div>
-              <div id="PROVIDE_LABEL_4" class="c-slider__slide" data-slide>
-                <a href="#">Slide</a> 4
-              </div>
-            </div>
-          </div>
 
-          <!-- the dotNav is generated in the JS according to the number of slides / -->
-          <!---->
-          <!-- paddleNav (prev and next buttons) provided here for flexibility (choose and use the icon you want) -->
           <div class="c-slider__paddleNav" data-slider-paddlenav hidden>
+            <!-- paddleNav (prev and next buttons) provided here for flexibility (choose and use the icon you want) -->
             <button class="c-slider__paddleNav__prev" aria-label="Previous Slide" data-prev>
               <!-- place icon here -->
               <svg width="8" height="12" aria-hidden="true" focusable="false">
@@ -59,6 +40,28 @@
               </svg>
             </button>
           </div>
+
+          <!-- make sure to provide a readable label for each section to be used in the dotNav buttons -->
+          <div class="c-slider__slides-container" data-slides>
+            <div class="c-slider__slides-wrapper" data-slides-wrapper>
+              <div id="this-is-slide-one-label" class="c-slider__slide" data-slide>
+                <a href="#">Slide</a> 1
+              </div>
+              <div id="this-is-slide-two-label" class="c-slider__slide" data-slide>
+                <a href="#">Slide</a> 2
+              </div>
+              <div id="this-is-slide-three-label" class="c-slider__slide" data-slide>
+                <a href="#">Slide</a> 3
+              </div>
+              <div id="this-is-slide-four-label" class="c-slider__slide" data-slide>
+                <a href="#">Slide</a> 4
+              </div>
+            </div>
+          </div>
+
+          <!-- the dotNav is generated in the JS according to the number of slides / -->
+          <!---->
+
 
         </div>
       </div>

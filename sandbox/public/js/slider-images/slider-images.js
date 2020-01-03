@@ -115,6 +115,7 @@ var util = {
 
     var el = inst;
     var slidesContainer = el.querySelector("[data-slides]");
+    var slidesWrapper = el.querySelector("[data-slides-wrapper]");
     var slides = Array.from(el.querySelectorAll("[data-slide]"));
     var paddleNav = el.querySelector("[data-slider-paddleNav]");
     var prevButton = paddleNav.querySelector('[data-prev]');
@@ -142,6 +143,12 @@ var util = {
     };
 
     var setupPaddleNav = function setupPaddleNav() {
+      prevButton.addEventListener('keydown', function (e) {
+        paddleKeyboardRespond(e);
+      }, false);
+      nextButton.addEventListener('keydown', function (e) {
+        paddleKeyboardRespond(e);
+      }, false);
       prevButton.addEventListener('click', function () {
         slideBack();
       });
@@ -161,6 +168,7 @@ var util = {
       for (var i = 0; i < nb; i++) {
         var dot = document.createElement('button');
         dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', util.dashToCamelCase(slides[i].getAttribute('id')));
         dot.setAttribute('id', sliderID + '__dot-' + i);
         dot.setAttribute('class', 'c-slider__dotNav__dot');
         dot.setAttribute('data-slider-dot', '');
@@ -204,10 +212,12 @@ var util = {
       dot.setAttribute('aria-selected', 'true');
       dot.setAttribute('tabindex', '0'); // activate corresponding panel 
 
-      showSlide(dot);
+      activateSlide(dot);
     };
 
     var setupSlides = function setupSlides() {
+      if (loop) {}
+
       slides.forEach(function (slide, index) {
         if (_options.widthDotNav) {
           slide.setAttribute('role', 'tabpanel');
@@ -216,9 +226,11 @@ var util = {
           slide.setAttribute('aria-roledescription', 'Slide');
         }
 
-        slide.setAttribute('tabindex', '-1'); // slide.setAttribute('hidden', '');
+        slide.setAttribute('tabindex', '-1');
+        slide.setAttribute('data-hidden', 'true');
 
-        if (index == currentIndex) {// slide.removeAttribute('hidden');
+        if (index == currentIndex) {
+          slide.setAttribute('data-hidden', 'false');
         }
 
         slide.addEventListener('keydown', function (e) {// panelKeyboardRespond(e);
@@ -242,15 +254,16 @@ var util = {
       }
     };
 
-    var showSlide = function showSlide(dot) {
+    var activateSlide = function activateSlide(dot) {
       slides.forEach(function (slide, index) {
-        slide.setAttribute('hidden', '');
+        slide.setAttribute('data-hidden', 'true');
         slide.removeAttribute('tabindex');
 
         if (index == currentIndex) {
-          slide.removeAttribute('hidden');
+          slide.setAttribute('data-hidden', 'false');
           slide.setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
           slide.setAttribute('tabindex', '0');
+          slideToSlide(index);
         }
       });
     };
@@ -271,6 +284,11 @@ var util = {
         currentIndex = dots.length - 1;
         return currentIndex;
       }
+    };
+
+    var slideToSlide = function slideToSlide(index) {
+      var translateValue = index * 100 * -1;
+      slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
     };
 
     var slideBack = function slideBack() {
@@ -343,6 +361,33 @@ var util = {
         case util.keyCodes.END:
           e.preventDefault();
           lastTab.focus();
+          break;
+      }
+    };
+
+    var paddleKeyboardRespond = function paddleKeyboardRespond(e) {
+      var keyCode = e.keyCode || e.which;
+
+      switch (keyCode) {
+        case util.keyCodes.LEFT:
+          prevButton.focus();
+          slideBack(e);
+          break;
+
+        case util.keyCodes.RIGHT:
+          nextButton.focus();
+          slideForward(e);
+          break;
+
+        case util.keyCodes.ENTER:
+        case util.keyCodes.SPACE:
+          selectedDot = currentIndex;
+          selectDot(dots[selectedDot]);
+          break;
+
+        case util.keyCodes.TAB:
+          slides[selectedDot].setAttribute('tabindex', '0');
+          currentIndex = selectedDot;
           break;
       }
     };

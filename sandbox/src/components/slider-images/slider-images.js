@@ -131,6 +131,7 @@ var util = {
     var _options = Object.assign(ARIAaccOptions, options);
     var el = inst;
     var slidesContainer = el.querySelector("[data-slides]");
+    var slidesWrapper = el.querySelector("[data-slides-wrapper]");
     var slides = Array.from(el.querySelectorAll("[data-slide]"));
     var paddleNav = el.querySelector("[data-slider-paddleNav]");
     var prevButton = paddleNav.querySelector('[data-prev]');
@@ -163,6 +164,13 @@ var util = {
     };
 
     var setupPaddleNav = function () {
+      prevButton.addEventListener('keydown', (e) => {
+        paddleKeyboardRespond(e);
+      }, false);
+      nextButton.addEventListener('keydown', (e) => {
+        paddleKeyboardRespond(e);
+      }, false);
+
       prevButton.addEventListener('click', function () {
         slideBack();
       });
@@ -183,6 +191,7 @@ var util = {
       for (var i = 0; i < nb; i++) {
         let dot = document.createElement('button');
         dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', util.dashToCamelCase(slides[i].getAttribute('id')));
         dot.setAttribute('id', sliderID + '__dot-' + i)
         dot.setAttribute('class', 'c-slider__dotNav__dot')
         dot.setAttribute('data-slider-dot', '')
@@ -232,10 +241,14 @@ var util = {
       dot.setAttribute('tabindex', '0');
 
       // activate corresponding panel 
-      showSlide(dot);
+      activateSlide(dot);
     }
 
     var setupSlides = function () {
+      if (loop) {
+
+      }
+
       slides.forEach((slide, index) => {
         if (_options.widthDotNav) {
           slide.setAttribute('role', 'tabpanel');
@@ -246,10 +259,10 @@ var util = {
         }
 
         slide.setAttribute('tabindex', '-1');
-        // slide.setAttribute('hidden', '');
+        slide.setAttribute('data-hidden', 'true');
 
         if (index == currentIndex) {
-          // slide.removeAttribute('hidden');
+          slide.setAttribute('data-hidden', 'false');
         }
 
         slide.addEventListener('keydown', (e) => {
@@ -277,15 +290,16 @@ var util = {
     }
 
 
-    var showSlide = function (dot) {
+    var activateSlide = function (dot) {
       slides.forEach((slide, index) => {
-        slide.setAttribute('hidden', '');
+        slide.setAttribute('data-hidden', 'true');
         slide.removeAttribute('tabindex');
 
         if (index == currentIndex) {
-          slide.removeAttribute('hidden');
+          slide.setAttribute('data-hidden', 'false');
           slide.setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
           slide.setAttribute('tabindex', '0');
+          slideToSlide(index);
         }
       });
     }
@@ -311,6 +325,10 @@ var util = {
       }
     };
 
+    var slideToSlide = function (index) {
+      var translateValue = index * 100 * -1;
+      slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
+    }
 
     var slideBack = function () {
       decrementcurrentIndex();
@@ -394,6 +412,38 @@ var util = {
           e.preventDefault();
           lastTab.focus();
 
+          break;
+      }
+
+    }
+
+    var paddleKeyboardRespond = function (e) {
+
+      var keyCode = e.keyCode || e.which;
+
+      switch (keyCode) {
+        case util.keyCodes.LEFT:
+          prevButton.focus();
+          slideBack(e);
+          break;
+
+
+        case util.keyCodes.RIGHT:
+          nextButton.focus();
+          slideForward(e);
+          break;
+
+
+        case util.keyCodes.ENTER:
+        case util.keyCodes.SPACE:
+          selectedDot = currentIndex;
+          selectDot(dots[selectedDot]);
+          break;
+
+
+        case util.keyCodes.TAB:
+          slides[selectedDot].setAttribute('tabindex', '0');
+          currentIndex = selectedDot;
           break;
       }
 
