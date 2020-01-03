@@ -92,6 +92,10 @@ var util = {
    */
   dashToCamelCase: function (string) {
     return string.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+
+    // Usage:
+    // var myStr = dashToCamelCase('this-string');
+    // alert(myStr); // => thisString
   }
 
 };
@@ -102,7 +106,8 @@ var util = {
 (function (w, doc, undefined) {
 
   var ARIAaccOptions = {
-    manual: true,
+    manual: false,
+    open: 0,
     loop: true,
     widthDotNav: true
   }
@@ -119,9 +124,8 @@ var util = {
 
     var sliderID = util.generateID('c-slider-');
 
-    var currentIndex = 0;
-    var shownSlide = 0;
-    var dotIndex = 0;
+    var currentIndex = _options.open;
+    var selectedDot = currentIndex;
     var manual = _options.manual;
     var loop = _options.loop;
     var withDotNav = _options.widthDotNav;
@@ -189,18 +193,14 @@ var util = {
       dots.forEach((dot, index) => {
         if (index === currentIndex) {
           selectActiveDot();
-          activateCurrentSlide();
         }
 
         dot.addEventListener('click', (e) => {
           e.preventDefault();
-          dotIndex = index;
           currentIndex = index;
-          shownSlide = index;
+          selectedDot = index;
           focusCurrentDot();
           selectActiveDot();
-          activateCurrentSlide();
-          handlePaddleButtonsState();
         }, false);
 
         dot.addEventListener('keydown', (e) => {
@@ -224,8 +224,11 @@ var util = {
         dot.setAttribute('tabindex', '-1');
       });
       //activate current tab
-      dots[dotIndex].setAttribute('aria-selected', 'true');
-      dots[dotIndex].setAttribute('tabindex', '0');
+      dots[selectedDot].setAttribute('aria-selected', 'true');
+      dots[selectedDot].setAttribute('tabindex', '0');
+
+      // activate corresponding panel 
+      activateCurrentSlide();
     }
 
     var setupSlides = function () {
@@ -270,14 +273,14 @@ var util = {
     }
 
 
-    var activateCurrentSlide = function () {
+    var activateCurrentSlide = function (dot) {
       slides.forEach((slide, index) => {
         slide.setAttribute('data-hidden', 'true');
         slide.removeAttribute('tabindex');
 
-        if (index === currentIndex) {
+        if (index == currentIndex) {
           slide.setAttribute('data-hidden', 'false');
-          if (withDotNav) slide.setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
+          slide.setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
           slide.setAttribute('tabindex', '0');
           slideToSlide(index);
         }
@@ -285,7 +288,7 @@ var util = {
     }
 
     var incrementcurrentIndex = function () {
-      if (currentIndex < slides.length - 1) {
+      if (currentIndex < dots.length - 1) {
         return ++currentIndex;
       }
       else {
@@ -296,15 +299,6 @@ var util = {
       }
     };
 
-    var incrementdotIndex = function () {
-      if (dotIndex < dots.length - 1) {
-        return ++dotIndex;
-      }
-      else {
-        dotIndex = 0;
-        return dotIndex;
-      }
-    };
 
 
     var decrementcurrentIndex = function () {
@@ -314,24 +308,14 @@ var util = {
       else {
         return;
         // if we wanna loop back, use this
-        // currentIndex = slides.length - 1;
+        // currentIndex = dots.length - 1;
         // return currentIndex;
       }
     };
 
-    var decrementdotIndex = function () {
-      if (dotIndex > 0) {
-        return --dotIndex;
-      }
-      else {
-        dotIndex = slides.length - 1;
-        return dotIndex;
-      }
-    };
-
     var handlePaddleButtonsState = function () {
-      if (shownSlide === slides.length - 1) nextButton.setAttribute('data-disabled', '');
-      else if (shownSlide < slides.length - 1) nextButton.removeAttribute('data-disabled');
+      if (currentIndex === dots.length - 1) nextButton.setAttribute('data-disabled', '');
+      else if (currentIndex < dots.length - 1) nextButton.removeAttribute('data-disabled');
 
       if (currentIndex === 0) prevButton.setAttribute('data-disabled', '');
       else if (currentIndex > 0) prevButton.removeAttribute('data-disabled');
@@ -339,59 +323,45 @@ var util = {
 
 
     var slideToSlide = function (index) {
-      console.log('currentIndex = ' + currentIndex);
       var translateValue = index * 100 * -1;
       slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
     }
 
     var paddleBack = function (e) {
       decrementcurrentIndex();
-      decrementdotIndex();
       handlePaddleButtonsState();
-      shownSlide = currentIndex;
-      if (withDotNav) {
-        selectActiveDot();
-      }
-      activateCurrentSlide();
+      selectedDot = currentIndex;
+      selectActiveDot();
     }
 
     var paddleForward = function (e) {
       incrementcurrentIndex();
-      incrementdotIndex();
       handlePaddleButtonsState();
-      shownSlide = currentIndex;
-      if (withDotNav) {
-        selectActiveDot();
-      }
-
-      activateCurrentSlide();
+      selectedDot = currentIndex;
+      selectActiveDot();
     }
 
     var moveBack = function (e) {
       e.preventDefault();
-      decrementdotIndex();
+      decrementcurrentIndex();
       handlePaddleButtonsState();
       focusCurrentDot();
 
       if (!manual) {
-        shownSlide = dotIndex;
-        currentIndex = dotIndex;
+        selectedDot = currentIndex;
         selectActiveDot();
-        activateCurrentSlide();
       }
     }
 
     var moveForward = function (e) {
       e.preventDefault();
-      incrementdotIndex();
+      incrementcurrentIndex();
       handlePaddleButtonsState();
       focusCurrentDot();
 
       if (!manual) {
-        shownSlide = dotIndex;
-        currentIndex = dotIndex;
+        selectedDot = currentIndex;
         selectActiveDot();
-        activateCurrentSlide();
       }
     }
 
@@ -405,29 +375,29 @@ var util = {
         case util.keyCodes.UP:
         case util.keyCodes.LEFT:
           moveBack(e);
+
           break;
 
 
         case util.keyCodes.DOWN:
         case util.keyCodes.RIGHT:
           moveForward(e);
+
           break;
 
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
           e.preventDefault();
-          shownSlide = currentIndex;
-          handlePaddleButtonsState();
+          selectedDot = currentIndex;
           selectActiveDot();
-          activateCurrentSlide();
 
           break;
 
 
         case util.keyCodes.TAB:
-          slides[shownSlide].setAttribute('tabindex', '0');
-          currentIndex = shownSlide;
+          slides[selectedDot].setAttribute('tabindex', '0');
+          currentIndex = selectedDot;
 
           break;
 
@@ -467,15 +437,14 @@ var util = {
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
-          shownSlide = currentIndex;
-          if (withDotNav) selectActiveDot();
-          activateCurrentSlide();
+          selectedDot = currentIndex;
+          selectActiveDot();
           break;
 
 
         case util.keyCodes.TAB:
-          slides[shownSlide].setAttribute('tabindex', '0');
-          currentIndex = shownSlide;
+          slides[selectedDot].setAttribute('tabindex', '0');
+          currentIndex = selectedDot;
           break;
       }
 
