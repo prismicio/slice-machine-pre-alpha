@@ -761,6 +761,11 @@ a.ps-button--ghost {
   .ps-pricing-table__option__feature.not-included .feature-icon {
     color: #888; }
 
+[data-slide] {
+  border: 2px solid;
+  padding: 10vw;
+  margin-bottom: var(--v-space); }
+
 .ps-tabs--steps .c-tabs__tablist {
   background-image: url("../img/dashed-line.svg");
   background-repeat: repeat no-repeat;
