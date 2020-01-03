@@ -1,3 +1,4 @@
+// TODO: add sr-only span to announce which slide we're on
 "use strict";
 
 if (typeof Object.assign != "function") {
@@ -84,9 +85,7 @@ var util = {
   dashToCamelCase: function dashToCamelCase(string) {
     return string.replace(/-([a-z])/g, function (g) {
       return g[1].toUpperCase();
-    }); // Usage:
-    // var myStr = dashToCamelCase('this-string');
-    // alert(myStr); // => thisString
+    });
   }
 };
 
@@ -235,8 +234,21 @@ var util = {
     };
 
     var handlePaddleButtonsState = function handlePaddleButtonsState() {
-      if (currentIndex == slides.length - 1) nextButton.setAttribute('data-disabled', '');else if (currentIndex < slides.length - 1) nextButton.removeAttribute('data-disabled');
-      if (currentIndex == 0) prevButton.setAttribute('data-disabled', '');else if (currentIndex > 0) prevButton.removeAttribute('data-disabled');
+      if (!loop && currentIndex == slides.length - 1) {
+        nextButton.setAttribute('aria-disabled', 'true');
+        nextButton.setAttribute('tabindex', '-1');
+      } else if (!loop && currentIndex < slides.length - 1) {
+        nextButton.removeAttribute('aria-disabled');
+        nextButton.removeAttribute('tabindex');
+      }
+
+      if (!loop && currentIndex == 0) {
+        prevButton.setAttribute('aria-disabled', 'true');
+        prevButton.setAttribute('tabindex', '-1');
+      } else if (!loop && currentIndex > 0) {
+        prevButton.removeAttribute('aria-disabled');
+        prevButton.removeAttribute('tabindex');
+      }
     };
 
     var activateCurrentSlide = function activateCurrentSlide() {
@@ -259,9 +271,10 @@ var util = {
       if (currentIndex < slides.length - 1) {
         return ++currentIndex;
       } else {
-        return; // if we wanna loop back, use this
-        // currentIndex = 0;
-        // return currentIndex;
+        if (loop) {
+          currentIndex = 0;
+          return currentIndex;
+        } else return;
       }
     };
 
@@ -269,9 +282,10 @@ var util = {
       if (currentIndex > 0) {
         return --currentIndex;
       } else {
-        return; // if we wanna loop back, use this
-        // currentIndex = slides.length - 1;
-        // return currentIndex;
+        if (loop) {
+          currentIndex = slides.length - 1;
+          return currentIndex;
+        } else return;
       }
     };
 
@@ -280,6 +294,7 @@ var util = {
       activateCurrentSlide();
       handlePaddleButtonsState();
       selectedDot = currentIndex;
+      tempDot = selectedDot;
       selectDot();
     };
 
@@ -288,6 +303,7 @@ var util = {
       activateCurrentSlide();
       handlePaddleButtonsState();
       selectedDot = currentIndex;
+      tempDot = selectedDot;
       selectDot();
     };
 
@@ -295,9 +311,10 @@ var util = {
       if (tempDot < dots.length - 1) {
         return ++tempDot;
       } else {
-        return; // if we wanna loop back, use this
-        // tempDot = 0;
-        // return tempDot;
+        if (loop) {
+          tempDot = 0;
+          return tempDot;
+        } else return;
       }
     };
 
@@ -305,9 +322,12 @@ var util = {
       if (tempDot > 0) {
         return --tempDot;
       } else {
-        return; // if we wanna loop back, use this
-        // tempDot = slides.length - 1;
-        // return tempDot;
+        if (loop) {
+          tempDot = slides.length - 1;
+          return tempDot;
+        } else {
+          return;
+        }
       }
     };
 
