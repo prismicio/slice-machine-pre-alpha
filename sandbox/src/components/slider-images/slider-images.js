@@ -150,7 +150,6 @@ var util = {
       el.setAttribute('id', sliderID);
       el.classList.add('js-slider');
 
-      // data-slider gets role="group" and aria-label="" and aria-roledescription="slider"
       el.setAttribute('role', 'group'); // or region
       el.setAttribute('aria-roledescription', 'Slider');
       el.setAttribute('aria-label', el.getAttribute('data-aria-label'));
@@ -159,13 +158,18 @@ var util = {
       paddleNav.removeAttribute('hidden');
 
       setupPaddleNav();
-
       if (withDotNav) setupDotNav();
       setupSlides();
     };
 
     var setupPaddleNav = function () {
+      prevButton.addEventListener('click', function () {
+        slideBack();
+      });
 
+      nextButton.addEventListener('click', function () {
+        slideForward();
+      });
     }
 
     var setupDotNav = function () {
@@ -307,6 +311,41 @@ var util = {
       }
     };
 
+
+    var slideBack = function () {
+      decrementcurrentIndex();
+      selectedDot = currentIndex;
+      selectDot(dots[selectedDot]);
+    }
+
+    var slideForward = function () {
+      incrementcurrentIndex();
+      selectedDot = currentIndex;
+      selectDot(dots[selectedDot]);
+    }
+
+    var moveBack = function (e) {
+      e.preventDefault();
+      decrementcurrentIndex();
+      focusCurrentDot();
+
+      if (!manual) {
+        selectedDot = currentIndex;
+        selectDot(dots[selectedDot]);
+      }
+    }
+
+    var moveForward = function (e) {
+      e.preventDefault();
+      incrementcurrentIndex();
+      focusCurrentDot();
+
+      if (!manual) {
+        selectedDot = currentIndex;
+        selectDot(dots[selectedDot]);
+      }
+    }
+
     var dotKeyboardRespond = function (e, dot) {
       var firstDot = dots[0];
       var lastDot = dots[dots.length - 1];
@@ -316,28 +355,14 @@ var util = {
       switch (keyCode) {
         case util.keyCodes.UP:
         case util.keyCodes.LEFT:
-          e.preventDefault();
-          decrementcurrentIndex();
-          focusCurrentDot();
-
-          if (!manual) {
-            selectedDot = currentIndex;
-            selectDot(dots[selectedDot]);
-          }
+          moveBack(e);
 
           break;
 
 
         case util.keyCodes.DOWN:
         case util.keyCodes.RIGHT:
-          e.preventDefault();
-          incrementcurrentIndex();
-          focusCurrentDot();
-
-          if (!manual) {
-            selectedDot = currentIndex;
-            selectDot(dots[selectedDot]);
-          }
+          moveForward(e);
 
           break;
 
