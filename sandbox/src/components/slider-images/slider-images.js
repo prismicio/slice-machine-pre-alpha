@@ -184,7 +184,6 @@ var util = {
       let showing = util.dashToCamelCase(slides[currentIndex].getAttribute('id'));
       let showingNb = currentIndex + 1;
       let helper = el.querySelector('.c-slider__SRHelper');
-      console.log(helper);
       helper.innerHTML = 'Showing ' + showing + ', slide ' + showingNb + ' of ' + slides.length;
     }
 
