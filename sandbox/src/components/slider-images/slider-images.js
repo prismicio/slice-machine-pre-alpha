@@ -1,7 +1,4 @@
 
-
-// TODO: add sr-only span to announce which slide we're on
-
 "use strict";
 if (typeof Object.assign != "function") {
   // Must be writable: true, enumerable: false, configurable: true
@@ -145,27 +142,74 @@ var util = {
       setupPaddleNav();
       if (withDotNav) setupDotNav();
       setupSlides();
+
+      setupSRHelper();
     };
+
+    var setupSRHelper = function () {
+      let helper = document.createElement('span');
+      helper.setAttribute('aria-live', 'polite');
+      helper.setAttribute('id', sliderID + '__SRHelper');
+      helper.classList.add('sr-only');
+      helper.classList.add('c-slider__SRHelper');
+
+      el.prepend(helper);
+
+
+      updateHelper();
+    }
+
+    var updateHelper = function () {
+      let showing = util.dashToCamelCase(slides[currentIndex].getAttribute('id'));
+      let showingNb = currentIndex + 1;
+      let helper = el.querySelector('.c-slider__SRHelper');
+      console.log(helper);
+      helper.innerHTML = 'Showing ' + showing + ', slide ' + showingNb + ' of ' + slides.length;
+    }
 
     var setupPaddleNav = function () {
 
       prevButton.addEventListener('keydown', (e) => {
         paddleKeyboardRespond(e);
+        updateHelper();
       }, false);
 
       nextButton.addEventListener('keydown', (e) => {
         paddleKeyboardRespond(e);
+        updateHelper();
       }, false);
 
       prevButton.addEventListener('click', function (e) {
         paddleBack();
+        updateHelper();
       });
 
       nextButton.addEventListener('click', function (e) {
         paddleForward(e);
+        updateHelper();
       });
 
       handlePaddleButtonsState();
+    }
+
+    var handlePaddleButtonsState = function () {
+      if (!loop && currentIndex == slides.length - 1) {
+        nextButton.setAttribute('aria-disabled', 'true');
+        nextButton.setAttribute('tabindex', '-1');
+      }
+      else if (!loop && currentIndex < slides.length - 1) {
+        nextButton.removeAttribute('aria-disabled');
+        nextButton.removeAttribute('tabindex');
+      }
+
+      if (!loop && currentIndex == 0) {
+        prevButton.setAttribute('aria-disabled', 'true');
+        prevButton.setAttribute('tabindex', '-1');
+      }
+      else if (!loop && currentIndex > 0) {
+        prevButton.removeAttribute('aria-disabled');
+        prevButton.removeAttribute('tabindex');
+      }
     }
 
     var setupDotNav = function () {
@@ -201,19 +245,18 @@ var util = {
           selectedDot = index;
           focusCurrentDot();
           selectDot();
+          updateHelper();
         }, false);
 
         dot.addEventListener('keydown', (e) => {
           dotKeyboardRespond(e, dot);
+          updateHelper();
         }, false);
       });
 
       // append dotNavList to slider
       el.appendChild(dotNavList);
     }
-
-
-
 
     var selectDot = function () {
       // unactivate all other dots
@@ -269,25 +312,7 @@ var util = {
       }
     }
 
-    var handlePaddleButtonsState = function () {
-      if (!loop && currentIndex == slides.length - 1) {
-        nextButton.setAttribute('aria-disabled', 'true');
-        nextButton.setAttribute('tabindex', '-1');
-      }
-      else if (!loop && currentIndex < slides.length - 1) {
-        nextButton.removeAttribute('aria-disabled');
-        nextButton.removeAttribute('tabindex');
-      }
 
-      if (!loop && currentIndex == 0) {
-        prevButton.setAttribute('aria-disabled', 'true');
-        prevButton.setAttribute('tabindex', '-1');
-      }
-      else if (!loop && currentIndex > 0) {
-        prevButton.removeAttribute('aria-disabled');
-        prevButton.removeAttribute('tabindex');
-      }
-    }
 
     var activateCurrentSlide = function () {
       slides.forEach((slide, index) => {
@@ -300,6 +325,7 @@ var util = {
       slides[currentIndex].setAttribute('tabindex', '0');
       slideToCurrentSlide(currentIndex);
     }
+
     var slideToCurrentSlide = function () {
       var translateValue = currentIndex * -100;
       slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
@@ -338,7 +364,7 @@ var util = {
       handlePaddleButtonsState();
       selectedDot = currentIndex;
       tempDot = selectedDot;
-      selectDot();
+      if (withDotNav) selectDot();
     }
 
     var paddleForward = function (e) {
@@ -347,7 +373,7 @@ var util = {
       handlePaddleButtonsState();
       selectedDot = currentIndex;
       tempDot = selectedDot;
-      selectDot();
+      if (withDotNav) selectDot();
     }
 
 
