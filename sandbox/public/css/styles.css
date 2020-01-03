@@ -292,7 +292,10 @@ small,
     margin-bottom: 0; }
 
 .ps__header + .ps__desc {
-  margin-top: var(--v-margin); }
+  margin-top: calc(var(--v-margin) / 2); }
+  @media all and (min-width: 50em) {
+    .ps__header + .ps__desc {
+      margin-top: var(--v-margin); } }
 
 .ps__head--left {
   margin-bottom: var(--v-margin); }
