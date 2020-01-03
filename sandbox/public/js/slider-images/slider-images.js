@@ -92,7 +92,7 @@ var util = {
 
 (function (w, doc, undefined) {
   var ARIAaccOptions = {
-    manual: false,
+    manual: true,
     open: 0,
     loop: true,
     widthDotNav: true
@@ -276,7 +276,7 @@ var util = {
     };
 
     var handlePaddleButtonsState = function handlePaddleButtonsState() {
-      if (currentIndex === dots.length - 1) nextButton.setAttribute('data-disabled', '');else if (currentIndex < dots.length - 1) nextButton.removeAttribute('data-disabled');
+      if (currentIndex === slides.length - 1) nextButton.setAttribute('data-disabled', '');else if (currentIndex < slides.length - 1) nextButton.removeAttribute('data-disabled');
       if (currentIndex === 0) prevButton.setAttribute('data-disabled', '');else if (currentIndex > 0) prevButton.removeAttribute('data-disabled');
     };
 
