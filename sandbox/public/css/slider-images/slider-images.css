@@ -29,6 +29,9 @@
   .c-slider__paddleNav .c-slider__paddleNav__prev:hover svg,
   .c-slider__paddleNav .c-slider__paddleNav__next:hover svg {
     color: var(--color--primary); }
+  .c-slider__paddleNav .c-slider__paddleNav__prev[aria-disabled="true"]:hover svg,
+  .c-slider__paddleNav .c-slider__paddleNav__next[aria-disabled="true"]:hover svg {
+    color: #ccc; }
   .c-slider__paddleNav .c-slider__paddleNav__prev:focus, .c-slider__paddleNav .c-slider__paddleNav__prev:active,
   .c-slider__paddleNav .c-slider__paddleNav__next:focus,
   .c-slider__paddleNav .c-slider__paddleNav__next:active {
@@ -110,13 +113,14 @@
   flex-shrink: 0;
   text-align: center;
   margin-bottom: var(--v-space);
-  transition: opacity 0.2s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 1s cubic-bezier(0.39, 0.03, 0.56, 0.57) 1s; }
+  transition: opacity 1s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 1s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
   .c-slider__slide[data-hidden="true"] {
     visibility: hidden;
     opacity: 0; }
   .c-slider__slide[data-hidden="false"] {
     visibility: visible;
-    opacity: 1; }
+    opacity: 1;
+    transition: opacity 0.2s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 0.2s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
   .c-slider__slide:focus {
     outline: 1px dotted #888;
     outline-offset: -10px; }

@@ -41,6 +41,12 @@
       }
     }
 
+    &[aria-disabled="true"]:hover {
+      svg {
+        color: #ccc;
+      }
+    }
+
     &:focus,
     &:active {
       outline: none;
@@ -167,8 +173,8 @@
   text-align: center;
   margin-bottom: var(--v-space);
   transition:
-    opacity .2s cubic-bezier(.39, .03, .56, .57),
-    visibility 1s cubic-bezier(.39, .03, .56, .57) 1s;
+    opacity 1s cubic-bezier(.39, .03, .56, .57),
+    visibility 1s cubic-bezier(.39, .03, .56, .57);
 
   &[data-hidden="true"] {
     visibility: hidden;
@@ -178,6 +184,10 @@
   &[data-hidden="false"] {
     visibility: visible;
     opacity: 1;
+
+    transition:
+      opacity .2s cubic-bezier(.39, .03, .56, .57),
+      visibility .2s cubic-bezier(.39, .03, .56, .57);
   }
 
   &:focus {
