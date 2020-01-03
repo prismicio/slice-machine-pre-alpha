@@ -107,9 +107,8 @@ var util = {
 
   var ARIAaccOptions = {
     manual: true,
-    open: 0,
-    loop: true,
-    widthDotNav: true
+    loop: false,
+    withDotNav: true
   }
 
   var ARIAslider = function (inst, options) {
@@ -124,11 +123,12 @@ var util = {
 
     var sliderID = util.generateID('c-slider-');
 
-    var currentIndex = _options.open;
-    var selectedDot = currentIndex;
+    var currentIndex = 0;
+    var selectedDot = 0;
+    var tempDot = 0;
     var manual = _options.manual;
     var loop = _options.loop;
-    var withDotNav = _options.widthDotNav;
+    var withDotNav = _options.withDotNav;
     var dots = [];
 
 
@@ -153,12 +153,13 @@ var util = {
       prevButton.addEventListener('keydown', (e) => {
         paddleKeyboardRespond(e);
       }, false);
+
       nextButton.addEventListener('keydown', (e) => {
         paddleKeyboardRespond(e);
       }, false);
 
       prevButton.addEventListener('click', function (e) {
-        paddleBack(e);
+        paddleBack();
       });
 
       nextButton.addEventListener('click', function (e) {
@@ -192,7 +193,7 @@ var util = {
 
       dots.forEach((dot, index) => {
         if (index === currentIndex) {
-          selectActiveDot();
+          selectDot();
         }
 
         dot.addEventListener('click', (e) => {
@@ -200,7 +201,7 @@ var util = {
           currentIndex = index;
           selectedDot = index;
           focusCurrentDot();
-          selectActiveDot();
+          selectDot();
         }, false);
 
         dot.addEventListener('keydown', (e) => {
@@ -213,11 +214,9 @@ var util = {
     }
 
 
-    var focusCurrentDot = function () {
-      dots[currentIndex].focus();
-    }
 
-    var selectActiveDot = function () {
+
+    var selectDot = function () {
       // unactivate all other dots
       dots.forEach(dot => {
         dot.setAttribute('aria-selected', 'false');
@@ -233,8 +232,10 @@ var util = {
 
     var setupSlides = function () {
       slides.forEach((slide, index) => {
-        if (_options.widthDotNav) {
+
+        if (_options.withDotNav) {
           slide.setAttribute('role', 'tabpanel');
+          slide.setAttribute('aria-labelledby', dots[index].getAttribute('id'));
         }
         else {
           slide.setAttribute('role', 'group');
@@ -242,11 +243,7 @@ var util = {
         }
 
         slide.setAttribute('tabindex', '-1');
-        slide.setAttribute('data-hidden', 'true');
-
-        if (index == currentIndex) {
-          slide.setAttribute('data-hidden', 'false');
-        }
+        slide.setAttribute('data-hidden', '');
 
         slide.addEventListener('keydown', (e) => {
           // slideKeyboardRespond(e);
@@ -256,8 +253,9 @@ var util = {
           slide.setAttribute('tabindex', '-1');
         }, false);
       });
-    }
 
+      activateCurrentSlide();
+    }
 
     var slideKeyboardRespond = function (e) {
       var keyCode = e.keyCode || e.which;
@@ -272,23 +270,32 @@ var util = {
       }
     }
 
+    var handlePaddleButtonsState = function () {
+      if (currentIndex == slides.length - 1) nextButton.setAttribute('data-disabled', '');
+      else if (currentIndex < slides.length - 1) nextButton.removeAttribute('data-disabled');
 
-    var activateCurrentSlide = function (dot) {
+      if (currentIndex == 0) prevButton.setAttribute('data-disabled', '');
+      else if (currentIndex > 0) prevButton.removeAttribute('data-disabled');
+    }
+
+    var activateCurrentSlide = function () {
       slides.forEach((slide, index) => {
-        slide.setAttribute('data-hidden', 'true');
+        slide.setAttribute('data-hidden', '');
         slide.removeAttribute('tabindex');
-
-        if (index == currentIndex) {
-          slide.setAttribute('data-hidden', 'false');
-          slide.setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
-          slide.setAttribute('tabindex', '0');
-          slideToSlide(index);
-        }
       });
+
+      slides[currentIndex].removeAttribute('data-hidden');
+      // if (withDotNav) slides[currentIndex].setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
+      slides[currentIndex].setAttribute('tabindex', '0');
+      slideToCurrentSlide(currentIndex);
+    }
+    var slideToCurrentSlide = function () {
+      var translateValue = currentIndex * -100;
+      slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
     }
 
     var incrementcurrentIndex = function () {
-      if (currentIndex < dots.length - 1) {
+      if (currentIndex < slides.length - 1) {
         return ++currentIndex;
       }
       else {
@@ -299,8 +306,6 @@ var util = {
       }
     };
 
-
-
     var decrementcurrentIndex = function () {
       if (currentIndex > 0) {
         return --currentIndex;
@@ -308,60 +313,82 @@ var util = {
       else {
         return;
         // if we wanna loop back, use this
-        // currentIndex = dots.length - 1;
+        // currentIndex = slides.length - 1;
         // return currentIndex;
       }
     };
 
-    var handlePaddleButtonsState = function () {
-      if (currentIndex === slides.length - 1) nextButton.setAttribute('data-disabled', '');
-      else if (currentIndex < slides.length - 1) nextButton.removeAttribute('data-disabled');
-
-      if (currentIndex === 0) prevButton.setAttribute('data-disabled', '');
-      else if (currentIndex > 0) prevButton.removeAttribute('data-disabled');
-    }
-
-
-    var slideToSlide = function (index) {
-      var translateValue = index * 100 * -1;
-      slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
-    }
-
     var paddleBack = function (e) {
       decrementcurrentIndex();
+      activateCurrentSlide();
       handlePaddleButtonsState();
       selectedDot = currentIndex;
-      selectActiveDot();
+      selectDot();
     }
 
     var paddleForward = function (e) {
       incrementcurrentIndex();
+      activateCurrentSlide();
       handlePaddleButtonsState();
       selectedDot = currentIndex;
-      selectActiveDot();
+      selectDot();
+    }
+
+
+
+    var incrementTempDot = function () {
+      if (tempDot < dots.length - 1) {
+        return ++tempDot;
+      }
+      else {
+        return;
+        // if we wanna loop back, use this
+        // tempDot = 0;
+        // return tempDot;
+      }
+    };
+
+    var decrementTempDot = function () {
+      if (tempDot > 0) {
+        return --tempDot;
+      }
+      else {
+        return;
+        // if we wanna loop back, use this
+        // tempDot = slides.length - 1;
+        // return tempDot;
+      }
+    };
+
+    var focusCurrentDot = function () {
+      dots[tempDot].focus();
     }
 
     var moveBack = function (e) {
       e.preventDefault();
-      decrementcurrentIndex();
-      handlePaddleButtonsState();
+      decrementTempDot();
       focusCurrentDot();
 
       if (!manual) {
-        selectedDot = currentIndex;
-        selectActiveDot();
+        selectedDot = tempDot;
+        currentIndex = selectedDot;
+        selectDot();
+        activateCurrentSlide();
+        handlePaddleButtonsState();
       }
     }
 
     var moveForward = function (e) {
       e.preventDefault();
-      incrementcurrentIndex();
-      handlePaddleButtonsState();
+      incrementTempDot();
       focusCurrentDot();
 
       if (!manual) {
-        selectedDot = currentIndex;
-        selectActiveDot();
+        selectedDot = tempDot;
+        currentIndex = selectedDot;
+        selectDot();
+        activateCurrentSlide();
+        handlePaddleButtonsState();
       }
     }
 
@@ -389,16 +416,18 @@ var util = {
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
           e.preventDefault();
-          selectedDot = currentIndex;
-          selectActiveDot();
+          selectedDot = tempDot;
+          currentIndex = selectedDot;
+          handlePaddleButtonsState();
+          selectDot();
 
           break;
 
 
         case util.keyCodes.TAB:
           slides[selectedDot].setAttribute('tabindex', '0');
+          selectedDot = tempDot;
           currentIndex = selectedDot;
-
           break;
 
 
@@ -438,7 +467,7 @@ var util = {
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
           selectedDot = currentIndex;
-          selectActiveDot();
+          selectDot();
           break;
 
 
