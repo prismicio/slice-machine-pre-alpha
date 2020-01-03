@@ -104,7 +104,7 @@ var util = {
 
 (function (w, doc, undefined) {
   var ARIAaccOptions = {
-    manual: true,
+    manual: false,
     open: 0,
     loop: true,
     widthDotNav: true
@@ -149,11 +149,11 @@ var util = {
       nextButton.addEventListener('keydown', function (e) {
         paddleKeyboardRespond(e);
       }, false);
-      prevButton.addEventListener('click', function () {
-        slideBack();
+      prevButton.addEventListener('click', function (e) {
+        paddleBack(e);
       });
-      nextButton.addEventListener('click', function () {
-        slideForward();
+      nextButton.addEventListener('click', function (e) {
+        paddleForward(e);
       });
     };
 
@@ -180,7 +180,7 @@ var util = {
 
       dots.forEach(function (dot, index) {
         if (index === currentIndex) {
-          selectDot(dot);
+          selectActiveDot();
         }
 
         dot.addEventListener('click', function (e) {
@@ -188,7 +188,7 @@ var util = {
           currentIndex = index;
           selectedDot = index;
           focusCurrentDot();
-          selectDot(dot);
+          selectActiveDot();
         }, false);
         dot.addEventListener('keydown', function (e) {
           dotKeyboardRespond(e, dot);
@@ -202,17 +202,17 @@ var util = {
       dots[currentIndex].focus();
     };
 
-    var selectDot = function selectDot(dot) {
+    var selectActiveDot = function selectActiveDot() {
       // unactivate all other dots
       dots.forEach(function (dot) {
         dot.setAttribute('aria-selected', 'false');
         dot.setAttribute('tabindex', '-1');
       }); //activate current tab
 
-      dot.setAttribute('aria-selected', 'true');
-      dot.setAttribute('tabindex', '0'); // activate corresponding panel 
+      dots[selectedDot].setAttribute('aria-selected', 'true');
+      dots[selectedDot].setAttribute('tabindex', '0'); // activate corresponding panel 
 
-      activateSlide(dot);
+      activateCurrentSlide();
     };
 
     var setupSlides = function setupSlides() {
@@ -254,7 +254,7 @@ var util = {
       }
     };
 
-    var activateSlide = function activateSlide(dot) {
+    var activateCurrentSlide = function activateCurrentSlide(dot) {
       slides.forEach(function (slide, index) {
         slide.setAttribute('data-hidden', 'true');
         slide.removeAttribute('tabindex');
@@ -271,19 +271,29 @@ var util = {
     var incrementcurrentIndex = function incrementcurrentIndex() {
       if (currentIndex < dots.length - 1) {
         return ++currentIndex;
-      } else {
-        currentIndex = 0;
-        return currentIndex;
-      }
+      } // else if (currentIndex < dots.length - 1 && !loop) {
+      //   nextButton.setAttribute('disabled', '');
+      //   return;
+      // }
+      else {
+          // currentIndex = 0;
+          // return currentIndex;
+          return;
+        }
     };
 
     var decrementcurrentIndex = function decrementcurrentIndex() {
       if (currentIndex > 0) {
         return --currentIndex;
-      } else {
-        currentIndex = dots.length - 1;
-        return currentIndex;
-      }
+      } // else if (currentIndex > 0 && !loop) {
+      //   prevButton.setAttribute('disabled', '');
+      //   return;
+      // }
+      else {
+          // currentIndex = dots.length - 1;
+          // return currentIndex;
+          return;
+        }
     };
 
     var slideToSlide = function slideToSlide(index) {
@@ -291,16 +301,16 @@ var util = {
       slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
     };
 
-    var slideBack = function slideBack() {
+    var paddleBack = function paddleBack(e) {
       decrementcurrentIndex();
       selectedDot = currentIndex;
-      selectDot(dots[selectedDot]);
+      selectActiveDot();
     };
 
-    var slideForward = function slideForward() {
+    var paddleForward = function paddleForward(e) {
       incrementcurrentIndex();
       selectedDot = currentIndex;
-      selectDot(dots[selectedDot]);
+      selectActiveDot();
     };
 
     var moveBack = function moveBack(e) {
@@ -310,7 +320,7 @@ var util = {
 
       if (!manual) {
         selectedDot = currentIndex;
-        selectDot(dots[selectedDot]);
+        selectActiveDot();
       }
     };
 
@@ -321,7 +331,7 @@ var util = {
 
       if (!manual) {
         selectedDot = currentIndex;
-        selectDot(dots[selectedDot]);
+        selectActiveDot();
       }
     };
 
@@ -345,7 +355,7 @@ var util = {
         case util.keyCodes.SPACE:
           e.preventDefault();
           selectedDot = currentIndex;
-          selectDot(dots[selectedDot]);
+          selectActiveDot();
           break;
 
         case util.keyCodes.TAB:
@@ -371,18 +381,18 @@ var util = {
       switch (keyCode) {
         case util.keyCodes.LEFT:
           prevButton.focus();
-          slideBack(e);
+          paddleBack(e);
           break;
 
         case util.keyCodes.RIGHT:
           nextButton.focus();
-          slideForward(e);
+          paddleForward(e);
           break;
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
           selectedDot = currentIndex;
-          selectDot(dots[selectedDot]);
+          selectActiveDot();
           break;
 
         case util.keyCodes.TAB:
@@ -405,9 +415,7 @@ var els = document.querySelectorAll(sliderInstance);
 var allslider = []; // Generate all slider instances
 
 for (var i = 0; i < els.length; i++) {
-  var nslider = new ARIAslider(els[i], {
-    manual: true
-  }); // if manual is set to false, the slider open on focus without needing an ENTER or SPACE press
+  var nslider = new ARIAslider(els[i]); // if manual is set to false, the slider open on focus without needing an ENTER or SPACE press
 
   allslider.push(nslider);
 }
