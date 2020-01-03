@@ -26,6 +26,9 @@
   .c-slider__paddleNav .c-slider__paddleNav__prev:hover svg,
   .c-slider__paddleNav .c-slider__paddleNav__next:hover svg {
     color: var(--color--primary); }
+  .c-slider__paddleNav .c-slider__paddleNav__prev[data-disabled] svg,
+  .c-slider__paddleNav .c-slider__paddleNav__next[data-disabled] svg {
+    color: #888; }
   .c-slider__paddleNav .c-slider__paddleNav__prev:focus, .c-slider__paddleNav .c-slider__paddleNav__prev:active,
   .c-slider__paddleNav .c-slider__paddleNav__next:focus,
   .c-slider__paddleNav .c-slider__paddleNav__next:active {
@@ -90,11 +93,14 @@
   width: 100%;
   padding: 10vw;
   margin-bottom: var(--v-space);
-  transition: visibility .4s linear; }
+  transition: visibility .4s ease-out; }
   .c-slider__slide[data-hidden="true"] {
     visibility: hidden; }
   .c-slider__slide[data-hidden="false"] {
     visibility: visible; }
+  .c-slider__slide:focus {
+    outline: 1px dotted #888;
+    outline-offset: -10px; }
 
 .js-slider .c-slider__slides-container {
   overflow: hidden;

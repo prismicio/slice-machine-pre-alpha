@@ -1,15 +1,3 @@
-// each data-slide gets role group and aria-roledescription=slide
-// if dotnav exists: 
-// generate dotnav based on number of slides
-// list of dotnav buttons is tablist 
-// each dotnav button is role="tab" and has an ID
-// each data-slide is has role="tabpanel" without aria-roledescription
-// each slide has aria-labelledby set to the dot that controls it
-// each dot would need a useful name; 
-// from the apple site: use the data-slide ID but replace - with  nothing and capitalize, use "Slide X" instead
-// if looping:
-// when the selectedDot = current = last tab, disable next button
-// when the selectedDot = current = first tab, disable previous button
 "use strict";
 
 if (typeof Object.assign != "function") {
@@ -155,6 +143,7 @@ var util = {
       nextButton.addEventListener('click', function (e) {
         paddleForward(e);
       });
+      handlePaddleButtonsState();
     };
 
     var setupDotNav = function setupDotNav() {
@@ -216,8 +205,6 @@ var util = {
     };
 
     var setupSlides = function setupSlides() {
-      if (loop) {}
-
       slides.forEach(function (slide, index) {
         if (_options.widthDotNav) {
           slide.setAttribute('role', 'tabpanel');
@@ -233,7 +220,7 @@ var util = {
           slide.setAttribute('data-hidden', 'false');
         }
 
-        slide.addEventListener('keydown', function (e) {// panelKeyboardRespond(e);
+        slide.addEventListener('keydown', function (e) {// slideKeyboardRespond(e);
         }, false);
         slide.addEventListener("blur", function () {
           slide.setAttribute('tabindex', '-1');
@@ -271,29 +258,26 @@ var util = {
     var incrementcurrentIndex = function incrementcurrentIndex() {
       if (currentIndex < dots.length - 1) {
         return ++currentIndex;
-      } // else if (currentIndex < dots.length - 1 && !loop) {
-      //   nextButton.setAttribute('disabled', '');
-      //   return;
-      // }
-      else {
-          // currentIndex = 0;
-          // return currentIndex;
-          return;
-        }
+      } else {
+        return; // if we wanna loop back, use this
+        // currentIndex = 0;
+        // return currentIndex;
+      }
     };
 
     var decrementcurrentIndex = function decrementcurrentIndex() {
       if (currentIndex > 0) {
         return --currentIndex;
-      } // else if (currentIndex > 0 && !loop) {
-      //   prevButton.setAttribute('disabled', '');
-      //   return;
-      // }
-      else {
-          // currentIndex = dots.length - 1;
-          // return currentIndex;
-          return;
-        }
+      } else {
+        return; // if we wanna loop back, use this
+        // currentIndex = dots.length - 1;
+        // return currentIndex;
+      }
+    };
+
+    var handlePaddleButtonsState = function handlePaddleButtonsState() {
+      if (currentIndex === dots.length - 1) nextButton.setAttribute('data-disabled', '');else if (currentIndex < dots.length - 1) nextButton.removeAttribute('data-disabled');
+      if (currentIndex === 0) prevButton.setAttribute('data-disabled', '');else if (currentIndex > 0) prevButton.removeAttribute('data-disabled');
     };
 
     var slideToSlide = function slideToSlide(index) {
@@ -303,12 +287,14 @@ var util = {
 
     var paddleBack = function paddleBack(e) {
       decrementcurrentIndex();
+      handlePaddleButtonsState();
       selectedDot = currentIndex;
       selectActiveDot();
     };
 
     var paddleForward = function paddleForward(e) {
       incrementcurrentIndex();
+      handlePaddleButtonsState();
       selectedDot = currentIndex;
       selectActiveDot();
     };
@@ -316,6 +302,7 @@ var util = {
     var moveBack = function moveBack(e) {
       e.preventDefault();
       decrementcurrentIndex();
+      handlePaddleButtonsState();
       focusCurrentDot();
 
       if (!manual) {
@@ -327,6 +314,7 @@ var util = {
     var moveForward = function moveForward(e) {
       e.preventDefault();
       incrementcurrentIndex();
+      handlePaddleButtonsState();
       focusCurrentDot();
 
       if (!manual) {

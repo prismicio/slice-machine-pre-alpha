@@ -38,6 +38,12 @@
       }
     }
 
+    &[data-disabled] {
+      svg {
+        color: #888;
+      }
+    }
+
     &:focus,
     &:active {
       outline: none;
@@ -131,7 +137,7 @@
 
   padding: 10vw;
   margin-bottom: var(--v-space);
-  transition: visibility .4s linear;
+  transition: visibility .4s ease-out;
 
   &[data-hidden="true"] {
     visibility: hidden;
@@ -139,6 +145,11 @@
 
   &[data-hidden="false"] {
     visibility: visible;
+  }
+
+  &:focus {
+    outline: 1px dotted #888;
+    outline-offset: -10px;
   }
 }
 
