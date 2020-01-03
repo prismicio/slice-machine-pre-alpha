@@ -12,7 +12,7 @@
     z-index: 2;
     top: 50%;
     margin-top: -1.375rem;
-    border: 2px solid transparent;
+    border: 2px dotted transparent;
     border-radius: 50%;
 
     line-height: 0;
@@ -86,7 +86,7 @@
   padding: 0;
   line-height: 0;
   border-radius: 50%;
-  border: 2px solid transparent;
+  border: 2px dotted transparent;
   text-align: center;
   flex-shrink: 0;
 
@@ -129,22 +129,23 @@
 
 
 .c-slider__slides-container {
-  border: 2px solid;
+  // border: 2px solid #eee;
 }
 
 .c-slider__slide {
   width: 100%;
-
-  padding: 10vw;
+  text-align: center;
   margin-bottom: var(--v-space);
-  transition: visibility .4s ease-out;
+  transition: opacity .4s linear, visibility .4s linear .2s;
 
   &[data-hidden="true"] {
     visibility: hidden;
+    opacity: 0;
   }
 
   &[data-hidden="false"] {
     visibility: visible;
+    opacity: 1;
   }
 
   &:focus {
@@ -169,6 +170,21 @@
     margin: 0;
     flex-shrink: 0; // to make sure slides inside the flex container take up 100% of the container and don't shrink to their content size.
   }
+}
 
 
+.c-slider__slide__figure {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  img {
+    width: 90%;
+  }
+
+  figcaption {
+    padding: var(--c-padding);
+    max-width: 80ch;
+    margin: 0 auto;
+  }
 }
