@@ -4,9 +4,10 @@
 
 .ps-slider--testimonials {
   .ps-slider__testimonial {
+    width: 100%;
     margin: 0;
     margin-bottom: var(--c-margin);
-    padding: 4rem 1rem;
+    padding: 4rem 1.5rem;
     background-color: var(--color--secondary);
     border-radius: 8px;
     display: flex;
