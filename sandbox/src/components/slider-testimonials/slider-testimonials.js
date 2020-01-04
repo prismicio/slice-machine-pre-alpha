@@ -1,13 +1,15 @@
 "use strict";
-
 if (typeof Object.assign != "function") {
   // Must be writable: true, enumerable: false, configurable: true
   Object.defineProperty(Object, "assign", {
     value: function assign(target, varArgs) {
       // .length of function is 2
+
       if (target == null) {
         // TypeError if undefined or null
-        throw new TypeError("Cannot convert undefined or null to object");
+        throw new TypeError(
+          "Cannot convert undefined or null to object"
+        );
       }
 
       var to = Object(target);
@@ -19,21 +21,24 @@ if (typeof Object.assign != "function") {
           // Skip over if undefined or null
           for (var nextKey in nextSource) {
             // Avoid bugs when hasOwnProperty is shadowed
-            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+            if (
+              Object.prototype.hasOwnProperty.call(
+                nextSource,
+                nextKey
+              )
+            ) {
               to[nextKey] = nextSource[nextKey];
             }
           }
         }
       }
-
       return to;
     },
     writable: true,
     configurable: true
   });
-} // add utilities; some of them borrowed from: https://scottaohara.github.io/a11y_tab_widget/
-
-
+}
+// add utilities; some of them borrowed from: https://scottaohara.github.io/a11y_tab_widget/
 var util = {
   keyCodes: {
     UP: 38,
@@ -47,15 +52,18 @@ var util = {
     DELETE: 46,
     TAB: 9
   },
-  generateID: function generateID(base) {
+
+  generateID: function (base) {
     return base + Math.floor(Math.random() * 999);
   },
-  getDirectChildren: function getDirectChildren(elm, selector) {
+
+  getDirectChildren: function (elm, selector) {
     return Array.prototype.filter.call(elm.children, function (child) {
       return child.matches(selector);
     });
   },
-  getUrlHash: function getUrlHash() {
+
+  getUrlHash: function () {
     return window.location.hash.replace('#', '');
   },
 
@@ -67,7 +75,7 @@ var util = {
    *
    * @param {string} hash
    */
-  setUrlHash: function setUrlHash(hash) {
+  setUrlHash: function (hash) {
     if (history.replaceState) {
       history.replaceState(null, '', '#' + hash);
     } else {
@@ -81,23 +89,25 @@ var util = {
    * CamelCase is readable by Screen Readers and so can be used as an accessible label for the dotNav
    * More info: https://adrianroselli.com/2018/01/improving-your-tweet-accessibility.html#Hash
    */
-  dashToCamelCase: function dashToCamelCase(string) {
-    return string.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
-    });
+  dashToCamelCase: function (string) {
+    return string.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
   }
+
 };
 
+
+
+
 (function (w, doc, undefined) {
+
   var ARIAaccOptions = {
     manual: false,
     loop: false,
     withDotNav: true
-  };
+  }
 
-  var ARIAslider = function ARIAslider(inst, options) {
+  var ARIAslider = function (inst, options) {
     var _options = Object.assign(ARIAaccOptions, options);
-
     var el = inst;
     var slidesContainer = el.querySelector("[data-slides]");
     var slidesWrapper = el.querySelector("[data-slides-wrapper]");
@@ -105,7 +115,9 @@ var util = {
     var paddleNav = el.querySelector("[data-slider-paddleNav]");
     var prevButton = paddleNav.querySelector('[data-prev]');
     var nextButton = paddleNav.querySelector('[data-next]');
+
     var sliderID = util.generateID('c-slider-');
+
     var currentIndex = 0;
     var selectedDot = 0;
     var tempDot = 0;
@@ -114,77 +126,90 @@ var util = {
     var withDotNav = _options.withDotNav;
     var dots = [];
 
-    var init = function init() {
+
+    var init = function () {
       el.setAttribute('id', sliderID);
       el.classList.add('js-slider');
+
       el.setAttribute('role', 'group'); // or region
-
       el.setAttribute('aria-roledescription', 'Slider');
-      el.setAttribute('aria-label', el.getAttribute('data-aria-label')); // show Next and Prev Buttons
+      el.setAttribute('aria-label', el.getAttribute('data-aria-label'));
 
+      // show Next and Prev Buttons
       paddleNav.removeAttribute('hidden');
+
       setupPaddleNav();
       if (withDotNav) setupDotNav();
       setupSlides();
+
       setupSRHelper();
+
       enableTouchSwipes();
     };
 
-    var enableTouchSwipes = function enableTouchSwipes() {
-      var mc = new Hammer(slidesWrapper, {
-        threshold: 500
-      }); // listen to events...
-
+    var enableTouchSwipes = function () {
+      var mc = new Hammer(slidesWrapper, { threshold: 500 });
+      // listen to events...
       mc.on("swipeleft", function (e) {
         paddleForward();
       });
+
       mc.on("swiperight", function (e) {
         paddleBack();
       });
-    };
+    }
 
-    var setupSRHelper = function setupSRHelper() {
-      var helper = document.createElement('span');
+    var setupSRHelper = function () {
+      let helper = document.createElement('span');
       helper.setAttribute('aria-live', 'polite');
       helper.setAttribute('id', sliderID + '__SRHelper');
       helper.classList.add('sr-only');
       helper.classList.add('c-slider__SRHelper');
+
       el.prepend(helper);
+
+
       updateHelper();
-    };
+    }
 
-    var updateHelper = function updateHelper() {
-      var showing = util.dashToCamelCase(slides[currentIndex].getAttribute('id'));
-      var showingNb = currentIndex + 1;
-      var helper = el.querySelector('.c-slider__SRHelper');
+    var updateHelper = function () {
+      let showing = util.dashToCamelCase(slides[currentIndex].getAttribute('id'));
+      let showingNb = currentIndex + 1;
+      let helper = el.querySelector('.c-slider__SRHelper');
       helper.innerHTML = 'Showing ' + showing + ', slide ' + showingNb + ' of ' + slides.length;
-    };
+    }
 
-    var setupPaddleNav = function setupPaddleNav() {
-      prevButton.addEventListener('keydown', function (e) {
+    var setupPaddleNav = function () {
+
+      prevButton.addEventListener('keydown', (e) => {
         paddleKeyboardRespond(e);
         updateHelper();
       }, false);
-      nextButton.addEventListener('keydown', function (e) {
+
+      nextButton.addEventListener('keydown', (e) => {
         paddleKeyboardRespond(e);
         updateHelper();
       }, false);
+
       prevButton.addEventListener('click', function (e) {
         paddleBack();
         updateHelper();
       });
+
       nextButton.addEventListener('click', function (e) {
         paddleForward(e);
         updateHelper();
       });
-      handlePaddleButtonsState();
-    };
 
-    var handlePaddleButtonsState = function handlePaddleButtonsState() {
+      handlePaddleButtonsState();
+    }
+
+    var handlePaddleButtonsState = function () {
       if (!loop && currentIndex == slides.length - 1) {
         nextButton.setAttribute('aria-disabled', 'true');
         nextButton.setAttribute('tabindex', '-1');
-      } else if (!loop && currentIndex < slides.length - 1) {
+      }
+      else if (!loop && currentIndex < slides.length - 1) {
         nextButton.removeAttribute('aria-disabled');
         nextButton.removeAttribute('tabindex');
       }
@@ -192,39 +217,41 @@ var util = {
       if (!loop && currentIndex == 0) {
         prevButton.setAttribute('aria-disabled', 'true');
         prevButton.setAttribute('tabindex', '-1');
-      } else if (!loop && currentIndex > 0) {
+      }
+      else if (!loop && currentIndex > 0) {
         prevButton.removeAttribute('aria-disabled');
         prevButton.removeAttribute('tabindex');
       }
-    };
+    }
 
-    var setupDotNav = function setupDotNav() {
+    var setupDotNav = function () {
       var dotNavList = document.createElement('div');
       dotNavList.setAttribute('data-slider-dotNav', '');
       dotNavList.setAttribute('role', 'tablist');
-      dotNavList.setAttribute('class', 'c-slider__dotNav'); // create dots
+      dotNavList.setAttribute('class', 'c-slider__dotNav');
 
+      // create dots
       var nb = slides.length;
-
       for (var i = 0; i < nb; i++) {
-        var dot = document.createElement('button');
+        let dot = document.createElement('button');
         dot.setAttribute('role', 'tab');
         dot.setAttribute('aria-label', util.dashToCamelCase(slides[i].getAttribute('id')));
-        dot.setAttribute('id', sliderID + '__dot-' + i);
-        dot.setAttribute('class', 'c-slider__dotNav__dot');
-        dot.setAttribute('data-slider-dot', '');
-        dot.setAttribute('data-controls', slides[i].getAttribute('id')); // append dot to dotNavList
+        dot.setAttribute('id', sliderID + '__dot-' + i)
+        dot.setAttribute('class', 'c-slider__dotNav__dot')
+        dot.setAttribute('data-slider-dot', '')
+        dot.setAttribute('data-controls', slides[i].getAttribute('id'));
 
+        // append dot to dotNavList
         dotNavList.appendChild(dot);
         dots.push(dot);
       }
 
-      dots.forEach(function (dot, index) {
+      dots.forEach((dot, index) => {
         if (index === currentIndex) {
           selectDot();
         }
 
-        dot.addEventListener('click', function (e) {
+        dot.addEventListener('click', (e) => {
           e.preventDefault();
           currentIndex = index;
           selectedDot = index;
@@ -232,50 +259,59 @@ var util = {
           selectDot();
           updateHelper();
         }, false);
-        dot.addEventListener('keydown', function (e) {
+
+        dot.addEventListener('keydown', (e) => {
           dotKeyboardRespond(e, dot);
           updateHelper();
         }, false);
-      }); // append dotNavList to slider
+      });
 
+      // append dotNavList to slider
       el.appendChild(dotNavList);
-    };
+    }
 
-    var selectDot = function selectDot() {
+    var selectDot = function () {
       // unactivate all other dots
-      dots.forEach(function (dot) {
+      dots.forEach(dot => {
         dot.setAttribute('aria-selected', 'false');
         dot.setAttribute('tabindex', '-1');
-      }); //activate current tab
-
+      });
+      //activate current tab
       dots[selectedDot].setAttribute('aria-selected', 'true');
-      dots[selectedDot].setAttribute('tabindex', '0'); // activate corresponding panel 
+      dots[selectedDot].setAttribute('tabindex', '0');
 
+      // activate corresponding panel 
       activateCurrentSlide();
-    };
+    }
 
-    var setupSlides = function setupSlides() {
-      slides.forEach(function (slide, index) {
+    var setupSlides = function () {
+      slides.forEach((slide, index) => {
+
         if (_options.withDotNav) {
           slide.setAttribute('role', 'tabpanel');
           slide.setAttribute('aria-labelledby', dots[index].getAttribute('id'));
-        } else {
+        }
+        else {
           slide.setAttribute('role', 'group');
           slide.setAttribute('aria-roledescription', 'Slide');
         }
 
         slide.setAttribute('tabindex', '-1');
         slide.setAttribute('data-hidden', 'true');
-        slide.addEventListener('keydown', function (e) {// slideKeyboardRespond(e);
+
+        slide.addEventListener('keydown', (e) => {
+          // slideKeyboardRespond(e);
         }, false);
-        slide.addEventListener("blur", function () {
+
+        slide.addEventListener("blur", () => {
           slide.setAttribute('tabindex', '-1');
         }, false);
       });
-      activateCurrentSlide();
-    };
 
-    var slideKeyboardRespond = function slideKeyboardRespond(e) {
+      activateCurrentSlide();
+    }
+
+    var slideKeyboardRespond = function (e) {
       var keyCode = e.keyCode || e.which;
 
       switch (keyCode) {
@@ -286,93 +322,107 @@ var util = {
         default:
           break;
       }
-    };
+    }
 
-    var activateCurrentSlide = function activateCurrentSlide() {
-      slides.forEach(function (slide, index) {
+
+
+    var activateCurrentSlide = function () {
+      slides.forEach((slide, index) => {
         slide.setAttribute('data-hidden', 'true');
         slide.removeAttribute('tabindex');
       });
-      slides[currentIndex].setAttribute('data-hidden', 'false'); // if (withDotNav) slides[currentIndex].setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
 
+      slides[currentIndex].setAttribute('data-hidden', 'false');
+      // if (withDotNav) slides[currentIndex].setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
       slides[currentIndex].setAttribute('tabindex', '0');
       slideToCurrentSlide(currentIndex);
-    };
+    }
 
-    var slideToCurrentSlide = function slideToCurrentSlide() {
+    var slideToCurrentSlide = function () {
       var translateValue = currentIndex * -100;
       slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
-    };
+    }
 
-    var incrementcurrentIndex = function incrementcurrentIndex() {
+    var incrementcurrentIndex = function () {
       if (currentIndex < slides.length - 1) {
         return ++currentIndex;
-      } else {
+      }
+      else {
         if (loop) {
           currentIndex = 0;
           return currentIndex;
-        } else return;
+        }
+        else return;
       }
     };
 
-    var decrementcurrentIndex = function decrementcurrentIndex() {
+    var decrementcurrentIndex = function () {
       if (currentIndex > 0) {
         return --currentIndex;
-      } else {
+      }
+      else {
         if (loop) {
           currentIndex = slides.length - 1;
           return currentIndex;
-        } else return;
+        }
+        else return;
+
       }
     };
 
-    var paddleBack = function paddleBack(e) {
+    var paddleBack = function (e) {
       decrementcurrentIndex();
       activateCurrentSlide();
       handlePaddleButtonsState();
       selectedDot = currentIndex;
       tempDot = selectedDot;
       if (withDotNav) selectDot();
-    };
+    }
 
-    var paddleForward = function paddleForward(e) {
+    var paddleForward = function (e) {
       incrementcurrentIndex();
       activateCurrentSlide();
       handlePaddleButtonsState();
       selectedDot = currentIndex;
       tempDot = selectedDot;
       if (withDotNav) selectDot();
-    };
+    }
 
-    var incrementTempDot = function incrementTempDot() {
+
+
+    var incrementTempDot = function () {
       if (tempDot < dots.length - 1) {
         return ++tempDot;
-      } else {
+      }
+      else {
         if (loop) {
           tempDot = 0;
           return tempDot;
-        } else return;
+        }
+        else return;
       }
     };
 
-    var decrementTempDot = function decrementTempDot() {
+    var decrementTempDot = function () {
       if (tempDot > 0) {
         return --tempDot;
-      } else {
+      }
+      else {
         if (loop) {
           tempDot = slides.length - 1;
           return tempDot;
-        } else {
+        }
+        else {
           return;
         }
       }
     };
 
-    var focusCurrentDot = function focusCurrentDot() {
+    var focusCurrentDot = function () {
       dots[tempDot].focus();
-    };
+    }
 
-    var moveBack = function moveBack(e) {
+    var moveBack = function (e) {
       e.preventDefault();
       decrementTempDot();
       focusCurrentDot();
@@ -384,9 +434,9 @@ var util = {
         activateCurrentSlide();
         handlePaddleButtonsState();
       }
-    };
+    }
 
-    var moveForward = function moveForward(e) {
+    var moveForward = function (e) {
       e.preventDefault();
       incrementTempDot();
       focusCurrentDot();
@@ -398,23 +448,28 @@ var util = {
         activateCurrentSlide();
         handlePaddleButtonsState();
       }
-    };
+    }
 
-    var dotKeyboardRespond = function dotKeyboardRespond(e, dot) {
+    var dotKeyboardRespond = function (e, dot) {
       var firstDot = dots[0];
       var lastDot = dots[dots.length - 1];
+
       var keyCode = e.keyCode || e.which;
 
       switch (keyCode) {
         case util.keyCodes.UP:
         case util.keyCodes.LEFT:
           moveBack(e);
+
           break;
+
 
         case util.keyCodes.DOWN:
         case util.keyCodes.RIGHT:
           moveForward(e);
+
           break;
+
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
@@ -423,7 +478,9 @@ var util = {
           currentIndex = selectedDot;
           handlePaddleButtonsState();
           selectDot();
+
           break;
+
 
         case util.keyCodes.TAB:
           slides[selectedDot].setAttribute('tabindex', '0');
@@ -431,19 +488,25 @@ var util = {
           currentIndex = selectedDot;
           break;
 
+
         case util.keyCodes.HOME:
           e.preventDefault();
           firstTab.focus();
+
           break;
+
 
         case util.keyCodes.END:
           e.preventDefault();
           lastTab.focus();
+
           break;
       }
-    };
 
-    var paddleKeyboardRespond = function paddleKeyboardRespond(e) {
+    }
+
+    var paddleKeyboardRespond = function (e) {
+
       var keyCode = e.keyCode || e.which;
 
       switch (keyCode) {
@@ -452,10 +515,12 @@ var util = {
           paddleBack(e);
           break;
 
+
         case util.keyCodes.RIGHT:
           nextButton.focus();
           paddleForward(e);
           break;
+
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
@@ -463,27 +528,33 @@ var util = {
           selectDot();
           break;
 
+
         case util.keyCodes.TAB:
           slides[selectedDot].setAttribute('tabindex', '0');
           currentIndex = selectedDot;
           break;
       }
-    };
+
+    }
 
     init.call(this);
     return this;
   }; // ARIAslider()
 
-
   w.ARIAslider = ARIAslider;
+
 })(window, document);
+
+
+
 
 var sliderInstance = "[data-slider]";
 var els = document.querySelectorAll(sliderInstance);
-var allslider = []; // Generate all slider instances
+var allslider = [];
 
+// Generate all slider instances
 for (var i = 0; i < els.length; i++) {
   var nslider = new ARIAslider(els[i]); // if manual is set to false, the slider open on focus without needing an ENTER or SPACE press
-
   allslider.push(nslider);
 }
+

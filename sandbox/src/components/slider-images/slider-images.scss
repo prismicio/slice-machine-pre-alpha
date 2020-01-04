@@ -147,9 +147,12 @@
 .c-slider__slides-container {
   // border: 2px solid #ccc;
   display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+
+  .ps-slider--images & {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
 
   // &::-webkit-scrollbar {
   //   display: none;
@@ -215,7 +218,7 @@
 }
 
 
-.c-slider__slide__figure {
+.ps-slider--images .c-slider__slide__figure {
   margin: 0;
   padding: 0;
   width: 100%;
