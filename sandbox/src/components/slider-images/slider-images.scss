@@ -175,6 +175,7 @@
   flex-shrink: 0;
   text-align: center;
   margin-bottom: var(--v-space);
+  margin-right: var(--c-margin);
   transition:
     opacity 1s cubic-bezier(.39, .03, .56, .57),
     visibility 1s cubic-bezier(.39, .03, .56, .57);

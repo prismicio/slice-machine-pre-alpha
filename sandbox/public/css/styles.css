@@ -880,6 +880,7 @@ a.ps-button--ghost {
   flex-shrink: 0;
   text-align: center;
   margin-bottom: var(--v-space);
+  margin-right: var(--c-margin);
   transition: opacity 1s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 1s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
   .c-slider__slide[data-hidden="true"] {
     visibility: hidden;
