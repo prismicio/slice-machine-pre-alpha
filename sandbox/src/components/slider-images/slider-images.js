@@ -91,6 +91,10 @@ var util = {
    */
   dashToCamelCase: function (string) {
     return string.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+  },
+
+  dashToSpaces: function (string) {
+    return string.replace(/-/g, ' ');
   }
 
 };
@@ -173,7 +177,7 @@ var util = {
     }
 
     var updateHelper = function () {
-      let showing = util.dashToCamelCase(slides[currentIndex].getAttribute('id'));
+      let showing = slides[currentIndex].getAttribute('data-slide-label');
       let showingNb = currentIndex + 1;
       let helper = el.querySelector('.c-slider__SRHelper');
       helper.innerHTML = 'Showing ' + showing + ', slide ' + showingNb + ' of ' + slides.length;
@@ -235,14 +239,19 @@ var util = {
       for (var i = 0; i < nb; i++) {
         let dot = document.createElement('button');
         dot.setAttribute('role', 'tab');
-        dot.setAttribute('aria-label', util.dashToCamelCase(slides[i].getAttribute('id')));
+
         dot.setAttribute('id', sliderID + '__dot-' + i)
         dot.setAttribute('class', 'c-slider__dotNav__dot')
-        dot.setAttribute('data-slider-dot', '')
+        dot.setAttribute('data-slider-dot', '') // to be used in the CSS as a hook if needed; not used elsewhere.
         dot.setAttribute('data-controls', slides[i].getAttribute('id'));
+
+        let dotLabel = document.createElement('span');
+        dotLabel.innerText = slides[i].getAttribute('data-slide-label');
+        dotLabel.classList.add('dot-label');
 
         // append dot to dotNavList
         dotNavList.appendChild(dot);
+        dot.appendChild(dotLabel);
         dots.push(dot);
       }
 

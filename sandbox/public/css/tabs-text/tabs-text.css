@@ -79,6 +79,7 @@
   .js-focus-visible .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(.focus-visible) {
     border-color: transparent; }
 
+/* styles for visible labels for the dotnav for voice dictation users */
 .c-tabs__tablist--dotnav .c-tabs__tab {
   position: relative; }
   .c-tabs__tablist--dotnav .c-tabs__tab .dot-label {

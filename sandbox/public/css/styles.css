@@ -821,7 +821,7 @@ a.ps-button--ghost {
 
 .c-slider__dotNav {
   display: flex;
-  height: 6rem;
+  padding: 2rem 0 4rem;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
@@ -863,6 +863,41 @@ a.ps-button--ghost {
     border-color: transparent; }
   .js-focus-visible .c-slider__dotNav__dot:focus:not(.focus-visible) {
     border-color: transparent; }
+
+/* styles for visible labels for the dotnav for voice dictation users */
+.c-slider__dotNav__dot {
+  position: relative; }
+  .c-slider__dotNav__dot .dot-label {
+    position: absolute;
+    left: 1.25rem;
+    transform: translateX(-50%);
+    bottom: -2.5rem;
+    z-index: 1;
+    line-height: 1;
+    background-color: var(--color--secondary);
+    padding: .5em .75em;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s linear; }
+    .c-slider__dotNav__dot .dot-label::after {
+      /* up arrow */
+      content: "";
+      position: absolute;
+      left: 50%;
+      margin-left: -1rem;
+      top: -.5rem;
+      width: 0;
+      height: 0;
+      border-left: 1rem solid transparent;
+      border-right: 1rem solid transparent;
+      border-bottom: 1rem solid var(--color--secondary); }
+  .c-slider__dotNav__dot:focus .dot-label, .c-slider__dotNav__dot:hover .dot-label {
+    opacity: 1; }
+  .c-slider__dotNav__dot:focus:not(:focus-visible) .dot-label {
+    opacity: 0; }
+  .js-focus-visible .c-slider__dotNav__dot:focus:not(.focus-visible) .dot-label {
+    opacity: 0; }
 
 .c-slider[data-slider] {
   position: relative;
@@ -1138,6 +1173,7 @@ a.ps-button--ghost {
   .js-focus-visible .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(.focus-visible) {
     border-color: transparent; }
 
+/* styles for visible labels for the dotnav for voice dictation users */
 .c-tabs__tablist--dotnav .c-tabs__tab {
   position: relative; }
   .c-tabs__tablist--dotnav .c-tabs__tab .dot-label {
