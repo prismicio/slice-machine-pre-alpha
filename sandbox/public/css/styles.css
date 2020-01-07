@@ -849,6 +849,13 @@ a.ps-button--ghost {
     border-radius: 50%; }
   .c-slider__dotNav__dot[aria-selected="true"]::before {
     background: var(--color--primary); }
+  @media screen and (-ms-high-contrast: active) {
+    .c-slider__dotNav__dot {
+      /* All high contrast styling rules */ }
+      .c-slider__dotNav__dot::before {
+        background-color: windowText; }
+      .c-slider__dotNav__dot[aria-selected="true"]::before {
+        background: highlight; } }
   .c-slider__dotNav__dot:focus, .c-slider__dotNav__dot.focus-visible {
     outline: none;
     border-color: var(--color--primary); }
@@ -1115,6 +1122,13 @@ a.ps-button--ghost {
       background-color: var(--color--primary); }
   .c-tabs__tablist--dotnav .c-tabs__tab:hover::before {
     background-color: var(--color--primary); }
+  @media screen and (-ms-high-contrast: active) {
+    .c-tabs__tablist--dotnav .c-tabs__tab {
+      /* All high contrast styling rules */ }
+      .c-tabs__tablist--dotnav .c-tabs__tab::before {
+        background-color: windowText; }
+      .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"]::before {
+        background: highlight; } }
   .c-tabs__tablist--dotnav .c-tabs__tab:focus, .c-tabs__tablist--dotnav .c-tabs__tab.focus-visible {
     outline: none;
     border-color: currentColor;

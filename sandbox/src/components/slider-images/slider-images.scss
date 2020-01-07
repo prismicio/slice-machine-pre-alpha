@@ -115,11 +115,27 @@
     border-radius: 50%;
   }
 
+
   &[aria-selected="true"] {
     &::before {
       background: var(--color--primary);
     }
   }
+
+  @media screen and (-ms-high-contrast: active) {
+
+    /* All high contrast styling rules */
+    &::before {
+      background-color: windowText;
+    }
+
+    &[aria-selected="true"] {
+      &::before {
+        background: highlight;
+      }
+    }
+  }
+
 
 
   &:focus,

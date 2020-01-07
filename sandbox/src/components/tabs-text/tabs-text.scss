@@ -98,6 +98,21 @@
     }
   }
 
+  @media screen and (-ms-high-contrast: active) {
+
+    /* All high contrast styling rules */
+    &::before {
+      background-color: windowText;
+    }
+
+    &[aria-selected="true"] {
+      &::before {
+        background: highlight;
+      }
+    }
+  }
+
+
   &:focus,
   &.focus-visible {
     outline: none;
