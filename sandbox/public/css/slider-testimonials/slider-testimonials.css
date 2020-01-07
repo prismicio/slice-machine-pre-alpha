@@ -13,7 +13,7 @@
   align-items: center; }
   @media all and (min-width: 50em) {
     .ps-slider--testimonials .ps-slider__testimonial {
-      padding: calc(var(--v-space) / 1.25); } }
+      padding: calc(var(--v-space) / 1.25) var(--c-padding); } }
 
 .ps-slider--testimonials .ps-slider__testimonial__logo {
   margin-bottom: var(--v-margin); }

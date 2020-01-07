@@ -16,7 +16,7 @@
     align-items: center;
 
     @media all and (min-width: 50em) {
-      padding: calc(var(--v-space) / 1.25);
+      padding: calc(var(--v-space) / 1.25) var(--c-padding);
     }
   }
 
