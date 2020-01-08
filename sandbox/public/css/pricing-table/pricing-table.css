@@ -13,7 +13,7 @@
 
 .ps-pricing-table__option__feature {
   margin-bottom: 1em;
-  padding-left: var(--h-padding);
+  padding-left: 2rem;
   position: relative; }
   .ps-pricing-table__option__feature .feature-icon {
     color: var(--color--primary);
