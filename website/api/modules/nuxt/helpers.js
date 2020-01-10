@@ -63,8 +63,7 @@ export default {
         documentId: result.id
       }
     } catch (e) {
-      error({ statusCode: 404, message: 'Document not found. Make sure you created a document of type "${customType}" with uid "${params.uid ||
-		'homepage'}" in your Prismic repository' })
+      error({ statusCode: 404, message: 'Document not found. Make sure you created a document of type "${customType}" in your Prismic repository' })
     }
   }
 }

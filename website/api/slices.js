@@ -172,6 +172,7 @@ app.use((req, res) => {
 			req.query.framework,
 			'info.mustache'
 		)
+
 		const fullProtocol = Object.assign(scaffolder.protocol, {
 			additionalDisplay: Mustache.render(
 				readFileSync(pathToAdditionalInfo, 'utf8'),
