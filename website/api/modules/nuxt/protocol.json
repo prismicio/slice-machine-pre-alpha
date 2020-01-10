@@ -5,7 +5,6 @@
 	"prismicConfig": "prismic.config.js",
 	"examplesFolder": "pages",
 	"firstCommand": "npm run dev",
-	"additionalDisplay": "Before running your project, make sure you added\n`modules: [\n\t['@nuxtjs/prismic', {\n\t\tendpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',\n\t\troutes: [\n\t\t'/pages/',\n\t\t'/pages/:uid',\n\t\t'/',\n\t]}\n\t]\n]\n\nto your Nuxt config file",
 	"projectTests": [
 		{
 			"arg": "-f",
@@ -30,8 +29,9 @@
 			"overwrite": false
 		},
 		{
-			"zipPath": "pages/pages/_uid.vue",
-			"overwrite": false
+			"zipPath": "pages/_uid.vue",
+			"overwrite": false,
+			"bootstrapped": true
 		},
 		{
 			"zipPath": "pages/index.vue",

@@ -1,6 +1,7 @@
 const { lstatSync, readdirSync, readFileSync } = require('fs')
 const path = require('path')
 const JSZip = require('jszip')
+const Mustache = require('mustache')
 const app = require('express')()
 const bodyParser = require('body-parser')
 const zipFolder = require('./helpers/zipFolder')
@@ -163,7 +164,22 @@ app.use((req, res) => {
 		// to handle SASS variables
 		handleStyle(zip, srcUrl)
 
-		zip.file('protocol.json', JSON.stringify(scaffolder.protocol, null, 4))
+		const pathToAdditionalInfo = path.join(
+			process.cwd(),
+			'website',
+			'api',
+			'modules',
+			req.query.framework,
+			'info.mustache'
+		)
+		const fullProtocol = Object.assign(scaffolder.protocol, {
+			additionalDisplay: Mustache.render(
+				readFileSync(pathToAdditionalInfo, 'utf8'),
+				{}
+			)
+		})
+
+		zip.file('protocol.json', JSON.stringify(fullProtocol, null, 4))
 		zip.file(
 			'slices.json', // ambiguous file name
 			JSON.stringify(scaffolder.mergeSlices(model), null, 4)

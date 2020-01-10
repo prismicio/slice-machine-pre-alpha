@@ -1,11 +1,8 @@
-[{
-  "id": "homepage",
-  "name": "Homepage",
-  "repeatable": false,
-  "value": "homepage.json"
-}, {
-  "id": "page",
-  "name": "Page",
-  "repeatable": true,
-  "value": "page.json"
-}]
+[
+	{
+		"id": "page",
+		"name": "Page",
+		"repeatable": true,
+		"value": "page.json"
+	}
+]

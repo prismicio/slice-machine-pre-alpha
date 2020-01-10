@@ -1,0 +1,19 @@
+Additional `nuxt.config.js` configuration (roughly):
+
+modules: [
+  ['@nuxtjs/prismic', {
+    endpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',
+    linkResolver(doc) {
+      if (doc.type === 'page') {
+        return doc.data.uid === 'homepage' ? '/' : `/${doc.data.uid}`
+      }
+      return '/'
+    },
+    routes: [
+      '/:uid',
+      '/',
+    ]
+  }]
+]
+
+👆Make sure you add/understand this before running the project
