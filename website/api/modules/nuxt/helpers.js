@@ -34,7 +34,7 @@ const matches = base
   const url = matches[2]
 */
 export const createPrismicConfigurationFile = () => {
-  return `const api = {
+	return `const api = {
   apiEndpoint: 'https://your-repo-name.prismic.io/api/v2',
 }
 
@@ -42,7 +42,7 @@ module.exports = api;`
 }
 
 export const createUidPage = ({ configPath, customType, sliceMachinePath }) => {
-  return `<template>
+	return `<template>
   <slice-zone :slices="document.body" />
 </template>
 <script>
@@ -57,13 +57,14 @@ export default {
   async asyncData({ params, error, req }) {
     try {
       const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
-      const result = await api.getByUID('${customType}', params.uid)
+      const result = await api.getByUID('${customType}', params.uid || 'homepage')
       return {
         document: result.data,
         documentId: result.id
       }
     } catch (e) {
-      error({ statusCode: 404, message: 'Document not found. Make sure you created a document of type "${customType}" in your Prismic repository' })
+      error({ statusCode: 404, message: 'Document not found. Make sure you created a document of type "${customType}" with uid "${params.uid ||
+		'homepage'}" in your Prismic repository' })
     }
   }
 }
@@ -71,7 +72,7 @@ export default {
 }
 
 export const createIndexPage = ({ configPath, customType }) => {
-  return `<template>
+	return `<template>
   <section class="canvas">
     <slot name="header">
       <div class="header">
