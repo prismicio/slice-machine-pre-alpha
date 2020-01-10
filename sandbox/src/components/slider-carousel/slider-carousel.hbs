@@ -1,0 +1,90 @@
+<section class="ps ps-slider ps-slider--carousel">
+  <div class="ps__wrap">
+    <div class="ps__head">
+      <header class="ps__header">
+        <span class="ps__kicker">The Carousel</span>
+        <h2 class="ps__title" aria-level="">A Collection of Cards</h2>
+      </header>
+      <div class="ps__desc">
+        <p>
+          This carousel moves by one card at a time when the next and previous arrows are clicked.
+        </p>
+      </div>
+    </div>
+
+    <div class="ps__main grid grid--12">
+      <div class="span-1-12">
+
+        <!-- the slider label should not have word "slider" in it -->
+        <div class="c-carousel" data-carousel data-aria-label="PROVIDE_LABEL">
+          <!-- SR helper will be appended here from the JS to announce to SR users what items are now in view -->
+
+          <div class="c-carousel__paddleNav" data-carousel-paddlenav hidden>
+            <!-- paddleNav (prev and next buttons) provided here for flexibility (choose and use the icon you want) -->
+            <button class="c-carousel__paddleNav__prev" aria-label="Previous" data-prev>
+              <!-- place icon here -->
+              <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+                <g fill="none" fill-rule="evenodd">
+                  <path d="M-8-6h24v24H-8z" />
+                  <path fill="currentColor" fill-rule="nonzero" d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z" />
+                </g>
+              </svg>
+            </button>
+            <button class="c-carousel__paddleNav__next" aria-label="Next" data-next>
+              <!-- place icon here -->
+              <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+                <g fill="none" fill-rule="evenodd">
+                  <path d="M-8-6h24v24H-8z" />
+                  <path fill="currentColor" fill-rule="nonzero" d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z" />
+                </g>
+              </svg>
+            </button>
+          </div>
+
+          <div class="c-carousel__cards-container" data-carousel-cards>
+            <div class="c-carousel__cards-wrapper" data-carousel-cards-wrapper>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 1
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 2
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 3
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 4
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 5
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 6
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 7
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 8
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 9
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                Card 10
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<script src="{{ path '/js/hammer.min.js' }}"></script>
