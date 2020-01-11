@@ -28,18 +28,27 @@ var util = {
   }
 
   var ARIAcarousel = function (inst, options) {
-    var _options = Object.assign(ARIAcarouselOptions, options);
-    var el = inst;
-    var carouselContainer = el.querySelector("[data-carousel-cards]");
-    var cardsWrapper = el.querySelector("[data-carousel-cards-wrapper]");
-    var cards = Array.from(el.querySelectorAll("[data-carousel-card]"));
-    var paddleNav = el.querySelector("[data-carousel-paddleNav]");
-    var prevButton = paddleNav.querySelector('[data-prev]');
-    var nextButton = paddleNav.querySelector('[data-next]');
+    const _options = Object.assign(ARIAcarouselOptions, options);
+    const el = inst;
+    const carouselContainer = el.querySelector("[data-carousel-cards]");
+    const cardsWrapper = el.querySelector("[data-carousel-cards-wrapper]");
+    const cards = Array.from(el.querySelectorAll("[data-carousel-card]"));
+    const paddleNav = el.querySelector("[data-carousel-paddleNav]");
+    const prevButton = paddleNav.querySelector('[data-prev]');
+    const nextButton = paddleNav.querySelector('[data-next]');
 
-    var carouselID = util.generateID('c-carousel-');
+    const carouselID = util.generateID('c-carousel-');
 
-    var counter; // counts the number of remaining slides that are out of view
+    let cardWidth = cards[0].offsetWidth;
+    let containerWidth = carouselContainer.offsetWidth;
+    let itemsInView = Math.floor(containerWidth / cardWidth);
+    let itemsOutOfView = cards.length - itemsInView;
+    let rightCounter = itemsOutOfView; // counts the number of remaining slides that are out of view
+    let leftCounter = 0;
+
+    console.log('card width: ' + cardWidth);
+    console.log('Items in view: ' + itemsInView);
+    console.log('Items out of view: ' + itemsOutOfView);
 
 
     var init = function () {
@@ -115,24 +124,24 @@ var util = {
         // updateHelper();
       });
 
-      // handlePaddleButtonsState();
+      handlePaddleButtonsState();
     }
 
     var handlePaddleButtonsState = function () {
-      if (currentIndex == slides.length - 1) {
+      if (rightCounter == 0) {
         nextButton.setAttribute('aria-disabled', 'true');
         nextButton.setAttribute('tabindex', '-1');
       }
-      else if (currentIndex < slides.length - 1) {
+      else if (rightCounter > 0) {
         nextButton.removeAttribute('aria-disabled');
         nextButton.removeAttribute('tabindex');
       }
 
-      if (currentIndex == 0) {
+      if (leftCounter == 0) {
         prevButton.setAttribute('aria-disabled', 'true');
         prevButton.setAttribute('tabindex', '-1');
       }
-      else if (currentIndex > 0) {
+      else if (leftCounter > 0) {
         prevButton.removeAttribute('aria-disabled');
         prevButton.removeAttribute('tabindex');
       }
@@ -160,58 +169,61 @@ var util = {
       slideCards();
     }
 
+    // var slideCards = function () {
+    //   slides.forEach((slide, index) => {
+    //     slide.setAttribute('data-hidden', 'true');
+    //     slide.removeAttribute('tabindex');
+    //   });
+
+    //   slides[currentIndex].setAttribute('data-hidden', 'false');
+    //   slides[currentIndex].setAttribute('tabindex', '0');
+    //   slide(currentIndex);
+    // }
+
     var slideCards = function () {
-      slides.forEach((slide, index) => {
-        slide.setAttribute('data-hidden', 'true');
-        slide.removeAttribute('tabindex');
-      });
-
-      slides[currentIndex].setAttribute('data-hidden', 'false');
-      // if (withDotNav) slides[currentIndex].setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
-      slides[currentIndex].setAttribute('tabindex', '0');
-      slide(currentIndex);
+      var translateValue = leftCounter * cardWidth * -1;
+      cardsWrapper.style.transform = 'translateX(' + translateValue + 'px)';
     }
 
-    var slide = function () {
-      var translateValue = currentIndex * -100;
-      slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
+    var incrementRightCounter = function () {
+      if (rightCounter < itemsOutOfView) {
+        return ++rightCounter;
+        // rightCounter = rightCounter + 1;
+      }
+      else return;
     }
 
-    var incrementCounter = function () {
-      if (currentIndex < slides.length - 1) {
-        return ++currentIndex;
+    var decrementRightCounter = function () {
+      if (rightCounter > 0) {
+        return --rightCounter;
       }
-      else {
-        if (loop) {
-          currentIndex = 0;
-          return currentIndex;
-        }
-        else return;
-      }
-    };
+      else return;
+    }
 
-    var decrementCounter = function () {
-      if (currentIndex > 0) {
-        return --currentIndex;
+    var incrementLeftCounter = function () {
+      if (leftCounter < itemsOutOfView) {
+        return ++leftCounter;
       }
-      else {
-        if (loop) {
-          currentIndex = slides.length - 1;
-          return currentIndex;
-        }
-        else return;
+      else return;
+    }
 
+    var decrementLeftCounter = function () {
+      if (leftCounter > 0) {
+        return --leftCounter;
       }
-    };
+      else return;
+    }
 
     var paddleBack = function (e) {
-      decrementcurrentIndex();
+      incrementRightCounter();
+      decrementLeftCounter();
       slideCards();
       handlePaddleButtonsState();
     }
 
     var paddleForward = function (e) {
-      incrementCounter();
+      decrementRightCounter();
+      incrementLeftCounter();
       slideCards();
       handlePaddleButtonsState();
     }
@@ -236,14 +248,14 @@ var util = {
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
-          selectedDot = currentIndex;
-          selectDot();
+          // selectedDot = currentIndex;
+          // selectDot();
           break;
 
 
         case util.keyCodes.TAB:
-          slides[selectedDot].setAttribute('tabindex', '0');
-          currentIndex = selectedDot;
+          // slides[selectedDot].setAttribute('tabindex', '0');
+          // currentIndex = selectedDot;
           break;
       }
 
@@ -263,6 +275,13 @@ var util = {
 var carouselInstance = "[data-carousel]";
 var els = document.querySelectorAll(carouselInstance);
 var allcarousel = [];
+
+// window.addEventListener("resize", function (event) {
+//   // update your variables
+//   cardWidth = cards[0].offsetWidth;
+//   containerWidth = carouselContainer.offsetWidth;
+//   itemsInView = Math.floor(containerWidth / cardWidth);
+// });
 
 // Generate all carousel instances
 for (var i = 0; i < els.length; i++) {

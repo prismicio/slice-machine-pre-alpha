@@ -32,7 +32,16 @@ var util = {
     var prevButton = paddleNav.querySelector('[data-prev]');
     var nextButton = paddleNav.querySelector('[data-next]');
     var carouselID = util.generateID('c-carousel-');
-    var counter; // counts the number of remaining slides that are out of view
+    var cardWidth = cards[0].offsetWidth;
+    var containerWidth = carouselContainer.offsetWidth;
+    var itemsInView = Math.floor(containerWidth / cardWidth);
+    var itemsOutOfView = cards.length - itemsInView;
+    var rightCounter = itemsOutOfView; // counts the number of remaining slides that are out of view
+
+    var leftCounter = 0;
+    console.log('card width: ' + cardWidth);
+    console.log('Items in view: ' + itemsInView);
+    console.log('Items out of view: ' + itemsOutOfView);
 
     var init = function init() {
       el.setAttribute('id', carouselID);
@@ -88,22 +97,23 @@ var util = {
       });
       nextButton.addEventListener('click', function (e) {
         paddleForward(e); // updateHelper();
-      }); // handlePaddleButtonsState();
+      });
+      handlePaddleButtonsState();
     };
 
     var handlePaddleButtonsState = function handlePaddleButtonsState() {
-      if (currentIndex == slides.length - 1) {
+      if (rightCounter == 0) {
         nextButton.setAttribute('aria-disabled', 'true');
         nextButton.setAttribute('tabindex', '-1');
-      } else if (currentIndex < slides.length - 1) {
+      } else if (rightCounter > 0) {
         nextButton.removeAttribute('aria-disabled');
         nextButton.removeAttribute('tabindex');
       }
 
-      if (currentIndex == 0) {
+      if (leftCounter == 0) {
         prevButton.setAttribute('aria-disabled', 'true');
         prevButton.setAttribute('tabindex', '-1');
-      } else if (currentIndex > 0) {
+      } else if (leftCounter > 0) {
         prevButton.removeAttribute('aria-disabled');
         prevButton.removeAttribute('tabindex');
       }
@@ -122,54 +132,56 @@ var util = {
         }, false);
       });
       slideCards();
-    };
+    }; // var slideCards = function () {
+    //   slides.forEach((slide, index) => {
+    //     slide.setAttribute('data-hidden', 'true');
+    //     slide.removeAttribute('tabindex');
+    //   });
+    //   slides[currentIndex].setAttribute('data-hidden', 'false');
+    //   slides[currentIndex].setAttribute('tabindex', '0');
+    //   slide(currentIndex);
+    // }
+
 
     var slideCards = function slideCards() {
-      slides.forEach(function (slide, index) {
-        slide.setAttribute('data-hidden', 'true');
-        slide.removeAttribute('tabindex');
-      });
-      slides[currentIndex].setAttribute('data-hidden', 'false'); // if (withDotNav) slides[currentIndex].setAttribute('aria-labelledby', dots[currentIndex].getAttribute('id'));
-
-      slides[currentIndex].setAttribute('tabindex', '0');
-      slide(currentIndex);
+      var translateValue = leftCounter * cardWidth * -1;
+      cardsWrapper.style.transform = 'translateX(' + translateValue + 'px)';
     };
 
-    var slide = function slide() {
-      var translateValue = currentIndex * -100;
-      slidesWrapper.style.transform = 'translateX(' + translateValue + '%)';
+    var incrementRightCounter = function incrementRightCounter() {
+      if (rightCounter < itemsOutOfView) {
+        return ++rightCounter; // rightCounter = rightCounter + 1;
+      } else return;
     };
 
-    var incrementCounter = function incrementCounter() {
-      if (currentIndex < slides.length - 1) {
-        return ++currentIndex;
-      } else {
-        if (loop) {
-          currentIndex = 0;
-          return currentIndex;
-        } else return;
-      }
+    var decrementRightCounter = function decrementRightCounter() {
+      if (rightCounter > 0) {
+        return --rightCounter;
+      } else return;
     };
 
-    var decrementCounter = function decrementCounter() {
-      if (currentIndex > 0) {
-        return --currentIndex;
-      } else {
-        if (loop) {
-          currentIndex = slides.length - 1;
-          return currentIndex;
-        } else return;
-      }
+    var incrementLeftCounter = function incrementLeftCounter() {
+      if (leftCounter < itemsOutOfView) {
+        return ++leftCounter;
+      } else return;
+    };
+
+    var decrementLeftCounter = function decrementLeftCounter() {
+      if (leftCounter > 0) {
+        return --leftCounter;
+      } else return;
     };
 
     var paddleBack = function paddleBack(e) {
-      decrementcurrentIndex();
+      incrementRightCounter();
+      decrementLeftCounter();
       slideCards();
       handlePaddleButtonsState();
     };
 
     var paddleForward = function paddleForward(e) {
-      incrementCounter();
+      decrementRightCounter();
+      incrementLeftCounter();
       slideCards();
       handlePaddleButtonsState();
     };
@@ -190,13 +202,13 @@ var util = {
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
-          selectedDot = currentIndex;
-          selectDot();
+          // selectedDot = currentIndex;
+          // selectDot();
           break;
 
         case util.keyCodes.TAB:
-          slides[selectedDot].setAttribute('tabindex', '0');
-          currentIndex = selectedDot;
+          // slides[selectedDot].setAttribute('tabindex', '0');
+          // currentIndex = selectedDot;
           break;
       }
     };
@@ -211,7 +223,13 @@ var util = {
 
 var carouselInstance = "[data-carousel]";
 var els = document.querySelectorAll(carouselInstance);
-var allcarousel = []; // Generate all carousel instances
+var allcarousel = []; // window.addEventListener("resize", function (event) {
+//   // update your variables
+//   cardWidth = cards[0].offsetWidth;
+//   containerWidth = carouselContainer.offsetWidth;
+//   itemsInView = Math.floor(containerWidth / cardWidth);
+// });
+// Generate all carousel instances
 
 for (var i = 0; i < els.length; i++) {
   var ncarousel = new ARIAcarousel(els[i]); // if manual is set to false, the carousel open on focus without needing an ENTER or SPACE press

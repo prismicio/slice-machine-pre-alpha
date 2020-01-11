@@ -2,73 +2,59 @@
 
 /* .ps-slider--testimonials specific styles */
 
-.ps-slider--testimonials {
-  .ps-slider__testimonial {
-    width: 100%;
-    margin: 0;
-    margin-bottom: var(--c-margin);
-    padding: 4rem 1.5rem;
-    background-color: var(--color--secondary);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.c-carousel__cards-container {
+  overflow: hidden;
+  border: 5px solid #eee;
+}
 
-    @media all and (min-width: 50em) {
-      padding: calc(var(--v-space) / 1.25) var(--c-padding);
-    }
+.ps-slider--carousel {}
+
+.c-carousel__cards-wrapper {
+  display: flex;
+  transition: transform .4s cubic-bezier(.39, .03, .56, .57);
+}
+
+.c-carousel__card {
+  width: 100%;
+  flex-shrink: 0;
+  text-align: center;
+  padding: .8rem; // 1.6/2
+
+
+  @media all and (min-width: 640px) {
+    width: 50%;
   }
 
-  .ps-slider__testimonial__logo {
-    margin-bottom: var(--v-margin);
+  @media all and (min-width: 900px) {
+    width: 33.3333%;
   }
 
-
-  .ps-slider__testimonial__content {
-    line-height: 1.3;
-    line-height: 1.2;
-    font-size: calc(1rem * var(--text-min-xl));
-    max-width: 50ch;
-    margin: 0 auto;
-
-    @media screen and (min-width: 40rem) {
-      font-size: calc(calc(1rem * var(--text-min-xl)) + (var(--text-max-xl) - var(--text-min-xl)) * (100vw - 40rem) / (80 - 40));
-    }
-
-    @media screen and (min-width: 80rem) {
-      font-size: calc(1rem * var(--text-max-xl));
-    }
-
-    p:last-of-type() {
-      margin-bottom: 0;
-    }
+  @media all and (min-width: 1200px) {
+    width: 25%;
   }
+}
 
-  .ps-slider__testimonial__footer {
-    margin-top: var(--v-margin);
-  }
+.c-carousel__card__wrapper {
+  padding: 1.6rem;
+  background-color: var(--color--secondary);
+  border-radius: 8px;
+}
 
-  .ps-slider__testimonial__footer cite {
-    font-style: normal;
-  }
+.c-carousel__card__img {
+  margin-bottom: var(--v-margin);
+}
 
-  .ps-slider__testimonial__author {
-    font-weight: bold;
-    font-size: calc(1rem * var(--text-min-l));
+.c-carousel__card__title {
+  font-size: 1rem;
+}
 
-    @media screen and (min-width: 40rem) {
-      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40));
+
+.c-carousel__paddleNav {
+  button {
+    &[aria-disabled="true"] {
+      svg {
+        color: #aaa;
+      }
     }
-
-    @media screen and (min-width: 80rem) {
-      font-size: calc(1rem * var(--text-max-l));
-    }
-  }
-
-  .ps-slider__testimonial__author,
-  .ps-slider__testimonial__author-position {
-    display: block;
-    margin-bottom: .5rem;
   }
 }
