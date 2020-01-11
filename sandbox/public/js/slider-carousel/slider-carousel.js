@@ -441,7 +441,7 @@ var util = {
       var options = {
         root: carouselContainer,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: .5
       };
       var observer = new IntersectionObserver(a11ifyCards, options);
       cards.forEach(function (card) {
@@ -456,12 +456,13 @@ var util = {
             entry.target.setAttribute('aria-hidden', 'false');
             entry.target.removeAttribute('inert');
           } else {
-            // entry.target.style.opacity = "0";
+            // entry.target.style.opacity = "0".5
             entry.target.classList.remove('is-visible');
             entry.target.setAttribute('aria-hidden', 'true');
             entry.target.setAttribute('inert', '');
           }
         });
+        updateHelper();
       }
     };
 
@@ -536,10 +537,9 @@ var util = {
 
     var slideCards = function slideCards() {
       var translateValue = leftCounter * cardWidth * -1;
-      cardsWrapper.style.transform = 'translateX(' + translateValue + 'px)';
-      cardsWrapper.addEventListener('transitionend', function () {
-        updateHelper();
-      });
+      cardsWrapper.style.transform = 'translateX(' + translateValue + 'px)'; // cardsWrapper.addEventListener('transitionend', function () {
+      //   updateHelper();
+      // });
     };
 
     var incrementRightCounter = function incrementRightCounter() {

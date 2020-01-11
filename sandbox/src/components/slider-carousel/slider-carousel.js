@@ -164,7 +164,7 @@ var util = {
       let options = {
         root: carouselContainer,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: .5
       }
 
       let observer = new IntersectionObserver(a11ifyCards, options);
@@ -179,14 +179,17 @@ var util = {
             entry.target.classList.add('is-visible');
             entry.target.setAttribute('aria-hidden', 'false');
             entry.target.removeAttribute('inert');
+
           }
           else {
-            // entry.target.style.opacity = "0";
+            // entry.target.style.opacity = "0".5
             entry.target.classList.remove('is-visible');
             entry.target.setAttribute('aria-hidden', 'true');
             entry.target.setAttribute('inert', '');
           }
         });
+
+        updateHelper();
       }
 
 
@@ -276,9 +279,9 @@ var util = {
       var translateValue = leftCounter * cardWidth * -1;
       cardsWrapper.style.transform = 'translateX(' + translateValue + 'px)';
 
-      cardsWrapper.addEventListener('transitionend', function () {
-        updateHelper();
-      });
+      // cardsWrapper.addEventListener('transitionend', function () {
+      //   updateHelper();
+      // });
     }
 
     var incrementRightCounter = function () {
