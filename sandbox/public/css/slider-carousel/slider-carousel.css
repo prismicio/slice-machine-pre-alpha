@@ -1,7 +1,9 @@
 /* general slider styles are in common with ps-slider--images (Slider | Images component)*/
 /* .ps-slider--testimonials specific styles */
+.c-carousel {
+  position: relative; }
+
 .c-carousel__cards-container {
-  border: 1px dotted #eee;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch; }
@@ -19,7 +21,10 @@
   margin-right: 1.6rem;
   white-space: initial;
   display: inline-block;
-  transition: opacity 1s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 1s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
+  transition: opacity .4s linear -1s, visibility 0 linear;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .2s linear, visibility 0 linear; }
   @media all and (min-width: 640px) {
     .c-carousel__card {
       width: 50%; } }
@@ -32,13 +37,9 @@
   .c-carousel__card[data-hidden="true"] {
     visibility: hidden;
     opacity: 0; }
-  .c-carousel__card[data-hidden="false"] {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.2s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 0.2s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .c-carousel__card__wrapper {
-  padding: 1.6rem;
+  padding: 2.5rem 1.6rem;
   background-color: var(--color--secondary);
   border-radius: 8px; }
 
@@ -48,7 +49,8 @@
 .js-carousel .c-carousel__cards-wrapper {
   width: 100%;
   display: flex;
-  transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
+  align-items: center;
+  transition: transform 0.6ss cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .js-carousel .c-carousel__card {
   margin: 0;
@@ -60,5 +62,60 @@
 .c-carousel__card__title {
   font-size: 1rem; }
 
-.c-carousel__paddleNav button[aria-disabled="true"] svg {
-  color: #aaa; }
+.c-carousel__paddleNav {
+  text-align: center;
+  align-content: bottom;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .c-carousel__paddleNav .c-carousel__paddleNav__prev,
+  .c-carousel__paddleNav .c-carousel__paddleNav__next {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: .5rem;
+    z-index: 2;
+    top: 50%;
+    margin-top: -1.375rem;
+    border: 2px dotted transparent;
+    border-radius: 50%;
+    line-height: 0; }
+    @media all and (min-width: 64em) {
+      .c-carousel__paddleNav .c-carousel__paddleNav__prev,
+      .c-carousel__paddleNav .c-carousel__paddleNav__next {
+        position: absolute; } }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
+      width: 50%;
+      height: auto;
+      color: #000;
+      transition: color .1s linear; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"] svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"] svg {
+      color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
+      display: inline; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:hover svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:hover svg {
+      color: var(--color--primary); }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"]:hover svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"]:hover svg {
+      color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus, .c-carousel__paddleNav .c-carousel__paddleNav__prev:active,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:active {
+      outline: none;
+      border-color: currentColor; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"]:focus,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"]:focus {
+      border-color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus:not(:focus-visible),
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus:not(:focus-visible) {
+      border-color: transparent; }
+    .js-focus-visible .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus:not(.focus-visible), .js-focus-visible
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus:not(.focus-visible) {
+      border-color: transparent; }
+  .c-carousel__paddleNav .c-carousel__paddleNav__prev {
+    left: -3.5rem; }
+  .c-carousel__paddleNav .c-carousel__paddleNav__next {
+    right: -3.5rem; }

@@ -52,13 +52,68 @@ var util = {
       el.setAttribute('aria-label', el.getAttribute('data-aria-label')); // show Next and Prev Buttons
 
       paddleNav.removeAttribute('hidden');
-      setupPaddleNav(); // setupSlides();
-      // setupSRHelper();
-      // enableTouchSwipes();
+      /***************************************** * 
+       * handle carousel on window resize 
+       ******************************************/
+
+      var timeout = false,
+          // holder for timeout id
+      delay = 250,
+          // delay after event is "complete" to run callback
+      calls = 0;
+      window.addEventListener("resize", function () {
+        // clear the timeout
+        clearTimeout(timeout); // start timing for event "completion"
+
+        timeout = setTimeout(updateVariables, delay);
+      });
+      updateVariables();
+
+      function updateVariables() {
+        // update your variables
+        cardWidth = cards[0].offsetWidth;
+        containerWidth = carouselContainer.offsetWidth;
+        itemsInView = Math.floor(containerWidth / cardWidth);
+        itemsOutOfView = cards.length - itemsInView;
+        console.log('card width: ' + cardWidth);
+        console.log('Items in view: ' + itemsInView);
+        console.log('Items out of view: ' + itemsOutOfView);
+        slideCards();
+      }
+      /* ************************************************ */
+
+
+      initCards();
+      initPaddleNav(); // initHelper();
+
+      enableTouchSwipes();
+    };
+
+    var initCards = function initCards() {
+      var options = {
+        root: carouselContainer,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+      var observer = new IntersectionObserver(a11ifyCards, options);
+      cards.forEach(function (card) {
+        return observer.observe(card);
+      });
+
+      function a11ifyCards(entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            console.log(entry.target);
+            entry.target.removeAttribute('data-hidden');
+          } else {
+            entry.target.setAttribute('data-hidden', 'true');
+          }
+        });
+      }
     };
 
     var enableTouchSwipes = function enableTouchSwipes() {
-      var mc = new Hammer(slidesWrapper, {
+      var mc = new Hammer(cardsWrapper, {
         threshold: 500
       }); // listen to events...
 
@@ -68,7 +123,7 @@ var util = {
       mc.on("swiperight", function (e) {
         paddleBack();
       });
-    }; // var setupSRHelper = function () {
+    }; // var initHelper = function () {
     //   let helper = document.createElement('span');
     //   helper.setAttribute('aria-live', 'polite');
     //   helper.setAttribute('id', sliderID + '__SRHelper');
@@ -85,7 +140,7 @@ var util = {
     // }
 
 
-    var setupPaddleNav = function setupPaddleNav() {
+    var initPaddleNav = function initPaddleNav() {
       prevButton.addEventListener('keydown', function (e) {
         paddleKeyboardRespond(e); // updateHelper();
       }, false);
@@ -119,38 +174,15 @@ var util = {
       }
     };
 
-    var setupSlides = function setupSlides() {
-      slides.forEach(function (slide, index) {
-        slide.setAttribute('role', 'group');
-        slide.setAttribute('aria-roledescription', 'Slide');
-        slide.setAttribute('tabindex', '-1');
-        slide.setAttribute('data-hidden', 'true');
-        slide.addEventListener('keydown', function (e) {// slideKeyboardRespond(e);
-        }, false);
-        slide.addEventListener("blur", function () {
-          slide.setAttribute('tabindex', '-1');
-        }, false);
-      });
-      slideCards();
-    }; // var slideCards = function () {
-    //   slides.forEach((slide, index) => {
-    //     slide.setAttribute('data-hidden', 'true');
-    //     slide.removeAttribute('tabindex');
-    //   });
-    //   slides[currentIndex].setAttribute('data-hidden', 'false');
-    //   slides[currentIndex].setAttribute('tabindex', '0');
-    //   slide(currentIndex);
-    // }
-
-
     var slideCards = function slideCards() {
       var translateValue = leftCounter * cardWidth * -1;
       cardsWrapper.style.transform = 'translateX(' + translateValue + 'px)';
+      initCards();
     };
 
     var incrementRightCounter = function incrementRightCounter() {
       if (rightCounter < itemsOutOfView) {
-        return ++rightCounter; // rightCounter = rightCounter + 1;
+        return ++rightCounter;
       } else return;
     };
 
@@ -223,13 +255,7 @@ var util = {
 
 var carouselInstance = "[data-carousel]";
 var els = document.querySelectorAll(carouselInstance);
-var allcarousel = []; // window.addEventListener("resize", function (event) {
-//   // update your variables
-//   cardWidth = cards[0].offsetWidth;
-//   containerWidth = carouselContainer.offsetWidth;
-//   itemsInView = Math.floor(containerWidth / cardWidth);
-// });
-// Generate all carousel instances
+var allcarousel = []; // Generate all carousel instances
 
 for (var i = 0; i < els.length; i++) {
   var ncarousel = new ARIAcarousel(els[i]); // if manual is set to false, the carousel open on focus without needing an ENTER or SPACE press
