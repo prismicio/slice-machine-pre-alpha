@@ -34,14 +34,14 @@ var util = {
     var carouselID = util.generateID('c-carousel-');
     var cardWidth = cards[0].offsetWidth;
     var containerWidth = carouselContainer.offsetWidth;
-    var itemsAvailable = Math.floor(containerWidth / cardWidth);
-    var itemsOutOfView = cards.length - itemsAvailable;
+    var itemsInView = Math.floor(containerWidth / cardWidth);
+    var itemsOutOfView = cards.length - itemsInView;
     var rightCounter = itemsOutOfView; // counts the number of remaining slides that are out of view
 
     var leftCounter = 0;
-    var itemsShowing = []; // console.log('card width: ' + cardWidth);
-    // console.log('Items in view: ' + itemsAvailable);
-    // console.log('Items out of view: ' + itemsOutOfView);
+    console.log('card width: ' + cardWidth);
+    console.log('Items in view: ' + itemsInView);
+    console.log('Items out of view: ' + itemsOutOfView);
 
     var init = function init() {
       el.setAttribute('id', carouselID);
@@ -58,41 +58,34 @@ var util = {
 
       var timeout = false,
           // holder for timeout id
-      delay = 100,
+      delay = 250,
           // delay after event is "complete" to run callback
       calls = 0;
       window.addEventListener("resize", function () {
         // clear the timeout
         clearTimeout(timeout); // start timing for event "completion"
 
-        timeout = setTimeout(updateState, delay);
+        timeout = setTimeout(updateVariables, delay);
       });
-      updateState();
+      updateVariables();
 
-      function updateState() {
+      function updateVariables() {
+        // update your variables
         cardWidth = cards[0].offsetWidth;
         containerWidth = carouselContainer.offsetWidth;
-        itemsAvailable = Math.floor(containerWidth / cardWidth);
-        itemsOutOfView = cards.length - itemsAvailable;
-        rightCounter = itemsOutOfView;
-        leftCounter = 0; // reset it
-
-        handlePaddleButtonsState();
-        setTimeout(updateHelper, 300);
+        itemsInView = Math.floor(containerWidth / cardWidth);
+        itemsOutOfView = cards.length - itemsInView;
+        console.log('card width: ' + cardWidth);
+        console.log('Items in view: ' + itemsInView);
+        console.log('Items out of view: ' + itemsOutOfView);
         slideCards();
       }
       /* ************************************************ */
 
 
-      var helper = document.createElement('span');
-      helper.setAttribute('aria-live', 'polite');
-      helper.setAttribute('id', carouselID + '__SRHelper');
-      helper.classList.add('sr-only');
-      helper.classList.add('c-carousel__SRHelper');
-      el.prepend(helper);
       initCards();
-      initPaddleNav();
-      initHelper();
+      initPaddleNav(); // initHelper();
+
       enableTouchSwipes();
     };
 
@@ -110,13 +103,10 @@ var util = {
       function a11ifyCards(entries, observer) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            // entry.target.style.opacity = "1";
-            entry.target.classList.add('is-visible');
-            entry.target.setAttribute('aria-hidden', 'false');
+            console.log(entry.target);
+            entry.target.style.visibility = "visible";
           } else {
-            // entry.target.style.opacity = "0";
-            entry.target.classList.remove('is-visible');
-            entry.target.setAttribute('aria-hidden', 'true');
+            entry.target.style.visibility = "hidden";
           }
         });
       }
@@ -133,37 +123,35 @@ var util = {
       mc.on("swiperight", function (e) {
         paddleBack();
       });
-    };
+    }; // var initHelper = function () {
+    //   let helper = document.createElement('span');
+    //   helper.setAttribute('aria-live', 'polite');
+    //   helper.setAttribute('id', sliderID + '__SRHelper');
+    //   helper.classList.add('sr-only');
+    //   helper.classList.add('c-carousel__SRHelper');
+    //   el.prepend(helper);
+    //   updateHelper();
+    // }
+    // var updateHelper = function () {
+    //   let showing = slides[currentIndex].getAttribute('data-slide-label');
+    //   let showingNb = currentIndex + 1;
+    //   let helper = el.querySelector('.c-carousel__SRHelper');
+    //   helper.innerHTML = 'Showing ' + showing + ', slide ' + showingNb + ' of ' + slides.length;
+    // }
 
-    var initHelper = function initHelper() {
-      setTimeout(function () {
-        updateHelper();
-      }, 300);
-    };
-
-    var updateHelper = function updateHelper() {
-      var visibleItems = Array.from(el.querySelectorAll('.c-carousel__card.is-visible'));
-      var cardNumbers = [];
-      var helper = el.querySelector('.c-carousel__SRHelper');
-      visibleItems.forEach(function (item) {
-        var number = cards.indexOf(item);
-        cardNumbers.push(number + 1);
-      });
-      helper.innerHTML = 'Showing carousel items ' + cardNumbers.toString() + ' of ' + cards.length;
-    };
 
     var initPaddleNav = function initPaddleNav() {
       prevButton.addEventListener('keydown', function (e) {
-        paddleKeyboardRespond(e);
+        paddleKeyboardRespond(e); // updateHelper();
       }, false);
       nextButton.addEventListener('keydown', function (e) {
-        paddleKeyboardRespond(e);
+        paddleKeyboardRespond(e); // updateHelper();
       }, false);
       prevButton.addEventListener('click', function (e) {
-        paddleBack();
+        paddleBack(); // updateHelper();
       });
       nextButton.addEventListener('click', function (e) {
-        paddleForward(e);
+        paddleForward(e); // updateHelper();
       });
       handlePaddleButtonsState();
     };
@@ -219,7 +207,6 @@ var util = {
       incrementRightCounter();
       decrementLeftCounter();
       slideCards();
-      setTimeout(updateHelper, 300);
       handlePaddleButtonsState();
     };
 
@@ -227,7 +214,6 @@ var util = {
       decrementRightCounter();
       incrementLeftCounter();
       slideCards();
-      setTimeout(updateHelper, 300);
       handlePaddleButtonsState();
     };
 

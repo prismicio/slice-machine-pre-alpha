@@ -21,8 +21,7 @@
   margin-right: 1.6rem;
   white-space: initial;
   display: inline-block;
-  visibility: visible;
-  opacity: 1; }
+  visibility: visible; }
   @media all and (min-width: 640px) {
     .c-carousel__card {
       width: 50%; } }
@@ -33,8 +32,7 @@
     .c-carousel__card {
       width: 25%; } }
   .c-carousel__card[data-hidden="true"] {
-    visibility: hidden;
-    opacity: 0; }
+    visibility: hidden; }
 
 .c-carousel__card__wrapper {
   padding: 2.5rem 1.6rem;
@@ -48,7 +46,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  transition: transform 0.6s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
+  transition: transform 0.3s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .js-carousel .c-carousel__card {
   margin: 0;
