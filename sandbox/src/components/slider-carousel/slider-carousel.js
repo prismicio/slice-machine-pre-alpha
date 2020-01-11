@@ -208,8 +208,6 @@ var util = {
     var slideCards = function () {
       var translateValue = leftCounter * cardWidth * -1;
       cardsWrapper.style.transform = 'translateX(' + translateValue + 'px)';
-
-      initCards();
     }
 
     var incrementRightCounter = function () {
