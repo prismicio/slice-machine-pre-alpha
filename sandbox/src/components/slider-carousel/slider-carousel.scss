@@ -45,11 +45,11 @@
     width: 25%;
   }
 
-  &[data-hidden="true"] {
-    visibility: hidden;
+  &[aria-hidden="true"] {
+    // visibility: hidden;
   }
 
-  visibility: visible;
+  // visibility: visible;
 
 }
 
