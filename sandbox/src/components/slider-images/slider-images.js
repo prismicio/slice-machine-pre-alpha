@@ -262,11 +262,13 @@ var util = {
 
         dot.addEventListener('click', (e) => {
           e.preventDefault();
-          currentIndex = index;
           selectedDot = index;
+          currentIndex = selectedDot;
           focusCurrentDot();
           selectDot();
+          handlePaddleButtonsState();
           updateHelper();
+
         }, false);
 
         dot.addEventListener('keydown', (e) => {

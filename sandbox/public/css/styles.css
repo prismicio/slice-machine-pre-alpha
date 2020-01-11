@@ -781,9 +781,9 @@ a.ps-button--ghost {
   transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .c-carousel__card {
+  box-sizing: border-box;
   width: 100%;
   text-align: center;
-  padding: .8rem;
   margin-right: 1.6rem;
   white-space: initial;
   display: inline-block; }
@@ -800,7 +800,8 @@ a.ps-button--ghost {
 .c-carousel__card__wrapper {
   padding: 2.5rem 1.6rem;
   background-color: var(--color--secondary);
-  border-radius: 8px; }
+  border-radius: 8px;
+  margin: .8rem; }
 
 .js-carousel .c-carousel__container {
   overflow: hidden; }

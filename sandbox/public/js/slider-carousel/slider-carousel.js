@@ -378,17 +378,14 @@ var util = {
     var prevButton = paddleNav.querySelector('[data-prev]');
     var nextButton = paddleNav.querySelector('[data-next]');
     var transitionEvent = util.whichTransitionEvent();
-    var carouselID = util.generateID('c-carousel-');
-    var cardWidth = cards[0].offsetWidth;
-    var containerWidth = carouselContainer.offsetWidth;
-    var itemsAvailable = Math.floor(containerWidth / cardWidth);
-    var itemsOutOfView = cards.length - itemsAvailable;
-    var rightCounter = itemsOutOfView; // counts the number of remaining slides that are out of view
+    var carouselID = util.generateID('c-carousel-'); // let cardWidth = cards[0].offsetWidth;
+    // let containerWidth = carouselContainer.offsetWidth;
+    // let itemsInView = Math.floor(containerWidth / cardWidth);
+    // let itemsOutOfView = cards.length - itemsInView;
+    // let rightCounter = itemsOutOfView; // counts the number of remaining slides that are out of view
+    // let leftCounter = 0;
 
-    var leftCounter = 0;
-    var itemsShowing = []; // console.log('card width: ' + cardWidth);
-    // console.log('Items in view: ' + itemsAvailable);
-    // console.log('Items out of view: ' + itemsOutOfView);
+    var itemsShowing = [];
 
     var init = function init() {
       el.setAttribute('id', carouselID);
@@ -406,7 +403,7 @@ var util = {
 
       var timeout = false,
           // holder for timeout id
-      delay = 100,
+      delay = 300,
           // delay after event is "complete" to run callback
       calls = 0;
       window.addEventListener("resize", function () {
@@ -420,11 +417,18 @@ var util = {
       function updateState() {
         cardWidth = cards[0].offsetWidth;
         containerWidth = carouselContainer.offsetWidth;
-        itemsAvailable = Math.floor(containerWidth / cardWidth);
-        itemsOutOfView = cards.length - itemsAvailable;
+        itemsInView = Math.round(containerWidth / cardWidth); // Math.round() instead of Math.floor() because FF sometimes errs on a couple of pixels, leading to a value of 3.99 instead of 4.something, so the number is set to 3, which is wrong. To avoid that, round up.
+
+        itemsOutOfView = cards.length - itemsInView;
         rightCounter = itemsOutOfView;
         leftCounter = 0; // reset it
 
+        console.log('---');
+        console.log('card width: ' + cardWidth);
+        console.log('Items in view: ' + itemsInView);
+        console.log('Items out of view: ' + itemsOutOfView);
+        console.log('right counter: ' + rightCounter);
+        console.log('left counter: ' + leftCounter);
         handlePaddleButtonsState();
         updateHelper();
         slideCards();
@@ -440,8 +444,9 @@ var util = {
     var initCards = function initCards() {
       var options = {
         root: carouselContainer,
-        rootMargin: '0px',
-        threshold: .5
+        rootMargin: '-10px',
+        // set to a negative value so that FF doesn't consider an element intersecting when its boundary is just touching that of the root
+        threshold: 0.75
       };
       var observer = new IntersectionObserver(a11ifyCards, options);
       cards.forEach(function (card) {
@@ -450,13 +455,12 @@ var util = {
 
       function a11ifyCards(entries, observer) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            // entry.target.style.opacity = "1";
+          if (entry.intersectionRatio >= 0.75) {
+            // if you use isIntersecting or intersectionRatio == 1, FF will resolve to true even when it isn't; it's about 1px in FF. Annoying!
             entry.target.classList.add('is-visible');
             entry.target.setAttribute('aria-hidden', 'false');
             entry.target.removeAttribute('inert');
           } else {
-            // entry.target.style.opacity = "0".5
             entry.target.classList.remove('is-visible');
             entry.target.setAttribute('aria-hidden', 'true');
             entry.target.setAttribute('inert', '');
@@ -536,8 +540,11 @@ var util = {
     };
 
     var slideCards = function slideCards() {
-      var translateValue = leftCounter * cardWidth * -1;
-      cardsWrapper.style.transform = 'translateX(' + translateValue + 'px)'; // cardsWrapper.addEventListener('transitionend', function () {
+      // var translateValue = leftCounter * cardWidth * -1;
+      // instead of using the element width as above, I'm using percentages based on number of items in view (basically same as widths set in the CSS media queries on .c-carousel__card)
+      // because of the way FF calculates item widths and how it differs from Chrome and Safari, thus resulting in inaccurate translate values (so portions of some cards would be visible when they shouldn't)
+      var translateValue = leftCounter * (100 / itemsInView) * -1;
+      cardsWrapper.style.transform = 'translateX(' + translateValue + '%)'; // cardsWrapper.addEventListener('transitionend', function () {
       //   updateHelper();
       // });
     };
@@ -571,6 +578,12 @@ var util = {
       decrementLeftCounter();
       slideCards();
       handlePaddleButtonsState();
+      console.log('---');
+      console.log('card width: ' + cardWidth);
+      console.log('Items in view: ' + itemsInView);
+      console.log('Items out of view: ' + itemsOutOfView);
+      console.log('right counter: ' + rightCounter);
+      console.log('left counter: ' + leftCounter);
     };
 
     var paddleForward = function paddleForward(e) {
@@ -578,6 +591,12 @@ var util = {
       incrementLeftCounter();
       slideCards();
       handlePaddleButtonsState();
+      console.log('---');
+      console.log('card width: ' + cardWidth);
+      console.log('Items in view: ' + itemsInView);
+      console.log('Items out of view: ' + itemsOutOfView);
+      console.log('right counter: ' + rightCounter);
+      console.log('left counter: ' + leftCounter);
     };
 
     var paddleKeyboardRespond = function paddleKeyboardRespond(e) {

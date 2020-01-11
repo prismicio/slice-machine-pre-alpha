@@ -24,10 +24,10 @@
 }
 
 .c-carousel__card {
+  box-sizing: border-box;
   width: 100%;
   text-align: center;
-  padding: .8rem; // 1.6/2
-  margin-right: 1.6rem;
+  margin-right: 1.6rem; // for no-js
   white-space: initial;
 
   display: inline-block;
@@ -57,7 +57,9 @@
   padding: 2.5rem 1.6rem;
   background-color: var(--color--secondary);
   border-radius: 8px;
+  margin: .8rem; // 1.6/2
 }
+
 
 
 .js-carousel {
@@ -70,7 +72,6 @@
     display: flex;
     align-items: center;
     transition: transform .3s cubic-bezier(.39, .03, .56, .57);
-
   }
 
   .c-carousel__card {

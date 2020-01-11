@@ -262,10 +262,12 @@ var util = {
 
         dot.addEventListener('click', (e) => {
           e.preventDefault();
-          currentIndex = index;
+          e.preventDefault();
           selectedDot = index;
+          currentIndex = selectedDot;
           focusCurrentDot();
           selectDot();
+          handlePaddleButtonsState();
           updateHelper();
         }, false);
 
