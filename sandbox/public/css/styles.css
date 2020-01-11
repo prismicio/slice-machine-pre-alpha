@@ -767,18 +767,25 @@ a.ps-button--ghost {
 /* general slider styles are in common with ps-slider--images (Slider | Images component)*/
 /* .ps-slider--testimonials specific styles */
 .c-carousel__cards-container {
-  overflow: hidden;
-  border: 5px solid #eee; }
+  border: 1px dotted #eee;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; }
+  .js-carousel .c-carousel__cards-container {
+    overflow: hidden; }
 
 .c-carousel__cards-wrapper {
-  display: flex;
+  white-space: nowrap;
   transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .c-carousel__card {
   width: 100%;
-  flex-shrink: 0;
   text-align: center;
-  padding: .8rem; }
+  padding: .8rem;
+  margin-right: 1.6rem;
+  white-space: initial;
+  display: inline-block;
+  transition: opacity 1s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 1s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
   @media all and (min-width: 640px) {
     .c-carousel__card {
       width: 50%; } }
@@ -788,11 +795,30 @@ a.ps-button--ghost {
   @media all and (min-width: 1200px) {
     .c-carousel__card {
       width: 25%; } }
+  .c-carousel__card[data-hidden="true"] {
+    visibility: hidden;
+    opacity: 0; }
+  .c-carousel__card[data-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 0.2s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .c-carousel__card__wrapper {
   padding: 1.6rem;
   background-color: var(--color--secondary);
   border-radius: 8px; }
+
+.js-carousel .c-carousel__container {
+  overflow: hidden; }
+
+.js-carousel .c-carousel__cards-wrapper {
+  width: 100%;
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
+
+.js-carousel .c-carousel__card {
+  margin: 0;
+  flex-shrink: 0; }
 
 .c-carousel__card__img {
   margin-bottom: var(--v-margin); }

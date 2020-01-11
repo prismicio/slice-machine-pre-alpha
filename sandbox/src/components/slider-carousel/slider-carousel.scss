@@ -3,22 +3,33 @@
 /* .ps-slider--testimonials specific styles */
 
 .c-carousel__cards-container {
-  overflow: hidden;
-  border: 5px solid #eee;
+
+  border: 1px dotted #eee;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  .js-carousel & {
+    overflow: hidden;
+  }
 }
 
 .ps-slider--carousel {}
 
 .c-carousel__cards-wrapper {
-  display: flex;
+  white-space: nowrap;
   transition: transform .4s cubic-bezier(.39, .03, .56, .57);
 }
 
 .c-carousel__card {
   width: 100%;
-  flex-shrink: 0;
   text-align: center;
   padding: .8rem; // 1.6/2
+  margin-right: 1.6rem;
+  white-space: initial;
+
+  display: inline-block;
 
 
   @media all and (min-width: 640px) {
@@ -32,12 +43,48 @@
   @media all and (min-width: 1200px) {
     width: 25%;
   }
+
+  transition: opacity 1s cubic-bezier(.39, .03, .56, .57),
+  visibility 1s cubic-bezier(.39, .03, .56, .57);
+
+  &[data-hidden="true"] {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &[data-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+
+    transition:
+      opacity .2s cubic-bezier(.39, .03, .56, .57),
+      visibility .2s cubic-bezier(.39, .03, .56, .57);
+  }
 }
 
 .c-carousel__card__wrapper {
   padding: 1.6rem;
   background-color: var(--color--secondary);
   border-radius: 8px;
+}
+
+
+.js-carousel {
+  .c-carousel__container {
+    overflow: hidden;
+  }
+
+  .c-carousel__cards-wrapper {
+    width: 100%;
+    display: flex;
+    transition: transform .4s cubic-bezier(.39, .03, .56, .57);
+
+  }
+
+  .c-carousel__card {
+    margin: 0;
+    flex-shrink: 0; // to make sure slides inside the flex container take up 100% of the container and don't shrink to their content size.
+  }
 }
 
 .c-carousel__card__img {
