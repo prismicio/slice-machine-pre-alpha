@@ -344,23 +344,6 @@ var util = {
   },
   generateID: function generateID(base) {
     return base + Math.floor(Math.random() * 999);
-  },
-  // Function from David Walsh: http://davidwalsh.name/css-animation-callback
-  whichTransitionEvent: function whichTransitionEvent() {
-    var t,
-        el = document.createElement("fakeelement");
-    var transitions = {
-      "transition": "transitionend",
-      "OTransition": "oTransitionEnd",
-      "MozTransition": "transitionend",
-      "WebkitTransition": "webkitTransitionEnd"
-    };
-
-    for (t in transitions) {
-      if (el.style[t] !== undefined) {
-        return transitions[t];
-      }
-    }
   }
 };
 
@@ -377,25 +360,20 @@ var util = {
     var paddleNav = el.querySelector("[data-carousel-paddleNav]");
     var prevButton = paddleNav.querySelector('[data-prev]');
     var nextButton = paddleNav.querySelector('[data-next]');
-    var transitionEvent = util.whichTransitionEvent();
-    var carouselID = util.generateID('c-carousel-'); // let cardWidth = cards[0].offsetWidth;
-    // let containerWidth = carouselContainer.offsetWidth;
-    // let itemsInView = Math.floor(containerWidth / cardWidth);
-    // let itemsOutOfView = cards.length - itemsInView;
-    // let rightCounter = itemsOutOfView; // counts the number of remaining slides that are out of view
-    // let leftCounter = 0;
-
+    var carouselID = util.generateID('c-carousel-');
     var itemsShowing = [];
 
     var init = function init() {
       el.setAttribute('id', carouselID);
-      el.classList.add('js-carousel');
+      el.classList.add('js-carousel'); // set up carousel a11y attributes
+
       el.setAttribute('role', 'group'); // or region
 
       el.setAttribute('aria-roledescription', 'Carousel');
       el.setAttribute('aria-label', el.getAttribute('data-aria-label')); // show Next and Prev Buttons
 
-      paddleNav.removeAttribute('hidden');
+      paddleNav.removeAttribute('hidden'); // add the SR announcement span
+
       initHelper();
       /***************************************** * 
        * handle carousel on window resize 
@@ -422,26 +400,27 @@ var util = {
         itemsOutOfView = cards.length - itemsInView;
         rightCounter = itemsOutOfView;
         leftCounter = 0; // reset it
+        // console.log('---');
+        // console.log('card width: ' + cardWidth);
+        // console.log('Items in view: ' + itemsInView);
+        // console.log('Items out of view: ' + itemsOutOfView);
+        // console.log('right counter: ' + rightCounter);
+        // console.log('left counter: ' + leftCounter);
 
-        console.log('---');
-        console.log('card width: ' + cardWidth);
-        console.log('Items in view: ' + itemsInView);
-        console.log('Items out of view: ' + itemsOutOfView);
-        console.log('right counter: ' + rightCounter);
-        console.log('left counter: ' + leftCounter);
         handlePaddleButtonsState();
         updateHelper();
         slideCards();
-      }
-      /* ************************************************ */
+      } // initialize elements
 
 
       initCards();
-      initPaddleNav();
+      initPaddleNav(); // add touch swipe support
+
       enableTouchSwipes();
     };
 
     var initCards = function initCards() {
+      // set up IO on the cards
       var options = {
         root: carouselContainer,
         rootMargin: '-10px',
@@ -451,7 +430,7 @@ var util = {
       var observer = new IntersectionObserver(a11ifyCards, options);
       cards.forEach(function (card) {
         return observer.observe(card);
-      });
+      }); // change ARIA attributes based on whether the cards are in view or not
 
       function a11ifyCards(entries, observer) {
         entries.forEach(function (entry) {
@@ -465,7 +444,8 @@ var util = {
             entry.target.setAttribute('aria-hidden', 'true');
             entry.target.setAttribute('inert', '');
           }
-        });
+        }); // announce which elements are in view
+
         updateHelper();
       }
     };
@@ -473,13 +453,12 @@ var util = {
     var enableTouchSwipes = function enableTouchSwipes() {
       var mc = new Hammer(cardsWrapper, {
         threshold: 500
-      }); // listen to events...
-
+      });
       mc.on("swipeleft", function (e) {
-        paddleForward();
+        slideForward();
       });
       mc.on("swiperight", function (e) {
-        paddleBack();
+        slideBack();
       });
     };
 
@@ -494,16 +473,18 @@ var util = {
     };
 
     var updateHelper = function updateHelper() {
-      // setTimeout(function () {
       var visibleItems = Array.from(el.querySelectorAll('.c-carousel__card.is-visible'));
       var cardNumbers = [];
-      var helper = el.querySelector('.c-carousel__SRHelper');
+      var helper = el.querySelector('.c-carousel__SRHelper'); // get which items are in view
+
       visibleItems.forEach(function (item) {
         var number = cards.indexOf(item);
         cardNumbers.push(number + 1);
-      });
-      helper.innerHTML = 'Showing carousel items ' + cardNumbers.toString() + ' of ' + cards.length; // }, 300);
-    };
+      }); // announce them in the SR helper
+
+      helper.innerHTML = 'Showing carousel items ' + cardNumbers.toString() + ' of ' + cards.length;
+    }; // initialize prev and next arrows
+
 
     var initPaddleNav = function initPaddleNav() {
       prevButton.addEventListener('keydown', function (e) {
@@ -513,13 +494,14 @@ var util = {
         paddleKeyboardRespond(e);
       }, false);
       prevButton.addEventListener('click', function (e) {
-        paddleBack();
+        slideBack();
       });
       nextButton.addEventListener('click', function (e) {
-        paddleForward(e);
+        slideForward(e);
       });
       handlePaddleButtonsState();
-    };
+    }; // enable/disable prev and next arrows
+
 
     var handlePaddleButtonsState = function handlePaddleButtonsState() {
       if (rightCounter == 0) {
@@ -544,9 +526,7 @@ var util = {
       // instead of using the element width as above, I'm using percentages based on number of items in view (basically same as widths set in the CSS media queries on .c-carousel__card)
       // because of the way FF calculates item widths and how it differs from Chrome and Safari, thus resulting in inaccurate translate values (so portions of some cards would be visible when they shouldn't)
       var translateValue = leftCounter * (100 / itemsInView) * -1;
-      cardsWrapper.style.transform = 'translateX(' + translateValue + '%)'; // cardsWrapper.addEventListener('transitionend', function () {
-      //   updateHelper();
-      // });
+      cardsWrapper.style.transform = 'translateX(' + translateValue + '%)';
     };
 
     var incrementRightCounter = function incrementRightCounter() {
@@ -573,30 +553,28 @@ var util = {
       } else return;
     };
 
-    var paddleBack = function paddleBack(e) {
+    var slideBack = function slideBack(e) {
       incrementRightCounter();
       decrementLeftCounter();
       slideCards();
-      handlePaddleButtonsState();
-      console.log('---');
-      console.log('card width: ' + cardWidth);
-      console.log('Items in view: ' + itemsInView);
-      console.log('Items out of view: ' + itemsOutOfView);
-      console.log('right counter: ' + rightCounter);
-      console.log('left counter: ' + leftCounter);
+      handlePaddleButtonsState(); // console.log('---');
+      // console.log('card width: ' + cardWidth);
+      // console.log('Items in view: ' + itemsInView);
+      // console.log('Items out of view: ' + itemsOutOfView);
+      // console.log('right counter: ' + rightCounter);
+      // console.log('left counter: ' + leftCounter);
     };
 
-    var paddleForward = function paddleForward(e) {
+    var slideForward = function slideForward(e) {
       decrementRightCounter();
       incrementLeftCounter();
       slideCards();
-      handlePaddleButtonsState();
-      console.log('---');
-      console.log('card width: ' + cardWidth);
-      console.log('Items in view: ' + itemsInView);
-      console.log('Items out of view: ' + itemsOutOfView);
-      console.log('right counter: ' + rightCounter);
-      console.log('left counter: ' + leftCounter);
+      handlePaddleButtonsState(); // console.log('---');
+      // console.log('card width: ' + cardWidth);
+      // console.log('Items in view: ' + itemsInView);
+      // console.log('Items out of view: ' + itemsOutOfView);
+      // console.log('right counter: ' + rightCounter);
+      // console.log('left counter: ' + leftCounter);
     };
 
     var paddleKeyboardRespond = function paddleKeyboardRespond(e) {
@@ -605,23 +583,19 @@ var util = {
       switch (keyCode) {
         case util.keyCodes.LEFT:
           prevButton.focus();
-          paddleBack(e);
+          slideBack(e);
           break;
 
         case util.keyCodes.RIGHT:
           nextButton.focus();
-          paddleForward(e);
+          slideForward(e);
           break;
 
         case util.keyCodes.ENTER:
         case util.keyCodes.SPACE:
-          // selectedDot = currentIndex;
-          // selectDot();
           break;
 
         case util.keyCodes.TAB:
-          // slides[selectedDot].setAttribute('tabindex', '0');
-          // currentIndex = selectedDot;
           break;
       }
     };
