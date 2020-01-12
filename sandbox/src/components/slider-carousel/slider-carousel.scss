@@ -50,14 +50,26 @@
   }
 
   // visibility: visible;
+  padding: 2.5rem 1.6rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: .8rem;
+    width: calc(100% - 1.6rem);
+    z-index: -1;
+    background-color: var(--color--secondary);
+    border-radius: 8px;
+  }
 
 }
 
 .c-carousel__card__wrapper {
-  padding: 2.5rem 1.6rem;
-  background-color: var(--color--secondary);
-  border-radius: 8px;
-  margin: .8rem; // 1.6/2
+  // position: relative;
 }
 
 
@@ -112,6 +124,7 @@
 
     @media all and (min-width: 64em) {
       position: absolute;
+      margin-top: 0;
     }
 
     svg {

@@ -20,7 +20,9 @@
   text-align: center;
   margin-right: 1.6rem;
   white-space: initial;
-  display: inline-block; }
+  display: inline-block;
+  padding: 2.5rem 1.6rem;
+  position: relative; }
   @media all and (min-width: 640px) {
     .c-carousel__card {
       width: 50%; } }
@@ -30,12 +32,17 @@
   @media all and (min-width: 1200px) {
     .c-carousel__card {
       width: 25%; } }
-
-.c-carousel__card__wrapper {
-  padding: 2.5rem 1.6rem;
-  background-color: var(--color--secondary);
-  border-radius: 8px;
-  margin: .8rem; }
+  .c-carousel__card::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: .8rem;
+    width: calc(100% - 1.6rem);
+    z-index: -1;
+    background-color: var(--color--secondary);
+    border-radius: 8px; }
 
 .js-carousel .c-carousel__container {
   overflow: hidden; }
@@ -77,7 +84,8 @@
     @media all and (min-width: 64em) {
       .c-carousel__paddleNav .c-carousel__paddleNav__prev,
       .c-carousel__paddleNav .c-carousel__paddleNav__next {
-        position: absolute; } }
+        position: absolute;
+        margin-top: 0; } }
     .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
     .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
       width: 50%;
