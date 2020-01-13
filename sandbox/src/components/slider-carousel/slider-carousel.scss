@@ -24,12 +24,10 @@
 }
 
 .c-carousel__card {
-  box-sizing: border-box;
   width: 100%;
   text-align: center;
   margin-right: 1.6rem; // for no-js
   white-space: initial;
-
   display: inline-block;
 
 
@@ -45,15 +43,10 @@
     width: 25%;
   }
 
-  &[aria-hidden="true"] {
-    // visibility: hidden;
-  }
-
-  // visibility: visible;
   padding: 2.5rem 1.6rem;
   position: relative;
 
-  &::before {
+  &::after {
     content: "";
     display: block;
     position: absolute;
@@ -83,7 +76,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    transition: transform .3s cubic-bezier(.39, .03, .56, .57);
+    transition: transform .3s linear;
   }
 
   .c-carousel__card {

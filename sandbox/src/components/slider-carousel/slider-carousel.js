@@ -87,21 +87,15 @@ var util = {
       // add the SR announcement span
       initHelper();
 
-      /***************************************** * 
-       * handle carousel on window resize 
-       ******************************************/
-
+      // handle carousel on window resize 
       let timeout = false, // holder for timeout id
         delay = 300, // delay after event is "complete" to run callback
         calls = 0;
 
       window.addEventListener("resize", function () {
-        // clear the timeout
         clearTimeout(timeout);
-        // start timing for event "completion"
         timeout = setTimeout(updateState, delay);
       });
-
       updateState();
 
       function updateState() {
@@ -147,12 +141,16 @@ var util = {
         entries.forEach(entry => {
           if (entry.intersectionRatio >= 0.75) { // if you use isIntersecting or intersectionRatio == 1, FF will resolve to true even when it isn't; it's about 1px in FF. Annoying!
             entry.target.classList.add('is-visible');
+            // unhide item from SRs
             entry.target.setAttribute('aria-hidden', 'false');
+            // re-enable keyboard interactions
             entry.target.removeAttribute('inert');
           }
           else {
             entry.target.classList.remove('is-visible');
+            // hide item from SRs
             entry.target.setAttribute('aria-hidden', 'true');
+            // prevent keyboard interactions
             entry.target.setAttribute('inert', '');
           }
         });

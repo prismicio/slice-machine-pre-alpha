@@ -15,7 +15,6 @@
   transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .c-carousel__card {
-  box-sizing: border-box;
   width: 100%;
   text-align: center;
   margin-right: 1.6rem;
@@ -32,7 +31,7 @@
   @media all and (min-width: 1200px) {
     .c-carousel__card {
       width: 25%; } }
-  .c-carousel__card::before {
+  .c-carousel__card::after {
     content: "";
     display: block;
     position: absolute;
@@ -51,7 +50,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  transition: transform 0.3s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
+  transition: transform .3s linear; }
 
 .js-carousel .c-carousel__card {
   margin: 0;
