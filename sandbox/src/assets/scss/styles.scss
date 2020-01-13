@@ -77,12 +77,10 @@ button {
 
   &:focus:not(:focus-visible) {
     outline: none;
-    background: none;
   }
 
   .js-focus-visible &:focus:not(.focus-visible) {
     outline: none;
-    background: none;
   }
 }
 

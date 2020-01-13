@@ -49,11 +49,9 @@ button {
   button:-moz-focusring {
     outline: none; }
   button:focus:not(:focus-visible) {
-    outline: none;
-    background: none; }
+    outline: none; }
   .js-focus-visible button:focus:not(.focus-visible) {
-    outline: none;
-    background: none; }
+    outline: none; }
 
 :root {
   --primary-hue: 167;
@@ -454,7 +452,7 @@ small,
   font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {
     .c-accordion__heading {
-      font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     .c-accordion__heading {
       font-size: calc(1rem * var(--text-max-l)); } }
@@ -524,7 +522,7 @@ small,
   font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {
     .c-accordion__heading {
-      font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     .c-accordion__heading {
       font-size: calc(1rem * var(--text-max-l)); } }
