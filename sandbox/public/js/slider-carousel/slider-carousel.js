@@ -33,6 +33,13 @@ var util = {
     var nextButton = paddleNav.querySelector('[data-next]');
     var carouselID = util.generateID('c-carousel-');
     var itemsShowing = [];
+    var cardWidth = cards[0].offsetWidth;
+    var containerWidth = carouselContainer.offsetWidth;
+    var itemsInView = Math.round(containerWidth / cardWidth); // Math.round() instead of Math.floor() because FF sometimes errs on a couple of pixels, leading to a value of 3.99 instead of 4.something, so the number is set to 3, which is wrong. To avoid that, round up.
+
+    var itemsOutOfView = cards.length - itemsInView;
+    var rightCounter = itemsOutOfView;
+    var leftCounter = 0; // reset it
 
     var init = function init() {
       el.setAttribute('id', carouselID);
@@ -61,8 +68,7 @@ var util = {
       function updateState() {
         cardWidth = cards[0].offsetWidth;
         containerWidth = carouselContainer.offsetWidth;
-        itemsInView = Math.round(containerWidth / cardWidth); // Math.round() instead of Math.floor() because FF sometimes errs on a couple of pixels, leading to a value of 3.99 instead of 4.something, so the number is set to 3, which is wrong. To avoid that, round up.
-
+        itemsInView = Math.round(containerWidth / cardWidth);
         itemsOutOfView = cards.length - itemsInView;
         rightCounter = itemsOutOfView;
         leftCounter = 0; // reset it
@@ -118,7 +124,8 @@ var util = {
 
         updateHelper();
       }
-    };
+    }; // requires Hammer.js
+
 
     var enableTouchSwipes = function enableTouchSwipes() {
       var mc = new Hammer(cardsWrapper, {

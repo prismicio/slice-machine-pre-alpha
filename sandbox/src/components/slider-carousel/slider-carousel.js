@@ -39,6 +39,13 @@ var util = {
     const carouselID = util.generateID('c-carousel-');
     let itemsShowing = [];
 
+    let cardWidth = cards[0].offsetWidth;
+    let containerWidth = carouselContainer.offsetWidth;
+    let itemsInView = Math.round(containerWidth / cardWidth); // Math.round() instead of Math.floor() because FF sometimes errs on a couple of pixels, leading to a value of 3.99 instead of 4.something, so the number is set to 3, which is wrong. To avoid that, round up.
+    let itemsOutOfView = cards.length - itemsInView;
+    let rightCounter = itemsOutOfView;
+    let leftCounter = 0; // reset it
+
 
     var init = function () {
       el.setAttribute('id', carouselID);
@@ -66,7 +73,7 @@ var util = {
       function updateState() {
         cardWidth = cards[0].offsetWidth;
         containerWidth = carouselContainer.offsetWidth;
-        itemsInView = Math.round(containerWidth / cardWidth); // Math.round() instead of Math.floor() because FF sometimes errs on a couple of pixels, leading to a value of 3.99 instead of 4.something, so the number is set to 3, which is wrong. To avoid that, round up.
+        itemsInView = Math.round(containerWidth / cardWidth);
         itemsOutOfView = cards.length - itemsInView;
         rightCounter = itemsOutOfView;
         leftCounter = 0; // reset it
@@ -124,6 +131,7 @@ var util = {
       }
     }
 
+    // requires Hammer.js
     var enableTouchSwipes = function () {
       var mc = new Hammer(cardsWrapper, { threshold: 500 });
 
