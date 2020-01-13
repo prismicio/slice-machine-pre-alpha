@@ -1,35 +1,27 @@
 <template>
-  <section class="box">
-    <h3 class="adv-title">
-      {{ $prismic.asText(slice.primary.slice_table_title) }}
-    </h3>
-    <div class="wrapper">
-      <section
-        v-for="(item, index) in slice.items"
-        :key="'item-' + index"
-        class="grid-items"
-      >
-        <prismic-image :field="item.row_image" />
-        <section class="adv-copy">
-          <h4>{{ $prismic.asText(item.row_title) }}</h4>
-          <p class="home_body_text">
-            {{ $prismic.asText(item.row_description) }}
-          </p>
-        </section>
-      </section>
-    </div>
-  </section>
+	<section class="box">
+		<h2 class="adv-title">{{ $prismic.asText(slice.primary.slice_table_title) }}</h2>
+		<div class="wrapper">
+			<section v-for="(item, index) in slice.items" :key="'item-' + index" class="grid-items">
+				<prismic-image :field="item.row_image" />
+				<section class="adv-copy">
+					<h3>{{ $prismic.asText(item.row_title) }}</h3>
+					<p class="home_body_text">{{ $prismic.asText(item.row_description) }}</p>
+				</section>
+			</section>
+		</div>
+	</section>
 </template>
 
 <script>
 export default {
-  name: 'ProsBlock',
-  props: {
-    slice: {
-      type: Object,
-      required: true
-    }
-  }
+	name: 'ProsBlock',
+	props: {
+		slice: {
+			type: Object,
+			required: true
+		}
+	}
 }
 </script>
 
@@ -51,11 +43,11 @@ export default {
 	* {
 		width: 100%;
 
-    img {
-      min-width: 95px;
-      min-height: 95px;
-    }
-  }
+		img {
+			min-width: 95px;
+			min-height: 95px;
+		}
+	}
 
 	.grid-items {
 		display: flex;
@@ -72,23 +64,23 @@ export default {
 			border-bottom: 0;
 		}
 
-    img {
-      float: left;
-      width: 95px;
-      height: 95px;
-    }
-    .adv-copy {
-      padding-left: 10px;
-      h3 {
-        font-size: 16px;
-        margin-bottom: 10px;
-      }
-      p {
-        font-size: 16px;
-        line-height: 24px;
-      }
-    }
-  }
+		img {
+			float: left;
+			width: 95px;
+			height: 95px;
+		}
+		.adv-copy {
+			padding-left: 10px;
+			h3 {
+				font-size: 16px;
+				margin-bottom: 10px;
+			}
+			p {
+				font-size: 16px;
+				line-height: 24px;
+			}
+		}
+	}
 }
 
 @include lg {

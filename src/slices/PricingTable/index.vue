@@ -3,23 +3,22 @@
 		<div class="ps__wrap">
 			<div class="ps__head">
 				<header class="ps__header">
-					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">{{
-						slice.primary.eyebrow_headline
-					}}</span>
-					<h2 v-if="slice.primary.title" class="ps__title" aria-level="2">
-						{{ $prismic.asText(slice.primary.title) }}
-					</h2>
+					<span
+						v-if="slice.primary.eyebrow_headline"
+						class="ps__kicker"
+					>{{ slice.primary.eyebrow_headline }}</span>
+					<h2
+						v-if="slice.primary.title"
+						class="ps__title"
+						aria-level="2"
+					>{{ $prismic.asText(slice.primary.title) }}</h2>
 				</header>
 				<div v-if="slice.primary.description" class="ps__desc">
 					<p>{{ $prismic.asText(slice.primary.description) }}</p>
 				</div>
 			</div>
 			<div class="ps__main">
-				<ol
-					role="list"
-					aria-label
-					class="ps-pricing-table__options ps__card-list"
-				>
+				<ol role="list" aria-label class="ps-pricing-table__options ps__card-list">
 					<li
 						class="ps-pricing-table__option ps__card-item ps__card-item--full"
 						v-for="(item, index) in slice.items"
@@ -27,29 +26,19 @@
 					>
 						<article>
 							<header v-if="item.plan_title">
-								<h3
-									class="ps-pricing-table__option__title ps__card-item__title"
-								>
-									{{ item.plan_title }}
-								</h3>
-								<span class="ps-pricing-table__option__price">{{
-									item.price_option
-								}}</span>
+								<h3 class="ps-pricing-table__option__title ps__card-item__title">{{ item.plan_title }}</h3>
+								<span class="ps-pricing-table__option__price">{{ item.price_option }}</span>
 							</header>
 							<prismic-rich-text
 								class="ps__card-item__content"
 								:field="item.features"
 								:htmlSerializer="listSerializer"
 							/>
-							<div
-								v-if="item.call_to_action && item.call_to_action_text"
-								class="ps__card-item__cta"
-							>
+							<div v-if="item.call_to_action && item.call_to_action_text" class="ps__card-item__cta">
 								<prismic-link
 									:field="item.call_to_action"
 									class="ps-button ps-button--secondary"
-									>{{ item.call_to_action_text }}</prismic-link
-								>
+								>{{ item.call_to_action_text }}</prismic-link>
 							</div>
 						</article>
 					</li>

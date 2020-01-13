@@ -8,7 +8,9 @@ export default {
 	head: {
 		title: process.env.npm_package_name || '',
 		meta: [
-			{ charset: 'utf-8' },
+			{
+				charset: 'utf-8'
+			},
 			{
 				name: 'viewport',
 				content: 'width=device-width, initial-scale=1'
@@ -20,10 +22,15 @@ export default {
 			}
 		],
 		link: [
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+			{
+				rel: 'icon',
+				type: 'image/x-icon',
+				href: '/favicon.ico'
+			},
 			{
 				rel: 'stylesheet',
-				href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap'
+				href:
+					'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap'
 			}
 		],
 		script: [
@@ -34,13 +41,19 @@ export default {
 			{
 				src:
 					'https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.min.js'
+			},
+			{
+				type: 'text/javascript',
+				src: 'https://static.cdn.prismic.io/prismic.min.js?new=true'
 			}
 		]
 	},
 	/*
 	 ** Customize the progress-bar color
 	 */
-	loading: { color: '#fff' },
+	loading: {
+		color: '#fff'
+	},
 	/*
 	 ** Global CSS
 	 */
@@ -75,8 +88,14 @@ export default {
 					if (doc.type === 'component_library') {
 						return `/component-library`
 					}
-					if (doc.type === 'page') {
+					if (doc.uid === 'about') {
 						return `/${doc.uid}`
+					}
+					if (doc.uid === 'documentation') {
+						return `/${doc.uid}`
+					}
+					if (doc.tags.includes('tutorials')) {
+						return `/documentation/${doc.uid}`
 					}
 					return '/not-found'
 				}
@@ -84,10 +103,16 @@ export default {
 		]
 	],
 	serverMiddleware: [
-		{ path: '/api/models', handler: '~/api/models.js' },
-		{ path: '/api/slices', handler: '~/api/slices.js' }
+		{
+			path: '/api/models',
+			handler: '~/api/models.js'
+		},
+		{
+			path: '/api/slices',
+			handler: '~/api/slices.js'
+		}
 	],
-	devModules: ['@nuxtjs/eslint-module'],
+	// devModules: ['@nuxtjs/eslint-module'],
 	/*
 	 ** Build configuration
 	 */

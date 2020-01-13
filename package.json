@@ -11,7 +11,7 @@
 		"stylelint": "stylelint */**/*.scss --fix",
 		"create-slice": "node builder/createSlice.js",
 		"dev": "npm run scripts; nuxt --port 3000",
-		"build": "nuxt build",
+		"build": "npm run scripts; nuxt build",
 		"scripts": "node ./scripts/bundleApi && node ./scripts/buildExamples",
 		"start": "npm run scripts; nuxt start",
 		"sandbox": "cd sandbox && npm run start",
