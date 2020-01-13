@@ -134,7 +134,7 @@
     border-color: transparent; }
 
 .c-tabs__tabpanel:focus, .c-tabs__tabpanel.focus-visible {
-  outline: 4px dotted #888;
+  outline: 2px dotted #888;
   outline-offset: 5px; }
 
 .c-tabs__tabpanel:focus:not(:focus-visible) {
