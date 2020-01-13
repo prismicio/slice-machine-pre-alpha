@@ -7,7 +7,8 @@ export default {
 	 */
 	head: {
 		title: process.env.npm_package_name || '',
-		meta: [{
+		meta: [
+			{
 				charset: 'utf-8'
 			},
 			{
@@ -20,21 +21,26 @@ export default {
 				content: process.env.npm_package_description || ''
 			}
 		],
-		link: [{
+		link: [
+			{
 				rel: 'icon',
 				type: 'image/x-icon',
 				href: '/favicon.ico'
 			},
 			{
 				rel: 'stylesheet',
-				href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap'
+				href:
+					'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap'
 			}
 		],
-		script: [{
-				src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=Element.prototype.classList'
+		script: [
+			{
+				src:
+					'https://cdn.polyfill.io/v2/polyfill.min.js?features=Element.prototype.classList'
 			},
 			{
-				src: 'https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.min.js'
+				src:
+					'https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.min.js'
 			},
 			{
 				type: 'text/javascript',
@@ -72,7 +78,7 @@ export default {
 			'prismic-nuxt',
 			{
 				endpoint: 'https://slice-machine.prismic.io/api/v2',
-				linkResolver: function (doc, ctx) {
+				linkResolver: function(doc, ctx) {
 					if (doc.isBroken) {
 						return '/not-found'
 					}
@@ -96,7 +102,8 @@ export default {
 			}
 		]
 	],
-	serverMiddleware: [{
+	serverMiddleware: [
+		{
 			path: '/api/models',
 			handler: '~/api/models.js'
 		},
