@@ -1,26 +1,24 @@
 <template>
-  <section class="auto-grid">
-    <div class="text">
-      <h3>{{ $prismic.asText(slice.primary.subtitle) }}</h3>
-      <p class="home_body_text">
-        {{ $prismic.asText(slice.primary.sub_description) }}
-      </p>
-    </div>
-    <div>
-      <video :src="slice.primary.video.url" controls />
-    </div>
-  </section>
+	<section class="auto-grid">
+		<div class="text">
+			<h2>{{ $prismic.asText(slice.primary.subtitle) }}</h2>
+			<p class="home_body_text">{{ $prismic.asText(slice.primary.sub_description) }}</p>
+		</div>
+		<div>
+			<video :src="slice.primary.video.url" controls />
+		</div>
+	</section>
 </template>
 
 <script>
 export default {
-  name: 'VideoBlock',
-  props: {
-    slice: {
-      type: Object,
-      required: true
-    }
-  }
+	name: 'VideoBlock',
+	props: {
+		slice: {
+			type: Object,
+			required: true
+		}
+	}
 }
 </script>
 
