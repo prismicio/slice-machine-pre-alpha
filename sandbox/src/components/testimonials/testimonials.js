@@ -58,12 +58,6 @@ var util = {
     return base + Math.floor(Math.random() * 999);
   },
 
-  getDirectChildren: function (elm, selector) {
-    return Array.prototype.filter.call(elm.children, function (child) {
-      return child.matches(selector);
-    });
-  },
-
   getUrlHash: function () {
     return window.location.hash.replace('#', '');
   },

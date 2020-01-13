@@ -50,11 +50,6 @@ var util = {
   generateID: function generateID(base) {
     return base + Math.floor(Math.random() * 999);
   },
-  getDirectChildren: function getDirectChildren(elm, selector) {
-    return Array.prototype.filter.call(elm.children, function (child) {
-      return child.matches(selector);
-    });
-  },
   getUrlHash: function getUrlHash() {
     return window.location.hash.replace('#', '');
   },
