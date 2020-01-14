@@ -4,17 +4,22 @@
 @import '/mixins.scss';
 @import '/variables.scss';
 
+h1 {
+  font-size: 36px;
+  line-height: 42px;
+  font-family: $base-font-primary;
+  color: $text-primary;
+}
+
 h2 {
-  font-size: 60px;
-  line-height: 71px;
-  font-weight: 900;
+  font-size: 28px;
+  line-height: 50px;
+  font-weight: bold;
   font-family: $base-font-primary;
   color: $text-primary;
 }
 
 h3 {
-  font-size: 28px;
-  line-height: 50px;
   font-weight: bold;
   font-family: $base-font-primary;
   color: $text-primary;
@@ -32,6 +37,11 @@ p {
   font-family: $base-font-primary;
   color: $text-primary;
   font-weight: normal;
+}
+
+.nuxt-link-exact-active {
+  color: $text-primary;
+  font-weight: bold;
 }
 
 .page-enter-active,

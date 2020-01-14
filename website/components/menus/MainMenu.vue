@@ -7,22 +7,20 @@
 						<prismic-image v-if="menu.logo" :field="menu.logo" />
 					</nuxt-link>
 					<nuxt-link to="/">
-						<span> <b>Slicemachine</b> by Prismic </span>
+						<span>
+							<b>Slicemachine</b> by Prismic
+						</span>
 					</nuxt-link>
 				</div>
 				<ul class="horizontal-nav">
 					<li v-for="menuLink in menu.menu_item" :key="menuLink.id">
-						<prismic-link :field="menuLink.link">
-							{{ menuLink.link_label }}
-						</prismic-link>
+						<prismic-link :field="menuLink.link">{{ menuLink.link_label }}</prismic-link>
 					</li>
 					<li>
-						<gh-btns-star slug="prismicio/slice-machine" class="gh-button-star">
-						</gh-btns-star>
+						<gh-btns-star slug="prismicio/slice-machine" class="gh-button-star"></gh-btns-star>
 					</li>
 					<li>
-						<gh-btns-fork slug="prismicio/slice-machine" class="gh-button-fork">
-						</gh-btns-fork>
+						<gh-btns-fork slug="prismicio/slice-machine" class="gh-button-fork"></gh-btns-fork>
 					</li>
 				</ul>
 				<Burger></Burger>
@@ -40,55 +38,34 @@
 			</div>
 			<ul class="sidebar-panel-nav">
 				<div v-for="menuLink in menu.menu_item" :key="menuLink.id">
-					<li
-						v-if="menuLink.link_label === 'Slices Library'"
-						class="top-level"
-						@click.prevent="toggle"
-					>
-						<prismic-link :field="menuLink.link">
-							{{ menuLink.link_label }}
-						</prismic-link>
+					<li v-if="menuLink.link_label === 'Slices Library'" class="top-level" @click.prevent="toggle">
+						<prismic-link :field="menuLink.link">{{ menuLink.link_label }}</prismic-link>
 					</li>
 					<li
 						v-else-if="menuLink.link_label === 'Documentation'"
 						class="top-level"
 						@click="accordionToggle()"
 					>
-						<prismic-link :field="menuLink.link">
-							<span>
-								{{ menuLink.link_label }}
-							</span>
-							<span
-								class="accordion-item-trigger-icon"
-								:class="{ isOpen: open }"
-							></span>
-						</prismic-link>
+						<a>
+							<span>{{ menuLink.link_label }}</span>
+							<span class="accordion-item-trigger-icon" :class="{ isOpen: open }"></span>
+						</a>
 						<transition name="slide-fade">
 							<ul v-show="open" class="second-level">
 								<li v-for="sideLink in side.menu_item" :key="sideLink.id">
-									<prismic-link :field="sideLink.link">
-										{{ sideLink.link_label }}
-									</prismic-link>
+									<prismic-link :field="sideLink.link">{{ sideLink.link_label }}</prismic-link>
 								</li>
 								<li class="menu-sub-title">
 									<b>Slice Components</b>
 								</li>
-								<li
-									v-for="listItem in lst"
-									:key="listItem.displayName"
-									@click.prevent="toggle"
-								>
-									<nuxt-link :to="`/components/${listItem.displayName}`">
-										{{ listItem.meta.title }}
-									</nuxt-link>
+								<li v-for="listItem in lst" :key="listItem.displayName" @click.prevent="toggle">
+									<nuxt-link :to="`/components/${listItem.displayName}`">{{ listItem.meta.title }}</nuxt-link>
 								</li>
 							</ul>
 						</transition>
 					</li>
 					<li v-else class="top-level" @click.prevent="toggle">
-						<prismic-link :field="menuLink.link">
-							{{ menuLink.link_label }}
-						</prismic-link>
+						<prismic-link :field="menuLink.link">{{ menuLink.link_label }}</prismic-link>
 					</li>
 				</div>
 			</ul>
@@ -125,6 +102,9 @@ export default {
 			open: false
 		}
 	},
+	mounted() {
+		this.activeRouteToggle()
+	},
 	computed: {
 		menu() {
 			return this.$store.state.menus.main
@@ -139,6 +119,13 @@ export default {
 	methods: {
 		accordionToggle() {
 			this.open = !this.open
+		},
+		activeRouteToggle() {
+			if (this.$route.path.includes('documentation')) {
+				this.open = !this.open
+			} else if (this.$route.path.includes('components')) {
+				this.open = !this.open
+			}
 		},
 		toggle() {
 			mutations.toggleNav()

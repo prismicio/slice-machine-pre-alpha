@@ -1,12 +1,7 @@
 <template>
 	<section class="card-section">
-		<h3 class="card-section-title">
-			{{ $prismic.asText(slice.primary.card_box_title) }}
-		</h3>
-		<prismic-rich-text
-			:field="slice.primary.card_box_description"
-			class="card-section-description"
-		/>
+		<h2 class="card-section-title">{{ $prismic.asText(slice.primary.card_box_title) }}</h2>
+		<prismic-rich-text :field="slice.primary.card_box_description" class="card-section-description" />
 		<Row class="card-section-library">
 			<Grid columns="3">
 				<Card
@@ -17,17 +12,10 @@
 					class="multiCards"
 				/>
 			</Grid>
-			<Card
-				v-for="card in lst.slice(0, 1)"
-				:key="card.displayName"
-				v-bind="card"
-				class="singeCard"
-			/>
+			<Card v-for="card in lst.slice(0, 1)" :key="card.displayName" v-bind="card" class="singeCard" />
 		</Row>
 		<Button variant="text-white">
-			<prismic-link :field="slice.primary.button_link">
-				{{ slice.primary.button_label }}
-			</prismic-link>
+			<prismic-link :field="slice.primary.button_link">{{ slice.primary.button_label }}</prismic-link>
 		</Button>
 	</section>
 </template>
@@ -76,8 +64,6 @@ export default {
 	grid-template-columns: [container-start] minmax(0, 1fr) [container-end];
 	&-title {
 		text-align: left;
-		font-size: 28px;
-		line-height: 50px;
 		@include md {
 			text-align: center;
 		}

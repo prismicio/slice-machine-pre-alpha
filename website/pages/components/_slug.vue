@@ -1,26 +1,24 @@
 <template>
 	<div>
-		<h3 class="card-section-title">
-			{{ slice.meta.title }}
-		</h3>
-		<p class="card-section-description">
-			{{ slice.meta.description }}
-		</p>
-    <nuxt-link :to=“`/examples/nuxt/${slice.displayName}`“>
-      <img :src=“`/components/${slice.displayName}.png`” />
-    </nuxt-link>
+		<h1>{{ slice.meta.title }}</h1>
+		<p>{{ slice.meta.description }}</p>
+		<nuxt-link :to="`/examples/nuxt/${slice.displayName}`">
+			<img class="sample-image" :src="`/components/${slice.displayName}.png`" />
+		</nuxt-link>
+		<prismic-rich-text :field="document.install_info_title" />
+		<prismic-rich-text :field="document.install_info_text" />
+		<div class="clipboard" @click.stop.prevent="copyCommand">
+			<p class="embed-text">import {{ slice.displayName }}</p>
+			<img src="../../static/clipboard.svg" />
+			<input id="command-to-copy" type="hidden" :value="`import ${slice.displayName}`" />
+		</div>
+		<prismic-rich-text :field="document.info_tagline" />
 		<MarkDownBox
 			id="markdown-box"
 			:edit-url="createEditUrl()"
 			style="min-height: 80vh; margin-top: 4em; word-spacing: 0px;"
-		>
-			{{ slice.readme }}
-		</MarkDownBox>
-		<div
-			v-if="hasSandbox"
-			style="width: 100%; margin-top: 3em;"
-			v-html="sandbox"
-		/>
+		>{{ slice.readme }}</MarkDownBox>
+		<div v-if="hasSandbox" style="width: 100%; margin-top: 3em;" v-html="sandbox" />
 	</div>
 </template>
 
@@ -39,7 +37,7 @@ const lst = Object.keys(Slices)
 	.filter(e => e) // eslint-disable-line
 
 export default {
-	layout: 'compdocs',
+	layout: 'complib',
 	components: {
 		...Slices,
 		MarkDownBox
@@ -67,6 +65,7 @@ export default {
 	},
 	data() {
 		return {
+			document: this.document,
 			lst,
 			slice: createSlice(this.$route.params.slug),
 			exampleFolder: `${sliceRoute(this.$route.params.slug)}/examples/nuxt/`
@@ -83,6 +82,23 @@ export default {
 			const base =
 				'https://github.com/prismicio/slice-machine/tree/master/src/slices/'
 			return `${base}${this.slice.displayName}/README.md`
+		},
+		copyCommand() {
+			const commandToCopy = document.querySelector('#command-to-copy')
+			commandToCopy.setAttribute('type', 'text')
+			commandToCopy.select()
+
+			try {
+				const successful = document.execCommand('copy')
+				const msg = successful ? 'successful' : 'unsuccessful'
+				alert('Command was copied ' + msg)
+			} catch (err) {
+				alert('Oops, unable to copy')
+			}
+
+			/* unselect the range */
+			commandToCopy.setAttribute('type', 'hidden')
+			window.getSelection().removeAllRanges()
 		}
 	},
 	validate: ({ params: { slug } }) =>
@@ -93,18 +109,38 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/_global';
 
-img {
+.sample-image {
 	max-width: 100%;
-}
-.subtitle {
-	font-weight: 300;
-	font-size: 42px;
-	color: #526488;
-	word-spacing: 5px;
-	padding-bottom: 15px;
+	border: 1px solid $grey-secondary;
+	border-radius: 5px;
+	margin: 32px 0;
 }
 
-.links {
-	padding-top: 15px;
+.clipboard {
+	display: flex;
+	justify-content: space-between;
+	background-color: $black-primary;
+	border-radius: 5px;
+	padding: 20px;
+	margin: 20px 0;
+	cursor: pointer;
+	img {
+		display: none;
+		@include rwd(400) {
+			margin-left: 30px;
+			display: inline-block;
+		}
+	}
+	.embed-text {
+		color: #ffffff;
+		text-align: center;
+		font-size: 13px;
+		@include sm {
+			font-size: 16px;
+		}
+	}
+	&:hover {
+		background-color: $black-secondary;
+	}
 }
 </style>
