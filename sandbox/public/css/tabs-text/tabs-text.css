@@ -196,11 +196,12 @@
     outline: none; }
 
 /* tabs content specific styles */
-.c-tabs__tabpanel__modules {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-column-gap: var(--h-padding);
-  grid-row-gap: var(--v-margin); }
-
-.c-tabs__tabpanel__module__img {
-  margin-bottom: 1rem; }
+@supports (display: grid) {
+  @media all and (min-width: 50em) {
+    .c-tabs__tabpanel__modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-column-gap: var(--h-padding);
+      grid-row-gap: var(--v-margin); } }
+  .c-tabs__tabpanel__modules .c-tabs__tabpanel__module__img {
+    margin-bottom: 1rem; } }

@@ -231,7 +231,6 @@
   .ps__main.grid {
 
     [class^="span-"] {
-      // float: left;
       display: inline-block;
       margin-left: -4px;
       vertical-align: middle;
@@ -241,6 +240,10 @@
       &:nth-of-type(even) {
         margin-right: 0;
       }
+    }
+
+    [class="span-1-12"] {
+      width: 100%;
     }
 
     @supports (display: grid) {
