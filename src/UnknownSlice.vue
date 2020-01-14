@@ -12,7 +12,8 @@
 		<div class="container">
 			<p class="paragraph">
 				Make sure you created a '{{ camelize(slice.slice_type) }}' component
-				inside `sliceMachine/slices`. If not: create one! Also, check the console to check the payload received and the docs for more information.
+				inside `sliceMachine/slices`. If not: create one! Also, check the
+				console to check the payload received and the docs for more information.
 			</p>
 		</div>
 	</section>
