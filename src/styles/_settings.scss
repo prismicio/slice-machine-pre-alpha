@@ -11,14 +11,15 @@
   --color-text-grey: var(--color-grey-53);
 
   /* default font family is the static Inter font */
-  --font-family: "Inter", Arial, sans-serif;
+  // --font-family: "Inter", Arial, sans-serif;
 
   /* in supporting browsers, the variable Inter font is used */
   @supports (font-variation-settings: normal) {
-    --font-family: "Inter var", Arial, sans-serif;
+    // --font-family: "Inter var", Arial, sans-serif;
   }
 
-  --scrollbar: 0; /* this variable is set using JS. See CS Utilities documentation for details */
+  --scrollbar: 0;
+  /* this variable is set using JS. See CS Utilities documentation for details */
   --h-padding: 2rem; // horizontal padding for the slice relative to the page borders; 30px default when font size is base 16
   --c-padding: 1.25rem; // component-level padding
   --c-margin: 1rem; // component-level padding

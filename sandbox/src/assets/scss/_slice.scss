@@ -10,10 +10,10 @@
   width: 100vw;
   width: calc(100vw - var(--scrollbar));
   position: relative;
-  padding-left: var(--h-padding);
-  padding-right: var(--h-padding);
-  padding-top: var(--v-space);
-  padding-bottom: var(--v-space);
+  padding-left: 2rem; // h-padding
+  padding-right: 2rem; // h-padding
+  padding-top: 8vw; // v-space
+  padding-bottom: 8vw; // v-space
 }
 
 .ps--black {
@@ -50,7 +50,7 @@
 }
 
 .ps__desc {
-  max-width: 50ch;
+  max-width: 42rem;
   @extend .text--xl;
 
 
