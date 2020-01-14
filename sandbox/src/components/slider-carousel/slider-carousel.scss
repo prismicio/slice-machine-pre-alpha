@@ -95,16 +95,22 @@
 
 
 .c-carousel__paddleNav {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   text-align: center;
-  align-content: bottom;
+
 
   .js-carousel & {
+
     display: flex; // only override hidden attribute when JS is enabled, otherwise next/prev buttons are useless
+    align-items: center;
+    justify-content: center;
+
+    @media all and (min-width: 50em) {
+      margin-top: 0;
+    }
   }
 
-  align-items: center;
-  justify-content: center;
+
 
   .c-carousel__paddleNav__prev,
   .c-carousel__paddleNav__next {
@@ -113,7 +119,7 @@
     padding: .5rem;
     z-index: 2;
     top: 50%;
-    margin-top: -1.375rem;
+
     border: 2px dotted transparent;
     border-radius: 50%;
 
@@ -121,7 +127,7 @@
 
     @media all and (min-width: 64em) {
       position: absolute;
-      margin-top: 0;
+      margin-top: -1.375rem;
     }
 
     svg {

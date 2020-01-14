@@ -63,13 +63,15 @@
   font-size: 1rem; }
 
 .c-carousel__paddleNav {
-  margin-top: 2rem;
-  text-align: center;
-  align-content: bottom;
-  align-items: center;
-  justify-content: center; }
+  margin-top: 1.5rem;
+  text-align: center; }
   .js-carousel .c-carousel__paddleNav {
-    display: flex; }
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media all and (min-width: 50em) {
+      .js-carousel .c-carousel__paddleNav {
+        margin-top: 0; } }
   .c-carousel__paddleNav .c-carousel__paddleNav__prev,
   .c-carousel__paddleNav .c-carousel__paddleNav__next {
     width: 2.75rem;
@@ -77,7 +79,6 @@
     padding: .5rem;
     z-index: 2;
     top: 50%;
-    margin-top: -1.375rem;
     border: 2px dotted transparent;
     border-radius: 50%;
     line-height: 0; }
@@ -85,7 +86,7 @@
       .c-carousel__paddleNav .c-carousel__paddleNav__prev,
       .c-carousel__paddleNav .c-carousel__paddleNav__next {
         position: absolute;
-        margin-top: 0; } }
+        margin-top: -1.375rem; } }
     .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
     .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
       width: 50%;

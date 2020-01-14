@@ -121,7 +121,7 @@ button {
 
 html {
   font-size: .9rem;
-  font-family: var(--font-family); }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
 
 body {
   font-size: 1rem;
@@ -132,7 +132,12 @@ p {
   margin: 0 0 1.5em;
   line-height: 1.6; }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.3;
   margin-top: 0;
   font-weight: bold;
@@ -153,7 +158,7 @@ h1,
     h1,
     .text--4xl,
     .ps__title {
-      font-size: calc( calc(1rem * var(--text-min-4xl)) + (var(--text-max-4xl) - var(--text-min-4xl)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-4xl)) + (var(--text-max-4xl) - var(--text-min-4xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h1,
     .text--4xl,
@@ -167,7 +172,7 @@ h2,
   @media screen and (min-width: 40rem) {
     h2,
     .text--3xl {
-      font-size: calc( calc(1rem * var(--text-min-3xl)) + (var(--text-max-3xl) - var(--text-min-3xl)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-3xl)) + (var(--text-max-3xl) - var(--text-min-3xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h2,
     .text--3xl {
@@ -180,7 +185,7 @@ h3,
   @media screen and (min-width: 40rem) {
     h3,
     .text--2xl {
-      font-size: calc( calc(1rem * var(--text-min-2xl)) + (var(--text-max-2xl) - var(--text-min-2xl)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-2xl)) + (var(--text-max-2xl) - var(--text-min-2xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h3,
     .text--2xl {
@@ -195,7 +200,7 @@ h4,
     h4,
     .text--xl,
     .ps__desc {
-      font-size: calc( calc(1rem * var(--text-min-xl)) + (var(--text-max-xl) - var(--text-min-xl)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-xl)) + (var(--text-max-xl) - var(--text-min-xl)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h4,
     .text--xl,
@@ -212,7 +217,7 @@ h5,
     .text--l,
     .ps__kicker,
     .ps__card-item__title {
-      font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     h5,
     .text--l,
@@ -231,7 +236,7 @@ small,
   @media screen and (min-width: 40rem) {
     small,
     .text--small {
-      font-size: calc( calc(1rem * var(--text-min-small)) + (var(--text-max-small) - var(--text-min-small)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-small)) + (var(--text-max-small) - var(--text-min-small)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     small,
     .text--small {
@@ -833,13 +838,15 @@ a.ps-button--ghost {
   font-size: 1rem; }
 
 .c-carousel__paddleNav {
-  margin-top: 2rem;
-  text-align: center;
-  align-content: bottom;
-  align-items: center;
-  justify-content: center; }
+  margin-top: 1.5rem;
+  text-align: center; }
   .js-carousel .c-carousel__paddleNav {
-    display: flex; }
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media all and (min-width: 50em) {
+      .js-carousel .c-carousel__paddleNav {
+        margin-top: 0; } }
   .c-carousel__paddleNav .c-carousel__paddleNav__prev,
   .c-carousel__paddleNav .c-carousel__paddleNav__next {
     width: 2.75rem;
@@ -847,7 +854,6 @@ a.ps-button--ghost {
     padding: .5rem;
     z-index: 2;
     top: 50%;
-    margin-top: -1.375rem;
     border: 2px dotted transparent;
     border-radius: 50%;
     line-height: 0; }
@@ -855,7 +861,7 @@ a.ps-button--ghost {
       .c-carousel__paddleNav .c-carousel__paddleNav__prev,
       .c-carousel__paddleNav .c-carousel__paddleNav__next {
         position: absolute;
-        margin-top: 0; } }
+        margin-top: -1.375rem; } }
     .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
     .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
       width: 50%;
@@ -905,7 +911,7 @@ a.ps-button--ghost {
   position: absolute;
   z-index: 2;
   top: 50%;
-  margin-top: -4.375rem;
+  margin-top: -5.5rem;
   border: 2px dotted transparent;
   border-radius: 50%;
   line-height: 0; }
@@ -949,8 +955,9 @@ a.ps-button--ghost {
   right: -3.5rem; }
 
 .c-slider__dotNav {
+  text-align: center;
   display: flex;
-  padding: 2rem 0 4rem;
+  padding: 1rem 0 4rem;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
@@ -962,13 +969,13 @@ a.ps-button--ghost {
     outline-offset: 5px; }
 
 .c-slider__dotNav__dot {
+  display: inline-block;
   width: 2.75rem;
   height: 2.75rem;
   padding: 0;
   line-height: 0;
   border-radius: 50%;
-  border: 2px dotted transparent;
-  text-align: center; }
+  border: 2px dotted transparent; }
   .c-slider__dotNav__dot::before {
     content: "";
     display: inline-block;
@@ -1044,6 +1051,7 @@ a.ps-button--ghost {
 .c-slider__slides-wrapper {
   width: 80%;
   display: flex;
+  align-items: center;
   transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .c-slider__slide {
@@ -1052,7 +1060,7 @@ a.ps-button--ghost {
   text-align: center;
   margin-bottom: var(--v-space);
   margin-right: var(--c-margin);
-  transition: opacity 1s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 1s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
+  transition: opacity 0.5s cubic-bezier(0.39, 0.03, 0.56, 0.57), visibility 1s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
   .c-slider__slide[data-hidden="true"] {
     visibility: hidden;
     opacity: 0; }
@@ -1069,7 +1077,6 @@ a.ps-button--ghost {
 
 .js-slider .c-slider__slides-wrapper {
   width: 100%;
-  display: flex;
   transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
 
 .js-slider .c-slider__slide {
