@@ -398,15 +398,28 @@ small,
 
 /* slice main content area grid layout */
 @media all and (min-width: 50em) {
-  .ps__main.grid {
-    display: grid;
-    grid-auto-flow: dense; }
-    .ps__main.grid.grid--align-center {
-      align-items: center; }
-    .ps__main.grid.grid--align-stretch {
-      align-items: stretch; }
-    .ps__main.grid.grid--align-top {
-      align-items: top; }
+  .ps__main.grid [class^="span-"] {
+    display: inline-block;
+    margin-left: -4px;
+    vertical-align: middle;
+    width: 48%;
+    margin-right: 4%; }
+    .ps__main.grid [class^="span-"]:nth-of-type(even) {
+      margin-right: 0; }
+  @supports (display: grid) {
+    .ps__main.grid {
+      display: grid;
+      grid-auto-flow: dense; }
+      .ps__main.grid [class^="span-"] {
+        display: block;
+        margin: 0;
+        width: 100%; } }
+  .ps__main.grid.grid--align-center {
+    align-items: center; }
+  .ps__main.grid.grid--align-stretch {
+    align-items: stretch; }
+  .ps__main.grid.grid--align-top {
+    align-items: top; }
   .ps__main.grid--12 {
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: var(--h-padding);

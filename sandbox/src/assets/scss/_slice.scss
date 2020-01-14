@@ -226,11 +226,33 @@
 
 /* slice main content area grid layout */
 @media all and (min-width: 50em) {
-  // 800px
 
+  // 800px
   .ps__main.grid {
-    display: grid;
-    grid-auto-flow: dense;
+
+    [class^="span-"] {
+      // float: left;
+      display: inline-block;
+      margin-left: -4px;
+      vertical-align: middle;
+      width: 48%;
+      margin-right: 4%;
+
+      &:nth-of-type(even) {
+        margin-right: 0;
+      }
+    }
+
+    @supports (display: grid) {
+      display: grid;
+      grid-auto-flow: dense;
+
+      [class^="span-"] {
+        display: block;
+        margin: 0;
+        width: 100%;
+      }
+    }
 
     &.grid--align-center {
       align-items: center;
@@ -250,8 +272,6 @@
     grid-column-gap: var(--h-padding);
     grid-row-gap: var(--v-space);
   }
-
-
 
   .span-1-12 {
     grid-column: 1 / 13;
