@@ -78,8 +78,6 @@ var util = {
   };
 
   var ARIAtabs = function ARIAtabs(inst, options) {
-    console.log('running');
-
     var _options = Object.assign(ARIAaccOptions, options);
 
     var el = inst;
