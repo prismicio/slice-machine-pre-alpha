@@ -86,18 +86,18 @@ button {
     ********************************************************************************************************/
   --scale--small: 1.125;
   --scale--large: 1.250;
-  --text-min-4xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small));
-  --text-max-4xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large));
-  --text-min-3xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small));
-  --text-max-3xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large));
-  --text-min-2xl:  calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small));
-  --text-max-2xl:  calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large));
-  --text-min-xl:   calc(1 * var(--scale--small) * var(--scale--small));
-  --text-max-xl:   calc(1 * var(--scale--large) * var(--scale--large));
-  --text-min-l:    calc(1 * var(--scale--small));
-  --text-max-l:    calc(1 * var(--scale--large));
-  --text-min-small:  calc(1 / var(--scale--small));
-  --text-max-small:  calc(1 / var(--scale--large)); }
+  --text-min-4xl: calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small));
+  --text-max-4xl: calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large));
+  --text-min-3xl: calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small) * var(--scale--small));
+  --text-max-3xl: calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large) * var(--scale--large));
+  --text-min-2xl: calc(1 * var(--scale--small) * var(--scale--small) * var(--scale--small));
+  --text-max-2xl: calc(1 * var(--scale--large) * var(--scale--large) * var(--scale--large));
+  --text-min-xl: calc(1 * var(--scale--small) * var(--scale--small));
+  --text-max-xl: calc(1 * var(--scale--large) * var(--scale--large));
+  --text-min-l: calc(1 * var(--scale--small));
+  --text-max-l: calc(1 * var(--scale--large));
+  --text-min-small: calc(1 / var(--scale--small));
+  --text-max-small: calc(1 / var(--scale--large)); }
   @supports (font-variation-settings: normal) {
     :root {
       --font-family: "Inter var", Arial, sans-serif; } }
@@ -486,15 +486,18 @@ small,
       margin-bottom: 0;
       border-radius: 8px 8px 0 0; }
 
-.accordion-js .c-accordion__panel {
-  padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
-  padding-right: 4rem;
-  background-color: var(--color--secondary); }
-  .accordion-js .c-accordion__panel[aria-hidden="true"] {
-    margin-bottom: 0; }
-  .accordion-js .c-accordion__panel[aria-hidden="false"] {
-    border-radius: 0 0 8px 8px;
-    margin-bottom: var(--c-padding); }
+.c-accordion__panel {
+  margin-bottom: 4rem; }
+  .accordion-js .c-accordion__panel {
+    margin-bottom: 0;
+    padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
+    padding-right: 4rem;
+    background-color: var(--color--secondary); }
+    .accordion-js .c-accordion__panel[aria-hidden="true"] {
+      margin-bottom: 0; }
+    .accordion-js .c-accordion__panel[aria-hidden="false"] {
+      border-radius: 0 0 8px 8px;
+      margin-bottom: var(--c-padding); }
 
 /* Styles for the accordion icon */
 .c-accordion .accordion-icon {
@@ -556,15 +559,18 @@ small,
       margin-bottom: 0;
       border-radius: 8px 8px 0 0; }
 
-.accordion-js .c-accordion__panel {
-  padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
-  padding-right: 4rem;
-  background-color: var(--color--secondary); }
-  .accordion-js .c-accordion__panel[aria-hidden="true"] {
-    margin-bottom: 0; }
-  .accordion-js .c-accordion__panel[aria-hidden="false"] {
-    border-radius: 0 0 8px 8px;
-    margin-bottom: var(--c-padding); }
+.c-accordion__panel {
+  margin-bottom: 4rem; }
+  .accordion-js .c-accordion__panel {
+    margin-bottom: 0;
+    padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
+    padding-right: 4rem;
+    background-color: var(--color--secondary); }
+    .accordion-js .c-accordion__panel[aria-hidden="true"] {
+      margin-bottom: 0; }
+    .accordion-js .c-accordion__panel[aria-hidden="false"] {
+      border-radius: 0 0 8px 8px;
+      margin-bottom: var(--c-padding); }
 
 /* Styles for the accordion icon */
 .c-accordion .accordion-icon {
@@ -830,9 +836,10 @@ a.ps-button--ghost {
   margin-top: 2rem;
   text-align: center;
   align-content: bottom;
-  display: flex;
   align-items: center;
   justify-content: center; }
+  .js-carousel .c-carousel__paddleNav {
+    display: flex; }
   .c-carousel__paddleNav .c-carousel__paddleNav__prev,
   .c-carousel__paddleNav .c-carousel__paddleNav__next {
     width: 2.75rem;
@@ -1215,6 +1222,9 @@ a.ps-button--ghost {
         display: none; } } }
 
 /* General Tabs Styles Common to all tabs slices */
+.c-tabs__tabpanel__title {
+  margin-bottom: 2em; }
+
 .js-tabs .c-tabs__tabpanel .c-tabs__tabpanel__title {
   display: none; }
 
@@ -1231,8 +1241,6 @@ a.ps-button--ghost {
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  display: flex;
-  justify-content: space-between;
   -webkit-overflow-scrolling: touch;
   background: linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
   background-color: #fff;
@@ -1244,6 +1252,9 @@ a.ps-button--ghost {
   /* Internet Explorer 10+ */
   scrollbar-width: none;
   /* Firefox */ }
+  .js-tabs .c-tabs__tablist {
+    display: flex;
+    justify-content: space-between; }
   .c-tabs__tablist::-webkit-scrollbar {
     display: none; }
   .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {
@@ -1349,17 +1360,19 @@ a.ps-button--ghost {
     outline: none;
     border-color: transparent; }
 
-.c-tabs__tabpanel:focus, .c-tabs__tabpanel.focus-visible {
-  outline: 2px dotted #888;
-  outline-offset: 5px; }
-
-.c-tabs__tabpanel:focus:not(:focus-visible) {
-  outline: none;
-  border-color: transparent; }
-
-.js-focus-visible .c-tabs__tabpanel:focus:not(.focus-visible) {
-  outline: none;
-  border-color: transparent; }
+.c-tabs__tabpanel {
+  margin-bottom: 8rem; }
+  .js-tabs .c-tabs__tabpanel {
+    margin-bottom: 0; }
+  .c-tabs__tabpanel:focus, .c-tabs__tabpanel.focus-visible {
+    outline: 2px dotted #888;
+    outline-offset: 5px; }
+  .c-tabs__tabpanel:focus:not(:focus-visible) {
+    outline: none;
+    border-color: transparent; }
+  .js-focus-visible .c-tabs__tabpanel:focus:not(.focus-visible) {
+    outline: none;
+    border-color: transparent; }
 
 /* tab styles specific to the Tabs | Text slice */
 .ps-tabs--text .c-tabs__tablist {
@@ -1594,22 +1607,26 @@ a.ps-button--ghost {
   padding-right: 3em;
   background-size: 1em 1em;
   background-repeat: no-repeat;
-  background-position: right center;
-  background-image: url("../img/video-play-icon--grey.svg"); }
+  background-position: right center; }
+  .js-video-player .ps__video-player__playlist__link {
+    background-image: url("../img/video-play-icon--grey.svg"); }
   .ps__video-player__playlist__link:hover {
     color: inherit; }
   .ps-video-player--dark .ps__video-player__playlist__link {
-    color: var(--color-text-grey);
-    background-image: url("../img/video-play-icon--dark-grey.svg"); }
+    color: var(--color-text-grey); }
+    .js-video-player .ps-video-player--dark .ps__video-player__playlist__link {
+      background-image: url("../img/video-play-icon--dark-grey.svg"); }
     .ps-video-player--dark .ps__video-player__playlist__link:visited {
       color: var(--color-text-grey); }
   .ps__video-player__playlist__link[aria-selected="true"] {
-    background-image: url("../img/video-play-icon--black.svg");
     font-weight: bold; }
+    .js-video-player .ps__video-player__playlist__link[aria-selected="true"] {
+      background-image: url("../img/video-play-icon--black.svg"); }
   .ps-video-player--dark .ps__video-player__playlist__link[aria-selected="true"] {
-    background-image: url("../img/video-play-icon--white.svg");
     color: #fff;
     font-weight: normal; }
+    .js-video-player .ps-video-player--dark .ps__video-player__playlist__link[aria-selected="true"] {
+      background-image: url("../img/video-play-icon--white.svg"); }
   .ps__video-player__playlist__link[href]:focus {
     background-repeat: no-repeat;
     outline-color: var(--color-text-grey);

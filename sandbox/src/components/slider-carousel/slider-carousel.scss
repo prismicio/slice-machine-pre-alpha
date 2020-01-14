@@ -98,7 +98,11 @@
   margin-top: 2rem;
   text-align: center;
   align-content: bottom;
-  display: flex;
+
+  .js-carousel & {
+    display: flex; // only override hidden attribute when JS is enabled, otherwise next/prev buttons are useless
+  }
+
   align-items: center;
   justify-content: center;
 

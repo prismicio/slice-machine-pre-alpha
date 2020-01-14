@@ -107,6 +107,7 @@ var util = {
 
     var init = function () {
       el.classList.add('js-tabs');
+      tablist.removeAttribute('hidden');
       setupTabList();
       setupTabs();
       setupTabPanels();

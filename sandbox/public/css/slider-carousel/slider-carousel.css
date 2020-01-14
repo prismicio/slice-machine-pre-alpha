@@ -66,9 +66,10 @@
   margin-top: 2rem;
   text-align: center;
   align-content: bottom;
-  display: flex;
   align-items: center;
   justify-content: center; }
+  .js-carousel .c-carousel__paddleNav {
+    display: flex; }
   .c-carousel__paddleNav .c-carousel__paddleNav__prev,
   .c-carousel__paddleNav .c-carousel__paddleNav__next {
     width: 2.75rem;

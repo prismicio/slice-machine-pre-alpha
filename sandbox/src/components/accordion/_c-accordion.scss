@@ -55,7 +55,10 @@
 
 
 .c-accordion__panel {
+  margin-bottom: 4rem; // no-js fallback
+
   .accordion-js & {
+    margin-bottom: 0;
     padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
     padding-right: 4rem;
     background-color: var(--color--secondary);
