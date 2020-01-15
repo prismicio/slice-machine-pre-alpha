@@ -246,7 +246,7 @@ var util = {
         dot.setAttribute('data-controls', slides[i].getAttribute('id'));
 
         let dotLabel = document.createElement('span');
-        dotLabel.innerText = slides[i].getAttribute('data-slide-label');
+        dotLabel.textContent = slides[i].getAttribute('data-slide-label');
         dotLabel.classList.add('dot-label');
 
         // append dot to dotNavList
