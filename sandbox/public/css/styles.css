@@ -1020,18 +1020,20 @@ a.ps-button--ghost {
 .c-slider__dotNav__dot {
   position: relative; }
   .c-slider__dotNav__dot .dot-label {
+    display: block;
+    line-height: 1.5;
     position: absolute;
     left: 1.25rem;
     transform: translateX(-50%);
     bottom: -2.75rem;
     z-index: 1;
-    line-height: 1;
     background-color: var(--color--secondary);
-    padding: .5em .75em;
+    padding: .5em 1em;
     border-radius: 4px;
     pointer-events: none;
     opacity: 0;
-    transition: opacity .2s linear; }
+    transition: opacity .2s linear;
+    width: 15rem; }
     .c-slider__dotNav__dot .dot-label::after {
       /* up arrow */
       content: "";
@@ -1277,7 +1279,7 @@ a.ps-button--ghost {
   /* Firefox */ }
   .js-tabs .c-tabs__tablist {
     display: flex;
-    justify-content: space-between; }
+    justify-content: center; }
   .c-tabs__tablist::-webkit-scrollbar {
     display: none; }
   .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {

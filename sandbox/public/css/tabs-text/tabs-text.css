@@ -31,7 +31,7 @@
   /* Firefox */ }
   .js-tabs .c-tabs__tablist {
     display: flex;
-    justify-content: space-between; }
+    justify-content: center; }
   .c-tabs__tablist::-webkit-scrollbar {
     display: none; }
   .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {
