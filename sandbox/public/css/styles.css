@@ -1290,7 +1290,7 @@ a.ps-button--ghost {
   /* Firefox */ }
   .js-tabs .c-tabs__tablist {
     display: flex;
-    justify-content: center; }
+    justify-content: space-between; }
   .c-tabs__tablist::-webkit-scrollbar {
     display: none; }
   .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {
@@ -1304,7 +1304,7 @@ a.ps-button--ghost {
   position: relative;
   transition: all .1s linear; }
 
-.c-tabs__tablist--dotnav {
+.js-tabs .c-tabs__tablist--dotnav {
   justify-content: center; }
 
 .c-tabs__tablist--dotnav .c-tabs__tab {
