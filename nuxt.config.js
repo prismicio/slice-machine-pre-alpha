@@ -79,7 +79,7 @@ export default {
 			'prismic-nuxt',
 			{
 				endpoint: 'https://slice-machine.prismic.io/api/v2',
-				linkResolver: function (doc, ctx) {
+				linkResolver: function(doc, ctx) {
 					if (doc.isBroken) {
 						return '/not-found'
 					}
@@ -95,7 +95,10 @@ export default {
 					if (doc.uid === 'documentation') {
 						return `/${doc.uid}`
 					}
-					if (doc.tags.includes('tutorials') || doc.tags.includes('deep-learning')) {
+					if (
+						doc.tags.includes('tutorials') ||
+						doc.tags.includes('deep-learning')
+					) {
 						return `/documentation/${doc.uid}`
 					}
 					return '/not-found'
@@ -104,9 +107,7 @@ export default {
 		]
 	],
 	styleResources: {
-		scss: [
-			'style/variables.scss'
-		]
+		scss: ['style/variables.scss']
 	},
 	serverMiddleware: [
 		{
