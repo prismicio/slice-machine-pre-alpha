@@ -1,33 +1,29 @@
 <template>
-  <div class="sidebar">
-    <div
-      v-if="isPanelOpen"
-      class="sidebar-backdrop"
-      @click="closeSidebarPanel"
-    ></div>
-    <transition name="slide">
-      <div v-if="isPanelOpen" class="sidebar-panel">
-        <slot></slot>
-      </div>
-    </transition>
-  </div>
+	<div class="sidebar">
+		<div v-if="isPanelOpen" class="sidebar-backdrop" @click="closeSidebarPanel"></div>
+		<transition name="slide">
+			<div v-if="isPanelOpen" class="sidebar-panel">
+				<slot></slot>
+			</div>
+		</transition>
+	</div>
 </template>
 <script>
 import { store, mutations } from '@/store/popoutmenu.js'
 
 export default {
-  computed: {
-    isPanelOpen() {
-      return store.isNavOpen
-    }
-  },
-  methods: {
-    closeSidebarPanel: mutations.toggleNav
-  }
+	computed: {
+		isPanelOpen() {
+			return store.isNavOpen
+		}
+	},
+	methods: {
+		closeSidebarPanel: mutations.toggleNav
+	}
 }
 </script>
 <style lang="scss" scoped>
-@import '../../style/_global';
+@import '../../style/variables.scss';
 
 .slide-enter-active,
 .slide-leave-active {
@@ -51,14 +47,14 @@ export default {
 }
 
 .sidebar-panel {
-  overflow-y: auto;
-  background-color: #ffffff;
-  color: $black-primary;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  z-index: 999;
-  width: 320px;
+	overflow-y: auto;
+	background-color: #ffffff;
+	color: $black-primary;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	z-index: 999;
+	width: 320px;
 }
 </style>

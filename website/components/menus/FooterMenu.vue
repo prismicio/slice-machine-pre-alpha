@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/_global';
+@import '../../style/_variables.scss';
 
 a {
 	display: contents;

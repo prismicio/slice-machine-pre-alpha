@@ -50,6 +50,7 @@
 	"devDependencies": {
 		"@nuxtjs/eslint-config": "^2.0.0",
 		"@nuxtjs/eslint-module": "^1.1.0",
+		"@nuxtjs/style-resources": "^1.0.0",
 		"babel-eslint": "^10.0.3",
 		"eslint": "^6.7.2",
 		"eslint-config-prettier": "^6.7.0",
@@ -64,11 +65,11 @@
 		"eslint-plugin-vue": "^6.0.1",
 		"file-save": "^0.2.0",
 		"husky": "^3.1.0",
-		"node-sass": "^4.13.0",
+		"node-sass": "^4.13.1",
 		"nodemon": "^2.0.1",
 		"prettier": "^1.19.1",
 		"prompts": "^2.3.0",
-		"sass-loader": "^8.0.0",
+		"sass-loader": "^8.0.2",
 		"stylelint": "^12.0.0",
 		"stylelint-config-standard": "^19.0.0"
 	},
