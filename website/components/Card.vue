@@ -1,5 +1,10 @@
 <template>
-	<div class="card" @mouseover="mouseover" @mouseleave="mouseleave">
+	<div
+		class="card"
+		@mouseover="mouseover"
+		@mouseleave="mouseleave"
+		@click="$router.push(`/components/${displayName}`)"
+	>
 		<slot name="image">
 			<div
 				class="image-block"
@@ -12,14 +17,15 @@
           `hover-block ${hover || isInMyList ? 'hover-block--hovered' : ''}`
         "
 			>
+				<h5>Learn more: {{ meta.title }}</h5>
 				<!-- <Button variant="text-white" @click="addOrRemove()">
           {{ isInMyList ? 'Remove from my project' : 'Add it to my project' }}
 				</Button>-->
-				<Button
+				<!-- <Button
 					variant="text-white"
 					style="margin-top: 12px"
 					@click="$router.push(`/components/${displayName}`)"
-				>Learn More</Button>
+				>Learn More</Button>-->
 			</div>
 		</slot>
 		<slot name="description">
@@ -92,6 +98,7 @@ export default {
 	position: relative;
 	width: 100%;
 	margin: 32px 0 0 0;
+	cursor: pointer;
 
 	.image-block {
 		width: 100%;
@@ -112,9 +119,16 @@ export default {
 		display: none;
 		background-image: linear-gradient(
 			0deg,
-			rgba(182, 182, 182, 0.95),
-			rgba(182, 182, 182, 0.95)
+			rgba(104, 104, 104, 0.95),
+			rgba(104, 104, 104, 0.95)
 		);
+		padding: 0 20px;
+		h5 {
+			text-align: center;
+			color: #fff;
+			text-shadow: 1px 1px #000;
+			font-weight: bold;
+		}
 		&--hovered {
 			display: flex;
 			align-items: center;
