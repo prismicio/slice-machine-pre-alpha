@@ -7,22 +7,20 @@
 						<prismic-image :field="menu.logo" />
 					</nuxt-link>
 					<nuxt-link to="/">
-						<span class="text"><b>Slicemachine</b> by prismic</span>
+						<span class="text">
+							<b>Slicemachine</b> by prismic
+						</span>
 					</nuxt-link>
 				</div>
 				<ul class="horizontal-nav">
 					<li v-for="menuLink in menu.menu_item" :key="menuLink.id">
-						<prismic-link :field="menuLink.link">
-							{{ menuLink.link_label }}
-						</prismic-link>
+						<prismic-link :field="menuLink.link">{{ menuLink.link_label }}</prismic-link>
 					</li>
 					<li>
-						<gh-btns-star slug="prismicio/slice-machine" class="gh-button star">
-						</gh-btns-star>
+						<gh-btns-star slug="prismicio/slice-machine" class="gh-button star"></gh-btns-star>
 					</li>
 					<li>
-						<gh-btns-fork slug="prismicio/slice-machine" class="gh-button fork">
-						</gh-btns-fork>
+						<gh-btns-fork slug="prismicio/slice-machine" class="gh-button fork"></gh-btns-fork>
 					</li>
 				</ul>
 				<Burger></Burger>
@@ -31,17 +29,13 @@
 		<Sidebar>
 			<ul class="sidebar-panel-nav">
 				<li v-for="menuLink in menu.menu_item" :key="menuLink.id">
-					<prismic-link :field="menuLink.link">
-						{{ menuLink.link_label }}
-					</prismic-link>
+					<prismic-link :field="menuLink.link">{{ menuLink.link_label }}</prismic-link>
 				</li>
 				<li>
-					<gh-btns-star slug="prismicio/slice-machine" class="star">
-					</gh-btns-star>
+					<gh-btns-star slug="prismicio/slice-machine" class="star"></gh-btns-star>
 				</li>
 				<li>
-					<gh-btns-fork slug="prismicio/slice-machine" class="fork">
-					</gh-btns-fork>
+					<gh-btns-fork slug="prismicio/slice-machine" class="fork"></gh-btns-fork>
 				</li>
 			</ul>
 		</Sidebar>
@@ -70,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/_global';
+@import '../style/variables.scss';
 
 .mainMenu {
 	border-bottom: 1px solid #d3d2d2;

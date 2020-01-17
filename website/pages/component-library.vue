@@ -63,8 +63,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/_global';
-
 .card-section {
 	margin: 0 auto;
 	&-description {

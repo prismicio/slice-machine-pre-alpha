@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../style/_global';
+@import '../../style/variables.scss';
 
 .mainMenu {
 	border-bottom: 1px solid #d3d2d2;
@@ -262,7 +262,6 @@ export default {
 	.gh-button {
 		border-radius: 0.25em;
 		border: 1px solid $black-primary;
-		color: #24292e;
 		cursor: pointer;
 		display: inline-block;
 		font-family: $base-font-primary;
