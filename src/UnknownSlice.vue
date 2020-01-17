@@ -1,24 +1,19 @@
 <template>
-	<section>
+	<section style="border-bottom: 1px solid #eee">
 		<div class="hero-section">
 			<div class="hero-section__inner">
-				<p class="error">
-					SliceZone Error
-				</p>
-				<h1>{{ camelize(slice.slice_type) }} <em>does not exist</em>.</h1>
+				<p class="error">SliceZone Error</p>
+				<h1>
+					{{ camelize(slice.slice_type) }}
+					<em>does not exist</em>.
+				</h1>
 			</div>
 		</div>
 		<div class="container">
 			<p class="paragraph">
 				Make sure you created a '{{ camelize(slice.slice_type) }}' component
-				inside `sliceMachine/slices`. If not: create one!
-			</p>
-			<p>
-				Check the console to check the payload received
-			</p>
-			<p>
-				More info in the documentation:
-				<a target="_blank" href="https://google.com">a link</a>
+				inside `sliceMachine/slices`. If not: create one! Also, check the
+				console to check the payload received and the docs for more information.
 			</p>
 		</div>
 	</section>
@@ -31,7 +26,17 @@ export default {
 	props: {
 		slice: {
 			type: Object,
-			required: true
+			required: true,
+			validator: function(value) {
+				if (process.env.NODE_ENV !== 'production') {
+					console.log(
+						'[SliceZone] Unable to find a component matching this Prismic slice:'
+					)
+					console.log(value)
+					console.log('--- end of SliceZone')
+				}
+				return true
+			}
 		}
 	},
 	data() {
@@ -69,7 +74,7 @@ export default {
 	margin: auto;
 	padding: 2rem;
 	.paragraph {
-		color: #fff;
+		color: #111;
 		max-width: 480px;
 	}
 }

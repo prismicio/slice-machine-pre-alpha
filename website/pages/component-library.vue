@@ -1,11 +1,7 @@
 <template>
 	<div>
-		<h3 class="card-section-title">
-			{{ $prismic.asText(document.page_title) }}
-		</h3>
-		<p class="card-section-description">
-			{{ $prismic.asText(document.page_description) }}
-		</p>
+		<prismic-rich-text :field="document.page_title" />
+		<prismic-rich-text :field="document.page_description" class="card-section-description" />
 		<Row>
 			<Grid columns="2">
 				<Card v-for="card in lst" :key="card.displayName" v-bind="card">
@@ -35,7 +31,7 @@ const lst = Object.keys(Slices)
 
 export default {
 	name: 'HomeLib',
-	layout: 'compdocs',
+	layout: 'complib',
 	components: {
 		...Slices,
 		Card,
@@ -73,9 +69,6 @@ export default {
 	margin: 0 auto;
 	&-description {
 		margin: 0 auto;
-		font-size: 20px;
-		line-height: 34px;
-		font-family: $base-font-primary;
 	}
 	.button {
 		margin: 0 auto;

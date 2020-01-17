@@ -1,12 +1,10 @@
 {
 	"slice_type": "pricing_table",
 	"slice_label": null,
-	"items": [
-		{
+	"items": [{
 			"plan_title": "Small",
 			"price_option": "Free",
-			"features": [
-				{
+			"features": [{
 					"type": "list-item",
 					"text": "Figma and Sketch Files",
 					"spans": []
@@ -24,30 +22,26 @@
 				{
 					"type": "list-item",
 					"text": "Page Layouts",
-					"spans": [
-						{
-							"start": 0,
-							"end": 12,
-							"type": "label",
-							"data": {
-								"label": "not-included"
-							}
+					"spans": [{
+						"start": 0,
+						"end": 12,
+						"type": "label",
+						"data": {
+							"label": "not-included"
 						}
-					]
+					}]
 				},
 				{
 					"type": "list-item",
 					"text": "24/7 Free Support",
-					"spans": [
-						{
-							"start": 0,
-							"end": 17,
-							"type": "label",
-							"data": {
-								"label": "not-included"
-							}
+					"spans": [{
+						"start": 0,
+						"end": 17,
+						"type": "label",
+						"data": {
+							"label": "not-included"
 						}
-					]
+					}]
 				}
 			],
 			"call_to_action": {
@@ -60,8 +54,7 @@
 		{
 			"plan_title": "Medium",
 			"price_option": "From $18",
-			"features": [
-				{
+			"features": [{
 					"type": "list-item",
 					"text": "Figma and Sketch Files",
 					"spans": []
@@ -84,16 +77,14 @@
 				{
 					"type": "list-item",
 					"text": "24/7 Free Support",
-					"spans": [
-						{
-							"start": 0,
-							"end": 17,
-							"type": "label",
-							"data": {
-								"label": "not-included"
-							}
+					"spans": [{
+						"start": 0,
+						"end": 17,
+						"type": "label",
+						"data": {
+							"label": "not-included"
 						}
-					]
+					}]
 				}
 			],
 			"call_to_action": {
@@ -104,8 +95,7 @@
 		{
 			"plan_title": "Large",
 			"price_option": "From $39",
-			"features": [
-				{
+			"features": [{
 					"type": "list-item",
 					"text": "Figma and Sketch Files",
 					"spans": []
@@ -141,19 +131,15 @@
 	],
 	"primary": {
 		"eyebrow_headline": "Pricing",
-		"title": [
-			{
-				"type": "heading2",
-				"text": "Choose a plan",
-				"spans": []
-			}
-		],
-		"description": [
-			{
-				"type": "paragraph",
-				"text": "Choose the plan that works for you and streamline your design process in an unlimited number of projects.",
-				"spans": []
-			}
-		]
+		"title": [{
+			"type": "heading2",
+			"text": "Choose a plan",
+			"spans": []
+		}],
+		"description": [{
+			"type": "paragraph",
+			"text": "Choose the plan that works for you and streamline your design process in an unlimited number of projects.",
+			"spans": []
+		}]
 	}
 }

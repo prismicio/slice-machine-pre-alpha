@@ -4,7 +4,7 @@
 		<Body variant="body--white">
 			<div class="docs">
 				<nav>
-					<SideList :comps-data="lst" />
+					<SliceList :comps-data="lst" />
 				</nav>
 				<main>
 					<nuxt />
@@ -19,7 +19,7 @@
 import MainMenu from '@/components/menus/MainMenu'
 import FooterMenu from '@/components/menus/FooterMenu'
 import Body from '@/components/Body'
-import SideList from '@/components/menus/SideList'
+import SliceList from '@/components/menus/SliceList'
 
 import * as Slices from '@/../src'
 import { createSlice, sliceRoute } from '~/utils'
@@ -35,7 +35,7 @@ export default {
 		MainMenu,
 		FooterMenu,
 		Body,
-		SideList
+		SliceList
 	},
 	data() {
 		return {
@@ -73,6 +73,7 @@ html {
 }
 nav {
 	display: none;
+	padding-bottom: 44px;
 	@include lg {
 		display: inline;
 		grid-area: nav;
@@ -80,10 +81,10 @@ nav {
 	}
 }
 main {
-	grid-column: container;
+	padding: 44px 0 44px 0;
 	@include lg {
 		grid-area: content;
-		padding-left: 44px;
+		padding: 0 0 44px 44px;
 		border-left: 1px solid $grey-transparent;
 	}
 }

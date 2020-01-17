@@ -1,25 +1,25 @@
-# Call to action Section
+# FAQ Section
 
-This component allows you to easily create a beautifully styled responsive call to action section. Install it in your project, add the model in your custom type and fill in the content in the document and your are ready to go. You can also create variations of the component using slots.
+### Purpose of the component
+Component with repeatable dropdown section for creating FAQ sections.
+The accordion uses progressive enhancement as an approach to build the interactivity of the component.
+This means that the accordion starts out as a non-interactive component, and then interactivity and appropriate styles are added to it when the JavaScript runs.
 
-### Slots
+### Variations
+1. Default
+This default version on the component use the simple dropdowns to be used where and as you require.
+2. Faq
+This version is a more complete website section, including a title and description to create a a basic FAQ page.
+3. With Image
+Much like the full section but using the optional image for more destinct styling.
 
-You have 2 slots available to configure and restructure the content within the template section of the component.
-
-Header:
-With the header slot you have access to the non-repeatable data from the slice. You can see these fields in the Properties table below.
-
-Call To Action:
-With the callToAction slot you also have access to all the non-repeatable data from the slice.
-
+### Properties
 ```
-
-## Properties
-
-| Property    | Type                 | Description                            | Required | Default          |
-| ----------- | -------------------- | -------------------------------------- | -------- | ---------------- |
-| icon_image  | Image    \|\| URL    | An Icon image for the feature          | true     | --               |
-| title       | RichText \|\| String | A short title                          | true     | --               |
-| paragraph   | RichText \|\| String | A short paragraph                      | true     | --               |
-| button_label| Key Text \|\| String | A label for the button input           | true     | --               |
-| button_link | String   \|\| URL    | Url that will be used to redirect user | false    | https://test.com |
+| Property         | Type                 | Repeatable | Description                    | Required |
+| ---------------- | -------------------- | -----------| ------------------------------ | -------- |
+| eyebrow_headline | RichText \|\| String | false      | A short headline for the slice | true     |
+| title            | RichText \|\| String | false      | A title for the slice          | true     |
+| description      | RichText \|\| String | false      | A paragraph for the slice      | true     |
+| optional_image   | Image    \|\| URL    | false      | An Icon image for the slice    | false    |
+| title            | RichText \|\| String | true       | A title for the dropdowns      | true     |
+| text             | RichText \|\| String | true       | A paragraph for the dropdowns  | true     |

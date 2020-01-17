@@ -7,7 +7,7 @@ export const linkResolverPluginFile = () => `// -- Links resolution rules
 // As your project grows, you should update this function according to your routes
 export default (doc) => {
   switch (doc.type) {
-    case ('page'): return \`/page/\${doc.uid}\`
+    case ('page'): return \`/\${doc.uid}\`
     case ('homepage'): return '/'
     default: return '/'
   }
@@ -34,7 +34,7 @@ const matches = base
   const url = matches[2]
 */
 export const createPrismicConfigurationFile = () => {
-  return `const api = {
+	return `const api = {
   apiEndpoint: 'https://your-repo-name.prismic.io/api/v2',
 }
 
@@ -42,7 +42,7 @@ module.exports = api;`
 }
 
 export const createUidPage = ({ configPath, customType, sliceMachinePath }) => {
-  return `<template>
+	return `<template>
   <slice-zone :slices="document.body" />
 </template>
 <script>
@@ -57,7 +57,7 @@ export default {
   async asyncData({ params, error, req }) {
     try {
       const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
-      const result = await api.getByUID('${customType}', params.uid)
+      const result = await api.getByUID('${customType}', params.uid || 'homepage')
       return {
         document: result.data,
         documentId: result.id
@@ -71,7 +71,7 @@ export default {
 }
 
 export const createIndexPage = ({ configPath, customType }) => {
-  return `<template>
+	return `<template>
   <section class="canvas">
     <slot name="header">
       <div class="header">
