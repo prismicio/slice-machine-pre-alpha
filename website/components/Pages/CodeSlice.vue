@@ -2,7 +2,7 @@
 	<div class="clipboard" @click.stop.prevent="copyCommand">
 		<prismic-rich-text class="embed-text" :field="slice.primary.snippet" />
 		<img src="../../static/clipboard.svg" />
-		<input id="command-to-copy" type="hidden" :value="slice.primary.snippet[0].text" />
+		<input :id="`command-to-copy-${index}`" type="hidden" :value="slice.primary.snippet[0].text" />
 	</div>
 </template>
 
@@ -18,11 +18,17 @@ export default {
 		slice: {
 			type: Object,
 			required: true
+		},
+		index: {
+			type: Number,
+			required: true
 		}
 	},
 	methods: {
 		copyCommand() {
-			const commandToCopy = document.querySelector('#command-to-copy')
+			const commandToCopy = document.querySelector(
+				`#command-to-copy-${this.index}`
+			)
 			commandToCopy.setAttribute('type', 'text')
 			commandToCopy.select()
 
