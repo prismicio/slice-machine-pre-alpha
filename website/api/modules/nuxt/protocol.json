@@ -20,15 +20,6 @@
 	"bootstraper": ["npx", ["create-nuxt-app"]],
 	"actions": [
 		{
-			"type": "write",
-			"zipPath": "plugins/link-resolver.js",
-			"overwrite": false
-		},
-		{
-			"zipPath": "plugins/prismic-vue.js",
-			"overwrite": false
-		},
-		{
 			"zipPath": "pages/_uid.vue",
 			"overwrite": false,
 			"bootstrapped": true

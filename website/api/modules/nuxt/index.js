@@ -1,4 +1,6 @@
 const path = require('path')
+const readFileSync = require('fs').readFileSync
+const Mustache = require('mustache')
 
 const { mergeCustomTypesWithSlices } = require('../shared')
 
@@ -8,8 +10,7 @@ const {
 	createPrismicConfigurationFile,
 	createPrismicVuePluginFile,
 	linkResolverPluginFile,
-	createUidPage,
-	createIndexPage
+	createUidPage
 } = require('./helpers')
 
 const protocol = require('./protocol.json')
@@ -30,24 +31,25 @@ export default () => {
 		createFiles: (_, handle) => {
 			const files = [
 				{
-					// This is a CONST
 					name: 'prismic.config.js',
 					f: createPrismicConfigurationFile()
 				},
-				{
-					name: 'plugins/link-resolver.js',
-					f: linkResolverPluginFile()
-				},
-				{
-					name: 'plugins/prismic-vue.js',
-					f: createPrismicVuePluginFile()
-				},
+				// {
+				// 	name: 'plugins/link-resolver.js',
+				// 	f: linkResolverPluginFile()
+				// },
+				// {
+				// 	name: 'plugins/prismic-vue.js',
+				// 	f: createPrismicVuePluginFile()
+				// },
 				{
 					name: 'pages/index.vue',
-					f: createIndexPage({
-						configPath: '@/prismic.config.js',
-						customType: 'page'
-					})
+					f: Mustache.render(
+						readFileSync(
+							path.join(__dirname, 'templates/index.mustache'),
+							'utf8'
+						)
+					)
 				},
 				{
 					name: 'pages/_uid.vue',
