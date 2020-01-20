@@ -367,7 +367,7 @@ small,
 
 .ps__card-item {
   border-radius: 8px;
-  margin-bottom: calc(var(--v-space) * 2); }
+  margin-bottom: var(--v-space); }
 
 .ps__card-item--full {
   background-color: var(--color--secondary);
@@ -394,8 +394,7 @@ small,
     .ps__card-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-column-gap: var(--v-margin);
-      grid-row-gap: calc(var(--v-margin) * 2); }
+      grid-column-gap: var(--v-margin); }
     .ps__card-item {
       margin-right: 0; } } }
 
