@@ -76,7 +76,7 @@ export default {
 			}
 		],
 		[
-			'prismic-nuxt',
+			'@nuxtjs/prismic',
 			{
 				endpoint: 'https://slice-machine.prismic.io/api/v2',
 				linkResolver: function (doc, ctx) {

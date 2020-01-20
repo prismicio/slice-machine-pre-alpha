@@ -50,11 +50,6 @@ var util = {
   generateID: function generateID(base) {
     return base + Math.floor(Math.random() * 999);
   },
-  getDirectChildren: function getDirectChildren(elm, selector) {
-    return Array.prototype.filter.call(elm.children, function (child) {
-      return child.matches(selector);
-    });
-  },
   getUrlHash: function getUrlHash() {
     return window.location.hash.replace('#', '');
   },
@@ -83,8 +78,6 @@ var util = {
   };
 
   var ARIAtabs = function ARIAtabs(inst, options) {
-    console.log('running');
-
     var _options = Object.assign(ARIAaccOptions, options);
 
     var el = inst;
@@ -100,6 +93,7 @@ var util = {
 
     var init = function init() {
       el.classList.add('js-tabs');
+      tablist.removeAttribute('hidden');
       setupTabList();
       setupTabs();
       setupTabPanels();

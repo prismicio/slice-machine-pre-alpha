@@ -1,0 +1,143 @@
+<section class="ps ps-slider ps-slider--testimonials">
+  <div class="ps__wrap">
+    <div class="ps__head">
+      <header class="ps__header">
+        <span class="ps__kicker">The Slider</span>
+        <h2 class="ps__title" aria-level="">A Collection of Testimonials</h2>
+      </header>
+      <div class="ps__desc">
+        <p>
+          our clients love us. Here is some of the love we got after working with them.
+        </p>
+      </div>
+    </div>
+
+    <div class="ps__main grid grid--12">
+      <div class="span-1-12">
+
+        <!-- the slider label should not have word "slider" in it -->
+        <div class="c-slider" data-slider data-aria-label="PROVIDE_LABEL">
+
+          <div class="c-slider__paddleNav" data-slider-paddlenav hidden>
+            <!-- paddleNav (prev and next buttons) provided here for flexibility (choose and use the icon you want) -->
+            <button class="c-slider__paddleNav__prev" aria-label="Previous Slide" data-prev>
+              <!-- place icon here -->
+              <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+                <g fill="none" fill-rule="evenodd">
+                  <path d="M-8-6h24v24H-8z" />
+                  <path fill="currentColor" fill-rule="nonzero" d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z" />
+                </g>
+              </svg>
+            </button>
+            <button class="c-slider__paddleNav__next" aria-label="Next Slide" data-next>
+              <!-- place icon here -->
+              <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+                <g fill="none" fill-rule="evenodd">
+                  <path d="M-8-6h24v24H-8z" />
+                  <path fill="currentColor" fill-rule="nonzero" d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z" />
+                </g>
+              </svg>
+            </button>
+          </div>
+
+          <!-- make sure to provide a readable label for each section to be used in the dotNav buttons -->
+          <div class="c-slider__slides-container" data-slides>
+            <div class="c-slider__slides-wrapper" data-slides-wrapper>
+              <div data-slide-label="this is slide one label" class="c-slider__slide" data-slide>
+                <blockquote class="ps-slider__testimonial">
+                  <div class="ps-slider__testimonial__header">
+                    <img class="ps-slider__testimonial__logo" src="{{ path '/img/testimonial-logo.svg' }}"
+                      alt="LOGO_LABEL_HERE" />
+                  </div>
+                  <div class="ps-slider__testimonial__content">
+                    <p>
+                      “We have been able to make scaling great!”
+                    </p>
+                  </div>
+                  <footer class="ps-slider__testimonial__footer">
+                    <cite>
+                      <span class="ps-slider__testimonial__author">John Doe #1</span>
+                      <span class="ps-slider__testimonial__author-role">Co-Founder &amp; CTO</span>
+                    </cite>
+                  </footer>
+                </blockquote>
+              </div>
+              <div data-slide-label="this is slide two label" class="c-slider__slide" data-slide>
+                <blockquote class="ps-slider__testimonial">
+                  <div class="ps-slider__testimonial__header">
+                    <img class="ps-slider__testimonial__logo" src="{{ path '/img/testimonial-logo.svg' }}"
+                      alt="LOGO_LABEL_HERE" />
+                  </div>
+                  <div class="ps-slider__testimonial__content">
+                    <p>
+                      “We have been able to make scaling the technical infrastructure of our business cost effective and
+                      efficient.”
+                    </p>
+                  </div>
+                  <footer class="ps-slider__testimonial__footer">
+                    <cite>
+                      <span class="ps-slider__testimonial__author">John Doe #2</span>
+                      <span class="ps-slider__testimonial__author-role">Co-Founder &amp; CTO</span>
+                    </cite>
+                  </footer>
+                </blockquote>
+              </div>
+              <div data-slide-label="this is slide three label" class="c-slider__slide" data-slide>
+                <blockquote class="ps-slider__testimonial">
+                  <div class="ps-slider__testimonial__header">
+                    <img class="ps-slider__testimonial__logo" src="{{ path '/img/testimonial-logo.svg' }}"
+                      alt="LOGO_LABEL_HERE" />
+                  </div>
+                  <div class="ps-slider__testimonial__content">
+                    <p>
+                      “We have been able to make scaling the technical infrastructure of our business cost effective and
+                      efficient.”
+                    </p>
+                  </div>
+                  <footer class="ps-slider__testimonial__footer">
+                    <cite>
+                      <span class="ps-slider__testimonial__author">John Doe #3</span>
+                      <span class="ps-slider__testimonial__author-role">Co-Founder &amp; CTO</span>
+                    </cite>
+                  </footer>
+                </blockquote>
+              </div>
+              <div data-slide-label="this is slide four label" class="c-slider__slide" data-slide>
+                <blockquote class="ps-slider__testimonial">
+                  <div class="ps-slider__testimonial__header">
+                    <img class="ps-slider__testimonial__logo" src="{{ path '/img/testimonial-logo.svg' }}"
+                      alt="LOGO_LABEL_HERE" />
+                  </div>
+                  <div class="ps-slider__testimonial__content">
+                    <p>
+                      “We have been able to make scaling the technical infrastructure of our business cost effective and
+                      efficient.”
+                    </p>
+                  </div>
+                  <footer class="ps-slider__testimonial__footer">
+                    <cite>
+                      <span class="ps-slider__testimonial__author">John Doe #4</span>
+                      <span class="ps-slider__testimonial__author-role">Co-Founder &amp; CTO</span>
+                    </cite>
+                  </footer>
+                </blockquote>
+              </div>
+
+
+            </div>
+          </div>
+
+          <!-- the dotNav is generated in the JS according to the number of slides / -->
+          <!---->
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<script src="{{ path '/js/hammer.min.js' }}"></script>

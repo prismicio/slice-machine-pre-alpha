@@ -1,21 +1,23 @@
-
+/*********************************************************\
+ * Accordion component-specific styles.
+ *********************************************************/
 
 .c-accordion__heading {
-    font-size: calc(1rem * var(--text-min-l));
+  font-size: calc(1rem * var(--text-min-l));
 
-    @media screen and (min-width: 40rem) {
-        font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)  );
-    }
-
-    @media screen and (min-width: 80rem) {
-        font-size: calc(1rem * var(--text-max-l));
-    }
-    
-  .accordion-js & {
-      margin: 0;
+  @media screen and (min-width: 40rem) {
+    font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40));
   }
 
-  > button {
+  @media screen and (min-width: 80rem) {
+    font-size: calc(1rem * var(--text-max-l));
+  }
+
+  .accordion-js & {
+    margin: 0;
+  }
+
+  >button {
     display: block;
     font: inherit;
     font-size: inherit;
@@ -34,6 +36,7 @@
     margin-bottom: var(--c-padding);
 
     &:focus {
+
       outline: var(--focus-outline);
       z-index: 1; // to ensure the outline isn't cut off where it overlaps with the next item below
     }
@@ -41,32 +44,36 @@
     &:focus:not(:focus-visible) {
       outline: none;
     }
+
     &.focus:not(.focus-visible) {
       outline: none;
     }
 
-    
+
     &[aria-expanded="true"] {
-        margin-bottom: 0;
-        border-radius: 8px 8px 0 0;
+      margin-bottom: 0;
+      border-radius: 8px 8px 0 0;
     }
   }
 }
 
 
 .c-accordion__panel {
+  margin-bottom: 4rem; // no-js fallback
+
   .accordion-js & {
+    margin-bottom: 0;
     padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
     padding-right: 4rem;
     background-color: var(--color--secondary);
-    
+
     &[aria-hidden="true"] {
-        margin-bottom: 0;
+      margin-bottom: 0;
     }
-    
+
     &[aria-hidden="false"] {
-        border-radius: 0 0 8px 8px;
-        margin-bottom: var(--c-padding);
+      border-radius: 0 0 8px 8px;
+      margin-bottom: var(--c-padding);
     }
   }
 }
@@ -92,6 +99,7 @@
 .c-accordion [aria-hidden="true"] {
   display: none;
 }
+
 .c-accordion [aria-hidden="false"] {
   display: block !important;
 }

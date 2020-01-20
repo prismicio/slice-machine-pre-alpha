@@ -10,7 +10,7 @@ a.ps-button {
   line-height: 1.3;
   font-weight: 500;
   transition: all .1s linear;
-  margin-top: var(--c-margin); }
+  margin-top: var(--v-margin); }
 
 .ps-button--primary,
 a.ps-button--primary {

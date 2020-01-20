@@ -1,0 +1,75 @@
+/**************************************************\
+ * Slider | Testimonials component-specific styles.
+ * Main general styles are in the _slider.scss file
+ ***************************************************/
+
+.ps-slider--testimonials {
+  .ps-slider__testimonial {
+    width: 100%;
+    margin: 0;
+    margin-bottom: var(--c-margin);
+    padding: 4rem 1.5rem;
+    background-color: var(--color--secondary);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media all and (min-width: 50em) {
+      padding: calc(var(--v-space) / 1.25) var(--c-padding);
+    }
+  }
+
+  .ps-slider__testimonial__logo {
+    margin-bottom: var(--v-margin);
+  }
+
+
+  .ps-slider__testimonial__content {
+    line-height: 1.3;
+    line-height: 1.2;
+    font-size: calc(1rem * var(--text-min-xl));
+    max-width: 50ch;
+    margin: 0 auto;
+
+    @media screen and (min-width: 40rem) {
+      font-size: calc(calc(1rem * var(--text-min-xl)) + (var(--text-max-xl) - var(--text-min-xl)) * (100vw - 40rem) / (80 - 40));
+    }
+
+    @media screen and (min-width: 80rem) {
+      font-size: calc(1rem * var(--text-max-xl));
+    }
+
+    p:last-of-type() {
+      margin-bottom: 0;
+    }
+  }
+
+  .ps-slider__testimonial__footer {
+    margin-top: var(--v-margin);
+  }
+
+  .ps-slider__testimonial__footer cite {
+    font-style: normal;
+  }
+
+  .ps-slider__testimonial__author {
+    font-weight: bold;
+    font-size: calc(1rem * var(--text-min-l));
+
+    @media screen and (min-width: 40rem) {
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40));
+    }
+
+    @media screen and (min-width: 80rem) {
+      font-size: calc(1rem * var(--text-max-l));
+    }
+  }
+
+  .ps-slider__testimonial__author,
+  .ps-slider__testimonial__author-position {
+    display: block;
+    margin-bottom: .5rem;
+  }
+}

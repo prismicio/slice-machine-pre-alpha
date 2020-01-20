@@ -36,9 +36,6 @@ var util = {
     setupTabPanel();
   }; // enhance links to tabs
   // show video player and set the src of the iframe to the first link
-  // ...
-  // ...
-  // ...
   // tab list <ul> gets role "tablist" and must have a label
 
 

@@ -1,8 +1,11 @@
+/*********************************************************\
+ * Accordion component-specific styles.
+ *********************************************************/
 .c-accordion__heading {
   font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {
     .c-accordion__heading {
-      font-size: calc( calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
   @media screen and (min-width: 80rem) {
     .c-accordion__heading {
       font-size: calc(1rem * var(--text-max-l)); } }
@@ -36,15 +39,18 @@
       margin-bottom: 0;
       border-radius: 8px 8px 0 0; }
 
-.accordion-js .c-accordion__panel {
-  padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
-  padding-right: 4rem;
-  background-color: var(--color--secondary); }
-  .accordion-js .c-accordion__panel[aria-hidden="true"] {
-    margin-bottom: 0; }
-  .accordion-js .c-accordion__panel[aria-hidden="false"] {
-    border-radius: 0 0 8px 8px;
-    margin-bottom: var(--c-padding); }
+.c-accordion__panel {
+  margin-bottom: 4rem; }
+  .accordion-js .c-accordion__panel {
+    margin-bottom: 0;
+    padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
+    padding-right: 4rem;
+    background-color: var(--color--secondary); }
+    .accordion-js .c-accordion__panel[aria-hidden="true"] {
+      margin-bottom: 0; }
+    .accordion-js .c-accordion__panel[aria-hidden="false"] {
+      border-radius: 0 0 8px 8px;
+      margin-bottom: var(--c-padding); }
 
 /* Styles for the accordion icon */
 .c-accordion .accordion-icon {

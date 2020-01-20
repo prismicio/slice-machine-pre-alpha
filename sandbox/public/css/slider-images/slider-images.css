@@ -1,0 +1,14 @@
+/**************************************************\
+ * Slider | Images component-specific styles.
+ * Main general styles are in the _slider.scss file
+ ***************************************************/
+.ps-slider--images .c-slider__slide__figure {
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+  .ps-slider--images .c-slider__slide__figure img {
+    width: 100%; }
+  .ps-slider--images .c-slider__slide__figure figcaption {
+    padding: var(--c-padding);
+    max-width: 80ch;
+    margin: 0 auto; }

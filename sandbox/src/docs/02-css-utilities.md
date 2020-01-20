@@ -1,9 +1,9 @@
 ---
 title: CSS Utilities and Helpers
-status: draft
+status: ready
 ---
 
-### Visually Hidden Text
+## Visually Hidden Text
 
 ```
 /* Visually hide any element (mostly text) accessibly. 
@@ -17,13 +17,14 @@ status: draft
     position: absolute;
     width: 1px;
     white-space: nowrap; 
+    word-wrap: normal;
 }
 ```
 
 
 This utility class is essentially shrinking an element into a 1px square, hiding any overflow, and absolutely positioning the element to remove any trace of it from the normal document flow.
 
-### Hiding text using the `hidden` attribute
+## Hiding text using the `hidden` attribute
 
 The `hidden` attribute is the HTML equivalent of CSS’s `display: none`. In order to provide support for IE, the following rule is added in the CSS:
 

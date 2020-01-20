@@ -1,0 +1,127 @@
+/***************************************************************\
+ * Slider | Cards (a.k.a. Carousel) component-specific styles.
+ ***************************************************************/
+.c-carousel {
+  position: relative; }
+
+.c-carousel__cards-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; }
+  .js-carousel .c-carousel__cards-container {
+    overflow: hidden; }
+
+.c-carousel__cards-wrapper {
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
+
+.c-carousel__card {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-right: 1.6rem;
+  white-space: normal;
+  display: inline-block;
+  padding: 2.5rem 1.6rem;
+  position: relative; }
+  @media all and (min-width: 640px) {
+    .c-carousel__card {
+      width: 50%; } }
+  @media all and (min-width: 900px) {
+    .c-carousel__card {
+      width: 33.3333%; } }
+  @media all and (min-width: 1200px) {
+    .c-carousel__card {
+      width: 25%; } }
+  .c-carousel__card::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: .8rem;
+    width: calc(100% - 1.6rem);
+    z-index: -1;
+    background-color: var(--color--secondary);
+    border-radius: 8px; }
+
+.js-carousel .c-carousel__container {
+  overflow: hidden; }
+
+.js-carousel .c-carousel__cards-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transition: transform .3s linear; }
+
+.js-carousel .c-carousel__card {
+  margin: 0;
+  flex-shrink: 0; }
+
+.c-carousel__card__img {
+  margin-bottom: var(--v-margin); }
+
+.c-carousel__card__title {
+  font-size: 1rem; }
+
+.c-carousel__paddleNav {
+  margin-top: 1.5rem;
+  text-align: center; }
+  .js-carousel .c-carousel__paddleNav {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media all and (min-width: 50em) {
+      .js-carousel .c-carousel__paddleNav {
+        margin-top: 0; } }
+  .c-carousel__paddleNav .c-carousel__paddleNav__prev,
+  .c-carousel__paddleNav .c-carousel__paddleNav__next {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: .5rem;
+    z-index: 2;
+    top: 50%;
+    border: 2px dotted transparent;
+    border-radius: 50%;
+    line-height: 0; }
+    @media all and (min-width: 64em) {
+      .c-carousel__paddleNav .c-carousel__paddleNav__prev,
+      .c-carousel__paddleNav .c-carousel__paddleNav__next {
+        position: absolute;
+        margin-top: -1.375rem; } }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
+      width: 50%;
+      height: auto;
+      color: #000;
+      transition: color .1s linear; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"] svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"] svg {
+      color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
+      display: inline; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:hover svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:hover svg {
+      color: var(--color--primary); }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"]:hover svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"]:hover svg {
+      color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus, .c-carousel__paddleNav .c-carousel__paddleNav__prev:active,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:active {
+      outline: none;
+      border-color: currentColor; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"]:focus,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"]:focus {
+      border-color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus:not(:focus-visible),
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus:not(:focus-visible) {
+      border-color: transparent; }
+    .js-focus-visible .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus:not(.focus-visible), .js-focus-visible
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus:not(.focus-visible) {
+      border-color: transparent; }
+  .c-carousel__paddleNav .c-carousel__paddleNav__prev {
+    left: -3.5rem; }
+  .c-carousel__paddleNav .c-carousel__paddleNav__next {
+    right: -3.5rem; }

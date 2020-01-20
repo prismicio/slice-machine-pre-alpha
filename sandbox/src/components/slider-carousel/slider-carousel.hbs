@@ -1,0 +1,135 @@
+<section class="ps ps-slider ps-slider--carousel ps-carousel">
+  <div class="ps__wrap">
+    <div class="ps__head">
+      <header class="ps__header">
+        <span class="ps__kicker">The Carousel</span>
+        <h2 class="ps__title" aria-level="">It’s more than a budget manager</h2>
+      </header>
+      <div class="ps__desc">
+        <p>
+          This carousel moves by one card at a time when the next and previous arrows are clicked.
+        </p>
+      </div>
+    </div>
+
+    <div class="ps__main grid grid--12">
+      <div class="span-1-12">
+
+        <!-- the crousel label should not have word "crousel" in it -->
+        <div class="c-carousel" data-carousel data-aria-label="PROVIDE_LABEL">
+          <!-- SR helper will be appended here from the JS to announce to SR users what items are now in view -->
+
+          <div class="c-carousel__cards-container" data-carousel-cards>
+            <div class="c-carousel__cards-wrapper" data-carousel-cards-wrapper>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #1 title</h3>
+                <div class="c-carousel__card__content">
+                  This carousel card contains <a href="#">a link</a>. You can open your financial reports while
+                  listening.
+                </div>
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #2 title</h3>
+                <div class="c-carousel__card__content">
+                  Shorter Card.
+                </div>
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #3 title</h3>
+                <div class="c-carousel__card__content">
+                  The app doesn't block your music player. You can open your financial reports while listening.
+                </div>
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #4 title</h3>
+                <div class="c-carousel__card__content">
+                  The app doesn't block your music player. You can open your financial reports while listening.
+                </div>
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #5 title</h3>
+                <div class="c-carousel__card__content">
+                  This carousel card contains <a href="#">another link</a> to test the inert attribute in all
+                  browsers.
+                </div>
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #6 title</h3>
+                <div class="c-carousel__card__content">
+                  The app doesn't block your music player. You can open your financial reports while listening.
+                </div>
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #7 title</h3>
+                <div class="c-carousel__card__content">
+                  The app doesn't block your music player. You can open your financial reports while listening.
+                </div>
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #8 title</h3>
+                <div class="c-carousel__card__content">
+                  The app doesn't block your music player. You can open your financial reports while listening.
+                </div>
+              </div>
+              <div class="c-carousel__card" data-carousel-card>
+                <img class="c-carousel__card__img" src="{{ path '/img/carousel-card-icon.svg' }}"
+                  alt="icon alt or leave empty if decorational">
+                <h3 class="c-carousel__card__title">Card #9 title</h3>
+                <div class="c-carousel__card__content">
+                  The app doesn't block your music player. You can open your financial reports while listening.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="c-carousel__paddleNav" data-carousel-paddlenav hidden>
+            <!-- paddleNav (prev and next buttons) provided here for flexibility (choose and use the icon you want) -->
+            <button class="c-carousel__paddleNav__prev" aria-label="Previous" data-prev>
+              <!-- place icon here -->
+              <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+                <g fill="none" fill-rule="evenodd">
+                  <path d="M-8-6h24v24H-8z" />
+                  <path fill="currentColor" fill-rule="nonzero" d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z" />
+                </g>
+              </svg>
+            </button>
+            <button class="c-carousel__paddleNav__next" aria-label="Next" data-next>
+              <!-- place icon here -->
+              <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+                <g fill="none" fill-rule="evenodd">
+                  <path d="M-8-6h24v24H-8z" />
+                  <path fill="currentColor" fill-rule="nonzero" d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z" />
+                </g>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- required for the carousel -->
+<script src="{{ path '/js/inert-polyfill.js' }}"></script>
+<script src="{{ path '/js/intersectionObserver-polyfill.js' }}"></script>
+<script src="{{ path '/js/hammer.min.js' }}"></script>

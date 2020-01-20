@@ -1,22 +1,3 @@
-// (function () {
-// source: https://webdesign.tutsplus.com/tutorials/how-to-build-a-shifting-underline-hover-effect-with-css-and-javascript--cms-28510
-//   const target = document.querySelector(".c-tabs__underline");
-//   const tabs = document.querySelectorAll(".c-tabs__tab");
-//   function slideUnderline() {
-//     const width = this.getBoundingClientRect().width;
-//     const height = this.getBoundingClientRect().height;
-//     const left = this.offsetLeft;
-//     const top = this.offsetTop;
-//     target.style.width = `${width}px`;
-//     target.style.height = `${height}px`;
-//     target.style.left = `${left}px`;
-//     target.style.top = `${top}px`;
-//     target.style.transform = "none";
-//   }
-//   for (let i = 0; i < tabs.length; i++) {
-//     tabs[i].addEventListener("click", slideUnderline);
-//   }
-// })();
 "use strict";
 
 if (typeof Object.assign != "function") {
@@ -69,11 +50,6 @@ var util = {
   generateID: function generateID(base) {
     return base + Math.floor(Math.random() * 999);
   },
-  getDirectChildren: function getDirectChildren(elm, selector) {
-    return Array.prototype.filter.call(elm.children, function (child) {
-      return child.matches(selector);
-    });
-  },
   getUrlHash: function getUrlHash() {
     return window.location.hash.replace('#', '');
   },
@@ -117,6 +93,7 @@ var util = {
 
     var init = function init() {
       el.classList.add('js-tabs');
+      tablist.removeAttribute('hidden');
       setupTabList();
       setupTabs();
       setupTabPanels();

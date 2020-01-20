@@ -1,118 +1,7 @@
-/* General Tabs Styles Common to all tabs slices */
-
-// when the js is enabled, the tabpanels are labelled by their tabs
-// you may choose to hide or keep the headings inside of them visible
-.js-tabs .c-tabs__tabpanel {
-  .c-tabs__tabpanel__title {
-    display: none;
-  }
-}
-
-.c-tabs {
-  @supports(display: grid) {
-    @media all and (min-width: 50em) {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-columns: subgrid;
-      grid-column-gap: var(--h-padding);
-    }
-  }
-}
-
-.c-tabs__tablist {
-  margin-bottom: calc(var(--v-margin) * 1.5);
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  display: flex;
-  justify-content: space-between;
-
-  -webkit-overflow-scrolling: touch;
-
-  background: linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%,
-    radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, .25), transparent),
-    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, .25), transparent) 0 100%;
-  background-color: #fff;
-  background-position: 0 0, 100%, 0 0, 100%;
-  background-repeat: no-repeat;
-  background-attachment: local, local, scroll, scroll;
-  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scrollbar-width: none;
-  /* Firefox */
-
-  &:focus,
-  &.focus-visible {
-    outline: 2px dotted #888;
-    outline-offset: 5px;
-  }
-}
-
-.c-tabs__tab {
-  display: inline-block;
-  line-height: 1;
-  text-align: left;
-  position: relative;
-  transition: all .1s linear;
-}
-
-.c-tabs__tablist--dotnav {
-  justify-content: center;
-}
-
-.c-tabs__tablist--dotnav .c-tabs__tab {
-  padding: .75rem;
-  border-radius: 50%;
-  color: #000;
-  border: 2px dotted transparent;
-
-  &::before {
-    content: "";
-    display: block;
-    background-color: #000;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    transition: background-color .1s linear;
-  }
-
-  &[aria-selected="true"] {
-    color: var(--color--primary);
-
-    &::before {
-      background-color: var(--color--primary);
-    }
-  }
-
-  &:hover {
-    &::before {
-      background-color: var(--color--primary);
-    }
-  }
-
-  &:focus,
-  &.focus-visible {
-    outline: none;
-    border-color: currentColor;
-    outline-offset: -4px;
-  }
-
-  &:focus:not(:focus-visible) {
-    border-color: transparent;
-  }
-
-  .js-focus-visible &:focus:not(.focus-visible) {
-    border-color: transparent;
-  }
-}
+/**************************************************\
+ * Tabs | Text component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 
 .c-tabs__tablist--text .c-tabs__tab {
   padding: 1rem;
@@ -142,30 +31,6 @@
     border-color: transparent;
   }
 }
-
-.c-tabs__tabpanel {
-
-  &:focus,
-  &.focus-visible {
-    outline: 4px dotted #888;
-    outline-offset: 5px;
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-    border-color: transparent;
-  }
-
-  .js-focus-visible &:focus:not(.focus-visible) {
-    outline: none;
-    border-color: transparent;
-  }
-}
-
-
-/* tab styles specific to the Tabs | Text slice */
-
-
 
 .ps-tabs--text .c-tabs__tablist {
   background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90)),
@@ -250,12 +115,16 @@
 /* tabs content specific styles */
 
 .c-tabs__tabpanel__modules {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-column-gap: var(--h-padding);
-  grid-row-gap: var(--v-margin);
-}
+  @supports(display: grid) {
+    @media all and (min-width: 50em) {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-column-gap: var(--h-padding);
+      grid-row-gap: var(--v-margin);
+    }
 
-.c-tabs__tabpanel__module__img {
-  margin-bottom: 1rem;
+    .c-tabs__tabpanel__module__img {
+      margin-bottom: 1rem;
+    }
+  }
 }

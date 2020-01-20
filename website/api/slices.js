@@ -174,10 +174,7 @@ app.use((req, res) => {
 		)
 
 		const fullProtocol = Object.assign(scaffolder.protocol, {
-			additionalDisplay: Mustache.render(
-				readFileSync(pathToAdditionalInfo, 'utf8'),
-				{}
-			)
+			additionalDisplay: readFileSync(pathToAdditionalInfo, 'utf8')
 		})
 
 		zip.file('protocol.json', JSON.stringify(fullProtocol, null, 4))
