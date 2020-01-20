@@ -5,7 +5,7 @@ modules: [
     endpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',
     linkResolver(doc) {
       if (doc.type === 'page') {
-        return doc.data.uid === 'homepage' ? '/' : `/${doc.data.uid}`
+        return doc.uid === 'homepage' ? '/' : `/${doc.uid}`
       }
       return '/'
     },
