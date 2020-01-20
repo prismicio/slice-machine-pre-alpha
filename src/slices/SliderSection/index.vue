@@ -6,7 +6,10 @@
 					<span class="ps__kicker">{{ slice.primary.eyebrow_headline }}</span>
 					<h2 class="ps__title">{{ $prismic.asText(slice.primary.title) }}</h2>
 				</header>
-				<prismic-rich-text class="ps__desc" :field="slice.primary.description" />
+				<prismic-rich-text
+					class="ps__desc"
+					:field="slice.primary.description"
+				/>
 			</div>
 
 			<div class="ps__main grid grid--12">
@@ -20,24 +23,43 @@
 							class="c-carousel__cards-container"
 							data-carousel-cards
 						>
-							<div class="c-carousel__cards-wrapper" data-carousel-cards-wrapper>
+							<div
+								class="c-carousel__cards-wrapper"
+								data-carousel-cards-wrapper
+							>
 								<div class="c-carousel__card" data-carousel-card>
 									<prismic-image
 										class="c-carousel__card__img"
 										:field="item.image"
 										alt="icon alt or leave empty if decorational"
 									/>
-									<prismic-rich-text class="c-carousel__card__title" :field="item.title" />
-									<prismic-rich-text class="c-carousel__card__content" :field="item.description" />
+									<prismic-rich-text
+										class="c-carousel__card__title"
+										:field="item.title"
+									/>
+									<prismic-rich-text
+										class="c-carousel__card__content"
+										:field="item.description"
+									/>
 								</div>
 							</div>
 						</div>
 
 						<div class="c-carousel__paddleNav" data-carousel-paddlenav hidden>
 							<!-- paddleNav (prev and next buttons) provided here for flexibility (choose and use the icon you want) -->
-							<button class="c-carousel__paddleNav__prev" aria-label="Previous" data-prev>
+							<button
+								class="c-carousel__paddleNav__prev"
+								aria-label="Previous"
+								data-prev
+							>
 								<!-- place icon here -->
-								<svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+								<svg
+									width="8"
+									height="12"
+									viewBox="0 0 8 12"
+									aria-hidden="true"
+									focusable="false"
+								>
 									<g fill="none" fill-rule="evenodd">
 										<path d="M-8-6h24v24H-8z" />
 										<path
@@ -48,9 +70,19 @@
 									</g>
 								</svg>
 							</button>
-							<button class="c-carousel__paddleNav__next" aria-label="Next" data-next>
+							<button
+								class="c-carousel__paddleNav__next"
+								aria-label="Next"
+								data-next
+							>
 								<!-- place icon here -->
-								<svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+								<svg
+									width="8"
+									height="12"
+									viewBox="0 0 8 12"
+									aria-hidden="true"
+									focusable="false"
+								>
 									<g fill="none" fill-rule="evenodd">
 										<path d="M-8-6h24v24H-8z" />
 										<path
