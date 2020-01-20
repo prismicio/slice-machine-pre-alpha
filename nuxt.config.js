@@ -44,7 +44,8 @@ export default {
 			},
 			{
 				type: 'text/javascript',
-				src: 'https://static.cdn.prismic.io/prismic.min.js?repo=slice-machine&new=true'
+				src:
+					'https://static.cdn.prismic.io/prismic.min.js?repo=slice-machine&new=true'
 			}
 		]
 	},
@@ -79,7 +80,7 @@ export default {
 			'@nuxtjs/prismic',
 			{
 				endpoint: 'https://slice-machine.prismic.io/api/v2',
-				linkResolver: function (doc, ctx) {
+				linkResolver: function(doc, ctx) {
 					if (doc.isBroken) {
 						return '/not-found'
 					}
