@@ -803,6 +803,53 @@ small,
   margin: 0;
   flex-shrink: 0; }
 
+/*********************************\ 
+ * 
+ * Common styles for:
+ * Alternate | List
+ * Alternate | Grid
+ * Alternate | Image + Text
+ *
+ *********************************/
+.ps-alternate__ctas {
+  display: flex;
+  flex-direction: column; }
+  @media all and (min-width: 40rem) {
+    .ps-alternate__ctas {
+      flex-direction: row; } }
+
+.ps-alternate .ps-button {
+  flex: 1;
+  margin-top: var(--h-padding); }
+  @media all and (min-width: 40rem) {
+    .ps-alternate .ps-button {
+      margin-right: var(--h-padding);
+      margin-top: 0; } }
+  .ps-alternate .ps-button:last-of-type {
+    margin-right: 0; }
+
+.ps-alternate__module {
+  margin-bottom: var(--v-margin); }
+
+.ps-alternate__module__title {
+  font-size: 1rem;
+  margin-top: 1em; }
+
+@media all and (min-width: 40rem) {
+  @supports (display: grid) {
+    .ps-alternate--list .ps-alternate__module {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-column-gap: var(--h-padding); }
+    .ps-alternate--list .ps-alternate__module__title {
+      margin-top: 0; } }
+  .ps-alternate--grid .ps-alternate__module {
+    display: inline-block;
+    width: calc(50% - var(--h-padding));
+    margin-right: var(--h-padding); }
+    .ps-alternate--grid .ps-alternate__module:nth-of-type(even) {
+      margin-right: 0; } }
+
 .c-accordion__heading {
   font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {
@@ -954,52 +1001,12 @@ small,
   margin: 0 auto calc(var(--c-padding) * 2);
   background: var(--color--secondary); }
 
-/* styles are in the alternate--list scss file (most of them are in common */
 .ps-alternate--image-text__img {
   display: block;
   margin: calc(var(--v-margin) * 2) auto var(--c-margin); }
   @media all and (min-width: 50em) {
     .ps-alternate--image-text__img {
       margin: var(--c-margin) auto; } }
-
-.ps-alternate__ctas {
-  display: flex;
-  flex-direction: column; }
-  @media all and (min-width: 40rem) {
-    .ps-alternate__ctas {
-      flex-direction: row; } }
-
-.ps-alternate .ps-button {
-  flex: 1;
-  margin-top: var(--h-padding); }
-  @media all and (min-width: 40rem) {
-    .ps-alternate .ps-button {
-      margin-right: var(--h-padding);
-      margin-top: 0; } }
-  .ps-alternate .ps-button:last-of-type {
-    margin-right: 0; }
-
-.ps-alternate__module {
-  margin-bottom: var(--v-margin); }
-
-.ps-alternate__module__title {
-  font-size: 1rem;
-  margin-top: 1em; }
-
-@media all and (min-width: 40rem) {
-  @supports (display: grid) {
-    .ps-alternate--list .ps-alternate__module {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-column-gap: var(--h-padding); }
-    .ps-alternate--list .ps-alternate__module__title {
-      margin-top: 0; } }
-  .ps-alternate--grid .ps-alternate__module {
-    display: inline-block;
-    width: calc(50% - var(--h-padding));
-    margin-right: var(--h-padding); }
-    .ps-alternate--grid .ps-alternate__module:nth-of-type(even) {
-      margin-right: 0; } }
 
 .ps-button,
 a.ps-button {
@@ -1123,8 +1130,6 @@ a.ps-button--ghost {
   .ps-pricing-table__option__feature.not-included .feature-icon {
     color: #888; }
 
-/* general slider styles are in common with ps-slider--images (Slider | Images component)*/
-/* .ps-slider--testimonials specific styles */
 .c-carousel {
   position: relative; }
 
@@ -1261,8 +1266,6 @@ a.ps-button--ghost {
     max-width: 80ch;
     margin: 0 auto; }
 
-/* general slider styles are in common with ps-slider--images (Slider | Images component)*/
-/* .ps-slider--testimonials specific styles */
 .ps-slider--testimonials .ps-slider__testimonial {
   width: 100%;
   margin: 0;

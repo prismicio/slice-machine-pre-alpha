@@ -159,7 +159,7 @@ var util = {
           }
           else {
             entry.target.classList.remove('is-visible');
-            // hide item from SRs
+            // hide item from SRs (the polyfill used does not hide the element from SRs, so you should do it)
             entry.target.setAttribute('aria-hidden', 'true');
             // prevent keyboard interactions
             entry.target.setAttribute('inert', '');
