@@ -3,22 +3,24 @@
     <slot name="header">
       <div class="header">
         <h1>"We're in the endgame now"</h1>
-        <em>So far you've:</em>
-        <p>
-          - created a new Nuxt.js project.<br />
-          - created a Prismic repo.<br />
-          - added a prismic.config.js file and linked to your content repository.<br />
-          - added components and a SliceZone in ‘sliceMachine’. (A folder at the root of your project)<br />
-        </p>
-        <em>Now you're going to:</em>
-        <p>
-          - visit your new Prismic repo.<br />
-          - add a page.<br />
-          - choose the components you wish to use.<br />
-          - add some content.<br />
-          - publish the page.<br />
-          - visit your new page with your beautiful pre-styled components.<br />
-        </p>
+        <div class="info-blocks">
+          <h2>So far you've:</h2>
+          <p>
+            - created a new Nuxt.js project.<br />
+            - created a Prismic repo.<br />
+            - added a prismic.config.js file and linked to your content repository.<br />
+            - added components and a SliceZone in ‘sliceMachine’. (A folder at the root of your project)<br />
+          </p>
+          <h2>Now you're going to:</h2>
+          <p>
+            - visit your new Prismic repo.<br />
+            - add a page.<br />
+            - choose the components you wish to use.<br />
+            - add some content.<br />
+            - publish the page.<br />
+            - visit your new page with your beautiful pre-styled components.<br />
+          </p>
+        </div>
       </div>
     </slot>
     <div class="call-to-action">
@@ -59,25 +61,46 @@ export default {
   text-align: center;
 }
 
+.canvas::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: url(https://images.unsplash.com/photo-1466811251801-b0f6c7b3a25c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2849&q=80);
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position: center center;
+  filter:brightness(60%);
+}
+
 .header {
-  img {
-    width: 68px;
-    padding-bottom: 15px;
-  }
 
   h1 {
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 64px;
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0;
   }
 
   p {
-    font-size: 22px;
-    line-height: 38px;
+    font-size: 16px;
+    line-height: 22px;
     width: 65%;
     margin: 0 auto;
     margin-bottom: 2rem;
   }
+}
+
+.info-blocks {
+  display: flex;
+  flex-direction: row;
 }
 
 .link {
@@ -97,19 +120,23 @@ input {
 }
 
 input[type='button'] {
-  background-color: #007aff;
+  background-color: #3291AA;
   color: white;
-  text-decoration: none;
+  border: 1px solid #5ab6ce;
+  margin-top: 5rem;
+  padding: 0.9375rem1.875rem;
+  font-family: "Monserrat", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 200;
+  cursor: pointer;
   width: 134px;
   height: 52px;
-  border: 1px solid rgb(2, 89, 182);
   border-radius: 3px;
   text-align: center;
-  font-size: 14px;
-  font-weight: 600;
   line-height: 30px;
   &:hover {
-    background-color: rgb(2, 89, 182);
+    background-color: #5ab6ce;
+    border: 1px solid #3291AA;
     cursor: pointer;
   }
   &:active {
