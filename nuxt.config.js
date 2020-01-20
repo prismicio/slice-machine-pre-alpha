@@ -80,7 +80,7 @@ export default {
 			'@nuxtjs/prismic',
 			{
 				endpoint: 'https://slice-machine.prismic.io/api/v2',
-				linkResolver: function(doc, ctx) {
+				linkResolver: function (doc, ctx) {
 					if (doc.isBroken) {
 						return '/not-found'
 					}
@@ -89,6 +89,9 @@ export default {
 					}
 					if (doc.type === 'component_library') {
 						return `/component-library`
+					}
+					if (doc.uid === 'contributing') {
+						return '/wip'
 					}
 					if (doc.uid === 'about') {
 						return `/${doc.uid}`
