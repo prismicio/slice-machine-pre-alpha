@@ -1,6 +1,6 @@
 ---
 title: 📝 About the Components in this Library
-status: draft
+status: ready
 ---
 
 ## Progressive Enhancement

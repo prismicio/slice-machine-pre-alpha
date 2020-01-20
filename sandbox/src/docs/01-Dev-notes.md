@@ -1,6 +1,6 @@
 ---
 title: ＜/＞ Dev Notes
-status: draft
+status: ready
 ---
 
 ## About the CSS 
