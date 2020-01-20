@@ -1,4 +1,7 @@
-/* tab styles specific to the Tabs | Text slice */
+/**************************************************\
+ * Tabs | Text component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .c-tabs__tablist--text .c-tabs__tab {
   padding: 1rem;
   color: #000;

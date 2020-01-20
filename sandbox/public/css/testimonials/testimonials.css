@@ -1,3 +1,7 @@
+/**************************************************\
+ * Testimonials component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .ps-testimonials .c-tabs {
   display: flex;
   flex-direction: column-reverse; }

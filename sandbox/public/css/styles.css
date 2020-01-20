@@ -850,6 +850,9 @@ small,
     .ps-alternate--grid .ps-alternate__module:nth-of-type(even) {
       margin-right: 0; } }
 
+/*********************************************************\
+ * Accordion component-specific styles.
+ *********************************************************/
 .c-accordion__heading {
   font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {
@@ -923,6 +926,9 @@ small,
 .c-accordion [aria-hidden="false"] {
   display: block !important; }
 
+/*********************************************************\
+ * Accordion component-specific styles.
+ *********************************************************/
 .c-accordion__heading {
   font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {
@@ -1001,6 +1007,14 @@ small,
   margin: 0 auto calc(var(--c-padding) * 2);
   background: var(--color--secondary); }
 
+/*********************************************************\
+ * Alternate | Grid component-specific styles.
+ * Main general styles are in the _alternate.scss file
+ *********************************************************/
+/*********************************************************\
+ * Alternate | Image + Text component-specific styles.
+ * Main general styles are in the _alternate.scss file
+ *********************************************************/
 .ps-alternate--image-text__img {
   display: block;
   margin: calc(var(--v-margin) * 2) auto var(--c-margin); }
@@ -1008,6 +1022,10 @@ small,
     .ps-alternate--image-text__img {
       margin: var(--c-margin) auto; } }
 
+/*********************************************************\
+ * Alternate | List component-specific styles.
+ * Main general styles are in the _alternate.scss file
+ *********************************************************/
 .ps-button,
 a.ps-button {
   display: inline-block;
@@ -1130,6 +1148,9 @@ a.ps-button--ghost {
   .ps-pricing-table__option__feature.not-included .feature-icon {
     color: #888; }
 
+/***************************************************************\
+ * Slider | Cards (a.k.a. Carousel) component-specific styles.
+ ***************************************************************/
 .c-carousel {
   position: relative; }
 
@@ -1255,6 +1276,10 @@ a.ps-button--ghost {
   .c-carousel__paddleNav .c-carousel__paddleNav__next {
     right: -3.5rem; }
 
+/**************************************************\
+ * Slider | Images component-specific styles.
+ * Main general styles are in the _slider.scss file
+ ***************************************************/
 .ps-slider--images .c-slider__slide__figure {
   margin: 0;
   padding: 0;
@@ -1266,6 +1291,10 @@ a.ps-button--ghost {
     max-width: 80ch;
     margin: 0 auto; }
 
+/**************************************************\
+ * Slider | Testimonials component-specific styles.
+ * Main general styles are in the _slider.scss file
+ ***************************************************/
 .ps-slider--testimonials .ps-slider__testimonial {
   width: 100%;
   margin: 0;
@@ -1320,6 +1349,10 @@ a.ps-button--ghost {
   display: block;
   margin-bottom: .5rem; }
 
+/**************************************************\
+ * Tabs | Steps component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .ps-tabs--steps .c-tabs__tablist {
   background-image: url("../img/dashed-line.svg");
   background-repeat: repeat no-repeat;
@@ -1398,7 +1431,10 @@ a.ps-button--ghost {
       .ps-tabs--steps .c-tabs__tabpanel[hidden] {
         display: none; } } }
 
-/* tab styles specific to the Tabs | Text slice */
+/**************************************************\
+ * Tabs | Text component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .c-tabs__tablist--text .c-tabs__tab {
   padding: 1rem;
   color: #000;
@@ -1472,6 +1508,10 @@ a.ps-button--ghost {
   .c-tabs__tabpanel__modules .c-tabs__tabpanel__module__img {
     margin-bottom: 1rem; } }
 
+/**************************************************\
+ * Testimonials component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .ps-testimonials .c-tabs {
   display: flex;
   flex-direction: column-reverse; }
