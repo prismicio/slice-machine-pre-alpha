@@ -1,10 +1,10 @@
-/* general slider styles are in common with ps-slider--images (Slider | Images component)*/
+/***************************************************************\
+ * Slider | Cards (a.k.a. Carousel) component-specific styles.
+ ***************************************************************/
 
-/* .ps-slider--testimonials specific styles */
 .c-carousel {
   position: relative;
 }
-
 
 .c-carousel__cards-container {
   overflow-x: auto;
@@ -16,8 +16,6 @@
   }
 }
 
-.ps-slider--carousel {}
-
 .c-carousel__cards-wrapper {
   white-space: nowrap;
   transition: transform .4s cubic-bezier(.39, .03, .56, .57);
@@ -26,10 +24,10 @@
 .c-carousel__card {
   width: 100%;
   text-align: center;
+  margin-bottom: 1rem; // for no-js
   margin-right: 1.6rem; // for no-js
-  white-space: initial;
+  white-space: normal;
   display: inline-block;
-
 
   @media all and (min-width: 640px) {
     width: 50%;
@@ -60,12 +58,6 @@
   }
 
 }
-
-.c-carousel__card__wrapper {
-  // position: relative;
-}
-
-
 
 .js-carousel {
   .c-carousel__container {

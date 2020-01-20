@@ -1,3 +1,7 @@
+/*********************************************************\
+ * Alternate | Image + Text component-specific styles.
+ * Main general styles are in the _alternate.scss file
+ *********************************************************/
 .ps-alternate--image-text__img {
   display: block;
   margin: calc(var(--v-margin) * 2) auto var(--c-margin); }

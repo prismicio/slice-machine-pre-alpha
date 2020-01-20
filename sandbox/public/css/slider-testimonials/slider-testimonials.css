@@ -1,5 +1,7 @@
-/* general slider styles are in common with ps-slider--images (Slider | Images component)*/
-/* .ps-slider--testimonials specific styles */
+/**************************************************\
+ * Slider | Testimonials component-specific styles.
+ * Main general styles are in the _slider.scss file
+ ***************************************************/
 .ps-slider--testimonials .ps-slider__testimonial {
   width: 100%;
   margin: 0;

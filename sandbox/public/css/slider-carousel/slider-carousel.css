@@ -1,5 +1,6 @@
-/* general slider styles are in common with ps-slider--images (Slider | Images component)*/
-/* .ps-slider--testimonials specific styles */
+/***************************************************************\
+ * Slider | Cards (a.k.a. Carousel) component-specific styles.
+ ***************************************************************/
 .c-carousel {
   position: relative; }
 
@@ -17,8 +18,9 @@
 .c-carousel__card {
   width: 100%;
   text-align: center;
+  margin-bottom: 1rem;
   margin-right: 1.6rem;
-  white-space: initial;
+  white-space: normal;
   display: inline-block;
   padding: 2.5rem 1.6rem;
   position: relative; }

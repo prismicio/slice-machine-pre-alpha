@@ -7,15 +7,12 @@
   display: flex;
   flex-direction: column-reverse;
 
-
   @media all and (min-width: 50em) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: var(--h-padding);
   }
 }
-
-
 
 .ps__video-player__playlist__list {
   margin: 0;
@@ -101,7 +98,6 @@
 
   &:hover {
     color: inherit;
-    // text-decoration: none;
   }
 
   .ps-video-player--dark & {

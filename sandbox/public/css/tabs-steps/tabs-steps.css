@@ -1,3 +1,7 @@
+/**************************************************\
+ * Tabs | Steps component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .ps-tabs--steps .c-tabs__tablist {
   background-image: url("../img/dashed-line.svg");
   background-repeat: repeat no-repeat;

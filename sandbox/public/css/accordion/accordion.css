@@ -1,3 +1,6 @@
+/*********************************************************\
+ * Accordion component-specific styles.
+ *********************************************************/
 .c-accordion__heading {
   font-size: calc(1rem * var(--text-min-l)); }
   @media screen and (min-width: 40rem) {

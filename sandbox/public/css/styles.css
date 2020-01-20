@@ -367,7 +367,7 @@ small,
 
 .ps__card-item {
   border-radius: 8px;
-  margin-bottom: calc(var(--v-space) * 2); }
+  margin-bottom: var(--v-space); }
 
 .ps__card-item--full {
   background-color: var(--color--secondary);
@@ -394,8 +394,7 @@ small,
     .ps__card-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-column-gap: var(--v-margin);
-      grid-row-gap: calc(var(--v-margin) * 2); }
+      grid-column-gap: var(--v-margin); }
     .ps__card-item {
       margin-right: 0; } } }
 
@@ -472,451 +471,148 @@ small,
   .span-9-12 {
     grid-column: 9 / 13; } }
 
-.c-accordion__heading {
-  font-size: calc(1rem * var(--text-min-l)); }
-  @media screen and (min-width: 40rem) {
-    .c-accordion__heading {
-      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
-  @media screen and (min-width: 80rem) {
-    .c-accordion__heading {
-      font-size: calc(1rem * var(--text-max-l)); } }
-  .accordion-js .c-accordion__heading {
-    margin: 0; }
-  .c-accordion__heading > button {
-    display: block;
-    font: inherit;
-    font-size: inherit;
-    font-weight: 500;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color--secondary);
-    text-align: left;
-    line-height: 1.2;
-    padding: var(--c-padding);
-    padding-right: 80px;
-    position: relative;
-    border: 1px solid transparent;
-    transition: outline 0.1s linear;
-    border-radius: 8px;
-    margin-bottom: var(--c-padding); }
-    .c-accordion__heading > button:focus {
-      outline: var(--focus-outline);
-      z-index: 1; }
-    .c-accordion__heading > button:focus:not(:focus-visible) {
-      outline: none; }
-    .c-accordion__heading > button.focus:not(.focus-visible) {
-      outline: none; }
-    .c-accordion__heading > button[aria-expanded="true"] {
-      margin-bottom: 0;
-      border-radius: 8px 8px 0 0; }
-
-.c-accordion__panel {
-  margin-bottom: 4rem; }
-  .accordion-js .c-accordion__panel {
-    margin-bottom: 0;
-    padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
-    padding-right: 4rem;
-    background-color: var(--color--secondary); }
-    .accordion-js .c-accordion__panel[aria-hidden="true"] {
-      margin-bottom: 0; }
-    .accordion-js .c-accordion__panel[aria-hidden="false"] {
-      border-radius: 0 0 8px 8px;
-      margin-bottom: var(--c-padding); }
-
-/* Styles for the accordion icon */
-.c-accordion .accordion-icon {
-  display: block !important;
-  position: absolute;
-  width: 0.75rem;
-  height: 0.5rem;
-  top: 50%;
-  right: 1em;
-  transform: translateY(-50%);
-  transform-origin: 50% 50%;
-  transition: all 0.1s linear; }
-
-.c-accordion [aria-expanded="true"] .accordion-icon {
-  -ms-transform: translateY(-50%) rotate(180deg);
-  transform: translateY(-50%) rotate(180deg); }
-
-.c-accordion [aria-hidden="true"] {
-  display: none; }
-
-.c-accordion [aria-hidden="false"] {
-  display: block !important; }
-
-.c-accordion__heading {
-  font-size: calc(1rem * var(--text-min-l)); }
-  @media screen and (min-width: 40rem) {
-    .c-accordion__heading {
-      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
-  @media screen and (min-width: 80rem) {
-    .c-accordion__heading {
-      font-size: calc(1rem * var(--text-max-l)); } }
-  .accordion-js .c-accordion__heading {
-    margin: 0; }
-  .c-accordion__heading > button {
-    display: block;
-    font: inherit;
-    font-size: inherit;
-    font-weight: 500;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color--secondary);
-    text-align: left;
-    line-height: 1.2;
-    padding: var(--c-padding);
-    padding-right: 80px;
-    position: relative;
-    border: 1px solid transparent;
-    transition: outline 0.1s linear;
-    border-radius: 8px;
-    margin-bottom: var(--c-padding); }
-    .c-accordion__heading > button:focus {
-      outline: var(--focus-outline);
-      z-index: 1; }
-    .c-accordion__heading > button:focus:not(:focus-visible) {
-      outline: none; }
-    .c-accordion__heading > button.focus:not(.focus-visible) {
-      outline: none; }
-    .c-accordion__heading > button[aria-expanded="true"] {
-      margin-bottom: 0;
-      border-radius: 8px 8px 0 0; }
-
-.c-accordion__panel {
-  margin-bottom: 4rem; }
-  .accordion-js .c-accordion__panel {
-    margin-bottom: 0;
-    padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
-    padding-right: 4rem;
-    background-color: var(--color--secondary); }
-    .accordion-js .c-accordion__panel[aria-hidden="true"] {
-      margin-bottom: 0; }
-    .accordion-js .c-accordion__panel[aria-hidden="false"] {
-      border-radius: 0 0 8px 8px;
-      margin-bottom: var(--c-padding); }
-
-/* Styles for the accordion icon */
-.c-accordion .accordion-icon {
-  display: block !important;
-  position: absolute;
-  width: 0.75rem;
-  height: 0.5rem;
-  top: 50%;
-  right: 1em;
-  transform: translateY(-50%);
-  transform-origin: 50% 50%;
-  transition: all 0.1s linear; }
-
-.c-accordion [aria-expanded="true"] .accordion-icon {
-  -ms-transform: translateY(-50%) rotate(180deg);
-  transform: translateY(-50%) rotate(180deg); }
-
-.c-accordion [aria-hidden="true"] {
-  display: none; }
-
-.c-accordion [aria-hidden="false"] {
-  display: block !important; }
-
-.ps-accordion__img {
-  display: block;
-  margin: 0 auto calc(var(--c-padding) * 2);
-  background: var(--color--secondary); }
-
-/* styles are in the alternate--list scss file (most of them are in common */
-.ps-alternate--image-text__img {
-  display: block;
-  margin: calc(var(--v-margin) * 2) auto var(--c-margin); }
-  @media all and (min-width: 50em) {
-    .ps-alternate--image-text__img {
-      margin: var(--c-margin) auto; } }
-
-.ps-alternate__ctas {
-  display: flex;
-  flex-direction: column; }
-  @media all and (min-width: 40rem) {
-    .ps-alternate__ctas {
-      flex-direction: row; } }
-
-.ps-alternate .ps-button {
-  flex: 1;
-  margin-top: var(--h-padding); }
-  @media all and (min-width: 40rem) {
-    .ps-alternate .ps-button {
-      margin-right: var(--h-padding);
-      margin-top: 0; } }
-  .ps-alternate .ps-button:last-of-type {
-    margin-right: 0; }
-
-.ps-alternate__module {
-  margin-bottom: var(--v-margin); }
-
-.ps-alternate__module__title {
-  font-size: 1rem;
-  margin-top: 1em; }
-
-@media all and (min-width: 40rem) {
-  @supports (display: grid) {
-    .ps-alternate--list .ps-alternate__module {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-column-gap: var(--h-padding); }
-    .ps-alternate--list .ps-alternate__module__title {
-      margin-top: 0; } }
-  .ps-alternate--grid .ps-alternate__module {
-    display: inline-block;
-    width: calc(50% - var(--h-padding));
-    margin-right: var(--h-padding); }
-    .ps-alternate--grid .ps-alternate__module:nth-of-type(even) {
-      margin-right: 0; } }
-
-.ps-button,
-a.ps-button {
-  display: inline-block;
-  text-align: center;
-  border: none;
-  border-radius: 4px;
-  padding: 1em 3em;
-  text-decoration: none;
-  font: inherit;
-  line-height: 1.3;
-  font-weight: 500;
-  transition: all .1s linear;
-  margin-top: var(--c-margin); }
-
-.ps-button--primary,
-a.ps-button--primary {
-  background-color: var(--color--primary);
-  color: #fff; }
-  .ps-button--primary:hover,
-  a.ps-button--primary:hover {
-    background-color: var(--color--primary--dark); }
-
-.ps-button--secondary,
-a.ps-button--secondary {
-  background-color: #000;
-  color: #fff; }
-  .ps-button--secondary:hover,
-  a.ps-button--secondary:hover {
-    background-color: var(--color-grey-20); }
-
-.ps-button--ghost,
-a.ps-button--ghost {
-  background-color: transparent;
-  color: black;
-  border: 2px solid black; }
-  .ps-button--ghost:hover, .ps-button--ghost:focus,
-  a.ps-button--ghost:hover,
-  a.ps-button--ghost:focus {
-    background-color: var(--color-grey-20);
-    color: #fff; }
-
-.ps-cta {
-  text-align: center; }
-
-@media all and (min-width: 30em) {
-  .ps-cta .ps-button {
-    display: inline-block;
-    margin-top: var(--h-padding); } }
-
-.ps-customer-logos .ps__main {
-  margin-top: 0; }
-
-.ps-customer-logos .ps__kicker {
-  text-align: center; }
-
-.ps-customer-logos__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  margin: var(--v-margin) auto; }
-
-.ps-customer-logos__item {
-  display: inline-block;
-  margin: var(--v-margin);
-  margin-right: calc(2 * var(--h-padding)); }
-  .ps-customer-logos__item a {
-    display: block; }
-
-.ps-customer-logos__link {
-  color: inherit;
-  text-decoration: underline;
-  font-weight: normal;
-  display: block;
-  text-align: center; }
-
+/*****************************************************************************************\
+ *                                                                                       *
+ * General Tabs styles common to all tabs components                                     *
+ * Styles specific to each tabs component are in that component's directory              *           
+ *                                                                                       *
+ \****************************************************************************************/
 @supports (display: grid) {
-  .ps-customer-logos__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-column-gap: var(--h-padding);
-    grid-row-gap: var(--v-margin);
-    align-items: center; }
-  .ps-customer-logos__item {
-    margin: 0;
-    text-align: center; } }
+  @media all and (min-width: 50em) {
+    .c-tabs {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: subgrid;
+      grid-column-gap: var(--h-padding); } } }
 
-.ps-features .ps__card-item {
-  text-align: center; }
-
-.ps-features .ps-button {
-  display: inline-block; }
-
-@media all and (min-width: 40em) {
-  .ps-pricing-table__option:nth-of-type(2) {
-    background-color: #fff;
-    border: 1px solid; } }
-
-.ps-pricing-table__option__price {
-  display: block;
-  color: var(--color-text-grey); }
-
-.ps-pricing-table__option__features {
-  list-style: none;
-  padding: 0; }
-
-.ps-pricing-table__option__feature {
-  margin-bottom: 1em;
-  padding-left: 2rem;
-  position: relative; }
-  .ps-pricing-table__option__feature .feature-icon {
-    color: var(--color--primary);
-    display: block;
-    width: 1em;
-    height: 1em;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    margin-top: -.5em; }
-  .ps-pricing-table__option__feature.not-included .feature-icon {
-    color: #888; }
-
-/* general slider styles are in common with ps-slider--images (Slider | Images component)*/
-/* .ps-slider--testimonials specific styles */
-.c-carousel {
-  position: relative; }
-
-.c-carousel__cards-container {
+.c-tabs__tablist {
+  margin-bottom: calc(var(--v-margin) * 1.5);
+  white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch; }
-  .js-carousel .c-carousel__cards-container {
-    overflow: hidden; }
+  -webkit-overflow-scrolling: touch;
+  background: linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
+  background-color: #fff;
+  background-position: 0 0, 100%, 0 0, 100%;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */ }
+  .js-tabs .c-tabs__tablist {
+    display: flex;
+    justify-content: space-between; }
+  .c-tabs__tablist::-webkit-scrollbar {
+    display: none; }
+  .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {
+    outline: 2px dotted #888;
+    outline-offset: 5px; }
 
-.c-carousel__cards-wrapper {
-  white-space: nowrap;
-  transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
-
-.c-carousel__card {
-  width: 100%;
-  text-align: center;
-  margin-right: 1.6rem;
-  white-space: initial;
+.c-tabs__tab {
   display: inline-block;
-  padding: 2.5rem 1.6rem;
-  position: relative; }
-  @media all and (min-width: 640px) {
-    .c-carousel__card {
-      width: 50%; } }
-  @media all and (min-width: 900px) {
-    .c-carousel__card {
-      width: 33.3333%; } }
-  @media all and (min-width: 1200px) {
-    .c-carousel__card {
-      width: 25%; } }
-  .c-carousel__card::after {
+  line-height: 1;
+  text-align: left;
+  position: relative;
+  transition: all .1s linear; }
+
+.js-tabs .c-tabs__tablist--dotnav {
+  justify-content: center; }
+
+.c-tabs__tablist--dotnav .c-tabs__tab {
+  padding: .75rem;
+  border-radius: 50%;
+  color: #000;
+  border: 2px dotted transparent; }
+  .c-tabs__tablist--dotnav .c-tabs__tab::before {
     content: "";
     display: block;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    left: .8rem;
-    width: calc(100% - 1.6rem);
-    z-index: -1;
-    background-color: var(--color--secondary);
-    border-radius: 8px; }
-
-.js-carousel .c-carousel__container {
-  overflow: hidden; }
-
-.js-carousel .c-carousel__cards-wrapper {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  transition: transform .3s linear; }
-
-.js-carousel .c-carousel__card {
-  margin: 0;
-  flex-shrink: 0; }
-
-.c-carousel__card__img {
-  margin-bottom: var(--v-margin); }
-
-.c-carousel__card__title {
-  font-size: 1rem; }
-
-.c-carousel__paddleNav {
-  margin-top: 1.5rem;
-  text-align: center; }
-  .js-carousel .c-carousel__paddleNav {
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    @media all and (min-width: 50em) {
-      .js-carousel .c-carousel__paddleNav {
-        margin-top: 0; } }
-  .c-carousel__paddleNav .c-carousel__paddleNav__prev,
-  .c-carousel__paddleNav .c-carousel__paddleNav__next {
-    width: 2.75rem;
-    height: 2.75rem;
-    padding: .5rem;
-    z-index: 2;
-    top: 50%;
-    border: 2px dotted transparent;
+    background-color: #000;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
-    line-height: 0; }
-    @media all and (min-width: 64em) {
-      .c-carousel__paddleNav .c-carousel__paddleNav__prev,
-      .c-carousel__paddleNav .c-carousel__paddleNav__next {
-        position: absolute;
-        margin-top: -1.375rem; } }
-    .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
-    .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
-      width: 50%;
-      height: auto;
-      color: #000;
-      transition: color .1s linear; }
-    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"] svg,
-    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"] svg {
-      color: #ccc; }
-    .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
-    .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
-      display: inline; }
-    .c-carousel__paddleNav .c-carousel__paddleNav__prev:hover svg,
-    .c-carousel__paddleNav .c-carousel__paddleNav__next:hover svg {
-      color: var(--color--primary); }
-    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"]:hover svg,
-    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"]:hover svg {
-      color: #ccc; }
-    .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus, .c-carousel__paddleNav .c-carousel__paddleNav__prev:active,
-    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus,
-    .c-carousel__paddleNav .c-carousel__paddleNav__next:active {
-      outline: none;
-      border-color: currentColor; }
-    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"]:focus,
-    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"]:focus {
-      border-color: #ccc; }
-    .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus:not(:focus-visible),
-    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus:not(:focus-visible) {
-      border-color: transparent; }
-    .js-focus-visible .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus:not(.focus-visible), .js-focus-visible
-    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus:not(.focus-visible) {
-      border-color: transparent; }
-  .c-carousel__paddleNav .c-carousel__paddleNav__prev {
-    left: -3.5rem; }
-  .c-carousel__paddleNav .c-carousel__paddleNav__next {
-    right: -3.5rem; }
+    transition: background-color .1s linear; }
+  .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"] {
+    color: var(--color--primary); }
+    .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"]::before {
+      background-color: var(--color--primary); }
+  .c-tabs__tablist--dotnav .c-tabs__tab:hover::before {
+    background-color: var(--color--primary); }
+  @media screen and (-ms-high-contrast: active) {
+    .c-tabs__tablist--dotnav .c-tabs__tab {
+      /* All high contrast styling rules */ }
+      .c-tabs__tablist--dotnav .c-tabs__tab::before {
+        background-color: windowText; }
+      .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"]::before {
+        background: highlight; } }
+  .c-tabs__tablist--dotnav .c-tabs__tab:focus, .c-tabs__tablist--dotnav .c-tabs__tab.focus-visible {
+    outline: none;
+    border-color: currentColor;
+    outline-offset: -4px; }
+  .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(:focus-visible) {
+    border-color: transparent; }
+  .js-focus-visible .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(.focus-visible) {
+    border-color: transparent; }
+
+/* styles for visible labels for the dotnav for voice dictation users */
+.c-tabs__tablist--dotnav .c-tabs__tab {
+  position: relative; }
+  .c-tabs__tablist--dotnav .c-tabs__tab .dot-label {
+    position: absolute;
+    left: 1.25rem;
+    transform: translateX(-50%);
+    bottom: -2.75rem;
+    z-index: 1;
+    line-height: 1;
+    background-color: var(--color--secondary);
+    padding: .5em .75em;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s linear; }
+    .c-tabs__tablist--dotnav .c-tabs__tab .dot-label::after {
+      /* up arrow */
+      content: "";
+      position: absolute;
+      left: 50%;
+      margin-left: -1rem;
+      top: -.5rem;
+      width: 0;
+      height: 0;
+      border-left: 1rem solid transparent;
+      border-right: 1rem solid transparent;
+      border-bottom: 1rem solid var(--color--secondary); }
+  .c-tabs__tablist--dotnav .c-tabs__tab:focus .dot-label, .c-tabs__tablist--dotnav .c-tabs__tab:hover .dot-label {
+    opacity: 1; }
+  .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(:focus-visible) .dot-label {
+    opacity: 0; }
+  .js-focus-visible .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(.focus-visible) .dot-label {
+    opacity: 0; }
+
+.c-tabs__tabpanel {
+  margin-bottom: 8rem; }
+  .js-tabs .c-tabs__tabpanel {
+    margin-bottom: 0; }
+  .c-tabs__tabpanel:focus, .c-tabs__tabpanel.focus-visible {
+    outline: 2px dotted #888;
+    outline-offset: 5px; }
+  .c-tabs__tabpanel:focus:not(:focus-visible) {
+    outline: none;
+    border-color: transparent; }
+  .js-focus-visible .c-tabs__tabpanel:focus:not(.focus-visible) {
+    outline: none;
+    border-color: transparent; }
+
+.c-tabs__tabpanel__title {
+  margin-bottom: 2em; }
+
+.js-tabs .c-tabs__tabpanel__title {
+  display: none; }
+
+.c-slider[data-slider] {
+  position: relative;
+  padding: 0; }
 
 @media all and (max-width: 50em) {
   .c-slider__paddleNav {
@@ -1064,14 +760,8 @@ a.ps-button--ghost {
   .js-focus-visible .c-slider__dotNav__dot:focus:not(.focus-visible) .dot-label {
     opacity: 0; }
 
-.c-slider[data-slider] {
-  position: relative;
-  padding: 0; }
-
 .c-slider__slides-container {
-  display: flex;
-  /* Internet Explorer 10+ */
-  /* Firefox */ }
+  display: flex; }
   .ps-slider--images .c-slider__slides-container {
     overflow-x: auto;
     overflow-y: hidden;
@@ -1112,6 +802,483 @@ a.ps-button--ghost {
   margin: 0;
   flex-shrink: 0; }
 
+/*********************************\ 
+ * 
+ * Common styles for:
+ * Alternate | List
+ * Alternate | Grid
+ * Alternate | Image + Text
+ *
+ *********************************/
+.ps-alternate__ctas {
+  display: flex;
+  flex-direction: column; }
+  @media all and (min-width: 40rem) {
+    .ps-alternate__ctas {
+      flex-direction: row; } }
+
+.ps-alternate .ps-button {
+  flex: 1;
+  margin-top: var(--h-padding); }
+  @media all and (min-width: 40rem) {
+    .ps-alternate .ps-button {
+      margin-right: var(--h-padding);
+      margin-top: 0; } }
+  .ps-alternate .ps-button:last-of-type {
+    margin-right: 0; }
+
+.ps-alternate__module {
+  margin-bottom: var(--v-margin); }
+
+.ps-alternate__module__title {
+  font-size: 1rem;
+  margin-top: 1em; }
+
+@media all and (min-width: 40rem) {
+  @supports (display: grid) {
+    .ps-alternate--list .ps-alternate__module {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-column-gap: var(--h-padding); }
+    .ps-alternate--list .ps-alternate__module__title {
+      margin-top: 0; } }
+  .ps-alternate--grid .ps-alternate__module {
+    display: inline-block;
+    width: calc(50% - var(--h-padding));
+    margin-right: var(--h-padding); }
+    .ps-alternate--grid .ps-alternate__module:nth-of-type(even) {
+      margin-right: 0; } }
+
+/*********************************************************\
+ * Accordion component-specific styles.
+ *********************************************************/
+.c-accordion__heading {
+  font-size: calc(1rem * var(--text-min-l)); }
+  @media screen and (min-width: 40rem) {
+    .c-accordion__heading {
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
+  @media screen and (min-width: 80rem) {
+    .c-accordion__heading {
+      font-size: calc(1rem * var(--text-max-l)); } }
+  .accordion-js .c-accordion__heading {
+    margin: 0; }
+  .c-accordion__heading > button {
+    display: block;
+    font: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color--secondary);
+    text-align: left;
+    line-height: 1.2;
+    padding: var(--c-padding);
+    padding-right: 80px;
+    position: relative;
+    border: 1px solid transparent;
+    transition: outline 0.1s linear;
+    border-radius: 8px;
+    margin-bottom: var(--c-padding); }
+    .c-accordion__heading > button:focus {
+      outline: var(--focus-outline);
+      z-index: 1; }
+    .c-accordion__heading > button:focus:not(:focus-visible) {
+      outline: none; }
+    .c-accordion__heading > button.focus:not(.focus-visible) {
+      outline: none; }
+    .c-accordion__heading > button[aria-expanded="true"] {
+      margin-bottom: 0;
+      border-radius: 8px 8px 0 0; }
+
+.c-accordion__panel {
+  margin-bottom: 4rem; }
+  .accordion-js .c-accordion__panel {
+    margin-bottom: 0;
+    padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
+    padding-right: 4rem;
+    background-color: var(--color--secondary); }
+    .accordion-js .c-accordion__panel[aria-hidden="true"] {
+      margin-bottom: 0; }
+    .accordion-js .c-accordion__panel[aria-hidden="false"] {
+      border-radius: 0 0 8px 8px;
+      margin-bottom: var(--c-padding); }
+
+/* Styles for the accordion icon */
+.c-accordion .accordion-icon {
+  display: block !important;
+  position: absolute;
+  width: 0.75rem;
+  height: 0.5rem;
+  top: 50%;
+  right: 1em;
+  transform: translateY(-50%);
+  transform-origin: 50% 50%;
+  transition: all 0.1s linear; }
+
+.c-accordion [aria-expanded="true"] .accordion-icon {
+  -ms-transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg); }
+
+.c-accordion [aria-hidden="true"] {
+  display: none; }
+
+.c-accordion [aria-hidden="false"] {
+  display: block !important; }
+
+/*********************************************************\
+ * Accordion component-specific styles.
+ *********************************************************/
+.c-accordion__heading {
+  font-size: calc(1rem * var(--text-min-l)); }
+  @media screen and (min-width: 40rem) {
+    .c-accordion__heading {
+      font-size: calc(calc(1rem * var(--text-min-l)) + (var(--text-max-l) - var(--text-min-l)) * (100vw - 40rem) / (80 - 40)); } }
+  @media screen and (min-width: 80rem) {
+    .c-accordion__heading {
+      font-size: calc(1rem * var(--text-max-l)); } }
+  .accordion-js .c-accordion__heading {
+    margin: 0; }
+  .c-accordion__heading > button {
+    display: block;
+    font: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color--secondary);
+    text-align: left;
+    line-height: 1.2;
+    padding: var(--c-padding);
+    padding-right: 80px;
+    position: relative;
+    border: 1px solid transparent;
+    transition: outline 0.1s linear;
+    border-radius: 8px;
+    margin-bottom: var(--c-padding); }
+    .c-accordion__heading > button:focus {
+      outline: var(--focus-outline);
+      z-index: 1; }
+    .c-accordion__heading > button:focus:not(:focus-visible) {
+      outline: none; }
+    .c-accordion__heading > button.focus:not(.focus-visible) {
+      outline: none; }
+    .c-accordion__heading > button[aria-expanded="true"] {
+      margin-bottom: 0;
+      border-radius: 8px 8px 0 0; }
+
+.c-accordion__panel {
+  margin-bottom: 4rem; }
+  .accordion-js .c-accordion__panel {
+    margin-bottom: 0;
+    padding: calc(var(--c-padding) / 3) var(--c-padding) var(--c-padding);
+    padding-right: 4rem;
+    background-color: var(--color--secondary); }
+    .accordion-js .c-accordion__panel[aria-hidden="true"] {
+      margin-bottom: 0; }
+    .accordion-js .c-accordion__panel[aria-hidden="false"] {
+      border-radius: 0 0 8px 8px;
+      margin-bottom: var(--c-padding); }
+
+/* Styles for the accordion icon */
+.c-accordion .accordion-icon {
+  display: block !important;
+  position: absolute;
+  width: 0.75rem;
+  height: 0.5rem;
+  top: 50%;
+  right: 1em;
+  transform: translateY(-50%);
+  transform-origin: 50% 50%;
+  transition: all 0.1s linear; }
+
+.c-accordion [aria-expanded="true"] .accordion-icon {
+  -ms-transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg); }
+
+.c-accordion [aria-hidden="true"] {
+  display: none; }
+
+.c-accordion [aria-hidden="false"] {
+  display: block !important; }
+
+.ps-accordion__img {
+  display: block;
+  margin: 0 auto calc(var(--c-padding) * 2);
+  background: var(--color--secondary); }
+
+/*********************************************************\
+ * Alternate | Grid component-specific styles.
+ * Main general styles are in the _alternate.scss file
+ *********************************************************/
+/*********************************************************\
+ * Alternate | Image + Text component-specific styles.
+ * Main general styles are in the _alternate.scss file
+ *********************************************************/
+.ps-alternate--image-text__img {
+  display: block;
+  margin: calc(var(--v-margin) * 2) auto var(--c-margin); }
+  @media all and (min-width: 50em) {
+    .ps-alternate--image-text__img {
+      margin: var(--c-margin) auto; } }
+
+/*********************************************************\
+ * Alternate | List component-specific styles.
+ * Main general styles are in the _alternate.scss file
+ *********************************************************/
+.ps-button,
+a.ps-button {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  padding: 1em 3em;
+  text-decoration: none;
+  font: inherit;
+  line-height: 1.3;
+  font-weight: 500;
+  transition: all .1s linear;
+  margin-top: var(--v-margin); }
+
+.ps-button--primary,
+a.ps-button--primary {
+  background-color: var(--color--primary);
+  color: #fff; }
+  .ps-button--primary:hover,
+  a.ps-button--primary:hover {
+    background-color: var(--color--primary--dark); }
+
+.ps-button--secondary,
+a.ps-button--secondary {
+  background-color: #000;
+  color: #fff; }
+  .ps-button--secondary:hover,
+  a.ps-button--secondary:hover {
+    background-color: var(--color-grey-20); }
+
+.ps-button--ghost,
+a.ps-button--ghost {
+  background-color: transparent;
+  color: black;
+  border: 2px solid black; }
+  .ps-button--ghost:hover, .ps-button--ghost:focus,
+  a.ps-button--ghost:hover,
+  a.ps-button--ghost:focus {
+    background-color: var(--color-grey-20);
+    color: #fff; }
+
+.ps-cta {
+  text-align: center; }
+
+@media all and (min-width: 30em) {
+  .ps-cta .ps-button {
+    display: inline-block;
+    margin-top: var(--h-padding); } }
+
+.ps-customer-logos .ps__main {
+  margin-top: 0; }
+
+.ps-customer-logos .ps__kicker {
+  text-align: center; }
+
+.ps-customer-logos__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  margin: var(--v-margin) auto; }
+
+.ps-customer-logos__item {
+  display: inline-block;
+  margin: var(--v-margin);
+  margin-right: calc(2 * var(--h-padding)); }
+  .ps-customer-logos__item a {
+    display: block; }
+
+.ps-customer-logos__link {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: normal;
+  display: block;
+  text-align: center; }
+
+@supports (display: grid) {
+  .ps-customer-logos__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-column-gap: var(--h-padding);
+    grid-row-gap: var(--v-margin);
+    align-items: center; }
+  .ps-customer-logos__item {
+    margin: 0;
+    text-align: center; } }
+
+.ps-features .ps__card-item {
+  text-align: center; }
+
+.ps-features .ps-button {
+  display: inline-block; }
+
+@media all and (min-width: 40em) {
+  .ps-pricing-table__option:nth-of-type(2) {
+    background-color: #fff;
+    border: 1px solid; } }
+
+.ps-pricing-table__option__price {
+  display: block;
+  color: var(--color-text-grey); }
+
+.ps-pricing-table__option__features {
+  list-style: none;
+  padding: 0; }
+
+.ps-pricing-table__option__feature {
+  margin-bottom: 1em;
+  padding-left: 2rem;
+  position: relative; }
+  .ps-pricing-table__option__feature .feature-icon {
+    color: var(--color--primary);
+    display: block;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -.5em; }
+  .ps-pricing-table__option__feature.not-included .feature-icon {
+    color: #888; }
+
+/***************************************************************\
+ * Slider | Cards (a.k.a. Carousel) component-specific styles.
+ ***************************************************************/
+.c-carousel {
+  position: relative; }
+
+.c-carousel__cards-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; }
+  .js-carousel .c-carousel__cards-container {
+    overflow: hidden; }
+
+.c-carousel__cards-wrapper {
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.39, 0.03, 0.56, 0.57); }
+
+.c-carousel__card {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-right: 1.6rem;
+  white-space: normal;
+  display: inline-block;
+  padding: 2.5rem 1.6rem;
+  position: relative; }
+  @media all and (min-width: 640px) {
+    .c-carousel__card {
+      width: 50%; } }
+  @media all and (min-width: 900px) {
+    .c-carousel__card {
+      width: 33.3333%; } }
+  @media all and (min-width: 1200px) {
+    .c-carousel__card {
+      width: 25%; } }
+  .c-carousel__card::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: .8rem;
+    width: calc(100% - 1.6rem);
+    z-index: -1;
+    background-color: var(--color--secondary);
+    border-radius: 8px; }
+
+.js-carousel .c-carousel__container {
+  overflow: hidden; }
+
+.js-carousel .c-carousel__cards-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transition: transform .3s linear; }
+
+.js-carousel .c-carousel__card {
+  margin: 0;
+  flex-shrink: 0; }
+
+.c-carousel__card__img {
+  margin-bottom: var(--v-margin); }
+
+.c-carousel__card__title {
+  font-size: 1rem; }
+
+.c-carousel__paddleNav {
+  margin-top: 1.5rem;
+  text-align: center; }
+  .js-carousel .c-carousel__paddleNav {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media all and (min-width: 50em) {
+      .js-carousel .c-carousel__paddleNav {
+        margin-top: 0; } }
+  .c-carousel__paddleNav .c-carousel__paddleNav__prev,
+  .c-carousel__paddleNav .c-carousel__paddleNav__next {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: .5rem;
+    z-index: 2;
+    top: 50%;
+    border: 2px dotted transparent;
+    border-radius: 50%;
+    line-height: 0; }
+    @media all and (min-width: 64em) {
+      .c-carousel__paddleNav .c-carousel__paddleNav__prev,
+      .c-carousel__paddleNav .c-carousel__paddleNav__next {
+        position: absolute;
+        margin-top: -1.375rem; } }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
+      width: 50%;
+      height: auto;
+      color: #000;
+      transition: color .1s linear; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"] svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"] svg {
+      color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next svg {
+      display: inline; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:hover svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:hover svg {
+      color: var(--color--primary); }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"]:hover svg,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"]:hover svg {
+      color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus, .c-carousel__paddleNav .c-carousel__paddleNav__prev:active,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:active {
+      outline: none;
+      border-color: currentColor; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev[aria-disabled="true"]:focus,
+    .c-carousel__paddleNav .c-carousel__paddleNav__next[aria-disabled="true"]:focus {
+      border-color: #ccc; }
+    .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus:not(:focus-visible),
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus:not(:focus-visible) {
+      border-color: transparent; }
+    .js-focus-visible .c-carousel__paddleNav .c-carousel__paddleNav__prev:focus:not(.focus-visible), .js-focus-visible
+    .c-carousel__paddleNav .c-carousel__paddleNav__next:focus:not(.focus-visible) {
+      border-color: transparent; }
+  .c-carousel__paddleNav .c-carousel__paddleNav__prev {
+    left: -3.5rem; }
+  .c-carousel__paddleNav .c-carousel__paddleNav__next {
+    right: -3.5rem; }
+
+/**************************************************\
+ * Slider | Images component-specific styles.
+ * Main general styles are in the _slider.scss file
+ ***************************************************/
 .ps-slider--images .c-slider__slide__figure {
   margin: 0;
   padding: 0;
@@ -1123,8 +1290,10 @@ a.ps-button--ghost {
     max-width: 80ch;
     margin: 0 auto; }
 
-/* general slider styles are in common with ps-slider--images (Slider | Images component)*/
-/* .ps-slider--testimonials specific styles */
+/**************************************************\
+ * Slider | Testimonials component-specific styles.
+ * Main general styles are in the _slider.scss file
+ ***************************************************/
 .ps-slider--testimonials .ps-slider__testimonial {
   width: 100%;
   margin: 0;
@@ -1179,6 +1348,10 @@ a.ps-button--ghost {
   display: block;
   margin-bottom: .5rem; }
 
+/**************************************************\
+ * Tabs | Steps component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .ps-tabs--steps .c-tabs__tablist {
   background-image: url("../img/dashed-line.svg");
   background-repeat: repeat no-repeat;
@@ -1257,126 +1430,10 @@ a.ps-button--ghost {
       .ps-tabs--steps .c-tabs__tabpanel[hidden] {
         display: none; } } }
 
-/* General Tabs Styles Common to all tabs slices */
-.c-tabs__tabpanel__title {
-  margin-bottom: 2em; }
-
-.js-tabs .c-tabs__tabpanel .c-tabs__tabpanel__title {
-  display: none; }
-
-@supports (display: grid) {
-  @media all and (min-width: 50em) {
-    .c-tabs {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-columns: subgrid;
-      grid-column-gap: var(--h-padding); } } }
-
-.c-tabs__tablist {
-  margin-bottom: calc(var(--v-margin) * 1.5);
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  background: linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
-  background-color: #fff;
-  background-position: 0 0, 100%, 0 0, 100%;
-  background-repeat: no-repeat;
-  background-attachment: local, local, scroll, scroll;
-  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scrollbar-width: none;
-  /* Firefox */ }
-  .js-tabs .c-tabs__tablist {
-    display: flex;
-    justify-content: space-between; }
-  .c-tabs__tablist::-webkit-scrollbar {
-    display: none; }
-  .c-tabs__tablist:focus, .c-tabs__tablist.focus-visible {
-    outline: 2px dotted #888;
-    outline-offset: 5px; }
-
-.c-tabs__tab {
-  display: inline-block;
-  line-height: 1;
-  text-align: left;
-  position: relative;
-  transition: all .1s linear; }
-
-.js-tabs .c-tabs__tablist--dotnav {
-  justify-content: center; }
-
-.c-tabs__tablist--dotnav .c-tabs__tab {
-  padding: .75rem;
-  border-radius: 50%;
-  color: #000;
-  border: 2px dotted transparent; }
-  .c-tabs__tablist--dotnav .c-tabs__tab::before {
-    content: "";
-    display: block;
-    background-color: #000;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    transition: background-color .1s linear; }
-  .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"] {
-    color: var(--color--primary); }
-    .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"]::before {
-      background-color: var(--color--primary); }
-  .c-tabs__tablist--dotnav .c-tabs__tab:hover::before {
-    background-color: var(--color--primary); }
-  @media screen and (-ms-high-contrast: active) {
-    .c-tabs__tablist--dotnav .c-tabs__tab {
-      /* All high contrast styling rules */ }
-      .c-tabs__tablist--dotnav .c-tabs__tab::before {
-        background-color: windowText; }
-      .c-tabs__tablist--dotnav .c-tabs__tab[aria-selected="true"]::before {
-        background: highlight; } }
-  .c-tabs__tablist--dotnav .c-tabs__tab:focus, .c-tabs__tablist--dotnav .c-tabs__tab.focus-visible {
-    outline: none;
-    border-color: currentColor;
-    outline-offset: -4px; }
-  .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(:focus-visible) {
-    border-color: transparent; }
-  .js-focus-visible .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(.focus-visible) {
-    border-color: transparent; }
-
-/* styles for visible labels for the dotnav for voice dictation users */
-.c-tabs__tablist--dotnav .c-tabs__tab {
-  position: relative; }
-  .c-tabs__tablist--dotnav .c-tabs__tab .dot-label {
-    position: absolute;
-    left: 1.25rem;
-    transform: translateX(-50%);
-    bottom: -2.75rem;
-    z-index: 1;
-    line-height: 1;
-    background-color: var(--color--secondary);
-    padding: .5em .75em;
-    border-radius: 4px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .2s linear; }
-    .c-tabs__tablist--dotnav .c-tabs__tab .dot-label::after {
-      /* up arrow */
-      content: "";
-      position: absolute;
-      left: 50%;
-      margin-left: -1rem;
-      top: -.5rem;
-      width: 0;
-      height: 0;
-      border-left: 1rem solid transparent;
-      border-right: 1rem solid transparent;
-      border-bottom: 1rem solid var(--color--secondary); }
-  .c-tabs__tablist--dotnav .c-tabs__tab:focus .dot-label, .c-tabs__tablist--dotnav .c-tabs__tab:hover .dot-label {
-    opacity: 1; }
-  .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(:focus-visible) .dot-label {
-    opacity: 0; }
-  .js-focus-visible .c-tabs__tablist--dotnav .c-tabs__tab:focus:not(.focus-visible) .dot-label {
-    opacity: 0; }
-
+/**************************************************\
+ * Tabs | Text component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .c-tabs__tablist--text .c-tabs__tab {
   padding: 1rem;
   color: #000;
@@ -1396,21 +1453,6 @@ a.ps-button--ghost {
     outline: none;
     border-color: transparent; }
 
-.c-tabs__tabpanel {
-  margin-bottom: 8rem; }
-  .js-tabs .c-tabs__tabpanel {
-    margin-bottom: 0; }
-  .c-tabs__tabpanel:focus, .c-tabs__tabpanel.focus-visible {
-    outline: 2px dotted #888;
-    outline-offset: 5px; }
-  .c-tabs__tabpanel:focus:not(:focus-visible) {
-    outline: none;
-    border-color: transparent; }
-  .js-focus-visible .c-tabs__tabpanel:focus:not(.focus-visible) {
-    outline: none;
-    border-color: transparent; }
-
-/* tab styles specific to the Tabs | Text slice */
 .ps-tabs--text .c-tabs__tablist {
   background: linear-gradient(to bottom, var(--color-grey-90), var(--color-grey-90)), linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)), linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.25), transparent), radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.25), transparent) 0 100%;
   background-size: 100% 4px, 20px 100%, 20px 100%, 10px 100%, 10px 100%;
@@ -1465,6 +1507,10 @@ a.ps-button--ghost {
   .c-tabs__tabpanel__modules .c-tabs__tabpanel__module__img {
     margin-bottom: 1rem; } }
 
+/**************************************************\
+ * Testimonials component-specific styles.
+ * Main general styles are in the _tabs.scss file
+ ***************************************************/
 .ps-testimonials .c-tabs {
   display: flex;
   flex-direction: column-reverse; }
