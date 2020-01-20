@@ -17,17 +17,15 @@
 	},
 	"SEO Metadata": {
 		"meta_title": {
-			"type": "StructuredText",
+			"type": "Text",
 			"config": {
-				"single": "heading1",
 				"label": "Meta Title",
 				"placeholder": "My title for Search Engine"
 			}
 		},
 		"meta_description": {
-			"type": "StructuredText",
+			"type": "Text",
 			"config": {
-				"multi": "paragraph",
 				"label": "Meta Description",
 				"placeholder": "The description that will appear in search engine"
 			}
@@ -35,43 +33,25 @@
 		"social_cards": {
 			"type": "Group",
 			"config": {
-				"repeat": false,
 				"fields": {
 					"social_card_image": {
 						"type": "Image",
 						"config": {
-							"constraint": {
-								"width": null
-							},
-							"thumbnails": [
-								{
-									"name": "Facebook",
-									"width": 1200,
-									"height": 630
-								},
-								{
-									"name": "Twitter",
-									"width": 1200,
-									"height": 675
-								}
-							],
+							"constraint": {},
+							"thumbnails": [],
 							"label": "Social Card Image"
 						}
 					},
 					"social_card_title": {
-						"type": "StructuredText",
+						"type": "Text",
 						"config": {
-							"single": "heading1",
-							"label": "Social card Title",
-							"placeholder": "The title that will appear on Facebook / Twitter ..."
+							"label": "Social Card TItle"
 						}
 					},
 					"social_card_description": {
-						"type": "StructuredText",
+						"type": "Text",
 						"config": {
-							"multi": "paragraph",
-							"label": "Social card description",
-							"placeholder": "The description that will appear on Facebook / Twitter"
+							"label": "Social card description"
 						}
 					}
 				},
