@@ -1,0 +1,38 @@
+<template>
+  <slice-zone :slices="document.body" />
+</template>
+<script>
+import { SliceZone } from '{{{sliceMachinePath}}}'
+
+export default {
+  components: {
+    SliceZone
+  },
+  head () {
+    return {
+      title: this.document.meta_title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'description', content: this.document.meta_description },
+        ...this.document.social_cards.length ? ([
+          { hid: 'og:title', name: 'og:title', content: this.document.social_cards[0].social_card_title },
+          { hid: 'og:description', name: 'og:description', content: this.document.social_cards[0].social_card_description },
+          { hid: 'og:image', name: 'og:image', content: this.document.social_cards[0].social_card_image.url },
+        ]) : null
+      ]
+    }
+  },
+  async asyncData({ params, error, req, $prismic }) {
+    console
+    try {
+      const result = await $prismic.api.getByUID('page', params.uid || 'homepage')
+      return {
+        document: result.data
+      }
+    } catch (e) {
+      console.error(e);
+      error({ statusCode: 404, message: 'Document not found. Make sure you created a document of type "{{customType}}" in your Prismic repository' })
+    }
+  }
+}
+</script>

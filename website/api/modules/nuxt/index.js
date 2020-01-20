@@ -53,12 +53,16 @@ export default () => {
 				},
 				{
 					name: 'pages/_uid.vue',
-					f: createUidPage({
-						configPath: '@/prismic.config.js',
-						customType: 'page',
-						// This should be passed by argument to every module
-						sliceMachinePath: '@/sliceMachine'
-					})
+					f: Mustache.render(
+						readFileSync(
+							path.join(__dirname, 'templates/uid.mustache'),
+							'utf8'
+						),
+						{
+							customType: 'page',
+							sliceMachinePath: '@/sliceMachine'
+						}
+					)
 				}
 			]
 			files.forEach(handle)

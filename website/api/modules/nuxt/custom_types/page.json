@@ -7,19 +7,75 @@
 				"placeholder": "unique-identifier-eg-homepage"
 			}
 		},
-		"title": {
-			"type": "StructuredText",
-			"config": {
-				"single": "heading1",
-				"label": "Title",
-				"placeholder": "Title of your page"
-			}
-		},
 		"body": {
 			"type": "Slices",
 			"fieldset": "Slice zone",
 			"config": {
 				"choices": {}
+			}
+		}
+	},
+	"SEO Metadata": {
+		"meta_title": {
+			"type": "StructuredText",
+			"config": {
+				"single": "heading1",
+				"label": "Meta Title",
+				"placeholder": "My title for Search Engine"
+			}
+		},
+		"meta_description": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph",
+				"label": "Meta Description",
+				"placeholder": "The description that will appear in search engine"
+			}
+		},
+		"social_cards": {
+			"type": "Group",
+			"config": {
+				"repeat": false,
+				"fields": {
+					"social_card_image": {
+						"type": "Image",
+						"config": {
+							"constraint": {
+								"width": null
+							},
+							"thumbnails": [
+								{
+									"name": "Facebook",
+									"width": 1200,
+									"height": 630
+								},
+								{
+									"name": "Twitter",
+									"width": 1200,
+									"height": 675
+								}
+							],
+							"label": "Social Card Image"
+						}
+					},
+					"social_card_title": {
+						"type": "StructuredText",
+						"config": {
+							"single": "heading1",
+							"label": "Social card Title",
+							"placeholder": "The title that will appear on Facebook / Twitter ..."
+						}
+					},
+					"social_card_description": {
+						"type": "StructuredText",
+						"config": {
+							"multi": "paragraph",
+							"label": "Social card description",
+							"placeholder": "The description that will appear on Facebook / Twitter"
+						}
+					}
+				},
+				"label": "Social Cards - Facebook & Twitter"
 			}
 		}
 	}
