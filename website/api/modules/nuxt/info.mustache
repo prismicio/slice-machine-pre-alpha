@@ -1,17 +1,21 @@
-Recap:
-- We created a new Nuxt project
-- We created a new Prismic repository, accessible here: {{{ documentsUrl }}}
-- We added a prismic.config.js file for you.
-- We added slices and a SliceZone in ‘sliceMachine’ - a folder at the root of your project.
-- We added examples in your ‘pages’
+NEARLY THERE:
 
-Additional `nuxt.config.js` configuration (roughly):
+We've configured mostly everything for you, but we need some help to add the following settings to your `nuxt.config.js` file.
+
+In the 'head' section of the `nuxt.config.js` file add the follwing scripts:
+script: [
+  { src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=Element.prototype.classList' },
+  { src: 'https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.min.js' }
+],
+
+Then you can add the follwing css path and module settings for perfect Prismic & Nuxt harmony:
+css: ['@/slice-machine/vue-essentials/styles/styles.scss'],
 
 modules: [
   ['@nuxtjs/prismic', {
     endpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',
     linkResolver(doc) {
-      if (doc.type === 'page') {
+      if (doc.uid === 'page') {
         return doc.uid === 'homepage' ? '/' : `/${doc.uid}`
       }
       return '/'
@@ -21,9 +25,6 @@ modules: [
       '/',
     ]
   }]
-]
+],
 
-👆 Make sure you add/understand this before running the project
-
-
-- After it's done, launch the project, run: `cd montest; npm run dev;`
+After you've done this, quit the cli 'cmd + c', then launch the project by running: `cd {{{ projectName }}}; npm run dev;` and visit the homepage.

@@ -2,12 +2,23 @@
   <section class="canvas">
     <slot name="header">
       <div class="header">
-        <h1>Welcome.</h1>
+        <h1>"We're in the endgame now"</h1>
+        <em>So far you've:</em>
         <p>
-          This page is currently under-designed.<br />
-          Make sure you update/delete it at some point!
+          - created a new Nuxt.js project.<br />
+          - created a Prismic repo.<br />
+          - added a prismic.config.js file and linked to your content repository.<br />
+          - added components and a SliceZone in ‘sliceMachine’. (A folder at the root of your project)<br />
         </p>
-        <em>But first:</em>
+        <em>Now you're going to:</em>
+        <p>
+          - visit your new Prismic repo.<br />
+          - add a page.<br />
+          - choose the components you wish to use.<br />
+          - add some content.<br />
+          - publish the page.<br />
+          - visit your new page with your beautiful pre-styled components.<br />
+        </p>
       </div>
     </slot>
     <div class="call-to-action">
@@ -16,6 +27,11 @@
           Create a page on Prismic
         </a>
       </slot>
+    </div>
+    <div class="more-info">
+      <em>If you want to replace this page, go to the 'pages' folder<br />
+      in your project directory and delete the file called 'index.vue'<br />
+      and create a new page in Prismic with the UID of 'homepage'.</em>
     </div>
   </section>
 </template>
