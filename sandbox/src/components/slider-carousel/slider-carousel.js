@@ -1,5 +1,6 @@
 
 "use strict";
+
 // Production steps of ECMA-262, Edition 6, 22.1.2.1
 if (!Array.from) {
   Array.from = (function () {
