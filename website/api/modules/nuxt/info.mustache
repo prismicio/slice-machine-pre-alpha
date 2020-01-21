@@ -7,15 +7,15 @@
 ##    ## ######## ##     ##    ##        ######     ##    ######## ##         ######  
 
 We've configured mostly everything,
-now in your project files add the following settings to your \e[4`nuxt.config.js`\e[0m file.
+now in your project files add the following settings to your `nuxt.config.js` file.
 
-\e[1mIn the 'head' section of the \e[4`nuxt.config.js`\e[0m file add the follwing scripts:\e[0m
+In the 'head' section of the `nuxt.config.js` file add the follwing scripts:
 script: [
   { src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=Element.prototype.classList' },
   { src: 'https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.min.js' }
 ],
 
-\e[Then you can add the follwing css path and module settings for perfect Prismic & Nuxt harmony:\e[0m
+Then you can add the follwing css path and module settings for perfect Prismic & Nuxt harmony:
 css: ['@/sliceMachine/styles/styles.scss'],
 
 modules: [
@@ -34,6 +34,6 @@ modules: [
   }]
 ],
 
-\e[After you've done this,\e[0m
-\e[quit the prismic cli 'ctrl + c' and launch your project by running:\e[0m
+After you've done this,
+quit the prismic cli 'ctrl + c' and launch your project by running:
 `cd {{ projectName }}; npm run dev;` 
