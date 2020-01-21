@@ -90,6 +90,9 @@ export default {
 					if (doc.type === 'component_library') {
 						return `/component-library`
 					}
+					if (doc.uid === 'contributing') {
+						return '/wip'
+					}
 					if (doc.uid === 'about') {
 						return `/${doc.uid}`
 					}

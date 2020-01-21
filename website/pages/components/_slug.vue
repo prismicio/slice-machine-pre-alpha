@@ -26,11 +26,11 @@
 		</div>
 		<prismic-rich-text :field="document.install_info_title" />
 		<prismic-rich-text :field="document.install_info_text" />
-		<div class="clipboard" @click.stop.prevent="copyCommand">
+		<!-- <div class="clipboard" @click.stop.prevent="copyCommand">
 			<p class="embed-text">import {{ slice.displayName }}</p>
 			<img src="../../static/clipboard.svg" />
 			<input id="command-to-copy" type="hidden" :value="`import ${slice.displayName}`" />
-		</div>
+		</div> -->
 		<prismic-rich-text :field="document.info_tagline" />
 		<MarkDownBox
 			id="markdown-box"
