@@ -11,27 +11,19 @@ a {
   font-weight: bolder;
   background-color: hsl(260, 15%, 96%);
 
-
-}
-
-.Tree-collectionLabel span {
-  padding-left: 1.25em;
+  span {
+    padding-left: 1.25em;
+  }
 }
 
 .Tree-collectionLabel:hover {
   background-color: hsl(260, 15%, 94%);
-  text-decoration: underline;
 }
 
 .Header-title {
   font-weight: bold;
   display: flex;
   align-items: center;
-}
-
-.Tree-title {
-  color: hsl(325, 67%, 81%);
-  font-weight: bold;
 }
 
 .Header-title svg {
@@ -48,9 +40,13 @@ a {
 
 .Header {
   /* background: hsl(260, 35%, 37%); */
-  background: #222;
-  color: #fff;
+  background: #fff;
+  color: #111;
   padding: 0.7em 0;
+}
+
+[dir="ltr"] .Header-button {
+  border-right: 1px solid #ccc;
 }
 
 .Header-navToggle svg {
@@ -63,73 +59,17 @@ a {
   border: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: inherit;
-}
-
-a {
-  color: inherit;
-  font-weight: bold;
-}
-
-.Tree-collectionLabel {
-  background-color: #333;
-  color: inherit;
-}
-
-.Tree-collectionLabel:hover {
-  background-color: #333;
-}
-
-.Tree-collectionLabel span::before {
-  content: "-";
-  color: hsl(325, 67%, 81%);
-  background: none;
-  top: auto;
-}
-
-.Tree-item.is-closed .Tree-collectionLabel span::before {
-  content: "+";
-}
-
-.Browser-tab a {
-  border-bottom: .25rem solid transparent;
-}
-
-.Browser-tab.is-active a {
-  border-bottom-color: hsl(325, 67%, 81%);
-}
-
-.Preview {
-  /* background-color: #333; */
-}
-
-a:hover {
-  color: inherit;
-  text-decoration: underline;
-}
-
-.Tree-collection.is-closed .Tree-collectionLabel span::before {
-  background: none !important;
-}
-
-
-
 .Frame-panel--sidebar {
-  background: #222;
-  color: #fff;
+  background: #fff;
+  /* background-color: #f5f5f5;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/JoomlaPattern-Tile.svg");
+  background-size: 200px; */
 }
 
 /* e.g. Notes section */
 .Browser-panel {
-  padding: 2em 2.5em;
-  /* background-color: #222; */
-  color: #111;
+  padding: 3em 2.5em;
+  /* background: #fff; */
 }
 
 .Prose,
@@ -170,22 +110,4 @@ a:hover {
 
 .Prose {
   line-height: 1.6;
-}
-
-.Pen,
-.Frame-panel--main {
-  /* background: #222; */
-  /* color: #fff; */
-}
-
-
-.Pen-previewLink:link,
-.Pen-previewLink:visited,
-.Pen-previewLink:hover,
-.Pen-previewLink:active,
-.Browser-tab a:link,
-.Browser-tab a:visited,
-.Browser-tab a:hover,
-.Browser-tab a:active {
-  color: inherit;
 }
