@@ -1,5 +1,5 @@
-/*********************************\ 
- * 
+/********************************* \
+ *
  * Common styles for:
  * Alternate | List
  * Alternate | Grid
@@ -38,7 +38,6 @@
   font-size: 1rem;
   margin-top: 1em;
 }
-
 
 @media all and (min-width: 40rem) {
   @supports (display: grid) {

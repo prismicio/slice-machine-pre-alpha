@@ -42,7 +42,11 @@
 								:htmlSerializer="listSerializer"
 							/>
 							<div
-								v-if="item.call_to_action && item.call_to_action_text"
+								v-if="
+									item.call_to_action &&
+										item.call_to_action_text &&
+										item.call_to_action_text.length
+								"
 								class="ps__card-item__cta"
 							>
 								<prismic-link

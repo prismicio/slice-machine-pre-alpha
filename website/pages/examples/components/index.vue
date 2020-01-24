@@ -1,6 +1,7 @@
 <template>
 	<main>
-		<slice-zone :slices="document.body" path="../src/slices" />
+		<VideoHighlights :slice="VideoHighlightsMock" />
+		{{ document.body.find(e => e.slice_type === 'video_highlights') }}
 	</main>
 </template>
 <script>
@@ -22,7 +23,7 @@ import CallToActionMock from '@/../src/slices/CallToAction/mock.json'
 
 import SliderSection from '@/../src/slices/SliderSection'
 
-import SliceZone from '@/../src/SliceZone'
+import SliceZone from '@/utils/SliceZone'
 
 export default {
 	layout: 'example',
@@ -48,8 +49,9 @@ export default {
 		try {
 			const apiEndpoint = 'https://slicesexamples.prismic.io/api/v2'
 			const api = await Prismic.getApi(apiEndpoint, { req })
-			const result = await api.getByUID('example', 'all')
+			const result = await api.getByUID('example', 'video-highlights')
 
+			console.log(JSON.stringify(result.data))
 			return {
 				document: result.data
 			}
