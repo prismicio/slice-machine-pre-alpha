@@ -18,7 +18,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="ps__main">
+			<div class="ps__main" v-if="dataItems.length">
 				<div :id="currId" class="ps__video-player" data-video-player>
 					<div class="ps__video-player__playlist span-9-12" data-playlist>
 						<ul

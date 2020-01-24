@@ -6,14 +6,11 @@ const { mergeCustomTypesWithSlices } = require('../shared')
 
 const { readCustomTypes } = require('../../utils')
 
-const {
-	createPrismicConfigurationFile,
-	createPrismicVuePluginFile,
-	linkResolverPluginFile,
-	createUidPage
-} = require('./helpers')
+const { createPrismicConfigurationFile } = require('./helpers')
 
 const protocol = require('./protocol.json')
+
+Mustache.tags = ['[[', ']]']
 
 export default () => {
 	// Returns stored custom_types for a given framework
@@ -48,7 +45,8 @@ export default () => {
 						readFileSync(
 							path.join(__dirname, 'templates/index.mustache'),
 							'utf8'
-						)
+						),
+						{}
 					)
 				},
 				{

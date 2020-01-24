@@ -6,8 +6,13 @@ corresponding component inside `vueSlices/slices` and export it from
 example using SliceZone
 */
 
-import UnknownSlice from './UnknownSlice'
-import { camelize } from './utils'
+const camelizeRE = /-(\w)/g
+export const camelize = str => {
+	str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
+		return c ? c.toUpperCase() : ''
+	})
+	return str[0].toUpperCase() + str.slice(1)
+}
 
 export default {
 	name: 'SliceZone',
@@ -31,9 +36,6 @@ export default {
 			description: 'Wrapper tag (div, section, main...)'
 		}
 	},
-	components: {
-		UnknownSlice
-	},
 	computed: {
 		computedImports: ({ path, slices }) => {
 			const invert = p =>
@@ -44,12 +46,9 @@ export default {
 				const allPaths = typeof path === 'string' ? [path] : path
 				return firstOf(
 					allPaths.reduce((prev, p) => {
-						return prev.concat([
-							import(`@/${p}/${names[i]}/index.vue`),
-							import(`@/${p}/${names[i]}.vue`)
-						])
+						return prev.concat([import(`@/${p}/${names[i]}/index.vue`)])
 					}, [])
-				).catch(() => UnknownSlice)
+				)
 			})
 		},
 		computedSlices: ({ slices, computedImports }) => {
