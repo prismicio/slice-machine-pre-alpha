@@ -46,9 +46,9 @@ export default {
 		try {
 			const apiEndpoint = 'https://slicesexamples.prismic.io/api/v2'
 			const api = await Prismic.getApi(apiEndpoint, { req })
-			const result = await api.getByUID('example', 'all')
+			const result = await api.getByUID('example', 'pricing-table')
 
-			console.log(JSON.stringify(result.data))
+			console.log(JSON.stringify(result.data.body[0]))
 			return {
 				document: result.data
 			}

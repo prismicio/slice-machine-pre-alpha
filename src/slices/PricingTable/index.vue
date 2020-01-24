@@ -3,10 +3,11 @@
 		<div class="ps__wrap">
 			<div class="ps__head">
 				<header class="ps__header">
-					<span
-						v-if="slice.primary.eyebrow_headline"
-						class="ps__kicker"
-					>{{ $prismic.asText(slice.primary.eyebrow_headline) }}</span>
+					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">
+						{{
+						$prismic.asText(slice.primary.eyebrow_headline)
+						}}
+					</span>
 					<h2
 						v-if="slice.primary.title"
 						class="ps__title"
@@ -29,7 +30,11 @@
 								<h3
 									class="ps-pricing-table__option__title ps__card-item__title"
 								>{{ $prismic.asText(item.plan_title) }}</h3>
-								<span class="ps-pricing-table__option__price">{{ $prismic.asText(item.price_option) }}</span>
+								<span class="ps-pricing-table__option__price">
+									{{
+									$prismic.asText(item.price_option)
+									}}
+								</span>
 							</header>
 							<prismic-rich-text
 								class="ps__card-item__content"

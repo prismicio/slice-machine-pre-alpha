@@ -1,17 +1,19 @@
 <template>
-  <call-to-action :slice="mockData" />
+	<call-to-action :slice="mockData" />
 </template>
 <script>
 import { CallToAction } from '@/../src'
 import mockData from '@/../src/slices/CallToAction/mock.json'
+
+console.log(mockData, 'mockData')
 export default {
-  components: {
-    CallToAction
-  },
-  data() {
-    return {
-      mockData
-    }
-  }
+	components: {
+		CallToAction
+	},
+	data() {
+		return {
+			mockData
+		}
+	}
 }
 </script>

@@ -3,12 +3,36 @@
 	"slice_label": null,
 	"items": [
 		{
-			"plan_title": "Small",
-			"price_option": "Free",
+			"plan_title": [
+				{
+					"type": "paragraph",
+					"text": "Small",
+					"spans": []
+				}
+			],
+			"price_option": [
+				{
+					"type": "paragraph",
+					"text": "Free",
+					"spans": []
+				}
+			],
 			"features": [
-				{ "type": "list-item", "text": "Figma and Sketch Files", "spans": [] },
-				{ "type": "list-item", "text": "Auto-Updatable Styles", "spans": [] },
-				{ "type": "list-item", "text": "Base Elements", "spans": [] },
+				{
+					"type": "list-item",
+					"text": "Figma and Sketch Files",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "Auto-Updatable Styles",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "Base Elements",
+					"spans": []
+				},
 				{
 					"type": "list-item",
 					"text": "Page Layouts",
@@ -17,7 +41,9 @@
 							"start": 0,
 							"end": 12,
 							"type": "label",
-							"data": { "label": "not-included" }
+							"data": {
+								"label": "not-included"
+							}
 						}
 					]
 				},
@@ -29,7 +55,9 @@
 							"start": 0,
 							"end": 17,
 							"type": "label",
-							"data": { "label": "not-included" }
+							"data": {
+								"label": "not-included"
+							}
 						}
 					]
 				}
@@ -39,16 +67,50 @@
 				"url": "https://prismic.io",
 				"target": "_blank"
 			},
-			"call_to_action_text": "Start your free trial"
+			"call_to_action_text": [
+				{
+					"type": "paragraph",
+					"text": "Start your free trial",
+					"spans": []
+				}
+			]
 		},
 		{
-			"plan_title": "Medium",
-			"price_option": "From $18",
+			"plan_title": [
+				{
+					"type": "paragraph",
+					"text": "Medium",
+					"spans": []
+				}
+			],
+			"price_option": [
+				{
+					"type": "paragraph",
+					"text": "From $18",
+					"spans": []
+				}
+			],
 			"features": [
-				{ "type": "list-item", "text": "Figma and Sketch Files", "spans": [] },
-				{ "type": "list-item", "text": "Auto-Updatable Styles", "spans": [] },
-				{ "type": "list-item", "text": "Base Elements", "spans": [] },
-				{ "type": "list-item", "text": "Page Layouts", "spans": [] },
+				{
+					"type": "list-item",
+					"text": "Figma and Sketch Files",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "Auto-Updatable Styles",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "Base Elements",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "Page Layouts",
+					"spans": []
+				},
 				{
 					"type": "list-item",
 					"text": "24/7 Free Support",
@@ -57,35 +119,95 @@
 							"start": 0,
 							"end": 17,
 							"type": "label",
-							"data": { "label": "not-included" }
+							"data": {
+								"label": "not-included"
+							}
 						}
 					]
 				}
 			],
-			"call_to_action": { "link_type": "Any" },
-			"call_to_action_text": []
+			"call_to_action": {
+				"link_type": "Any"
+			},
+			"call_to_action_text": [
+				{
+					"type": "paragraph",
+					"text": "Call To Action",
+					"spans": []
+				}
+			]
 		},
 		{
-			"plan_title": "Large",
-			"price_option": "From $39",
+			"plan_title": [
+				{
+					"type": "paragraph",
+					"text": "Large",
+					"spans": []
+				}
+			],
+			"price_option": [
+				{
+					"type": "paragraph",
+					"text": "From $39",
+					"spans": []
+				}
+			],
 			"features": [
-				{ "type": "list-item", "text": "Figma and Sketch Files", "spans": [] },
-				{ "type": "list-item", "text": "Auto-Updatable Styles", "spans": [] },
-				{ "type": "list-item", "text": "Base Elements", "spans": [] },
-				{ "type": "list-item", "text": "Page Layouts", "spans": [] },
-				{ "type": "list-item", "text": "24/7 Free Support", "spans": [] }
+				{
+					"type": "list-item",
+					"text": "Figma and Sketch Files",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "Auto-Updatable Styles",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "Base Elements",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "Page Layouts",
+					"spans": []
+				},
+				{
+					"type": "list-item",
+					"text": "24/7 Free Support",
+					"spans": []
+				}
 			],
 			"call_to_action": {
 				"link_type": "Web",
 				"url": "https://prismic.io",
 				"target": "_blank"
 			},
-			"call_to_action_text": "Contact us"
+			"call_to_action_text": [
+				{
+					"type": "paragraph",
+					"text": "Contact us",
+					"spans": []
+				}
+			]
 		}
 	],
 	"primary": {
-		"eyebrow_headline": "Pricing",
-		"title": [{ "type": "heading2", "text": "Choose a plan", "spans": [] }],
+		"eyebrow_headline": [
+			{
+				"type": "paragraph",
+				"text": "Pricing",
+				"spans": []
+			}
+		],
+		"title": [
+			{
+				"type": "heading2",
+				"text": "Choose a plan",
+				"spans": []
+			}
+		],
 		"description": [
 			{
 				"type": "paragraph",
