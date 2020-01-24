@@ -53,6 +53,7 @@
 			"config": {
 				"multi": "list-item",
 				"label": "Features",
+				"labels": ["not-included"],
 				"placeholder": "A list of features using bullet list"
 			}
 		},

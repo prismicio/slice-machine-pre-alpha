@@ -1,11 +1,6 @@
 <template>
 	<main>
-		<!-- <call-to-action :slice="CallToActionMock" />
-		<faq-section :slice="PsFaqMock" />
-		<VideoHighlights :slice="VideoHighlightsMock" />
-		<PricingTable :slice="PricingTableMock" />
-		<CustomerLogos :slice="CustomerLogosMock" />-->
-		<SliderSection :slice="document.body[0]" />
+		<slice-zone :slices="document.body" path="../src/slices" />
 	</main>
 </template>
 <script>
@@ -27,6 +22,8 @@ import CallToActionMock from '@/../src/slices/CallToAction/mock.json'
 
 import SliderSection from '@/../src/slices/SliderSection'
 
+import SliceZone from '@/../src/SliceZone'
+
 export default {
 	layout: 'example',
 	components: {
@@ -35,7 +32,8 @@ export default {
 		VideoHighlights,
 		CustomerLogos,
 		PricingTable,
-		SliderSection
+		SliderSection,
+		SliceZone
 	},
 	data() {
 		return {
@@ -50,7 +48,7 @@ export default {
 		try {
 			const apiEndpoint = 'https://slicesexamples.prismic.io/api/v2'
 			const api = await Prismic.getApi(apiEndpoint, { req })
-			const result = await api.getByUID('example', 'slider-section')
+			const result = await api.getByUID('example', 'all')
 
 			return {
 				document: result.data

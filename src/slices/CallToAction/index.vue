@@ -10,23 +10,19 @@
 							class="ps__kicker-icon"
 							:field="slice.primary.icon_image"
 						/>
-						<h2
-							v-if="slice.primary.title"
-							class="ps__title h1 text--4xl"
-							aria-level="2"
-						>
+						<h2 v-if="slice.primary.title" class="ps__title">
 							{{ $prismic.asText(slice.primary.title) }}
 						</h2>
 					</slot>
 				</header>
-				<div v-if="slice.primary.paragraph" class="ps__desc text--xl">
+				<div v-if="slice.primary.paragraph" class="ps__desc">
 					<p>
 						{{ $prismic.asText(slice.primary.paragraph) }}
 					</p>
 				</div>
 				<slot name="cta" v-bind="slice.primary">
 					<prismic-link
-						class="ps-cta ps-button ps-button--primary"
+						class="ps-button ps-button--primary"
 						:field="slice.primary.button_link"
 					>
 						{{ slice.primary.button_label }}
@@ -69,6 +65,15 @@ export default {
 	@media all and (min-width: 30em) {
 		display: inline-block;
 		margin-top: var(--h-padding);
+	}
+}
+
+.ps--black {
+	.ps__title {
+		color: #fff;
+	}
+	.ps__desc > * {
+		color: #fff;
 	}
 }
 </style>

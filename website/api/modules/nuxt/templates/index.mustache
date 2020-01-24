@@ -37,12 +37,10 @@
 </template>
 
 <script>
-import PrismicConfig from '@/prismic.config.js'
 export default {
   data() {
-    const spl = PrismicConfig.apiEndpoint.split('/api')
     return {
-      pathToDocs: `${spl[0]}/documents`
+      pathToDocs: '{{{magicUrl}}}/documents'
     }
   }
 }

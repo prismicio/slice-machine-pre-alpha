@@ -1,7 +1,7 @@
 {
 	"type": "Slice",
-	"fieldset": "Prismic FAQ",
-	"description": "FAQ",
+	"fieldset": "FAQ",
+	"description": "List of common questions + answers",
 	"icon": "question_answer",
 	"display": "list",
 	"non-repeat": {

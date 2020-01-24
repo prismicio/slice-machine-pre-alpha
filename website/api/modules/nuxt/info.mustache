@@ -13,7 +13,7 @@ css: ['@/sliceMachine/styles/styles.scss'],
 
 modules: [
   ['@nuxtjs/prismic', {
-    endpoint: 'https://<REPOSITORY>.cdn.prismic.io/api/v2',
+    endpoint: '{{{ apiEndpoint }}}',
     linkResolver(doc) {
       if (doc.uid === 'page') {
         return doc.uid === 'homepage' ? '/' : `/${doc.uid}`
@@ -27,6 +27,5 @@ modules: [
   }]
 ],
 
-After you've done this,
-quit the prismic cli 'ctrl + c' and launch your project by running:
-`cd {{ projectName }}; npm run dev;` 
+After you've done this, launch your project by running:
+`cd {{ projectName }} && npm run dev`

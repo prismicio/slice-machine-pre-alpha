@@ -42,8 +42,16 @@ export default {
 			const names = slices.map(e => camelize(e.slice_type))
 			return (slices || []).map((slice, i) => () => {
 				const allPaths = typeof path === 'string' ? [path] : path
+
 				return firstOf(
 					allPaths.reduce((prev, p) => {
+						const a = prev
+						console.log(
+							a.concat([
+								import(`@/${p}/${names[i]}/index.vue`),
+								import(`@/${p}/${names[i]}.vue`)
+							])
+						)
 						return prev.concat([
 							import(`@/${p}/${names[i]}/index.vue`),
 							import(`@/${p}/${names[i]}.vue`)
