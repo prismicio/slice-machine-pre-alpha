@@ -9,4 +9,10 @@ body {
     Cantarell,
     Helvetica Neue,
     sans-serif;
+
+  font-family: $base-font-primary;
+  color: $text-primary;
+
+  font-size: $body-font-size;
+  line-height: 1.6;
 }
