@@ -21,8 +21,6 @@ import PricingTableMock from '@/../src/slices/PricingTable/mock.json'
 import CallToAction from '@/../src/slices/CallToAction'
 import CallToActionMock from '@/../src/slices/CallToAction/mock.json'
 
-import SliderSection from '@/../src/slices/SliderSection'
-
 import SliceZone from '@/utils/SliceZone'
 
 export default {
@@ -33,7 +31,6 @@ export default {
 		VideoHighlights,
 		CustomerLogos,
 		PricingTable,
-		SliderSection,
 		SliceZone
 	},
 	data() {
@@ -62,6 +59,5 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '@/../src/styles/global/styles.scss';
 @import '@/../src/styles/styles.scss';
 </style>

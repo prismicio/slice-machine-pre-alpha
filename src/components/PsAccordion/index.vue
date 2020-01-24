@@ -5,11 +5,7 @@
 			:key="`c-accordion__item-wrap-${index + 1}`"
 			class="c-accordion__item-wrap"
 		>
-			<h3
-				data-accordion-heading=""
-				class="c-accordion__heading"
-				aria-level="h3"
-			>
+			<h3 data-accordion-heading class="c-accordion__heading" aria-level="h3">
 				<button
 					:id="`${accId}__heading-${index}`"
 					:aria-expanded="(!ariaHide(item)).toString()"
@@ -27,10 +23,7 @@
 						viewBox="0 0 12 8"
 					>
 						<g fill="none">
-							<path
-								fill="#000"
-								d="M1.41.59l4.59 4.58 4.59-4.58 1.41 1.41-6 6-6-6z"
-							/>
+							<path fill="#000" d="M1.41.59l4.59 4.58 4.59-4.58 1.41 1.41-6 6-6-6z" />
 							<path d="M-6-8h24v24h-24z" />
 						</g>
 					</svg>
@@ -42,9 +35,7 @@
 				:aria-labelledby="`${accId}__heading-${index}`"
 				:aria-hidden="ariaHide(item).toString()"
 				class="c-accordion__panel"
-			>
-				{{ $prismic.asText(item.text) }}
-			</div>
+			>{{ $prismic.asText(item.text) }}</div>
 		</div>
 	</div>
 </template>
@@ -95,7 +86,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../../scss/_typography.scss';
+@import '../../styles/_typography.scss';
 
 .c-accordion__heading {
 	@extend .text--l !optional;
