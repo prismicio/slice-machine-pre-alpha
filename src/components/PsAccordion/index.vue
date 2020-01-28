@@ -5,11 +5,7 @@
 			:key="`c-accordion__item-wrap-${index + 1}`"
 			class="c-accordion__item-wrap"
 		>
-			<h3
-				data-accordion-heading=""
-				class="c-accordion__heading"
-				aria-level="h3"
-			>
+			<h3 data-accordion-heading class="c-accordion__heading" aria-level="h3">
 				<button
 					:id="`${accId}__heading-${index}`"
 					:aria-expanded="(!ariaHide(item)).toString()"
@@ -94,7 +90,9 @@ export default {
 	}
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+@import '../../styles/_typography.scss';
+
 .c-accordion__heading {
 	@extend .text--l !optional;
 

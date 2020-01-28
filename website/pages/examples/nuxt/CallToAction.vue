@@ -3,8 +3,9 @@
 </template>
 <script>
 import { CallToAction } from '@/../src'
-import '@/../src/styles/styles.scss'
 import mockData from '@/../src/slices/CallToAction/mock.json'
+
+console.log(mockData, 'mockData')
 export default {
 	components: {
 		CallToAction

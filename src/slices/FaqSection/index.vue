@@ -4,7 +4,7 @@
 			<div class="ps__head">
 				<header class="ps__header">
 					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">
-						{{ slice.primary.eyebrow_headline }}
+						{{ $prismic.asText(slice.primary.eyebrow_headline) }}
 					</span>
 					<h2 v-if="slice.primary.title" class="ps__title" aria-level="2">
 						{{ $prismic.asText(slice.primary.title) }}

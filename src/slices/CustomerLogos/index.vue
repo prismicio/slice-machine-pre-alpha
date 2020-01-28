@@ -3,9 +3,9 @@
 		<div class="ps__wrap">
 			<div class="ps__head">
 				<header class="ps__header">
-					<h2 v-if="slice.primary.eyebrow_headline" class="ps__kicker">
-						{{ slice.primary.eyebrow_headline }}
-					</h2>
+					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">
+						{{ $prismic.asText(slice.primary.eyebrow_headline) }}
+					</span>
 				</header>
 			</div>
 			<div class="ps__main">
@@ -16,12 +16,15 @@
 				>
 					<li
 						v-for="(item, index) in slice.items.filter(
-							e => e.logo && e.logo.url && e.link && e.link.url
+							e => e.logo && e.logo.url && e.link
 						)"
 						:key="`ps-customer-logos__item-${index + 1}`"
 						class="ps-customer-logos__item"
 					>
-						<prismic-link :field="item.link">
+						<prismic-link
+							:field="item.link"
+							class="ps-customer-logos__item__link"
+						>
 							<prismic-image :field="item.logo" />
 						</prismic-link>
 					</li>
@@ -31,7 +34,7 @@
 					:field="slice.primary.call_to_action_link"
 					class="ps-customer-logos__link"
 				>
-					{{ slice.primary.call_to_action }}
+					{{ $prismic.asText(slice.primary.call_to_action) }}
 				</prismic-link>
 			</div>
 		</div>
@@ -100,7 +103,12 @@ export default {
 
 	.ps-customer-logos__item {
 		margin: 0;
-		text-align: center;
+		display: flex;
+		justify-content: center;
+	}
+
+	.ps-customer-logos__item__link {
+		max-width: 140px;
 	}
 }
 </style>

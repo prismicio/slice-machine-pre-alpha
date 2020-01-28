@@ -174,7 +174,10 @@ app.use((req, res) => {
 		)
 
 		const fullProtocol = Object.assign(scaffolder.protocol, {
-			additionalDisplay: readFileSync(pathToAdditionalInfo, 'utf8')
+			additionalDisplay: Mustache.render(
+				readFileSync(pathToAdditionalInfo, 'utf8'),
+				{ prismicConfigPath: scaffolder.protocol.prismicConfig }
+			)
 		})
 
 		zip.file('protocol.json', JSON.stringify(fullProtocol, null, 4))
