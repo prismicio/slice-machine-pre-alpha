@@ -1,0 +1,197 @@
+{
+	"slice_type": "slider_section",
+	"slice_label": "large_images",
+	"items": [
+		{
+			"image": {
+				"dimensions": {
+					"width": 2048,
+					"height": 1536
+				},
+				"alt": null,
+				"copyright": null,
+				"url": "https://images.prismic.io/slicesexamples/b4aeb1e2-e9c1-43ab-82ab-0d0519f9c3cd_float.png?auto=compress,format"
+			},
+			"title": [
+				{
+					"type": "heading3",
+					"text": "Title 1",
+					"spans": []
+				}
+			],
+			"content": [
+				{
+					"type": "paragraph",
+					"text": "Content hello",
+					"spans": []
+				}
+			],
+			"additional_info": [
+				{
+					"type": "paragraph",
+					"text": "",
+					"spans": []
+				}
+			]
+		},
+		{
+			"image": {
+				"dimensions": {
+					"width": 1500,
+					"height": 800
+				},
+				"alt": null,
+				"copyright": null,
+				"url": "https://images.prismic.io/slicesexamples%2F30dd112f-2f79-47f5-8090-7ae2c32c02bf_leio-mclaren-leiomclaren-gnrbzu6pavq-unsplash.jpg?auto=compress,format&rect=0,787,5917,3156&w=1500&h=800"
+			},
+			"title": [
+				{
+					"type": "heading3",
+					"text": "Title 2",
+					"spans": []
+				}
+			],
+			"content": [
+				{
+					"type": "paragraph",
+					"text": "lalala",
+					"spans": []
+				}
+			],
+			"additional_info": []
+		},
+		{
+			"image": {
+				"dimensions": {
+					"width": 82,
+					"height": 33
+				},
+				"alt": null,
+				"copyright": null,
+				"url": "https://images.prismic.io/slicesexamples/7d1eee79-2e69-47ea-807d-22b8287773c0_logo-4.svg?auto=compress,format"
+			},
+			"title": [
+				{
+					"type": "heading1",
+					"text": "Title 3",
+					"spans": []
+				}
+			],
+			"content": [
+				{
+					"type": "paragraph",
+					"text": "content 1",
+					"spans": []
+				}
+			],
+			"additional_info": []
+		},
+		{
+			"image": {
+				"dimensions": {
+					"width": 92,
+					"height": 25
+				},
+				"alt": null,
+				"copyright": null,
+				"url": "https://images.prismic.io/slicesexamples/846576e2-c93c-40dd-8aaa-b97f4e99e7aa_logo-1.svg?auto=compress,format"
+			},
+			"title": [
+				{
+					"type": "heading1",
+					"text": "Title 4",
+					"spans": []
+				}
+			],
+			"content": [
+				{
+					"type": "paragraph",
+					"text": "Hello",
+					"spans": []
+				}
+			],
+			"additional_info": []
+		},
+		{
+			"image": {
+				"dimensions": {
+					"width": 137,
+					"height": 23
+				},
+				"alt": null,
+				"copyright": null,
+				"url": "https://images.prismic.io/slicesexamples/23461395-458d-41f5-be25-bac37a4ff53e_logo-6.svg?auto=compress,format"
+			},
+			"title": [
+				{
+					"type": "heading1",
+					"text": "Title 5",
+					"spans": []
+				}
+			],
+			"content": [
+				{
+					"type": "paragraph",
+					"text": "Hello",
+					"spans": []
+				}
+			],
+			"additional_info": []
+		},
+		{
+			"image": {
+				"dimensions": {
+					"width": 92,
+					"height": 30
+				},
+				"alt": null,
+				"copyright": null,
+				"url": "https://images.prismic.io/slicesexamples/4360a72b-bfe4-4144-911c-597146f72c00_logo-5.svg?auto=compress,format"
+			},
+			"title": [
+				{
+					"type": "heading1",
+					"text": "Title 6",
+					"spans": []
+				}
+			],
+			"content": [
+				{
+					"type": "paragraph",
+					"text": "Saloud",
+					"spans": []
+				}
+			],
+			"additional_info": [
+				{
+					"type": "paragraph",
+					"text": "Additional info",
+					"spans": []
+				}
+			]
+		}
+	],
+	"primary": {
+		"eyebrow_headline": [
+			{
+				"type": "paragraph",
+				"text": "The Carousel",
+				"spans": []
+			}
+		],
+		"title": [
+			{
+				"type": "heading2",
+				"text": "It’s more than a budget manager",
+				"spans": []
+			}
+		],
+		"description": [
+			{
+				"type": "paragraph",
+				"text": "This carousel moves by one card at a time when the next and previous arrows are clicked.",
+				"spans": []
+			}
+		]
+	}
+}

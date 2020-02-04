@@ -10,7 +10,9 @@
 							class="ps__kicker-icon"
 							:field="slice.primary.icon_image"
 						/>
-						<h2 v-if="slice.primary.title" class="ps__title">{{ $prismic.asText(slice.primary.title) }}</h2>
+						<h2 v-if="slice.primary.title" class="ps__title">
+							{{ $prismic.asText(slice.primary.title) }}
+						</h2>
 					</slot>
 				</header>
 				<div v-if="slice.primary.paragraph" class="ps__desc">
@@ -20,7 +22,8 @@
 					<prismic-link
 						class="ps-button ps-button--primary"
 						:field="slice.primary.button_link"
-					>{{ slice.primary.button_label }}</prismic-link>
+						>{{ slice.primary.button_label }}</prismic-link
+					>
 				</slot>
 			</div>
 		</div>

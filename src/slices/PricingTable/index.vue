@@ -4,22 +4,22 @@
 			<div class="ps__head">
 				<header class="ps__header">
 					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">
-						{{
-						$prismic.asText(slice.primary.eyebrow_headline)
-						}}
+						{{ $prismic.asText(slice.primary.eyebrow_headline) }}
 					</span>
-					<h2
-						v-if="slice.primary.title"
-						class="ps__title"
-						aria-level="2"
-					>{{ $prismic.asText(slice.primary.title) }}</h2>
+					<h2 v-if="slice.primary.title" class="ps__title" aria-level="2">
+						{{ $prismic.asText(slice.primary.title) }}
+					</h2>
 				</header>
 				<div v-if="slice.primary.description" class="ps__desc">
 					<p>{{ $prismic.asText(slice.primary.description) }}</p>
 				</div>
 			</div>
 			<div class="ps__main">
-				<ol role="list" aria-label class="ps-pricing-table__options ps__card-list">
+				<ol
+					role="list"
+					aria-label
+					class="ps-pricing-table__options ps__card-list"
+				>
 					<li
 						class="ps-pricing-table__option ps__card-item ps__card-item--full"
 						v-for="(item, index) in slice.items"
@@ -29,11 +29,11 @@
 							<header v-if="item.plan_title">
 								<h3
 									class="ps-pricing-table__option__title ps__card-item__title"
-								>{{ $prismic.asText(item.plan_title) }}</h3>
+								>
+									{{ $prismic.asText(item.plan_title) }}
+								</h3>
 								<span class="ps-pricing-table__option__price">
-									{{
-									$prismic.asText(item.price_option)
-									}}
+									{{ $prismic.asText(item.price_option) }}
 								</span>
 							</header>
 							<prismic-rich-text
@@ -52,7 +52,8 @@
 								<prismic-link
 									:field="item.call_to_action"
 									class="ps-button ps-button--secondary"
-								>{{ $prismic.asText(item.call_to_action_text) }}</prismic-link>
+									>{{ $prismic.asText(item.call_to_action_text) }}</prismic-link
+								>
 							</div>
 						</article>
 					</li>

@@ -1,55 +1,77 @@
-/* The SliceZone component is used to match Prismic slices with client-side
-components. Pass it down an array of slices, it will render your content,
-section after section. After creating a slice on Prismic, create the
-corresponding component inside `vueSlices/slices` and export it from
-`vueSlices/slices/index.js` See `examples/PrismicExample.vue` to see a page
-example using SliceZone
-*/
+const camelizeRE = /-(\w)/g
+export const camelize = str => {
+	str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
+		return c ? c.toUpperCase() : ''
+	})
+	return str[0].toUpperCase() + str.slice(1)
+}
 
-import UnknownSlice from './UnknownSlice'
-import { camelize } from './utils'
+const UnknownSlice = {
+	props: {
+		slice: {
+			type: Object,
+			required: true
+		}
+	},
+	render(h) {
+		if (process.env.NODE_ENV === 'development') {
+			return h(
+				'div',
+				{
+					style: 'border: 1px solid #111'
+				},
+				[
+					h('h3', `Unknown slice "${camelize(this.slice.slice_type)}"`),
+					h('p', JSON.stringify(this.slice))
+				]
+			)
+		}
+	}
+}
 
 export default {
 	name: 'SliceZone',
 	props: {
 		components: {
-			required: false
+			required: false,
+			default() {
+				return {}
+			}
 		},
 		slices: {
 			required: true
 		},
-		path: {
-			required: false,
-			type: [String, Array],
-			default: () => 'sliceMachine/slices',
-			description: 'Path(s) to your slices components'
+		resolver: {
+			required: true,
+			type: Function,
+			description:
+				'Resolver takes slice information and returns a dynamic import'
 		},
 		wrapper: {
 			required: false,
 			type: String,
 			default: 'div',
 			description: 'Wrapper tag (div, section, main...)'
+		},
+		UnknownSlice: {
+			required: false,
+			default() {
+				return UnknownSlice
+			}
 		}
 	},
-	components: {
-		UnknownSlice
-	},
 	computed: {
-		computedImports: ({ path, slices }) => {
+		computedImports: ({ components, resolver, slices, UnknownSlice }) => {
 			const invert = p =>
 				new Promise((resolve, reject) => p.then(reject, resolve))
 			const firstOf = ps => invert(Promise.all(ps.map(invert)))
 			const names = slices.map(e => camelize(e.slice_type))
 			return (slices || []).map((_, i) => () => {
-				const allPaths = typeof path === 'string' ? [path] : path
-				return firstOf(
-					allPaths.reduce((prev, p) => {
-						return prev.concat([
-							import(`@/${p}/${names[i]}/index.vue`),
-							import(`@/${p}/${names[i]}.vue`)
-						])
-					}, [])
-				).catch(() => UnknownSlice)
+				const resolved = components[names[i]]
+					? () => components[names[i]]
+					: resolver({ sliceName: names[i], index: i })
+				const resolvedArr = Array.isArray(resolved) ? resolved : [resolved]
+				return firstOf(resolvedArr).catch(() => UnknownSlice)
 			})
 		},
 		computedSlices: ({ slices, computedImports }) => {

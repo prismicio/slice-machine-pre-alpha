@@ -1,131 +1,120 @@
 <template>
-	<section class="ps ps-slider ps-slider--images ps-carousel">
-		<div class="ps__wrap">
-			<div class="ps__head">
-				<header class="ps__header">
-					<span class="ps__kicker">{{ slice.primary.eyebrow_headline }}</span>
-					<h2 class="ps__title">{{ $prismic.asText(slice.primary.title) }}</h2>
-				</header>
-				<prismic-rich-text
-					class="ps__desc"
-					:field="slice.primary.description"
-				/>
-			</div>
-
-			<div class="ps__main grid grid--12">
-				<div class="span-1-12">
-					<!-- the crousel label should not have word "crousel" in it -->
-					<div class="c-carousel" data-carousel data-aria-label="PROVIDE_LABEL">
-						<!-- SR helper will be appended here from the JS to announce to SR users what items are now in view -->
-						<div
-							v-for="(item, i) in slice.items"
-							:key="`data-carousel-card-${item}-${i + 1}`"
-							class="c-carousel__cards-container"
-							data-carousel-cards
-						>
-							<div
-								class="c-carousel__cards-wrapper"
-								data-carousel-cards-wrapper
-							>
-								<div class="c-carousel__card" data-carousel-card>
-									<prismic-image
-										class="c-carousel__card__img"
-										:field="item.image"
-										alt="icon alt or leave empty if decorational"
-									/>
-									<prismic-rich-text
-										class="c-carousel__card__title"
-										:field="item.title"
-									/>
-									<prismic-rich-text
-										class="c-carousel__card__content"
-										:field="item.description"
-									/>
-								</div>
-							</div>
-						</div>
-
-						<div class="c-carousel__paddleNav" data-carousel-paddlenav hidden>
-							<!-- paddleNav (prev and next buttons) provided here for flexibility (choose and use the icon you want) -->
-							<button
-								class="c-carousel__paddleNav__prev"
-								aria-label="Previous"
-								data-prev
-							>
-								<!-- place icon here -->
-								<svg
-									width="8"
-									height="12"
-									viewBox="0 0 8 12"
-									aria-hidden="true"
-									focusable="false"
-								>
-									<g fill="none" fill-rule="evenodd">
-										<path d="M-8-6h24v24H-8z" />
-										<path
-											fill="currentColor"
-											fill-rule="nonzero"
-											d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z"
-										/>
-									</g>
-								</svg>
-							</button>
-							<button
-								class="c-carousel__paddleNav__next"
-								aria-label="Next"
-								data-next
-							>
-								<!-- place icon here -->
-								<svg
-									width="8"
-									height="12"
-									viewBox="0 0 8 12"
-									aria-hidden="true"
-									focusable="false"
-								>
-									<g fill="none" fill-rule="evenodd">
-										<path d="M-8-6h24v24H-8z" />
-										<path
-											fill="currentColor"
-											fill-rule="nonzero"
-											d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z"
-										/>
-									</g>
-								</svg>
-							</button>
-						</div>
-					</div>
+	<ps-slider>
+		<template v-slot:content="slice">
+			<div
+				ref="items"
+				data-carousel-card
+				class="c-carousel__card"
+				v-for="(item, i) in slice.items"
+				:key="`data-carousel-card-${item}-${i + 1}`"
+			>
+				<prismic-image class="c-carousel__card__img" :field="item.image" />
+				<div>
+					<prismic-rich-text class="c-carousel__card__title" :field="item.title" />
+					<prismic-rich-text class="c-carousel__card__content" :field="item.content" />
 				</div>
 			</div>
-		</div>
-	</section>
+		</template>
+	</ps-slider>
 </template>
 <script>
 export default {
 	name: 'SliderSection',
 	props: {
 		slice: {
-			validator: function({ slice_type: sliceType, primary, items }) {
+			validator({ slice_type: sliceType, primary, items }) {
 				return sliceType && primary && items
 			},
-			default: function() {
+			default() {
 				return {
-					items: [1, 2, 3, 4],
+					items: [],
 					primary: {},
 					type: 'carousel'
 				}
 			}
 		}
 	},
+	data() {
+		return {
+			cardsWrapperStyle: '',
+			leftCounter: 0,
+			rightCounter: 0,
+			itemsOutOfView: 0,
+			itemsInView: 0,
+			timeout: false
+		}
+	},
 	computed: {
-		darkMode: function() {
+		darkMode() {
 			return this.slice && this.slice.slice_label === 'dark_mode'
+		}
+	},
+	created() {
+		if (process.client) {
+			window.addEventListener('resize', this.onWindowResize)
+		}
+	},
+	mounted() {
+		this.updateState()
+	},
+	destroyed() {
+		window.removeEventListener('resize', this.onWindowResize)
+	},
+	methods: {
+		onWindowResize() {
+			clearTimeout(this.timeout)
+			this.timeout = setTimeout(this.updateState, '300')
+		},
+		slideBack() {
+			this.rightCounter =
+				this.rightCounter < this.itemsOutOfView
+					? ++this.rightCounter
+					: this.rightCounter
+			this.leftCounter = this.leftCounter > 0 ? --this.leftCounter : 0
+
+			this.slideCards()
+		},
+		slideForward() {
+			if (this.rightCounter > 0) {
+				--this.rightCounter
+			}
+			if (this.leftCounter < this.itemsOutOfView) {
+				++this.leftCounter
+			}
+			this.slideCards()
+
+			// console.log('---')
+			// console.log('Items in view: ' + this.itemsInView)
+			// console.log('Items out of view: ' + this.itemsOutOfView)
+			// console.log('right counter: ' + this.rightCounter)
+			// console.log('left counter: ' + this.leftCounter)
+		},
+		slideCards() {
+			const translateValue = this.leftCounter * (100 / this.itemsInView) * -1
+			this.cardsWrapperStyle = 'translateX(' + translateValue + '%)'
+		},
+		updateState() {
+			console.log('-- update state')
+			if (!this.$refs.items) {
+				return
+			}
+			const card = this.$refs.items[0]
+			const carouselContainer = this.$refs.carouselContainer
+			const cardWidth = card.offsetWidth
+			const containerWidth = carouselContainer.offsetWidth
+			this.itemsInView = Math.round(containerWidth / cardWidth)
+			this.itemsOutOfView = this.slice.items.length - this.itemsInView
+			this.rightCounter = this.itemsOutOfView
+			this.leftCounter = 0
+			// handlePaddleButtonsState()
+			// updateHelper()
+			this.slideCards()
 		}
 	}
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .c-carousel {
 	position: relative;
 }
@@ -148,8 +137,8 @@ export default {
 .c-carousel__card {
 	width: 100%;
 	text-align: center;
-	margin-bottom: 1rem; // for no-js
-	margin-right: 1.6rem; // for no-js
+	margin-bottom: 1rem;
+	margin-right: 1.6rem;
 	white-space: normal;
 	display: inline-block;
 
@@ -192,10 +181,14 @@ export default {
 		display: flex;
 		align-items: center;
 		transition: transform 0.3s linear;
+		align-items: stretch;
 	}
 
 	.c-carousel__card {
 		margin: 0;
+		justify-content: space-between;
+		display: flex;
+		flex-direction: column;
 		flex-shrink: 0; // to make sure slides inside the flex container take up 100% of the container and don't shrink to their content size.
 	}
 }
@@ -204,8 +197,11 @@ export default {
 	margin-bottom: var(--v-margin);
 }
 
-.c-carousel__card__title {
+.c-carousel__card__title > h1,
+h2,
+h3 {
 	font-size: 1rem;
+	margin-bottom: 1em;
 }
 
 .c-carousel__paddleNav {
