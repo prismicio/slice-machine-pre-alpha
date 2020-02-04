@@ -10,8 +10,14 @@
 			>
 				<prismic-image class="c-carousel__card__img" :field="item.image" />
 				<div>
-					<prismic-rich-text class="c-carousel__card__title" :field="item.title" />
-					<prismic-rich-text class="c-carousel__card__content" :field="item.content" />
+					<prismic-rich-text
+						class="c-carousel__card__title"
+						:field="item.title"
+					/>
+					<prismic-rich-text
+						class="c-carousel__card__content"
+						:field="item.content"
+					/>
 				</div>
 			</div>
 		</template>

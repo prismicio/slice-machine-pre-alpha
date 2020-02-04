@@ -6,11 +6,21 @@
 		aria-roledescription="Carousel"
 		data-aria-label="Carousel with content"
 	>
-		<span
-			aria-live="polite"
-			class="sr-only c-carousel__SRHelper"
-		>Showing carousel items {{ Array(itemsInView).fill(1).map((_, i) => i + leftCounter + 1).join(',') }} of 9</span>
-		<div class="c-carousel__cards-container" data-carousel-cards ref="carouselContainer">
+		<span aria-live="polite" class="sr-only c-carousel__SRHelper"
+			>Showing carousel items
+			{{
+				Array(itemsInView)
+					.fill(1)
+					.map((_, i) => i + leftCounter + 1)
+					.join(',')
+			}}
+			of 9</span
+		>
+		<div
+			class="c-carousel__cards-container"
+			data-carousel-cards
+			ref="carouselContainer"
+		>
 			<div
 				:style="`transform: ${cardsWrapperStyle}`"
 				class="c-carousel__cards-wrapper"
@@ -29,10 +39,20 @@
 				:aria-disabled="leftCounter === 0"
 				:tabindex="leftCounter === 0 ? '-1' : '0'"
 			>
-				<svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+				<svg
+					width="8"
+					height="12"
+					viewBox="0 0 8 12"
+					aria-hidden="true"
+					focusable="false"
+				>
 					<g fill="none" fill-rule="evenodd">
 						<path d="M-8-6h24v24H-8z" />
-						<path fill="currentColor" fill-rule="nonzero" d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z" />
+						<path
+							fill="currentColor"
+							fill-rule="nonzero"
+							d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z"
+						/>
 					</g>
 				</svg>
 			</button>
@@ -41,13 +61,25 @@
 				class="c-carousel__paddleNav__next"
 				aria-label="Next"
 				data-next
-				:aria-disabled="(leftCounter + itemsInView) === slice.items.length"
-				:tabindex="(leftCounter + itemsInView) === slice.items.length ? '-1' : '0'"
+				:aria-disabled="leftCounter + itemsInView === slice.items.length"
+				:tabindex="
+					leftCounter + itemsInView === slice.items.length ? '-1' : '0'
+				"
 			>
-				<svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+				<svg
+					width="8"
+					height="12"
+					viewBox="0 0 8 12"
+					aria-hidden="true"
+					focusable="false"
+				>
 					<g fill="none" fill-rule="evenodd">
 						<path d="M-8-6h24v24H-8z" />
-						<path fill="currentColor" fill-rule="nonzero" d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z" />
+						<path
+							fill="currentColor"
+							fill-rule="nonzero"
+							d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z"
+						/>
 					</g>
 				</svg>
 			</button>
