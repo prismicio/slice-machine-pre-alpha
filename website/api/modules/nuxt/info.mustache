@@ -20,7 +20,7 @@ css: ['@/sliceMachine/styles/styles.scss'],
 
 modules: [
   ['@nuxtjs/prismic', {
-    endpoint: '{{{ apiEndpoint }}}',
+    endpoint: `https://{{ prismicDomain }}.cdn.prismic.io/api/v2`,
     linkResolver(doc) {
       if (doc.uid === 'page') {
         return doc.uid === 'homepage' ? '/' : `/${doc.uid}`
