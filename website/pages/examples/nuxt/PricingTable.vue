@@ -7,7 +7,8 @@ import mockData from '@/../src/slices/PricingTable/mock.json'
 export default {
   components: {
     PricingTable
-  },
+	},
+	layout: 'example',
   data() {
     return {
       mockData

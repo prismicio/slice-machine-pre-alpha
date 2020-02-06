@@ -31,7 +31,8 @@ import mockData from '@/..${relativePathToSlice}/${sliceName}/mock.json'
 export default {
   components: {
     ${sliceName}
-  },
+	},
+	layout: 'example',
   data() {
     return {
       mockData

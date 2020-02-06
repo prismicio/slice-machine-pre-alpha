@@ -1,25 +1,53 @@
 <template>
-	<ps-slider>
-		<template v-slot:content="slice">
-			<div
-				ref="items"
-				data-carousel-card
-				class="c-carousel__card"
-				v-for="(item, i) in slice.items"
-				:key="`data-carousel-card-${item}-${i + 1}`"
-			>
-				<prismic-image class="c-carousel__card__img" :field="item.image" />
-				<div>
-					<prismic-rich-text class="c-carousel__card__title" :field="item.title" />
-					<prismic-rich-text class="c-carousel__card__content" :field="item.content" />
+	<section class="ps ps-slider ps-slider--carousel ps-carousel">
+		<div class="ps__wrap">
+			<div class="ps__head">
+				<header class="ps__header">
+					<span
+						v-if="slice.primary.eyebrow_headline"
+						class="ps__kicker"
+					>{{ $prismic.asText(slice.primary.eyebrow_headline) }}</span>
+					<h2
+						v-if="slice.primary.title"
+						class="ps__title"
+						aria-level="2"
+					>{{ $prismic.asText(slice.primary.title) }}</h2>
+				</header>
+				<div v-if="slice.primary.description" class="ps__desc">
+					<p>{{ $prismic.asText(slice.primary.description) }}</p>
 				</div>
 			</div>
-		</template>
-	</ps-slider>
+			<div v-if="slice.items.length" class="ps__main grid grid--12">
+				<div class="span-1-12">
+					<ps-slider hide-dots type="carousel" item-type="card" :items="slice.items">
+						<template v-slot:content ref="t">
+							<div
+								ref="items"
+								data-carousel-card
+								class="c-carousel__card"
+								v-for="(item, i) in slice.items"
+								:key="`data-carousel-card-${item}-${i + 1}`"
+							>
+								<prismic-image class="c-carousel__card__img" :field="item.image" />
+								<div>
+									<prismic-rich-text class="c-carousel__card__title" :field="item.title" />
+									<prismic-rich-text class="c-carousel__card__content" :field="item.content" />
+								</div>
+							</div>
+						</template>
+					</ps-slider>
+				</div>
+			</div>
+		</div>
+	</section>
 </template>
 <script>
+import PsSlider from '../../components/PsSlider'
 export default {
-	name: 'SliderSection',
+	name: 'CardsCarousel',
+	components: {
+		PsSlider
+	},
 	props: {
 		slice: {
 			validator({ slice_type: sliceType, primary, items }) {
@@ -28,87 +56,9 @@ export default {
 			default() {
 				return {
 					items: [],
-					primary: {},
-					type: 'carousel'
+					primary: {}
 				}
 			}
-		}
-	},
-	data() {
-		return {
-			cardsWrapperStyle: '',
-			leftCounter: 0,
-			rightCounter: 0,
-			itemsOutOfView: 0,
-			itemsInView: 0,
-			timeout: false
-		}
-	},
-	computed: {
-		darkMode() {
-			return this.slice && this.slice.slice_label === 'dark_mode'
-		}
-	},
-	created() {
-		if (process.client) {
-			window.addEventListener('resize', this.onWindowResize)
-		}
-	},
-	mounted() {
-		this.updateState()
-	},
-	destroyed() {
-		window.removeEventListener('resize', this.onWindowResize)
-	},
-	methods: {
-		onWindowResize() {
-			clearTimeout(this.timeout)
-			this.timeout = setTimeout(this.updateState, '300')
-		},
-		slideBack() {
-			this.rightCounter =
-				this.rightCounter < this.itemsOutOfView
-					? ++this.rightCounter
-					: this.rightCounter
-			this.leftCounter = this.leftCounter > 0 ? --this.leftCounter : 0
-
-			this.slideCards()
-		},
-		slideForward() {
-			if (this.rightCounter > 0) {
-				--this.rightCounter
-			}
-			if (this.leftCounter < this.itemsOutOfView) {
-				++this.leftCounter
-			}
-			this.slideCards()
-
-			// console.log('---')
-			// console.log('Items in view: ' + this.itemsInView)
-			// console.log('Items out of view: ' + this.itemsOutOfView)
-			// console.log('right counter: ' + this.rightCounter)
-			// console.log('left counter: ' + this.leftCounter)
-		},
-		slideCards() {
-			const translateValue = this.leftCounter * (100 / this.itemsInView) * -1
-			this.cardsWrapperStyle = 'translateX(' + translateValue + '%)'
-		},
-		updateState() {
-			console.log('-- update state')
-			if (!this.$refs.items) {
-				return
-			}
-			const card = this.$refs.items[0]
-			const carouselContainer = this.$refs.carouselContainer
-			const cardWidth = card.offsetWidth
-			const containerWidth = carouselContainer.offsetWidth
-			this.itemsInView = Math.round(containerWidth / cardWidth)
-			this.itemsOutOfView = this.slice.items.length - this.itemsInView
-			this.rightCounter = this.itemsOutOfView
-			this.leftCounter = 0
-			// handlePaddleButtonsState()
-			// updateHelper()
-			this.slideCards()
 		}
 	}
 }
@@ -290,27 +240,6 @@ h3 {
 
 	.c-carousel__paddleNav__next {
 		right: -3.5rem;
-	}
-}
-
-/**************************************************\
- * Slider | Images component-specific styles.
- * Main general styles are in the _slider.scss file
- ***************************************************/
-
-.ps-slider--images .c-slider__slide__figure {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-
-	img {
-		width: 100%;
-	}
-
-	figcaption {
-		padding: var(--c-padding);
-		max-width: 80ch;
-		margin: 0 auto;
 	}
 }
 </style>

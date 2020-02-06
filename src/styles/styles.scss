@@ -1,84 +1,84 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
 
-  @media all and (max-width: 640px) {
-    overflow-x: hidden;
-  }
+	@media all and (max-width: 640px) {
+		overflow-x: hidden;
+	}
 }
 
 #main:focus {
-  outline: none;
+	outline: none;
 }
 
 a {
-  text-decoration: none;
-  color: var(--color--primary);
-  font-weight: bold;
+	text-decoration: none;
+	color: var(--color--primary);
+	font-weight: bold;
 
-  &:hover {
-    text-decoration: underline;
-    color: var(--color--primary--dark);
-  }
+	&:hover {
+		text-decoration: underline;
+		color: var(--color--primary--dark);
+	}
 
-  &:active {
-    color: var(--color--primary--darker);
-  }
+	&:active {
+		color: var(--color--primary--darker);
+	}
 
-  &:visited {
-    color: #755ebb;
-  }
+	&:visited {
+		color: #755ebb;
+	}
 
-  &:focus,
-  &.focus-visible {
-    outline: var(--focus-outline);
-    outline-offset: 3px;
-  }
+	&:focus,
+	&.focus-visible {
+		outline: var(--focus-outline);
+		outline-offset: 3px;
+	}
 
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
+	&:focus:not(:focus-visible) {
+		outline: none;
+	}
 
-  .js-focus-visible &:focus:not(.focus-visible) {
-    outline: none;
-  }
+	.js-focus-visible &:focus:not(.focus-visible) {
+		outline: none;
+	}
 
-  &:-moz-focusring {
-    outline: none;
-    background: none;
-  }
+	&:-moz-focusring {
+		outline: none;
+		background: none;
+	}
 }
 
 img {
-  max-width: 100%; // repsonsify the image to override the width attr set on it
-  height: auto; // to prevent imge squishing with width and height attrs set
+	max-width: 100%; // repsonsify the image to override the width attr set on it
+	height: auto; // to prevent imge squishing with width and height attrs set
 }
 
 button {
-  background: none;
-  font: inherit;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
+	background: none;
+	font: inherit;
+	font-size: 1rem;
+	cursor: pointer;
+	border: none;
 
-  &:-moz-focusring {
-    outline: none;
-  }
+	&:-moz-focusring {
+		outline: none;
+	}
 
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
+	&:focus:not(:focus-visible) {
+		outline: none;
+	}
 
-  .js-focus-visible &:focus:not(.focus-visible) {
-    outline: none;
-  }
+	.js-focus-visible &:focus:not(.focus-visible) {
+		outline: none;
+	}
 }
 
 @import '_settings.scss';
