@@ -7,7 +7,8 @@ import mockData from '@/../src/slices/CustomerLogos/mock.json'
 export default {
   components: {
     CustomerLogos
-  },
+	},
+	layout: 'example',
   data() {
     return {
       mockData

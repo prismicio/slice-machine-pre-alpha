@@ -46,7 +46,7 @@ export default {
 		try {
 			const apiEndpoint = 'https://slicesexamples.prismic.io/api/v2'
 			const api = await Prismic.getApi(apiEndpoint, { req })
-			const result = await api.getByUID('example', 'slider-section')
+			const result = await api.getByUID('example', 'images-slider')
 
 			console.log(JSON.stringify(result.data.body[0]))
 			return {
