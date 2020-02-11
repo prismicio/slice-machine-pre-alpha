@@ -3,15 +3,12 @@
 		<div class="ps__wrap">
 			<div class="ps__head">
 				<header class="ps__header">
-					<span
-						v-if="slice.primary.eyebrow_headline"
-						class="ps__kicker"
-					>{{ $prismic.asText(slice.primary.eyebrow_headline) }}</span>
-					<h2
-						v-if="slice.primary.title"
-						class="ps__title"
-						aria-level="2"
-					>{{ $prismic.asText(slice.primary.title) }}</h2>
+					<span v-if="slice.primary.eyebrow_headline" class="ps__kicker">{{
+						$prismic.asText(slice.primary.eyebrow_headline)
+					}}</span>
+					<h2 v-if="slice.primary.title" class="ps__title" aria-level="2">
+						{{ $prismic.asText(slice.primary.title) }}
+					</h2>
 				</header>
 				<div v-if="slice.primary.description" class="ps__desc">
 					<p>{{ $prismic.asText(slice.primary.description) }}</p>
@@ -19,7 +16,12 @@
 			</div>
 			<div v-if="slice.items.length" class="ps__main grid grid--12">
 				<div class="span-1-12">
-					<ps-slider hide-dots type="carousel" item-type="card" :items="slice.items">
+					<ps-slider
+						hide-dots
+						type="carousel"
+						item-type="card"
+						:items="slice.items"
+					>
 						<template v-slot:content ref="t">
 							<div
 								ref="items"
@@ -28,10 +30,19 @@
 								v-for="(item, i) in slice.items"
 								:key="`data-carousel-card-${item}-${i + 1}`"
 							>
-								<prismic-image class="c-carousel__card__img" :field="item.image" />
+								<prismic-image
+									class="c-carousel__card__img"
+									:field="item.image"
+								/>
 								<div>
-									<prismic-rich-text class="c-carousel__card__title" :field="item.title" />
-									<prismic-rich-text class="c-carousel__card__content" :field="item.content" />
+									<prismic-rich-text
+										class="c-carousel__card__title"
+										:field="item.title"
+									/>
+									<prismic-rich-text
+										class="c-carousel__card__content"
+										:field="item.content"
+									/>
 								</div>
 							</div>
 						</template>

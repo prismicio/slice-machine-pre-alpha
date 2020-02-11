@@ -119,6 +119,10 @@ export default {
 			handler: '~/api/models.js'
 		},
 		{
+			path: '/api/version',
+			handler: '~/api/version.js'
+		},
+		{
 			path: '/api/slices',
 			handler: '~/api/slices.js'
 		}

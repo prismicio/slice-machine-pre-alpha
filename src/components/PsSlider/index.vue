@@ -8,10 +8,10 @@
 		<span aria-live="polite" :class="`sr-only c-${type}__SRHelper`">
 			Showing {{ type }} items
 			{{
-			Array(itemsInView)
-			.fill(1)
-			.map((_, i) => i + leftCounter + 1)
-			.join(',')
+				Array(itemsInView)
+					.fill(1)
+					.map((_, i) => i + leftCounter + 1)
+					.join(',')
 			}}
 			of {{ items.length }} {{ itemType.concat('s') }}
 		</span>
@@ -33,13 +33,16 @@
 				class="c-slider__dotNav__dot"
 				v-for="(item, i) in items"
 				:key="`slider__dotNav__dot-${i + 1}`"
-				:tabindex="(dotFocus || i !== leftCounter) ? '-1' : '0'"
+				:tabindex="dotFocus || i !== leftCounter ? '-1' : '0'"
 				@click="onDotClick(i)"
 				@focus="onAnyDotFocus()"
 				@blur="onAnyDotBlur()"
 				@keydown="paddleKeyboardRespond"
 			>
-				<span class="dot-label">{{ itemType.charAt(0).toUpperCase() + itemType.slice(1) }} {{ i + 1 }}</span>
+				<span class="dot-label"
+					>{{ itemType.charAt(0).toUpperCase() + itemType.slice(1) }}
+					{{ i + 1 }}</span
+				>
 			</button>
 		</div>
 		<div v-if="!hideArrows" :class="`c-${type}__paddleNav`">
@@ -52,10 +55,20 @@
 				:aria-disabled="leftCounter === 0"
 				:tabindex="leftCounter === 0 ? '-1' : '0'"
 			>
-				<svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+				<svg
+					width="8"
+					height="12"
+					viewBox="0 0 8 12"
+					aria-hidden="true"
+					focusable="false"
+				>
 					<g fill="none" fill-rule="evenodd">
 						<path d="M-8-6h24v24H-8z" />
-						<path fill="currentColor" fill-rule="nonzero" d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z" />
+						<path
+							fill="currentColor"
+							fill-rule="nonzero"
+							d="M7.41 10.59L2.83 6l4.58-4.59L6 0 0 6l6 6z"
+						/>
 					</g>
 				</svg>
 			</button>
@@ -67,14 +80,22 @@
 				aria-label="Next"
 				data-next
 				:aria-disabled="leftCounter + itemsInView === items.length"
-				:tabindex="
-					leftCounter + itemsInView === items.length ? '-1' : '0'
-				"
+				:tabindex="leftCounter + itemsInView === items.length ? '-1' : '0'"
 			>
-				<svg width="8" height="12" viewBox="0 0 8 12" aria-hidden="true" focusable="false">
+				<svg
+					width="8"
+					height="12"
+					viewBox="0 0 8 12"
+					aria-hidden="true"
+					focusable="false"
+				>
 					<g fill="none" fill-rule="evenodd">
 						<path d="M-8-6h24v24H-8z" />
-						<path fill="currentColor" fill-rule="nonzero" d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z" />
+						<path
+							fill="currentColor"
+							fill-rule="nonzero"
+							d="M.59 10.59L5.17 6 .59 1.41 2 0l6 6-6 6z"
+						/>
 					</g>
 				</svg>
 			</button>
