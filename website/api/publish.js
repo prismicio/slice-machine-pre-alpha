@@ -9,7 +9,7 @@ app.use((req, res) => {
 	console.log('here, the webhook!', req.body)
 
 	if (!body.ref || !body.head_commit) {
-		res.sendStatus(400)
+		return res.sendStatus(400)
 	}
 	const branch = body.ref.split('/').pop()
 
