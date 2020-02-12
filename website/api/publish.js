@@ -5,14 +5,22 @@ app.use(bodyParser.json())
 
 const SM_CONFIG_FILE = 'sm.json'
 
+const whiteList = {
+	'prismicio/vue-essential-slices': true
+}
+
 app.use((req, res) => {
 	console.log('here, the webhook!', req.body)
 
-	if (!body.ref || !body.head_commit) {
+	if (!body.ref || !body.head_commit || !body.repository) {
 		return res.sendStatus(400)
 	}
-	const branch = body.ref.split('/').pop()
 
+	if (!whiteList[body.repository.full_name]) {
+		return res.sendStatus(403)
+	}
+
+	const branch = body.ref.split('/').pop()
 	if (branch !== 'master') {
 		res.sendStatus(200)
 	}
