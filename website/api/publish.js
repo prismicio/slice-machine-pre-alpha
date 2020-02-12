@@ -10,8 +10,9 @@ const whiteList = {
 }
 
 app.use((req, res) => {
-	console.log('here, the webhook!', req.body)
+	console.log('here, the webhook!', req.body, req.params)
 
+	const body = req.body
 	if (!body.ref || !body.head_commit || !body.repository) {
 		return res.sendStatus(400)
 	}
