@@ -123,6 +123,10 @@ export default {
 			handler: '~/api/version.js'
 		},
 		{
+			path: '/api/publish',
+			handler: '~/api/publish.js'
+		},
+		{
 			path: '/api/slices',
 			handler: '~/api/slices.js'
 		}
