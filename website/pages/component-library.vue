@@ -15,9 +15,6 @@
 </template>
 
 <script>
-import Prismic from 'prismic-javascript'
-import PrismicConfig from '~/prismic.config.js'
-
 import * as Slices from '@/../src'
 import { createSlice } from '~/utils'
 import Card from '@/components/Card'
@@ -38,15 +35,9 @@ export default {
 		Grid,
 		Row
 	},
-	async asyncData({ params, error, req }) {
+	async asyncData({ $prismic, params, error }) {
 		try {
-			// Fetching the API object
-			const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
-
-			// Query to get the page content
-			let document = {}
-			const page = await api.getSingle('component_library')
-			document = page.data
+			const document = (await $prismic.api.getSingle('component_library')).data
 
 			return {
 				// Page

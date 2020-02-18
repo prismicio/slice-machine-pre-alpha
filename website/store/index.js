@@ -1,17 +1,7 @@
-import Prismic from 'prismic-javascript'
-import PrismicConfig from '~/prismic.config.js'
-
 export const actions = {
-  nuxtServerInit({
-    commit
-  }, {
-    req
-  }) {
-    return Prismic.getApi(PrismicConfig.apiEndpoint, {
-      req
-    }).then(api => {
-      return api
-        .query(Prismic.Predicates.at('document.type', 'menu'))
+  nuxtServerInit({ commit }, { $prismic }) {
+    try {
+      return $prismic.api.query($prismic.predicates.at('document.type', 'menu'))
         .then(menus => {
           commit('menus/SET', {
             main: menus.results.find(e => e.uid === 'main_menu').data,
@@ -19,6 +9,10 @@ export const actions = {
             docs: menus.results.find(e => e.uid === 'docs_menu').data
           })
         })
-    })
+    } catch (e) {
+      const error = 'Please create a menu document'
+
+      commit('menus/SET', error);
+    }
   }
 }

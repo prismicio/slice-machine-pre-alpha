@@ -21,9 +21,6 @@
 </template>
 
 <script>
-import Prismic from 'prismic-javascript'
-import PrismicConfig from '~/prismic.config.js'
-
 const Container = () => import('../components/Container.vue')
 // Imports for all slices
 const TextSlice = () => import('../components/Pages/TextSlice.vue')
@@ -39,15 +36,9 @@ export default {
 		FullWidthImage,
 		BannerSlice
 	},
-	async asyncData({ params, error, req }) {
+	async asyncData({ $prismic, params, error }) {
 		try {
-			// Fetching the API object
-			const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
-
-			// Query to get the side menu content
-			let document = {}
-			const page = await api.getByUID('page', 'about')
-			document = page.data
+			const document = (await $prismic.api.getByUID('page', 'about')).data
 
 			return {
 				// Page content

@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import Prismic from 'prismic-javascript'
-import PrismicConfig from '~/prismic.config.js'
 import Container from '@/components/Container'
 
 import HomeBanner from '@/components/Homepage/HomeBanner'
@@ -46,21 +44,13 @@ export default {
 		Body,
 		Row
 	},
-	async asyncData({ params, error, req }) {
+	async asyncData({ $prismic, params, error }) {
 		try {
-			// Fetching the API object
-			const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
-
-			// Query to get the home page content
-			let document = {}
-			const result = await api.getSingle('home')
-			document = result.data
+			const document = (await $prismic.api.getSingle('home')).data
 
 			return {
 				// Page content
 				document,
-				documentId: result.id,
-
 				// Set slices as variable
 				websiteSlices: document.body,
 				smallBg: document.body.find(

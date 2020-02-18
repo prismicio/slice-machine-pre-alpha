@@ -69,6 +69,7 @@ export default {
 	modules: [
 		'cookie-universal-nuxt',
 		'@nuxtjs/style-resources',
+		'@nuxtjs/axios',
 		[
 			'vue-github-buttons/nuxt',
 			{
@@ -80,7 +81,7 @@ export default {
 			'@nuxtjs/prismic',
 			{
 				endpoint: 'https://slice-machine.prismic.io/api/v2',
-				linkResolver: function(doc, ctx) {
+				linkResolver: function (doc, ctx) {
 					if (doc.isBroken) {
 						return '/not-found'
 					}

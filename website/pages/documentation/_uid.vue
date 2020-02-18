@@ -19,9 +19,6 @@
 </template>
 
 <script>
-import Prismic from 'prismic-javascript'
-import PrismicConfig from '~/prismic.config.js'
-
 // Imports for all slices
 const TextSlice = () => import('../../components/Pages/TextSlice.vue')
 const TitleSlice = () => import('../../components/Pages/TitleSlice.vue')
@@ -42,15 +39,9 @@ export default {
 		CodeSlice,
 		ArticleControls
 	},
-	async asyncData({ params, error, req }) {
+	async asyncData({ $prismic, params, error }) {
 		try {
-			// Fetching the API object
-			const api = await Prismic.getApi(PrismicConfig.apiEndpoint, { req })
-
-			// Query to get the side menu content
-			let document = {}
-			const page = await api.getByUID('page', params.uid)
-			document = page.data
+			const document = (await $prismic.api.getByUID('page', params.uid)).data
 
 			return {
 				// Page content
