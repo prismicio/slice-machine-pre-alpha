@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<h1>{{ slices.packageName }}</h1>
+		<h1>{{ slice.fieldset }} from the {{ library.packageName }} library.</h1>
+		<p>{{ slice.description }}</p>
 		<!-- <nuxt-link :to="`/examples/nuxt/${slice.displayName}`">
 			<img class="sample-image" :src="`/components/${slice.displayName}.png`" />
 		</nuxt-link>-->
@@ -30,13 +31,14 @@
 			<img src="../../static/clipboard.svg" />
 			<input id="command-to-copy" type="hidden" :value="`import ${slice.displayName}`" />
 		</div>-->
-		<!-- <prismic-rich-text :field="document.info_tagline" />
+		<prismic-rich-text :field="document.info_tagline" />
+		<!-- <component :is="slice.slice_type" :data= /> -->
 		<MarkDownBox
 			id="markdown-box"
 			:edit-url="createEditUrl()"
 			style="min-height: 80vh; margin-top: 4em; word-spacing: 0px;"
 		>{{ readme }}</MarkDownBox>
-		<div v-if="hasSandbox" style="width: 100%; margin-top: 3em;" v-html="sandbox" />-->
+		<!-- <div v-if="hasSandbox" style="width: 100%; margin-top: 3em;" v-html="sandbox" /> -->
 	</div>
 </template>
 
@@ -44,19 +46,38 @@
 // import * as Slices from '@/../src/slices'
 // import { createSlice, sliceRoute } from '~/utils'
 
-// import MarkDownBox from '@/components/MarkDownBox'
+import MarkDownBox from '@/components/MarkDownBox'
 
 // const lst = Object.keys(Slices)
 // 	.filter(e => e !== 'SliceZone')
 // 	.map(createSlice)
 // 	.filter(e => e) // eslint-disable-line
 
+// import { pascalize, hyphenate } from 'sm-commons/methods/misc'
+
+const camelizeRE = /-(\w)/g
+function pascalize(str) {
+	if (!str) {
+		return ''
+	}
+	str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
+		return c ? c.toUpperCase() : ''
+	})
+	return str[0].toUpperCase() + str.slice(1)
+}
+
+const hyphenateRE = /\B([A-Z])/g
+function hyphenate(str, kebab) {
+	const s = str.replace(hyphenateRE, '-$1').toLowerCase()
+	return kebab ? s.replace(/-/g, '_') : s
+}
 export default {
 	layout: 'complib',
-	// components: {
-	// 	...Slices,
-	// 	MarkDownBox
-	// },
+	components: {
+		// ...Slices,
+		MarkDownBox
+		// component
+	},
 	// async fetch({ store }) {
 	// 	await store.dispatch('slices/init')
 	// },
@@ -64,16 +85,34 @@ export default {
 		try {
 			const document = (await $prismic.api.getSingle('sample_pages')).data
 
-			const slices = await $axios.$get(
-				'https://sm-api.now.sh/api/library?lib=vue-essential-slices'
+			const library = await $axios.$get(
+				`http://sm-api.now.sh/api/library?lib=${params.library}`
+			)
+
+			const result = library.slices.filter(
+				slice => slice.slice_type === hyphenate(params.slug, true)
+			)
+
+			// const component = await $axios.$get(
+			// 	`https://github.com/prismicio/${params.library}/blob/master/src/slices/${params.slug}/index.vue`
+			// )
+
+			const readme = await $axios.$get(
+				`https://raw.githubusercontent.com/prismicio/${params.library}/master/src/slices/${params.slug}/README.md`
 			)
 
 			return {
 				// Page content
 				document,
-				slices
+				library,
+				slice: result[0],
+				// component,
+				readme
 			}
 		} catch (e) {
+			if (process.env.NODE_ENV === 'development') {
+				console.error(e)
+			}
 			error({ statusCode: 404, message: 'Page not found' })
 		}
 	},
