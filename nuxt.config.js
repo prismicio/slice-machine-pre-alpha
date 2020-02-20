@@ -137,13 +137,9 @@ export default {
 	 ** Build configuration
 	 */
 	build: {
-		transpile: [/^element-ui/],
+		transpile: [/^element-ui/, 'vue-essential-slices']
 		/*
 		 ** You can extend webpack config here
 		 */
-		// eslint-disable-next-line
-		extend(config, ctx) {
-			config.resolve.alias.vue = 'vue/dist/vue.common'
-		}
 	}
 }

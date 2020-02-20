@@ -1,18 +1,18 @@
 <template>
-  <faq-section :slice="mockData" />
+	<faq-section :slice="mockData" />
 </template>
 <script>
 import { FaqSection } from '@/../src'
 import mockData from '@/../src/slices/FaqSection/mock.json'
 export default {
-  components: {
-    FaqSection
+	components: {
+		FaqSection
 	},
 	layout: 'example',
-  data() {
-    return {
-      mockData
-    }
-  }
+	data() {
+		return {
+			mockData
+		}
+	}
 }
 </script>

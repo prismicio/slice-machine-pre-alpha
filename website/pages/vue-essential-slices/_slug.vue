@@ -2,6 +2,7 @@
 	<div>
 		<h1>{{ slice.fieldset }} from the {{ library.packageName }} library.</h1>
 		<p>{{ slice.description }}</p>
+		<component :is="hyphenate($route.params.slug)" :slice="mock" />
 		<!-- <nuxt-link :to="`/examples/nuxt/${slice.displayName}`">
 			<img class="sample-image" :src="`/components/${slice.displayName}.png`" />
 		</nuxt-link>-->
@@ -37,7 +38,8 @@
 			id="markdown-box"
 			:edit-url="createEditUrl()"
 			style="min-height: 80vh; margin-top: 4em; word-spacing: 0px;"
-		>{{ readme }}</MarkDownBox>
+			>{{ readme }}</MarkDownBox
+		>
 		<!-- <div v-if="hasSandbox" style="width: 100%; margin-top: 3em;" v-html="sandbox" /> -->
 	</div>
 </template>
@@ -46,35 +48,16 @@
 // import * as Slices from '@/../src/slices'
 // import { createSlice, sliceRoute } from '~/utils'
 
+import { join } from 'path'
+const { hyphenate } = require('sm-commons/utils/str')
+import * as Slices from 'vue-essential-slices/src'
+
 import MarkDownBox from '@/components/MarkDownBox'
 
-// const lst = Object.keys(Slices)
-// 	.filter(e => e !== 'SliceZone')
-// 	.map(createSlice)
-// 	.filter(e => e) // eslint-disable-line
-
-// import { pascalize, hyphenate } from 'sm-commons/methods/misc'
-
-const camelizeRE = /-(\w)/g
-function pascalize(str) {
-	if (!str) {
-		return ''
-	}
-	str = str.replace(/_/g, '-').replace(camelizeRE, (_, c) => {
-		return c ? c.toUpperCase() : ''
-	})
-	return str[0].toUpperCase() + str.slice(1)
-}
-
-const hyphenateRE = /\B([A-Z])/g
-function hyphenate(str, kebab) {
-	const s = str.replace(hyphenateRE, '-$1').toLowerCase()
-	return kebab ? s.replace(/-/g, '_') : s
-}
 export default {
 	layout: 'complib',
 	components: {
-		// ...Slices,
+		...Slices,
 		MarkDownBox
 		// component
 	},
@@ -86,26 +69,27 @@ export default {
 			const document = (await $prismic.api.getSingle('sample_pages')).data
 
 			const library = await $axios.$get(
-				`http://sm-api.now.sh/api/library?lib=${params.library}`
+				`http://sm-api.now.sh/api/library?lib=vue-essential-slices`
 			)
 
-			const result = library.slices.filter(
-				slice => slice.slice_type === hyphenate(params.slug, true)
+			const slice = library.slices[hyphenate(params.slug, true)]
+
+			const pathToLib = join(
+				library.pathToLibrary || '',
+				library.pathToSlices || 'slices'
 			)
 
-			// const component = await $axios.$get(
-			// 	`https://github.com/prismicio/${params.library}/blob/master/src/slices/${params.slug}/index.vue`
-			// )
+			const readme = require(`!!raw-loader!vue-essential-slices/${pathToLib}/${params.slug}/README.md`)
+				.default
 
-			const readme = await $axios.$get(
-				`https://raw.githubusercontent.com/prismicio/${params.library}/master/src/slices/${params.slug}/README.md`
-			)
+			const mock = require(`vue-essential-slices/${pathToLib}/${params.slug}/mock.json`)
 
 			return {
 				// Page content
 				document,
 				library,
-				slice: result[0],
+				slice,
+				mock,
 				// component,
 				readme
 			}
@@ -134,6 +118,7 @@ export default {
 	// 		`<iframe src="https://codesandbox.io/embed/github/hypervillain/community/tree/master/?autoresize=1&fontsize=14&initialpath=%2Fexamples%2F${displayName}&module=%2Fwebsite%2Fpages%2Fexamples%2F${displayName}.vue&moduleview=0" title="community" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>`
 	// },
 	methods: {
+		hyphenate,
 		mouseover() {
 			this.hover = true
 		},
