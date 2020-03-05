@@ -25,7 +25,7 @@
 		"adm-zip": "^0.4.13",
 		"cookie-universal-nuxt": "^2.0.19",
 		"cors": "^2.8.5",
-		"cross-env": "^6.0.3",
+		"cross-env": "^7.0.2",
 		"element-ui": "^2.13.0",
 		"fs-extra": "^8.1.0",
 		"install": "^0.13.0",
