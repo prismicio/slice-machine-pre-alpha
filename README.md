@@ -2,7 +2,7 @@
 
 A library of reusable, high-quality website sections to be used in your own Nuxt project - with and without Prismic.
 
-Make sure to view the complete list of components [here](https://prismic.io),
+Make sure to view the complete list of components [here](https://vue-essential-slices.netlify.app/?path=/story/*),
 or scroll down if want to contribute! 👇
 
 ⭐️Oh and star us on GitHub — it helps
