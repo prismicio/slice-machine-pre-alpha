@@ -1,9 +1,12 @@
 html {
-  background: hsl(260, 35%, 37%);
+  background: #111;
+  font-size: .9rem;
 }
+
 a {
   color: #000;
 }
+
 .Tree-collectionLabel {
   font-weight: bolder;
   background-color: hsl(260, 15%, 96%);
@@ -12,6 +15,7 @@ a {
     padding-left: 1.25em;
   }
 }
+
 .Tree-collectionLabel:hover {
   background-color: hsl(260, 15%, 94%);
 }
@@ -37,8 +41,12 @@ a {
 .Header {
   /* background: hsl(260, 35%, 37%); */
   background: #fff;
-  /* color: #fff; */
+  color: #111;
   padding: 0.7em 0;
+}
+
+[dir="ltr"] .Header-button {
+  border-right: 1px solid #ccc;
 }
 
 .Header-navToggle svg {
@@ -70,12 +78,12 @@ a {
 }
 
 .Prose--condensed li,
-.Prose--condensed li > ul,
-.Prose--condensed li > ol {
+.Prose--condensed li>ul,
+.Prose--condensed li>ol {
   margin-bottom: 1em;
 }
 
-.Prose > *:not(:last-child) {
+.Prose>*:not(:last-child) {
   margin: 1.5em 0;
 }
 
@@ -92,7 +100,7 @@ a {
   margin: 2em 0;
 }
 
-.Document ul > li {
+.Document ul>li {
   margin-bottom: 0.5em;
 }
 
