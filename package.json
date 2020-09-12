@@ -20,7 +20,7 @@
 	"main": "index.js",
 	"dependencies": {
 		"@nuxtjs/axios": "^5.8.0",
-		"@nuxtjs/prismic": "^1.0.0",
+		"@nuxtjs/prismic": "^1.2.4",
 		"@nuxtjs/pwa": "^2.6.0",
 		"adm-zip": "^0.4.13",
 		"cookie-universal-nuxt": "^2.0.19",
