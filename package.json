@@ -36,7 +36,7 @@
 		"lodash.merge": "^4.6.2",
 		"lodash.set": "^4.3.2",
 		"marked": "^0.7.0",
-		"mustache": "^3.2.1",
+		"mustache": "^4.1.0",
 		"npm": "^6.13.6",
 		"nuxt": "^2.11.0",
 		"prismic-dom": "^2.1.0",
