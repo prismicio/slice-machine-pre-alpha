@@ -19,7 +19,7 @@
 	},
 	"main": "index.js",
 	"dependencies": {
-		"@nuxtjs/axios": "^5.8.0",
+		"@nuxtjs/axios": "^5.12.5",
 		"@nuxtjs/prismic": "^1.0.0",
 		"@nuxtjs/pwa": "^2.6.0",
 		"adm-zip": "^0.4.13",
