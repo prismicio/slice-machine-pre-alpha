@@ -22,7 +22,7 @@
 		"@nuxtjs/axios": "^5.8.0",
 		"@nuxtjs/prismic": "^1.0.0",
 		"@nuxtjs/pwa": "^2.6.0",
-		"adm-zip": "^0.4.13",
+		"adm-zip": "^0.5.5",
 		"cookie-universal-nuxt": "^2.0.19",
 		"cors": "^2.8.5",
 		"cross-env": "^6.0.3",
