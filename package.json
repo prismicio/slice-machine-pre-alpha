@@ -30,7 +30,7 @@
 		"fs-extra": "^8.1.0",
 		"install": "^0.13.0",
 		"isomorphic-fetch": "^2.2.1",
-		"jsdom": "^15.2.1",
+		"jsdom": "^16.7.0",
 		"jszip": "^3.2.2",
 		"lodash.get": "^4.4.2",
 		"lodash.merge": "^4.6.2",
