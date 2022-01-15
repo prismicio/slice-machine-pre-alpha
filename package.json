@@ -35,7 +35,7 @@
 		"lodash.get": "^4.4.2",
 		"lodash.merge": "^4.6.2",
 		"lodash.set": "^4.3.2",
-		"marked": "^0.7.0",
+		"marked": "^4.0.10",
 		"mustache": "^3.2.1",
 		"npm": "^6.13.6",
 		"nuxt": "^2.11.0",
